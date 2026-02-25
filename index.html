@@ -406,34 +406,6 @@
     </script>
 
     <script>
-    // Скрипт для мобільного меню
-    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-    const headerContent = document.querySelector('.header-content');
-    const mobileIcon = mobileMenuBtn.querySelector('i');
-
-    mobileMenuBtn.addEventListener('click', () => {
-        headerContent.classList.toggle('active');
-        
-        // Змінюємо іконку (бургер на хрестик і навпаки)
-        if (headerContent.classList.contains('active')) {
-            mobileIcon.classList.remove('fa-bars');
-            mobileIcon.classList.add('fa-times');
-        } else {
-            mobileIcon.classList.remove('fa-times');
-            mobileIcon.classList.add('fa-bars');
-        }
-    });
-
-    // Автоматично закриваємо меню при кліку на будь-яке посилання всередині
-    document.querySelectorAll('.main-nav a, .btn-primary').forEach(link => {
-        link.addEventListener('click', () => {
-            headerContent.classList.remove('active');
-            mobileIcon.classList.remove('fa-times');
-            mobileIcon.classList.add('fa-bars');
-        });
-    </script>
-
-    <script>
         // Скрипт для мобільного меню (гамбургер)
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
         const headerContent = document.querySelector('.header-content');
@@ -489,9 +461,34 @@
         });
     </script>
 
-</body>
+    <script>
+        // Плавний скролл без додавання #about в URL
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                
+                // Якщо посилання веде просто на "#", ігноруємо
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    // Скасовуємо стандартний перехід (який змінює URL)
+                    e.preventDefault(); 
+                    
+                    // Плавно скролимо до потрібного блоку
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 
+</body>
 </html>
+
 
 
 
