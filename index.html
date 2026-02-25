@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeoCrime — VTC в TruckersMP</title>
+    
+    <link rel="icon" type="image/png" href="images/logo.png">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header data-aos="fade-down" data-aos-duration="800">
+    <div class="header-container">
+        <a href="#home" class="logo-link" style="text-decoration: none; color: white; display: flex; align-items: center;">
+            <div class="logo">
+                <img src="images/logo.png" alt="NE Logo" id="logo-img"> Neo<span style="color: #ff3333;">Crime</span>
+            </div>
+        </a>
+        
+        <div class="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        <div class="header-content">
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#home">Головна</a></li>
+                    <li><a href="#team">Команда</a></li>
+                    <li><a href="#about">Про нас</a></li>
+                    <li><a href="#gallery">Галерея</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <a href="https://discord.gg/zGzy7Gcdgy" target="_blank" class="btn-primary">Розпочати свій шлях</a>
+                
+                <div class="lang-switch">
+                    <div class="current-lang">
+                        <img src="https://flagcdn.com/w40/ua.png" alt="UA">
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    
+                    <div class="lang-dropdown">
+                        <a href="eng.html"><img src="https://flagcdn.com/w40/gb.png" alt="EN"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 data-aos="zoom-in" data-aos-duration="1000">Вітаємо у NeoCrime</h1>
+            <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                Це дружнє та згуртоване українське ком'юніті, де кожен водій — важлива частина однієї команди. Нас об'єднують спільні цінності, взаємна підтримка та любов до дороги. Тут кожен знайде своє місце, допомогу та справжнє відчуття єдності.
+            </p>
+            
+            <div class="hero-buttons" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+                <a href="https://discord.gg/zGzy7Gcdgy" target="_blank" class="btn-social"><i class="fab fa-discord"></i> Discord</a>
+                <a href="https://www.tiktok.com/@neocrime_vtc" target="_blank" class="btn-social"><i class="fab fa-tiktok"></i> TikTok</a>
+                <a href="https://truckersmp.com/vtc/83571" target="_blank" class="btn-social"><i class="fas fa-heart"></i> TruckersMP</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="cyber-wrapper">
+
+        <section id="news" class="news-section">
+            <div class="container">
+                <div class="news-header">
+                    <h2 class="section-title" data-aos="fade-up" style="margin-bottom: 0;">Новини</h2>
+                </div>
+                
+                <div class="news-grid">
+                    <div class="news-card" data-aos="fade-up" data-aos-delay="100" onclick="openNewsModal('news-1')">
+                        <div class="news-img-wrapper">
+                            <img src="https://i.postimg.cc/BnVyckK9/1mln.png" alt="1 Million KM">
+                        </div>
+                        <div class="news-content">
+                            <span class="news-date"><i class="far fa-calendar-alt"></i> 25.02.2026</span>
+                            <h3 class="news-title">ВІТАЄМО NEOCRIME З ВЕЛИКИМ ЮВІЛЕЄМ! 1 000 000 КМ!</h3>
+                            <p class="news-author">Автор: !F4DED</p>
+                            <span class="read-more">ДЕТАЛЬНІШЕ <i class="fas fa-arrow-right"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="team" class="team-section">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">Наша команда</h2>
+                
+                <div class="team-grid">
+                    <a href="https://discord.com/users/1212878561195729007" target="_blank" class="team-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="team-img-wrapper">
+                            <img src="images/f4ded.jpg" alt="!F4DED">
+                        </div>
+                        <h3>!F4DED</h3>
+                        <p class="role">Owner</p>
+                    </a>
+
+                    <a href="https://discord.com/users/1229497941941682298" target="_blank" class="team-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="team-img-wrapper">
+                            <img src="images/porox.jpg" alt="POROX">
+                        </div>
+                        <h3>POROX</h3>
+                        <p class="role">Deputy Owner</p>
+                    </a>
+
+                    <a href="https://discord.com/users/1352644280165859339" target="_blank" class="team-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="team-img-wrapper">
+                            <img src="images/oleksandr.jpg" alt="Олександр">
+                        </div>
+                        <h3>Олександр</h3>
+                        <p class="role">Management Assistant</p>
+                    </a>
+
+                    <a href="https://discord.com/users/854862391710580756" target="_blank" class="team-card" data-aos="fade-up" data-aos-delay="400">
+                        <div class="team-img-wrapper">
+                            <img src="images/helld4wg.jpg" alt="helld4wg">
+                        </div>
+                        <h3>helld4wg</h3>
+                        <p class="role">Head of Moderation</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about-section">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">Про нас</h2>
+                
+                <div class="about-content">
+                    <p data-aos="fade-up" data-aos-delay="100">
+                        <span class="highlight">NeoCrime</span> — це не просто віртуальна транспортна компанія в Euro Truck Simulator 2. Це згуртоване українське ком'юніті, де кожен водій є важливою частиною єдиної команди. Ми об'єднуємо людей, яких надихає дорога, спільна гра та взаємна підтримка.
+                    </p>
+                    <p data-aos="fade-up" data-aos-delay="200">
+                        Ми пропонуємо дружню та активну спільноту, регулярні конвої й спільні подорожі, атмосферу взаємоповаги та дисципліни на дорозі. У NeoCrime цінується позитивне спілкування, відсутність токсичності та щире захоплення грою.
+                    </p>
+                    <p data-aos="fade-up" data-aos-delay="300">
+                        Наші цінності ґрунтуються на повазі, командній грі та якісному підході до перевезень. Для нас важливий кожен учасник, незалежно від його досвіду чи стилю гри. Приєднуйся до <span class="highlight">NeoCrime</span> та стань частиною української спільноти водіїв у ETS2 MP.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="partners" class="partners-section">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">Наші партнери</h2>
+                
+                <div class="partners-grid">
+                    <a href="https://truckersmp.com/vtc/83571" target="_blank" class="partner-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="partner-img-wrapper">
+                            <img src="images/oss-logo.png" alt="OSS Logistics">
+                        </div>
+                        <h3>OSS Logistics</h3>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="faq-section">
+            <div class="container faq-container">
+                <div class="faq-left" data-aos="fade-right" data-aos-duration="1000">
+                    <h2>Приєднуйся<br>до нашої<br>спільноти</h2>
+                    <p>NeoCrime — це українська VTC, де ми цінуємо командну гру, дисципліну на дорозі та дружню атмосферу. Ми об'єднуємо водіїв, для яких важлива якість перевезень і повага один до одного.</p>
+                    <a href="https://discord.gg/zGzy7Gcdgy" target="_blank" class="btn-primary">Подати заявку!</a>
+                </div>
+                
+                <div class="faq-right" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                    <div class="accordion">
+                        
+                        <div class="accordion-item">
+                            <button class="accordion-header">❓ Як приєднатися до NeoCrime? <i class="fas fa-chevron-down"></i></button>
+                            <div class="accordion-content">
+                                <p>Щоб стати частиною компанії, достатньо заповнити коротку заявку на дискорд сервері. Після розгляду з тобою зв’яжеться адміністрація та надасть подальші інструкції.</p>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <button class="accordion-header">❓ Чи є вимоги до досвіду гри? <i class="fas fa-chevron-down"></i></button>
+                            <div class="accordion-content">
+                                <p>Ні, ми приймаємо як досвідчених водіїв, так і новачків. Головне — адекватність, бажання грати в команді та дотримання правил.</p>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <button class="accordion-header">❓ Чи проводите ви конвої? <i class="fas fa-chevron-down"></i></button>
+                            <div class="accordion-content">
+                                <p>Так, NeoCrime регулярно організовує конвої та спільні поїздки в ETS2 MP. Це чудова можливість для спілкування та командної гри.</p>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <button class="accordion-header">❓ У яких режимах ви граєте? <i class="fas fa-chevron-down"></i></button>
+                            <div class="accordion-content">
+                                <p>Основний напрям — Euro Truck Simulator 2 Multiplayer, але ми також підтримуємо спільні заїзди та події в інших форматах.</p>
+                            </div>
+                        </div>
+                        
+                    </div> 
+                </div> 
+            </div> 
+        </section>
+
+        <section id="gallery" class="gallery-section">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">Галерея</h2>
+                
+                <div class="gallery-grid" data-aos="fade-up" data-aos-delay="100">
+                    <img src="images/gallery/1.jpg" alt="Фото 1" class="gallery-item">
+                    <img src="images/gallery/2.jpg" alt="Фото 2" class="gallery-item">
+                    <img src="images/gallery/3.jpg" alt="Фото 3" class="gallery-item">
+                    <img src="images/gallery/4.jpg" alt="Фото 4" class="gallery-item">
+                    <img src="images/gallery/5.jpg" alt="Фото 5" class="gallery-item">
+                    <img src="images/gallery/6.jpg" alt="Фото 6" class="gallery-item">
+                    <img src="images/gallery/7.jpg" alt="Фото 7" class="gallery-item">
+                    <img src="images/gallery/8.jpg" alt="Фото 8" class="gallery-item">
+                    <img src="images/gallery/9.jpg" alt="Фото 9" class="gallery-item">
+                    <img src="images/gallery/10.jpg" alt="Фото 10" class="gallery-item">
+                </div>
+            </div>
+        </section>
+
+    </div> <footer class="site-footer">
+        <div class="container footer-container">
+            
+            <div class="footer-col about-col">
+                <div class="logo">Neo<span>Crime</span></div>
+                <p>NeoCrime — це амбіційна українська VTC, що впевнено рухається вперед, створюючи власну історію успіху на просторах TruckersMP. Це місце, де стиль, дисципліна та командний дух поєднуються в єдину силу, а кожен учасник стає частиною великого та впевненого руху.</p>
+                
+                <div class="social-img-links">
+                    <a href="https://discord.gg/zGzy7Gcdgy" target="_blank"><img src="images/social1.png" alt="Social 1"></a>
+                    <a href="https://www.tiktok.com/@neocrime_vtc" target="_blank"><img src="images/social2.png" alt="Social 2"></a>
+                    <a href="https://truckersmp.com/vtc/85940" target="_blank"><img src="images/social3.png" alt="Social 3"></a>
+                    <a href="https://truckershub.in/vtc/1775" target="_blank"><img src="images/social4.png" alt="Social 4"></a>
+                </div>
+            </div>
+
+            <div class="footer-col nav-col">
+                <h4>Навігація</h4>
+                <ul>
+                    <li><a href="#home">Головна</a></li>
+                    <li><a href="#about">Про нас</a></li>
+                    <li><a href="#gallery">Галерея</a></li>
+                    <li><a href="privacy.html">Політика приватності</a></li>
+                    <li><a href="terms.html">Угода користування</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col contact-col">
+                <h4>Контакти</h4>
+                <ul>
+                    <li><i class="fas fa-envelope"></i> <a href="mailto:neocrime10@gmail.com">neocrime10@gmail.com</a></li>
+                    <li><i class="fab fa-discord"></i> <a href="https://discord.gg/zGzy7Gcdgy" target="_blank">https://discord.gg/zGzy7Gcdgy</a></li>
+                </ul>
+            </div>
+            
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 NeoCrime. Всі права захищені.</p>
+        </div>
+    </footer>
+
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <button class="lightbox-prev"><i class="fas fa-chevron-left"></i></button>
+        <img class="lightbox-content" id="lightbox-img" src="">
+        <button class="lightbox-next"><i class="fas fa-chevron-right"></i></button>
+    </div>
+
+    <div id="news-modal" class="lightbox">
+        <span class="lightbox-close" onclick="closeNewsModal()">&times;</span>
+        <div class="news-modal-content">
+            
+            <div id="news-1" class="news-detail" style="display: none;">
+                <img src="https://i.postimg.cc/BnVyckK9/1mln.png" alt="1 Million KM">
+                <div class="news-modal-text">
+                    <h3>ВІТАЄМО NEOCRIME VTC З ВЕЛИКИМ ЮВІЛЕЄМ! 1 000 000 КІЛОМЕТРІВ ПОЗАДУ! 🚛💨</h3>
+                    <span class="news-date">25.02.2026 | Автор: !F4DED</span>
+                    <p>Це не просто цифра на лічильнику — це тисячі годин у дорозі, сотні доставлених вантажів та незламний дух нашої спільноти. Дякуємо кожному водію, хто доклав зусиль до цього неймовірного результату.</p>
+                    <blockquote>Дякую за 1 млн кілометрів! Разом ми — сила, яку не зупинити.</blockquote>
+                    <p>Попереду ще більше доріг, нових міст та спільних конвоїв. Тиснемо на газ і рухаємось до наступного мільйона!</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            offset: 100
+        });
+    </script>
+
+    <script>
+        // Скрипт для акордеону (FAQ)
+        const accordionHeaders = document.querySelectorAll('.accordion-header');
+
+        accordionHeaders.forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.parentElement;
+                const content = header.nextElementSibling;
+                
+                item.classList.toggle('active');
+                
+                if (item.classList.contains('active')) {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                } else {
+                    content.style.maxHeight = null;
+                }
+            });
+        });
+    </script>
+
+    <script>
+        // ОНОВЛЕНИЙ Скрипт для Галереї (Lightbox) з плавними переходами
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const closeBtn = document.querySelector('.lightbox-close');
+        const prevBtn = document.querySelector('.lightbox-prev');
+        const nextBtn = document.querySelector('.lightbox-next');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        
+        let currentIndex = 0;
+        let isAnimating = false; // Захист від швидких багаторазових кліків
+
+        // Функція для плавної зміни фото
+        function changeImageWithFade(newIndex) {
+            if (isAnimating) return; // Якщо анімація вже йде, ігноруємо клік
+            isAnimating = true;
+
+            // 1. Починаємо згасання старого фото
+            lightboxImg.classList.add('switching');
+
+            // 2. Чекаємо завершення анімації згасання (400ms, як в CSS)
+            setTimeout(() => {
+                currentIndex = newIndex;
+                lightboxImg.src = galleryItems[currentIndex].src;
+                
+                // 3. Нове фото завантажено, плавно показуємо його
+                lightboxImg.classList.remove('switching');
+                
+                // Знімаємо блокування після завершення
+                setTimeout(() => { isAnimating = false; }, 400);
+            }, 400);
+        }
+
+        // Відкрити (тут без затримки, бо відкривається вперше)
+        function openLightbox(index) {
+            currentIndex = index;
+            lightboxImg.src = galleryItems[currentIndex].src;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Закрити
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Наступне фото (через плавну функцію)
+        function showNext() {
+            let newIndex = (currentIndex + 1) % galleryItems.length;
+            changeImageWithFade(newIndex);
+        }
+
+        // Попереднє фото (через плавну функцію)
+        function showPrev() {
+            let newIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
+            changeImageWithFade(newIndex);
+        }
+
+        // Вішаємо кліки
+        galleryItems.forEach((item, index) => {
+            item.addEventListener('click', () => openLightbox(index));
+        });
+
+        closeBtn.addEventListener('click', closeLightbox);
+        nextBtn.addEventListener('click', showNext);
+        prevBtn.addEventListener('click', showPrev);
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') showNext();
+            if (e.key === 'ArrowLeft') showPrev();
+        });
+    </script>
+
+    <script>
+    // Скрипт для мобільного меню
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const headerContent = document.querySelector('.header-content');
+    const mobileIcon = mobileMenuBtn.querySelector('i');
+
+    mobileMenuBtn.addEventListener('click', () => {
+        headerContent.classList.toggle('active');
+        
+        // Змінюємо іконку (бургер на хрестик і навпаки)
+        if (headerContent.classList.contains('active')) {
+            mobileIcon.classList.remove('fa-bars');
+            mobileIcon.classList.add('fa-times');
+        } else {
+            mobileIcon.classList.remove('fa-times');
+            mobileIcon.classList.add('fa-bars');
+        }
+    });
+
+    // Автоматично закриваємо меню при кліку на будь-яке посилання всередині
+    document.querySelectorAll('.main-nav a, .btn-primary').forEach(link => {
+        link.addEventListener('click', () => {
+            headerContent.classList.remove('active');
+            mobileIcon.classList.remove('fa-times');
+            mobileIcon.classList.add('fa-bars');
+        });
+    </script>
+
+    <script>
+        // Скрипт для мобільного меню (гамбургер)
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const headerContent = document.querySelector('.header-content');
+        const mobileIcon = mobileMenuBtn.querySelector('i');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            headerContent.classList.toggle('active');
+            
+            // Змінюємо іконку (бургер на хрестик і навпаки)
+            if (headerContent.classList.contains('active')) {
+                mobileIcon.classList.remove('fa-bars');
+                mobileIcon.classList.add('fa-times');
+            } else {
+                mobileIcon.classList.remove('fa-times');
+                mobileIcon.classList.add('fa-bars');
+            }
+        });
+
+        // Автоматично закриваємо меню при кліку на будь-яке посилання всередині
+        document.querySelectorAll('.main-nav a, .btn-primary').forEach(link => {
+            link.addEventListener('click', () => {
+                headerContent.classList.remove('active');
+                mobileIcon.classList.remove('fa-times');
+                mobileIcon.classList.add('fa-bars');
+            });
+        });
+    </script>
+
+    <script>
+        // Скрипт для новостей
+        const newsModal = document.getElementById('news-modal');
+        const newsDetails = document.querySelectorAll('.news-detail');
+
+        function openNewsModal(newsId) {
+            // Прячем все новости внутри попапа
+            newsDetails.forEach(detail => detail.style.display = 'none');
+            // Показываем ту, на которую кликнули
+            document.getElementById(newsId).style.display = 'block';
+            
+            // Открываем попап
+            newsModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeNewsModal() {
+            newsModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Закрытие при клике мимо окна
+        newsModal.addEventListener('click', (e) => {
+            if (e.target === newsModal) closeNewsModal();
+        });
+    </script>
+
+</body>
+
+</html>
+
+
