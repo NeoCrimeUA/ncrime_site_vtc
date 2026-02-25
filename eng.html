@@ -325,7 +325,7 @@
     </script>
 
     <script>
-        // Скрипт для Галереї (Lightbox)
+        // ОНОВЛЕНИЙ Скрипт для Галереї (Lightbox) з плавними переходами
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
         const closeBtn = document.querySelector('.lightbox-close');
@@ -334,24 +334,30 @@
         const galleryItems = document.querySelectorAll('.gallery-item');
         
         let currentIndex = 0;
-        let isAnimating = false;
+        let isAnimating = false; // Захист від швидких багаторазових кліків
 
+        // Функція для плавної зміни фото
         function changeImageWithFade(newIndex) {
-            if (isAnimating) return;
+            if (isAnimating) return; // Якщо анімація вже йде, ігноруємо клік
             isAnimating = true;
 
+            // 1. Починаємо згасання старого фото
             lightboxImg.classList.add('switching');
 
+            // 2. Чекаємо завершення анімації згасання (400ms, як в CSS)
             setTimeout(() => {
                 currentIndex = newIndex;
                 lightboxImg.src = galleryItems[currentIndex].src;
                 
+                // 3. Нове фото завантажено, плавно показуємо його
                 lightboxImg.classList.remove('switching');
                 
+                // Знімаємо блокування після завершення
                 setTimeout(() => { isAnimating = false; }, 400);
             }, 400);
         }
 
+        // Відкрити (тут без затримки, бо відкривається вперше)
         function openLightbox(index) {
             currentIndex = index;
             lightboxImg.src = galleryItems[currentIndex].src;
@@ -359,21 +365,25 @@
             document.body.style.overflow = 'hidden';
         }
 
+        // Закрити
         function closeLightbox() {
             lightbox.classList.remove('active');
             document.body.style.overflow = '';
         }
 
+        // Наступне фото (через плавну функцію)
         function showNext() {
             let newIndex = (currentIndex + 1) % galleryItems.length;
             changeImageWithFade(newIndex);
         }
 
+        // Попереднє фото (через плавну функцію)
         function showPrev() {
             let newIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
             changeImageWithFade(newIndex);
         }
 
+        // Вішаємо кліки
         galleryItems.forEach((item, index) => {
             item.addEventListener('click', () => openLightbox(index));
         });
@@ -391,32 +401,6 @@
             if (e.key === 'Escape') closeLightbox();
             if (e.key === 'ArrowRight') showNext();
             if (e.key === 'ArrowLeft') showPrev();
-        });
-    </script>
-
-    <script>
-    // Скрипт для мобільного меню
-    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-    const headerContent = document.querySelector('.header-content');
-    const mobileIcon = mobileMenuBtn.querySelector('i');
-
-    mobileMenuBtn.addEventListener('click', () => {
-        headerContent.classList.toggle('active');
-        
-        if (headerContent.classList.contains('active')) {
-            mobileIcon.classList.remove('fa-bars');
-            mobileIcon.classList.add('fa-times');
-        } else {
-            mobileIcon.classList.remove('fa-times');
-            mobileIcon.classList.add('fa-bars');
-        }
-    });
-
-    document.querySelectorAll('.main-nav a, .btn-primary').forEach(link => {
-        link.addEventListener('click', () => {
-            headerContent.classList.remove('active');
-            mobileIcon.classList.remove('fa-times');
-            mobileIcon.classList.add('fa-bars');
         });
     </script>
 
@@ -450,13 +434,17 @@
     </script>
 
     <script>
-        // Скрипт для новин
+        // Скрипт для новостей
         const newsModal = document.getElementById('news-modal');
         const newsDetails = document.querySelectorAll('.news-detail');
 
         function openNewsModal(newsId) {
+            // Прячем все новости внутри попапа
             newsDetails.forEach(detail => detail.style.display = 'none');
+            // Показываем ту, на которую кликнули
             document.getElementById(newsId).style.display = 'block';
+            
+            // Открываем попап
             newsModal.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
@@ -466,16 +454,40 @@
             document.body.style.overflow = '';
         }
 
-        if (newsModal) {
-            newsModal.addEventListener('click', (e) => {
-                if (e.target === newsModal) closeNewsModal();
+        // Закрытие при клике мимо окна
+        newsModal.addEventListener('click', (e) => {
+            if (e.target === newsModal) closeNewsModal();
+        });
+    </script>
+
+    <script>
+        // Плавний скролл без додавання #about в URL
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                
+                // Якщо посилання веде просто на "#", ігноруємо
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    // Скасовуємо стандартний перехід (який змінює URL)
+                    e.preventDefault(); 
+                    
+                    // Плавно скролимо до потрібного блоку
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
             });
-        }
+        });
     </script>
 
 </body>
-
 </html>
+
 
 
 
