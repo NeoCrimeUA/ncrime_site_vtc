@@ -1247,3 +1247,42 @@ header {
     background: #ff3333;
     border-radius: 4px;
 }
+
+/* --- 404 ERROR PAGE --- */
+.error-page {
+    background-color: #1a1a1a;
+    overflow: hidden;
+}
+
+.error-code {
+    font-family: 'Russo One', sans-serif;
+    font-size: 150px;
+    margin: 0;
+    line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 3px #ff3333;
+    text-shadow: 0 0 20px rgba(255, 51, 51, 0.6), 0 0 40px rgba(255, 51, 51, 0.4);
+}
+
+.error-title {
+    font-size: 32px;
+    font-weight: 900;
+    color: #fff;
+    margin: 10px 0 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.error-desc {
+    font-size: 18px;
+    color: #ccc;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+/* Адаптация под телефоны */
+@media (max-width: 768px) {
+    .error-code { font-size: 100px; -webkit-text-stroke: 2px #ff3333; }
+    .error-title { font-size: 24px; }
+    .error-desc { font-size: 16px; }
+}
