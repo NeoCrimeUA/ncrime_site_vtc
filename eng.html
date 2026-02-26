@@ -79,7 +79,19 @@
                 </div>
                 
                 <div class="news-grid">
-                    <div class="news-card" data-aos="fade-up" data-aos-delay="100" onclick="openNewsModal('news-1')">
+                    <div class="news-card" data-aos="fade-up" data-aos-delay="100" onclick="openNewsModal('news-validated')">
+                        <div class="news-img-wrapper">
+                            <img src="https://i.postimg.cc/R0pSwH1K/validated.png" alt="Validated VTC">
+                        </div>
+                        <div class="news-content">
+                            <span class="news-date"><i class="far fa-calendar-alt"></i> 26.02.2026</span>
+                            <h3 class="news-title">NEOCRIME OFFICIALLY RECEIVED VALIDATED VTC STATUS!</h3>
+                            <p class="news-author">Author: !F4DED</p>
+                            <span class="read-more">READ MORE <i class="fas fa-arrow-right"></i></span>
+                        </div>
+                    </div>
+
+                    <div class="news-card" data-aos="fade-up" data-aos-delay="200" onclick="openNewsModal('news-1')">
                         <div class="news-img-wrapper">
                             <img src="https://i.postimg.cc/BnVyckK9/1mln.png" alt="1 Million KM">
                         </div>
@@ -91,7 +103,7 @@
                         </div>
                     </div>
 
-                    <div class="news-card" data-aos="fade-up" data-aos-delay="200" onclick="openNewsModal('news-2')">
+                    <div class="news-card" data-aos="fade-up" data-aos-delay="300" onclick="openNewsModal('news-2')">
                         <div class="news-img-wrapper">
                             <img src="https://i.postimg.cc/ZqMDdc68/banner-ua.png" alt="NeoCrime Automation">
                         </div>
@@ -293,7 +305,31 @@
     <div id="news-modal" class="lightbox">
         <span class="lightbox-close" onclick="closeNewsModal()">&times;</span>
         <div class="news-modal-content">
-            
+
+            <div id="news-validated" class="news-detail" style="display: none;">
+                <img src="https://i.postimg.cc/R0pSwH1K/validated.png" alt="Validated VTC Status">
+                <div class="news-modal-text">
+                    <h3>🎉 NEOCRIME OFFICIALLY RECEIVED VALIDATED VTC STATUS!</h3>
+                    <span class="news-date">26.02.2026 | Author: !F4DED</span>
+                    
+                    <p>We are thrilled to announce extraordinary news — our company <strong>NeoCrime</strong> has officially received <strong>Validated VTC</strong> status from TruckersMP!</p>
+                    
+                    <p>This is a crucial step in our community's development and a confirmation that we are moving in the right direction. Validated status is granted only to virtual trucking companies that meet high standards of activity, organization, and contribution to the community.</p>
+                    
+                    <blockquote>Over this relatively short period, we didn't just create a company — we built a system.</blockquote>
+
+                    <p>NeoCrime has become not just a VTC, but an organized community with a clear structure, discipline, and its own style. We formed a team that moves as a single mechanism — smoothly, confidently, and with ambition.</p>
+
+                    <p>We set our own pace of development, created a recognizable brand, and built an internal hierarchy and atmosphere where every member is part of something bigger.</p>
+
+                    <p style="margin-top: 20px;">Obtaining <strong>Validated</strong> status is not only an achievement but also a responsibility. We will continue to maintain a high level of organization, activity, and quality in our work.</p>
+
+                    <p>Thank you to every NeoCrime member for your contribution to the company's development. Without you, this would not have been possible. Ahead — even more goals, more kilometers, and new achievements.</p>
+                    
+                    <p style="font-weight: bold; color: #ff3333;">NeoCrime moves only forward! 🚀</p>
+                </div>
+            </div>
+
             <div id="news-1" class="news-detail" style="display: none;">
                 <img src="https://i.postimg.cc/BnVyckK9/1mln.png" alt="1 Million KM">
                 <div class="news-modal-text">
@@ -520,6 +556,7 @@
 
 </body>
 </html>
+
 
 
 
