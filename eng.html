@@ -74,45 +74,72 @@
 
         <section id="news" class="news-section">
             <div class="container">
-                <div class="news-header">
+                <div class="news-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
                     <h2 class="section-title" data-aos="fade-up" style="margin-bottom: 0;">News</h2>
+                    <div class="news-slider-controls" data-aos="fade-up">
+                        <button id="news-prev" class="btn-primary" style="padding: 8px 15px; border: none; cursor: pointer; border-radius: 5px; min-width: auto; margin-right: 10px;"><i class="fas fa-chevron-left"></i></button>
+                        <button id="news-next" class="btn-primary" style="padding: 8px 15px; border: none; cursor: pointer; border-radius: 5px; min-width: auto;"><i class="fas fa-chevron-right"></i></button>
+                    </div>
                 </div>
                 
-                <div class="news-grid">
-                    <div class="news-card" data-aos="fade-up" data-aos-delay="100" onclick="openNewsModal('news-validated')">
-                        <div class="news-img-wrapper">
-                            <img src="https://i.postimg.cc/R0pSwH1K/validated.png" alt="Validated VTC">
-                        </div>
-                        <div class="news-content">
-                            <span class="news-date"><i class="far fa-calendar-alt"></i> 26.02.2026</span>
-                            <h3 class="news-title">NEOCRIME OFFICIALLY RECEIVED VALIDATED VTC STATUS!</h3>
-                            <p class="news-author">Author: !F4DED</p>
-                            <span class="read-more">READ MORE <i class="fas fa-arrow-right"></i></span>
-                        </div>
-                    </div>
+                <div class="news-slider-container" style="width: 100%; overflow: hidden;">
+                    <div class="news-grid" id="news-slider" style="display: flex; flex-wrap: nowrap; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; gap: 20px; padding-bottom: 15px; -ms-overflow-style: none; scrollbar-width: none;">
+                        <style>
+                            /* Ховаємо смугу прокрутки, щоб виглядало як слайдер */
+                            #news-slider::-webkit-scrollbar { display: none; }
+                            .news-card { flex: 0 0 calc(33.333% - 14px); scroll-snap-align: start; min-width: 320px; }
+                            @media (max-width: 992px) { .news-card { flex: 0 0 calc(50% - 10px); } }
+                            @media (max-width: 768px) { .news-card { flex: 0 0 100%; } }
+                        </style>
 
-                    <div class="news-card" data-aos="fade-up" data-aos-delay="200" onclick="openNewsModal('news-1')">
-                        <div class="news-img-wrapper">
-                            <img src="https://i.postimg.cc/BnVyckK9/1mln.png" alt="1 Million KM">
+                        <div class="news-card" data-aos="fade-up" data-aos-delay="50" onclick="openNewsModal('news-feb-results')">
+                            <div class="news-img-wrapper">
+                                <img src="https://i.postimg.cc/MZQgkqx6/ets2%2020260228%20211131%2000.png" alt="February Results">
+                            </div>
+                            <div class="news-content">
+                                <span class="news-date"><i class="far fa-calendar-alt"></i> 28.02.2026</span>
+                                <h3 class="news-title">NEOCRIME — FEBRUARY RESULTS</h3>
+                                <p class="news-author">Author: !F4DED</p>
+                                <span class="read-more">READ MORE <i class="fas fa-arrow-right"></i></span>
+                            </div>
                         </div>
-                        <div class="news-content">
-                            <span class="news-date"><i class="far fa-calendar-alt"></i> 25.02.2026</span>
-                            <h3 class="news-title">HAPPY ANNIVERSARY NEOCRIME! 1,000,000 KM!</h3>
-                            <p class="news-author">Author: !F4DED</p>
-                            <span class="read-more">READ MORE <i class="fas fa-arrow-right"></i></span>
-                        </div>
-                    </div>
 
-                    <div class="news-card" data-aos="fade-up" data-aos-delay="300" onclick="openNewsModal('news-2')">
-                        <div class="news-img-wrapper">
-                            <img src="https://i.postimg.cc/ZqMDdc68/banner-ua.png" alt="NeoCrime Automation">
+                        <div class="news-card" data-aos="fade-up" data-aos-delay="100" onclick="openNewsModal('news-validated')">
+                            <div class="news-img-wrapper">
+                                <img src="https://i.postimg.cc/R0pSwH1K/validated.png" alt="Validated VTC">
+                            </div>
+                            <div class="news-content">
+                                <span class="news-date"><i class="far fa-calendar-alt"></i> 26.02.2026</span>
+                                <h3 class="news-title">NEOCRIME OFFICIALLY RECEIVED VALIDATED VTC STATUS!</h3>
+                                <p class="news-author">Author: !F4DED</p>
+                                <span class="read-more">READ MORE <i class="fas fa-arrow-right"></i></span>
+                            </div>
                         </div>
-                        <div class="news-content">
-                            <span class="news-date"><i class="far fa-calendar-alt"></i> 12.02.2026</span>
-                            <h3 class="news-title">TECHNOLOGICAL BREAKTHROUGH IN NEOCRIME: FULL AUTOMATION!</h3>
-                            <p class="news-author">Author: !F4DED</p>
-                            <span class="read-more">READ MORE <i class="fas fa-arrow-right"></i></span>
+
+                        <div class="news-card" data-aos="fade-up" data-aos-delay="200" onclick="openNewsModal('news-1')">
+                            <div class="news-img-wrapper">
+                                <img src="https://i.postimg.cc/BnVyckK9/1mln.png" alt="1 Million KM">
+                            </div>
+                            <div class="news-content">
+                                <span class="news-date"><i class="far fa-calendar-alt"></i> 25.02.2026</span>
+                                <h3 class="news-title">HAPPY ANNIVERSARY NEOCRIME! 1,000,000 KM!</h3>
+                                <p class="news-author">Author: !F4DED</p>
+                                <span class="read-more">READ MORE <i class="fas fa-arrow-right"></i></span>
+                            </div>
                         </div>
+
+                        <div class="news-card" data-aos="fade-up" data-aos-delay="300" onclick="openNewsModal('news-2')">
+                            <div class="news-img-wrapper">
+                                <img src="https://i.postimg.cc/ZqMDdc68/banner-ua.png" alt="NeoCrime Automation">
+                            </div>
+                            <div class="news-content">
+                                <span class="news-date"><i class="far fa-calendar-alt"></i> 12.02.2026</span>
+                                <h3 class="news-title">TECHNOLOGICAL BREAKTHROUGH IN NEOCRIME: FULL AUTOMATION!</h3>
+                                <p class="news-author">Author: !F4DED</p>
+                                <span class="read-more">READ MORE <i class="fas fa-arrow-right"></i></span>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -305,6 +332,35 @@
     <div id="news-modal" class="lightbox">
         <span class="lightbox-close" onclick="closeNewsModal()">&times;</span>
         <div class="news-modal-content">
+
+            <div id="news-feb-results" class="news-detail" style="display: none;">
+                <img src="images/feb_results.jpg" alt="February Results">
+                <div class="news-modal-text">
+                    <h3>🏆 NEOCRIME — FEBRUARY RESULTS</h3>
+                    <span class="news-date">01.03.2026 | Author: !F4DED</span>
+                    
+                    <p>February became a truly breakthrough month for NeoCrime and another big step forward in the development of our community 🚛🔥</p>
+                    
+                    <ul style="list-style: none; padding-left: 0; margin-top: 20px;">
+                        <li style="margin-bottom: 15px;">
+                            <strong style="color: #4da6ff;">🔹 Team Expansion</strong><br>
+                            Over 40 new members joined our team this month. We’re proud to see NeoCrime continue to grow and bring together more drivers who share our values and style.
+                        </li>
+                        <li style="margin-bottom: 15px;">
+                            <strong style="color: #4da6ff;">🔹 Official Validation from TruckersMP</strong><br>
+                            We successfully obtained the Validated VTC status — a recognition of our stability, organization, and activity on an international level. This milestone opens new opportunities for us and strengthens our reputation within the community.
+                        </li>
+                        <li style="margin-bottom: 15px;">
+                            <strong style="color: #4da6ff;">🔹 950,000 km in One Month</strong><br>
+                            Together, we covered nearly 1 million kilometers of roads! This achievement is the result of teamwork, discipline, and the consistent activity of every single member.
+                        </li>
+                        <li style="margin-bottom: 15px;">
+                            <strong style="color: #4da6ff;">🔹 Top 9 Among VTCs on TruckersHub</strong><br>
+                            At the end of the month, NeoCrime ranked 9th among other VTCs — a significant accomplishment and clear proof of our competitiveness. 🚀
+                        </li>
+                    </ul>
+                </div>
+            </div>
 
             <div id="news-validated" class="news-detail" style="display: none;">
                 <img src="https://i.postimg.cc/R0pSwH1K/validated.png" alt="Validated VTC Status">
@@ -554,15 +610,24 @@
         });
     </script>
 
+    <script>
+        // Скрипт для слайдера новин
+        const newsSlider = document.getElementById('news-slider');
+        const btnPrev = document.getElementById('news-prev');
+        const btnNext = document.getElementById('news-next');
+
+        if(btnNext && btnPrev && newsSlider) {
+            btnNext.addEventListener('click', () => {
+                const cardWidth = newsSlider.querySelector('.news-card').offsetWidth;
+                newsSlider.scrollBy({ left: cardWidth + 20, behavior: 'smooth' }); // 20 - це gap між картками
+            });
+
+            btnPrev.addEventListener('click', () => {
+                const cardWidth = newsSlider.querySelector('.news-card').offsetWidth;
+                newsSlider.scrollBy({ left: -(cardWidth + 20), behavior: 'smooth' });
+            });
+        }
+    </script>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
