@@ -93,6 +93,18 @@
                             @media (max-width: 768px) { .news-card { flex: 0 0 100%; } }
                         </style>
 
+                        <div class="news-card" data-aos="fade-up" data-aos-delay="50" onclick="openNewsModal('news-skoda-rally')">
+                            <div class="news-img-wrapper">
+                                <img src="https://i.postimg.cc/sDqnj1xf/Euro%20Truck%20Simulator%202%20Screenshot%202026%2003%2006%2021%2027%2030%2007.png" alt="Спільний автопробіг на Skoda">
+                            </div>
+                            <div class="news-content">
+                                <span class="news-date"><i class="far fa-calendar-alt"></i> 06.03.2026</span>
+                                <h3 class="news-title">СПІЛЬНИЙ АВТОПРОБІГ НА SKODA</h3>
+                                <p class="news-author">Автор: !F4DED</p>
+                                <span class="read-more">ДЕТАЛЬНІШЕ <i class="fas fa-arrow-right"></i></span>
+                            </div>
+                        </div>
+                        
                         <div class="news-card" data-aos="fade-up" data-aos-delay="50" onclick="openNewsModal('news-ats-expansion')">
                             <div class="news-img-wrapper">
                                 <img src="https://i.postimg.cc/bYQkpN99/ats%2020260228%20175811%2000.png" alt="NeoCrime in ATS">
@@ -346,6 +358,22 @@
         <span class="lightbox-close" onclick="closeNewsModal()">&times;</span>
         <div class="news-modal-content">
 
+            <div id="news-skoda-rally" class="news-detail" style="display: none;">
+                <img src="https://i.postimg.cc/sDqnj1xf/Euro%20Truck%20Simulator%202%20Screenshot%202026%2003%2006%2021%2027%2030%2007.png" alt="Спільний автопробіг на Skoda">
+                <div class="news-modal-text">
+                    <h3>🚗 СПІЛЬНИЙ АВТОПРОБІГ НА SKODA</h3>
+                    <span class="news-date">06.03.2026 | Автор: !F4DED</span>
+                    
+                    <p>Команда <strong>NeoCrime</strong> взяла участь у спільному автопробігу на автомобілях Skoda, який відбувся разом із компаніями Ukraine Community Logistics та Fast Line UA. Захід пройшов у дружній атмосфері та об’єднав учасників для приємної та організованої поїздки.</p>
+                    
+                    <p>Під час автопробігу колона впевнено подолала запланований маршрут, демонструючи чудову координацію та дисципліну на дорозі. Усі учасники дотримувались порядку руху, завдяки чому поїздка пройшла комфортно та без жодних інцидентів.</p>
+                    
+                    <p>Такі спільні заходи — чудова можливість не лише насолодитися поїздкою, а й зміцнити дружні відносини між компаніями та спільнотою водіїв.</p>
+                    
+                    <p>Дякуємо <strong>Ukraine Community Logistics</strong> та <strong>Fast Line UA</strong> за участь у цьому автопробігу та за приємну атмосферу під час події. Сподіваємося на ще більше спільних заходів у майбутньому!</p>
+                </div>
+            </div>
+            
             <div id="news-ats-expansion" class="news-detail" style="display: none;">
                 <img src="https://i.postimg.cc/bYQkpN99/ats%2020260228%20175811%2000.png" alt="NeoCrime ATS Expansion">
                 <div class="news-modal-text">
@@ -671,6 +699,7 @@
 
 </body>
 </html>
+
 
 
 
