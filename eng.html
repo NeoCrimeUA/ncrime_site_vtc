@@ -92,6 +92,18 @@
                             @media (max-width: 768px) { .news-card { flex: 0 0 100%; } }
                         </style>
 
+                        <div class="news-card" data-aos="fade-up" data-aos-delay="50" onclick="openNewsModal('news-skoda-rally')">
+                            <div class="news-img-wrapper">
+                                <img src="https://i.postimg.cc/sDqnj1xf/Euro%20Truck%20Simulator%202%20Screenshot%202026%2003%2006%2021%2027%2030%2007.png" alt="Joint convoy on Skoda">
+                            </div>
+                            <div class="news-content">
+                                <span class="news-date"><i class="far fa-calendar-alt"></i> 06.03.2026</span>
+                                <h3 class="news-title">JOINT CONVOY ON SKODA</h3>
+                                <p class="news-author">Author: !F4DED</p>
+                                <span class="read-more">READ MORE <i class="fas fa-arrow-right"></i></span>
+                            </div>
+                        </div>
+                        
                         <div class="news-card" data-aos="fade-up" data-aos-delay="50" onclick="openNewsModal('news-ats-expansion')">
                             <div class="news-img-wrapper">
                                 <img src="https://i.postimg.cc/bYQkpN99/ats%2020260228%20175811%2000.png" alt="NeoCrime in ATS">
@@ -345,6 +357,22 @@
         <span class="lightbox-close" onclick="closeNewsModal()">&times;</span>
         <div class="news-modal-content">
 
+            <div id="news-skoda-rally" class="news-detail" style="display: none;">
+                <img src="https://i.postimg.cc/sDqnj1xf/Euro%20Truck%20Simulator%202%20Screenshot%202026%2003%2006%2021%2027%2030%2007.png" alt="Joint convoy on Skoda">
+                <div class="news-modal-text">
+                    <h3>🚗 JOINT CONVOY ON SKODA</h3>
+                    <span class="news-date">06.03.2026 | Author: !F4DED</span>
+                    
+                    <p>The <strong>NeoCrime</strong> team took part in a joint convoy using Skoda cars together with Ukraine Community Logistics and Fast Line UA. The event took place in a friendly atmosphere and brought participants together for an enjoyable and well-organized drive.</p>
+                    
+                    <p>During the convoy, the column successfully completed the planned route while demonstrating excellent coordination and discipline on the road. All participants followed the convoy rules, which helped ensure a smooth and comfortable journey without any incidents.</p>
+                    
+                    <p>Events like this are a great opportunity not only to enjoy the drive but also to strengthen friendly relations between companies and the trucking community.</p>
+                    
+                    <p>We would like to thank <strong>Ukraine Community Logistics</strong> and <strong>Fast Line UA</strong> for taking part in this convoy and for the great atmosphere during the event. We look forward to more joint events in the future!</p>
+                </div>
+            </div>
+            
             <div id="news-ats-expansion" class="news-detail" style="display: none;">
                 <img src="https://i.postimg.cc/bYQkpN99/ats%2020260228%20175811%2000.png" alt="NeoCrime ATS Expansion">
                 <div class="news-modal-text">
@@ -673,5 +701,6 @@
 
 </body>
 </html>
+
 
 
