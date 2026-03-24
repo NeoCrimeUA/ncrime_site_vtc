@@ -94,6 +94,18 @@
                             @media (max-width: 768px) { .news-card { flex: 0 0 100%; } }
                         </style>
 
+                        <div class="news-card" data-aos="fade-up" data-aos-delay="50" onclick="openNewsModal('news-global-convoy')">
+                            <div class="news-img-wrapper">
+                                <img src="https://i.postimg.cc/rsf9ryWy/prevvw1.png" alt="Глобальний конвой NeoCrime VTC">
+                            </div>
+                            <div class="news-content">
+                                <span class="news-date"><i class="far fa-calendar-alt"></i> 25.03.2026</span>
+                                <h3 class="news-title">ГЛОБАЛЬНИЙ КОНВОЙ NEOCRIME VTC — 23 БЕРЕЗНЯ 2026</h3>
+                                <p class="news-author">Автор: !F4DED</p>
+                                <span class="read-more">ДЕТАЛЬНІШЕ <i class="fas fa-arrow-right"></i></span>
+                            </div>
+                        </div>
+
                         <div class="news-card" data-aos="fade-up" data-aos-delay="50" onclick="openNewsModal('news-event-racing')">
                             <div class="news-img-wrapper">
                         <img src="https://i.postimg.cc/Zqh4NnqM/preview.png" alt="Івент-конвой Гонки на DLC">
@@ -231,15 +243,27 @@
             <div class="container">
                 <h2 class="section-title" data-aos="fade-up">Про нас</h2>
                 
-                <div class="about-content">
-                    <p data-aos="fade-up" data-aos-delay="100">
-                        <span class="highlight">NeoCrime</span> — це не просто віртуальна транспортна компанія в Euro Truck Simulator 2. Це згуртоване українське ком'юніті, де кожен водій є важливою частиною єдиної команди. Ми об'єднуємо людей, яких надихає дорога, спільна гра та взаємна підтримка.
+                <div class="about-content" data-aos="fade-up" data-aos-delay="100">
+                    <p>
+                        <span class="highlight">NeoCrime</span> — це українська віртуальна транспортна компанія, заснована 8 січня 2026 року її власником F4DED. Незважаючи на те, що компанія є відносно новою, NeoCrime стрімко розвивається та продовжує зростати, об’єднуючи спільноту захоплених віртуальних водіїв.
                     </p>
-                    <p data-aos="fade-up" data-aos-delay="200">
-                        Ми пропонуємо дружню та активну спільноту, регулярні конвої й спільні подорожі, атмосферу взаємоповаги та дисципліни на дорозі. У NeoCrime цінується позитивне спілкування, відсутність токсичності та щире захоплення грою.
+                    <p>
+                        Компанія об’єднує гравців, які поділяють пристрасть до вантажоперевезень, командної роботи та дослідження доріг у Euro Truck Simulator 2 та American Truck Simulator у мультиплеєрі через TruckersMP. NeoCrime прагне створити дружню та активну атмосферу, де водії можуть насолоджуватися грою разом, представляючи компанію на дорогах Європи.
                     </p>
-                    <p data-aos="fade-up" data-aos-delay="300">
-                        Наші цінності ґрунтуються на повазі, командній грі та якісному підході до перевезень. Для нас важливий кожен учасник, незалежно від його досвіду чи стилю гри. Приєднуйся до <span class="highlight">NeoCrime</span> та стань частиною української спільноти водіїв у ETS2 MP.
+                    <p>
+                        NeoCrime активно бере участь у спільноті TruckersMP. Наші водії регулярно відвідують відкриті конвої та масштабні заходи, організовані іншими VTC, гідно представляючи компанію та налагоджуючи зв’язки всередині спільноти.
+                    </p>
+                    <p>
+                        Окрім участі в зовнішніх заходах, NeoCrime також організовує власні конвої та івенти, об’єднуючи водіїв з різних компаній для спільних подорожей, живого спілкування та справжньої атмосфери віртуальних перевезень.
+                    </p>
+                    <p>
+                        Однією з ключових цінностей NeoCrime є підтримка дружньої, взаємодопоміжної та активної спільноти. Компанія вітає водіїв з будь-яким рівнем досвіду — від новачків до досвідчених гравців, створюючи місце, де кожен може відчути себе частиною команди.
+                    </p>
+                    <p>
+                        NeoCrime зосереджується на командній роботі, поважному стилі водіння та активній участі у житті спільноти. Завдяки регулярним конвоям, івентам та активностям компанія продовжує розвиватися та зміцнювати свою присутність у світі TruckersMP.
+                    </p>
+                    <p>
+                        Сьогодні NeoCrime — це українська VTC, що швидко розвивається, постійно розширює свою спільноту, організовує нові заходи та формує сильну присутність у сфері віртуальних перевезень.
                     </p>
                 </div>
             </div>
@@ -383,6 +407,26 @@
     <div id="news-modal" class="lightbox">
         <span class="lightbox-close" onclick="closeNewsModal()">&times;</span>
         <div class="news-modal-content">
+
+            <div id="news-global-convoy" class="news-detail" style="display: none;">
+                <img src="https://i.postimg.cc/rsf9ryWy/prevvw1.png" alt="Глобальний конвой NeoCrime VTC">
+                <div class="news-modal-text">
+                    <h3>🌍 ГЛОБАЛЬНИЙ КОНВОЙ NEOCRIME VTC — 23 БЕРЕЗНЯ 2026</h3>
+                    <span class="news-date">25.03.2026 | Автор: !F4DED</span>
+                    
+                    <p>23 березня 2026 року компанія <strong>NeoCrime VTC</strong> успішно провела масштабний глобальний конвой, який об'єднав понад 20 віртуальних транспортних компаній.</p>
+                    
+                    <p>Ми щиро вдячні всім учасникам за активність, дисципліну та чудову атмосферу протягом усього маршруту. Завдяки вашій організованості та повазі один до одного цей івент пройшов на високому рівні та залишив лише позитивні враження.</p>
+                    
+                    <p>Окрема подяка всім VTC, які приєдналися до конвою — ваша підтримка та участь є надзвичайно важливою для розвитку спільноти.</p>
+                    
+                    <p style="font-weight: bold; margin-top: 20px;">Сподіваємося побачити вас на наступних заходах від NeoCrime VTC 💙</p>
+                    
+                    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-top: 20px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
+                        <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/el89RQAvT3A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
 
             <div id="news-event-racing" class="news-detail" style="display: none;">
     <img src="https://i.postimg.cc/Zqh4NnqM/preview.png" alt="Івент-конвой Гонки на DLC">
