@@ -78,36 +78,45 @@
             <div class="container">
                 <div class="news-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
                     <h2 class="section-title" data-aos="fade-up" style="margin-bottom: 0;">Новини</h2>
-                    <div class="news-slider-controls" data-aos="fade-up">
-                        <button id="news-prev" class="btn-primary" style="padding: 8px 15px; border: none; cursor: pointer; border-radius: 5px; min-width: auto; margin-right: 10px;"><i class="fas fa-chevron-left"></i></button>
-                        <button id="news-next" class="btn-primary" style="padding: 8px 15px; border: none; cursor: pointer; border-radius: 5px; min-width: auto;"><i class="fas fa-chevron-right"></i></button>
-                    </div>
+                    <a href="full_news.html" data-aos="fade-up" style="color: #ff3333; text-decoration: none; font-weight: bold; display: flex; align-items: center; gap: 8px; font-family: 'Montserrat', sans-serif; font-size: 16px; transition: 0.3s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+                        ВСІ НОВИНИ <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
                 
-                <div class="news-slider-container" style="width: 100%; overflow: hidden;">
-                    <div class="news-grid" id="news-slider" style="display: flex; flex-wrap: nowrap; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; gap: 20px; padding-bottom: 15px; -ms-overflow-style: none; scrollbar-width: none;">
-                        <style>
-                            /* Ховаємо смугу прокрутки, щоб виглядало як слайдер */
-                            #news-slider::-webkit-scrollbar { display: none; }
-                            .news-card { flex: 0 0 calc(33.333% - 14px); scroll-snap-align: start; min-width: 320px; }
-                            @media (max-width: 992px) { .news-card { flex: 0 0 calc(50% - 10px); } }
-                            @media (max-width: 768px) { .news-card { flex: 0 0 100%; } }
-                        </style>
+                <div style="width: 100%;">
+                    <style>
+                        .news-grid-static {
+                            display: grid;
+                            grid-template-columns: repeat(3, 1fr);
+                            gap: 20px;
+                        }
+                        .news-grid-static .news-card {
+                            width: 100%;
+                            min-width: auto;
+                        }
+                        @media (max-width: 992px) {
+                            .news-grid-static { grid-template-columns: repeat(2, 1fr); }
+                        }
+                        @media (max-width: 768px) {
+                            .news-grid-static { grid-template-columns: 1fr; }
+                        }
+                    </style>
 
-
+                    <div class="news-grid-static" id="news-grid">
+                        
                         <div class="news-card" data-aos="fade-up" data-aos-delay="50" onclick="openNewsModal('news-fast-line-ua')">
                             <div class="news-img-wrapper">
-                            <img src="https://i.postimg.cc/7ZKxHNBb/image.png" alt="Партнерство з Fast Line UA">
-                        </div>
+                                <img src="https://i.postimg.cc/7ZKxHNBb/image.png" alt="Партнерство з Fast Line UA">
+                            </div>
                             <div class="news-content">
-                            <span class="news-date"><i class="far fa-calendar-alt"></i> 31.03.2026</span>
-                            <h3 class="news-title">ОФІЦІЙНЕ ПАРТНЕРСТВО VTC NEOCRIME × FAST LINE UA</h3>
-                            <p class="news-author">Автор: !F4DED</p>
-                            <span class="read-more">ДЕТАЛЬНІШЕ <i class="fas fa-arrow-right"></i></span>
+                                <span class="news-date"><i class="far fa-calendar-alt"></i> 31.03.2026</span>
+                                <h3 class="news-title">ОФІЦІЙНЕ ПАРТНЕРСТВО VTC NEOCRIME × FAST LINE UA</h3>
+                                <p class="news-author">Автор: !F4DED</p>
+                                <span class="read-more">ДЕТАЛЬНІШЕ <i class="fas fa-arrow-right"></i></span>
                             </div>
                         </div>
 
-                        <div class="news-card" data-aos="fade-up" data-aos-delay="50" onclick="openNewsModal('news-100-members')">
+                        <div class="news-card" data-aos="fade-up" data-aos-delay="100" onclick="openNewsModal('news-100-members')">
                             <div class="news-img-wrapper">
                                 <img src="https://i.postimg.cc/htjSzNHj/photosss.png" alt="NeoCrime VTC досягли позначки у 100 учасників!">
                             </div>
@@ -119,7 +128,7 @@
                             </div>
                         </div>
 
-                        <div class="news-card" data-aos="fade-up" data-aos-delay="50" onclick="openNewsModal('news-global-convoy')">
+                        <div class="news-card" data-aos="fade-up" data-aos-delay="150" onclick="openNewsModal('news-global-convoy')">
                             <div class="news-img-wrapper">
                                 <img src="https://i.postimg.cc/rsf9ryWy/prevvw1.png" alt="Глобальний конвой NeoCrime VTC">
                             </div>
@@ -131,9 +140,9 @@
                             </div>
                         </div>
 
-                        <div class="news-card" data-aos="fade-up" data-aos-delay="50" onclick="openNewsModal('news-event-racing')">
+                        <div class="news-card" data-aos="fade-up" data-aos-delay="200" onclick="openNewsModal('news-event-racing')">
                             <div class="news-img-wrapper">
-                        <img src="https://i.postimg.cc/Zqh4NnqM/preview.png" alt="Івент-конвой Гонки на DLC">
+                                <img src="https://i.postimg.cc/Zqh4NnqM/preview.png" alt="Івент-конвой Гонки на DLC">
                             </div>
                             <div class="news-content">
                                 <span class="news-date"><i class="far fa-calendar-alt"></i> 20.03.2026</span>
@@ -143,7 +152,7 @@
                             </div>
                         </div>            
 
-                        <div class="news-card" data-aos="fade-up" data-aos-delay="50" onclick="openNewsModal('news-partnership-twisted')">
+                        <div class="news-card" data-aos="fade-up" data-aos-delay="250" onclick="openNewsModal('news-partnership-twisted')">
                             <div class="news-img-wrapper">
                                 <img src="https://i.postimg.cc/Gt2YW7Xx/partne.png" alt="Партнерство NeoCrime та Twisted Transport">
                             </div>
@@ -155,73 +164,13 @@
                             </div>
                         </div>
 
-                        <div class="news-card" data-aos="fade-up" data-aos-delay="50" onclick="openNewsModal('news-skoda-rally')">
+                        <div class="news-card" data-aos="fade-up" data-aos-delay="300" onclick="openNewsModal('news-skoda-rally')">
                             <div class="news-img-wrapper">
                                 <img src="https://i.postimg.cc/sDqnj1xf/Euro%20Truck%20Simulator%202%20Screenshot%202026%2003%2006%2021%2027%2030%2007.png" alt="Спільний автопробіг на Skoda">
                             </div>
                             <div class="news-content">
                                 <span class="news-date"><i class="far fa-calendar-alt"></i> 06.03.2026</span>
                                 <h3 class="news-title">СПІЛЬНИЙ АВТОПРОБІГ НА SKODA</h3>
-                                <p class="news-author">Автор: !F4DED</p>
-                                <span class="read-more">ДЕТАЛЬНІШЕ <i class="fas fa-arrow-right"></i></span>
-                            </div>
-                        </div>
-                        
-                        <div class="news-card" data-aos="fade-up" data-aos-delay="50" onclick="openNewsModal('news-ats-expansion')">
-                            <div class="news-img-wrapper">
-                                <img src="https://i.postimg.cc/bYQkpN99/ats%2020260228%20175811%2000.png" alt="NeoCrime in ATS">
-                            </div>
-                            <div class="news-content">
-                                <span class="news-date"><i class="far fa-calendar-alt"></i> 03.03.2026</span>
-                                <h3 class="news-title">NEOCRIME РОЗШИРЮЄТЬСЯ: ТЕПЕР І В AMERICAN TRUCK SIMULATOR</h3>
-                                <p class="news-author">Автор: !F4DED</p>
-                                <span class="read-more">ДЕТАЛЬНІШЕ <i class="fas fa-arrow-right"></i></span>
-                            </div>
-                        </div>
-
-                        <div class="news-card" data-aos="fade-up" data-aos-delay="50" onclick="openNewsModal('news-feb-results')">
-                            <div class="news-img-wrapper">
-                                <img src="https://i.postimg.cc/MZQgkqx6/ets2%2020260228%20211131%2000.png" alt="Підсумки лютого">
-                            </div>
-                            <div class="news-content">
-                                <span class="news-date"><i class="far fa-calendar-alt"></i> 01.03.2026</span>
-                                <h3 class="news-title">NEOCRIME — ПІДСУМКИ ЛЮТОГО</h3>
-                                <p class="news-author">Автор: !F4DED</p>
-                                <span class="read-more">ДЕТАЛЬНІШЕ <i class="fas fa-arrow-right"></i></span>
-                            </div>
-                        </div>
-
-                        <div class="news-card" data-aos="fade-up" data-aos-delay="100" onclick="openNewsModal('news-validated')">
-                            <div class="news-img-wrapper">
-                                <img src="https://i.postimg.cc/R0pSwH1K/validated.png" alt="Validated VTC">
-                            </div>
-                            <div class="news-content">
-                                <span class="news-date"><i class="far fa-calendar-alt"></i> 26.02.2026</span>
-                                <h3 class="news-title">NEOCRIME ОФІЦІЙНО ОТРИМАЛА СТАТУС VALIDATED VTC!</h3>
-                                <p class="news-author">Автор: !F4DED</p>
-                                <span class="read-more">ДЕТАЛЬНІШЕ <i class="fas fa-arrow-right"></i></span>
-                            </div>
-                        </div>
-
-                        <div class="news-card" data-aos="fade-up" data-aos-delay="200" onclick="openNewsModal('news-1')">
-                            <div class="news-img-wrapper">
-                                <img src="https://i.postimg.cc/BnVyckK9/1mln.png" alt="1 Million KM">
-                            </div>
-                            <div class="news-content">
-                                <span class="news-date"><i class="far fa-calendar-alt"></i> 25.02.2026</span>
-                                <h3 class="news-title">ВІТАЄМО NEOCRIME З ВЕЛИКИМ ЮВІЛЕЄМ! 1 000 000 КМ!</h3>
-                                <p class="news-author">Автор: !F4DED</p>
-                                <span class="read-more">ДЕТАЛЬНІШЕ <i class="fas fa-arrow-right"></i></span>
-                            </div>
-                        </div>
-
-                        <div class="news-card" data-aos="fade-up" data-aos-delay="300" onclick="openNewsModal('news-2')">
-                            <div class="news-img-wrapper">
-                                <img src="https://i.postimg.cc/ZqMDdc68/banner-ua.png" alt="NeoCrime Automation">
-                            </div>
-                            <div class="news-content">
-                                <span class="news-date"><i class="far fa-calendar-alt"></i> 12.02.2026</span>
-                                <h3 class="news-title">ТЕХНОЛОГІЧНИЙ ПРОРИВ У NEOCRIME: ПОВНА АВТОМАТИЗАЦІЯ!</h3>
                                 <p class="news-author">Автор: !F4DED</p>
                                 <span class="read-more">ДЕТАЛЬНІШЕ <i class="fas fa-arrow-right"></i></span>
                             </div>
