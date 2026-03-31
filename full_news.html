@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Всі новини — NeoCrime VTC</title>
+    
+    <link rel="icon" type="image/png" href="/images/logo.png">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body style="background-color: #0d0f12;"> <header data-aos="fade-down" data-aos-duration="800" style="background: rgba(10, 12, 16, 0.95);">
+    <div class="header-container">
+        <a href="index.html" class="logo-link" style="text-decoration: none; color: white; display: flex; align-items: center;">
+            <div class="logo">
+                <img src="images/logo.png" alt="NE Logo" id="logo-img"> Neo<span style="color: #ff3333;">Crime</span>
+            </div>
+        </a>
+        
+        <div class="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        <div class="header-content">
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html#home">Головна</a></li>
+                    <li><a href="index.html#team">Команда</a></li>
+                    <li><a href="index.html#about">Про нас</a></li>
+                    <li><a href="index.html#gallery">Галерея</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <a href="https://discord.gg/zGzy7Gcdgy" target="_blank" class="btn-primary">Розпочати свій шлях</a>
+                
+                <div class="lang-switch">
+                    <div class="current-lang">
+                        <img src="https://flagcdn.com/w40/ua.png" alt="UA">
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="lang-dropdown">
+                        <a href="full_news-eng.html"><img src="https://flagcdn.com/w40/gb.png" alt="EN"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </header>
+
+    <div class="cyber-wrapper" style="padding-top: 120px; min-height: 80vh;">
+        <section id="news" class="news-section">
+            <div class="container">
+                <div class="news-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px;">
+                    <h1 class="section-title" data-aos="fade-up" style="margin-bottom: 0;">Всі новини компанії</h1>
+                    <a href="index.html" data-aos="fade-up" class="btn-primary" style="padding: 10px 20px;"><i class="fas fa-home"></i> На головну</a>
+                </div>
+                
+                <div style="width: 100%;">
+                    <style>
+                        .news-grid-static {
+                            display: grid;
+                            grid-template-columns: repeat(3, 1fr);
+                            gap: 25px;
+                        }
+                        .news-grid-static .news-card {
+                            width: 100%;
+                            min-width: auto;
+                        }
+                        @media (max-width: 992px) {
+                            .news-grid-static { grid-template-columns: repeat(2, 1fr); }
+                        }
+                        @media (max-width: 768px) {
+                            .news-grid-static { grid-template-columns: 1fr; }
+                        }
+                    </style>
+
+                    <div class="news-grid-static">
+                        
+                        <div class="news-card" data-aos="fade-up" data-aos-delay="50" onclick="openNewsModal('news-fast-line-ua')">
+                            <div class="news-img-wrapper">
+                                <img src="https://i.postimg.cc/7ZKxHNBb/image.png" alt="Партнерство з Fast Line UA">
+                            </div>
+                            <div class="news-content">
+                                <span class="news-date"><i class="far fa-calendar-alt"></i> 31.03.2026</span>
+                                <h3 class="news-title">ОФІЦІЙНЕ ПАРТНЕРСТВО VTC NEOCRIME × FAST LINE UA</h3>
+                                <p class="news-author">Автор: !F4DED</p>
+                                <span class="read-more">ДЕТАЛЬНІШЕ <i class="fas fa-arrow-right"></i></span>
+                            </div>
+                        </div>
+
+                        <div class="news-card" data-aos="fade-up" data-aos-delay="100" onclick="openNewsModal('news-100-members')">
+                            <div class="news-img-wrapper">
+                                <img src="https://i.postimg.cc/htjSzNHj/photosss.png" alt="100 учасників!">
+                            </div>
+                            <div class="news-content">
+                                <span class="news-date"><i class="far fa-calendar-alt"></i> 25.03.2026</span>
+                                <h3 class="news-title">NEOCRIME VTC ДОСЯГЛИ ПОЗНАЧКИ У 100 УЧАСНИКІВ! 🎉</h3>
+                                <p class="news-author">Автор: !F4DED</p>
+                                <span class="read-more">ДЕТАЛЬНІШЕ <i class="fas fa-arrow-right"></i></span>
+                            </div>
+                        </div>
+
+                        <div class="news-card" data-aos="fade-up" data-aos-delay="150" onclick="openNewsModal('news-global-convoy')">
+                            <div class="news-img-wrapper">
+                                <img src="https://i.postimg.cc/rsf9ryWy/prevvw1.png" alt="Глобальний конвой NeoCrime VTC">
+                            </div>
+                            <div class="news-content">
+                                <span class="news-date"><i class="far fa-calendar-alt"></i> 25.03.2026</span>
+                                <h3 class="news-title">ГЛОБАЛЬНИЙ КОНВОЙ NEOCRIME VTC — 23 БЕРЕЗНЯ 2026</h3>
+                                <p class="news-author">Автор: !F4DED</p>
+                                <span class="read-more">ДЕТАЛЬНІШЕ <i class="fas fa-arrow-right"></i></span>
+                            </div>
+                        </div>
+
+                        <div class="news-card" data-aos="fade-up" data-aos-delay="50" onclick="openNewsModal('news-event-racing')">
+                            <div class="news-img-wrapper">
+                                <img src="https://i.postimg.cc/Zqh4NnqM/preview.png" alt="Івент-конвой Гонки на DLC">
+                            </div>
+                            <div class="news-content">
+                                <span class="news-date"><i class="far fa-calendar-alt"></i> 20.03.2026</span>
+                                <h3 class="news-title">ІВЕНТ-КОНВОЙ «ГОНКИ НА DLC» — NEOCRIME VTC</h3>
+                                <p class="news-author">Автор: !F4DED</p>
+                                <span class="read-more">ДЕТАЛЬНІШЕ <i class="fas fa-arrow-right"></i></span>
+                            </div>
+                        </div>            
+
+                        <div class="news-card" data-aos="fade-up" data-aos-delay="100" onclick="openNewsModal('news-partnership-twisted')">
+                            <div class="news-img-wrapper">
+                                <img src="https://i.postimg.cc/Gt2YW7Xx/partne.png" alt="Партнерство NeoCrime та Twisted Transport">
+                            </div>
+                            <div class="news-content">
+                                <span class="news-date"><i class="far fa-calendar-alt"></i> 10.03.2026</span>
+                                <h3 class="news-title">ОФІЦІЙНЕ ПАРТНЕРСТВО VTC NEOCRIME × TWISTED TRANSPORT</h3>
+                                <p class="news-author">Автор: !F4DED</p>
+                                <span class="read-more">ДЕТАЛЬНІШЕ <i class="fas fa-arrow-right"></i></span>
+                            </div>
+                        </div>
+
+                        <div class="news-card" data-aos="fade-up" data-aos-delay="150" onclick="openNewsModal('news-skoda-rally')">
+                            <div class="news-img-wrapper">
+                                <img src="https://i.postimg.cc/sDqnj1xf/Euro%20Truck%20Simulator%202%20Screenshot%202026%2003%2006%2021%2027%2030%2007.png" alt="Спільний автопробіг на Skoda">
+                            </div>
+                            <div class="news-content">
+                                <span class="news-date"><i class="far fa-calendar-alt"></i> 06.03.2026</span>
+                                <h3 class="news-title">СПІЛЬНИЙ АВТОПРОБІГ НА SKODA</h3>
+                                <p class="news-author">Автор: !F4DED</p>
+                                <span class="read-more">ДЕТАЛЬНІШЕ <i class="fas fa-arrow-right"></i></span>
+                            </div>
+                        </div>
+                        
+                        <div class="news-card" data-aos="fade-up" data-aos-delay="50" onclick="openNewsModal('news-ats-expansion')">
+                            <div class="news-img-wrapper">
+                                <img src="https://i.postimg.cc/bYQkpN99/ats%2020260228%20175811%2000.png" alt="NeoCrime in ATS">
+                            </div>
+                            <div class="news-content">
+                                <span class="news-date"><i class="far fa-calendar-alt"></i> 03.03.2026</span>
+                                <h3 class="news-title">NEOCRIME РОЗШИРЮЄТЬСЯ: ТЕПЕР І В AMERICAN TRUCK SIMULATOR</h3>
+                                <p class="news-author">Автор: !F4DED</p>
+                                <span class="read-more">ДЕТАЛЬНІШЕ <i class="fas fa-arrow-right"></i></span>
+                            </div>
+                        </div>
+
+                        <div class="news-card" data-aos="fade-up" data-aos-delay="100" onclick="openNewsModal('news-feb-results')">
+                            <div class="news-img-wrapper">
+                                <img src="https://i.postimg.cc/MZQgkqx6/ets2%2020260228%20211131%2000.png" alt="Підсумки лютого">
+                            </div>
+                            <div class="news-content">
+                                <span class="news-date"><i class="far fa-calendar-alt"></i> 01.03.2026</span>
+                                <h3 class="news-title">NEOCRIME — ПІДСУМКИ ЛЮТОГО</h3>
+                                <p class="news-author">Автор: !F4DED</p>
+                                <span class="read-more">ДЕТАЛЬНІШЕ <i class="fas fa-arrow-right"></i></span>
+                            </div>
+                        </div>
+
+                        <div class="news-card" data-aos="fade-up" data-aos-delay="150" onclick="openNewsModal('news-validated')">
+                            <div class="news-img-wrapper">
+                                <img src="https://i.postimg.cc/R0pSwH1K/validated.png" alt="Validated VTC">
+                            </div>
+                            <div class="news-content">
+                                <span class="news-date"><i class="far fa-calendar-alt"></i> 26.02.2026</span>
+                                <h3 class="news-title">NEOCRIME ОФІЦІЙНО ОТРИМАЛА СТАТУС VALIDATED VTC!</h3>
+                                <p class="news-author">Автор: !F4DED</p>
+                                <span class="read-more">ДЕТАЛЬНІШЕ <i class="fas fa-arrow-right"></i></span>
+                            </div>
+                        </div>
+
+                        <div class="news-card" data-aos="fade-up" data-aos-delay="50" onclick="openNewsModal('news-1')">
+                            <div class="news-img-wrapper">
+                                <img src="https://i.postimg.cc/BnVyckK9/1mln.png" alt="1 Million KM">
+                            </div>
+                            <div class="news-content">
+                                <span class="news-date"><i class="far fa-calendar-alt"></i> 25.02.2026</span>
+                                <h3 class="news-title">ВІТАЄМО NEOCRIME З ВЕЛИКИМ ЮВІЛЕЄМ! 1 000 000 КМ!</h3>
+                                <p class="news-author">Автор: !F4DED</p>
+                                <span class="read-more">ДЕТАЛЬНІШЕ <i class="fas fa-arrow-right"></i></span>
+                            </div>
+                        </div>
+
+                        <div class="news-card" data-aos="fade-up" data-aos-delay="100" onclick="openNewsModal('news-2')">
+                            <div class="news-img-wrapper">
+                                <img src="https://i.postimg.cc/ZqMDdc68/banner-ua.png" alt="NeoCrime Automation">
+                            </div>
+                            <div class="news-content">
+                                <span class="news-date"><i class="far fa-calendar-alt"></i> 12.02.2026</span>
+                                <h3 class="news-title">ТЕХНОЛОГІЧНИЙ ПРОРИВ У NEOCRIME: ПОВНА АВТОМАТИЗАЦІЯ!</h3>
+                                <p class="news-author">Автор: !F4DED</p>
+                                <span class="read-more">ДЕТАЛЬНІШЕ <i class="fas fa-arrow-right"></i></span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="site-footer">
+        <div class="container footer-container">
+            <div class="footer-col about-col">
+                <div class="logo">Neo<span>Crime</span></div>
+                <p>NeoCrime — це амбіційна українська VTC, що впевнено рухається вперед, створюючи власну історію успіху на просторах TruckersMP. Це місце, де стиль, дисципліна та командний дух поєднуються в єдину силу, а кожен учасник стає частиною великого та впевненого руху.</p>
+                <div class="social-img-links">
+                    <a href="https://discord.gg/zGzy7Gcdgy" target="_blank"><img src="images/social1.png" alt="Social 1"></a>
+                    <a href="https://www.tiktok.com/@neocrime_vtc" target="_blank"><img src="images/social2.png" alt="Social 2"></a>
+                    <a href="https://truckersmp.com/vtc/85940" target="_blank"><img src="images/social3.png" alt="Social 3"></a>
+                    <a href="https://truckershub.in/vtc/1775" target="_blank"><img src="images/social4.png" alt="Social 4"></a>
+                </div>
+            </div>
+            <div class="footer-col nav-col">
+                <h4>Навігація</h4>
+                <ul>
+                    <li><a href="index.html#home">Головна</a></li>
+                    <li><a href="index.html#about">Про нас</a></li>
+                    <li><a href="index.html#gallery">Галерея</a></li>
+                    <li><a href="privacy.html">Політика приватності</a></li>
+                    <li><a href="terms.html">Угода користування</a></li>
+                </ul>
+            </div>
+            <div class="footer-col contact-col">
+                <h4>Контакти</h4>
+                <ul>
+                    <li><i class="fas fa-envelope"></i> <a href="mailto:neocrime10@gmail.com">neocrime10@gmail.com</a></li>
+                    <li><i class="fab fa-discord"></i> <a href="https://discord.gg/zGzy7Gcdgy" target="_blank">https://discord.gg/zGzy7Gcdgy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 NeoCrime. Всі права захищені.</p>
+        </div>
+    </footer>
+
+    <div id="news-modal" class="lightbox">
+        <span class="lightbox-close" onclick="closeNewsModal()">&times;</span>
+        <div class="news-modal-content">
+
+            <div id="news-fast-line-ua" class="news-detail" style="display: none;">
+                <img src="https://i.postimg.cc/7ZKxHNBb/image.png" alt="Партнерство NeoCrime та Fast Line UA">
+                <div class="news-modal-text">
+                    <h3>🤝 НОВИНА ПРО ПАРТНЕРСТВО З FAST LINE UA!</h3>
+                    <span class="news-date">31.03.2026 | Автор: !F4DED</span>
+                    <p>Ми, <strong>NeoCrime</strong>, раді офіційно оголосити про початок партнерства з <strong>Fast Line UA</strong>!</p>
+                    <p>Це партнерство є важливим етапом у розвитку нашої VTC та відкриває нові можливості для обох сторін. Ми впевнені, що об’єднавши наш досвід, активність і прагнення до якості, зможемо досягти ще більших результатів у спільній діяльності.</p>
+                    <p>У рамках співпраці ми плануємо проводити спільні конвої, організовувати різноманітні івенти, підтримувати один одного у розвитку, а також обмінюватися досвідом між учасниками наших компаній. Це дозволить створити ще більш дружню, активну та згуртовану спільноту.</p>
+                    <p>Для NeoCrime це партнерство — можливість рухатися вперед разом із надійною та перспективною командою, яка поділяє наші цінності: якість, взаємоповага та відповідальність.</p>
+                    <p style="font-weight: bold; margin-top: 20px;">Ми щиро дякуємо Fast Line UA за довіру та готовність до співпраці. Попереду на нас чекає багато цікавих подій, нових досягнень і спільних перемог! 🔥</p>
+                </div>
+            </div>
+
+            <div id="news-100-members" class="news-detail" style="display: none;">
+                <img src="https://i.postimg.cc/htjSzNHj/photosss.png" alt="NeoCrime VTC 100 учасників">
+                <div class="news-modal-text">
+                    <h3>🎉 NEOCRIME VTC ДОСЯГЛИ ПОЗНАЧКИ У 100 УЧАСНИКІВ!</h3>
+                    <span class="news-date">25.03.2026 | Автор: !F4DED</span>
+                    <p>Ми раді повідомити, що наша віртуальна транспортна компанія <strong>NeoCrime VTC</strong> офіційно перетнула рубіж у <strong>100 учасників</strong>! Це важливий крок у розвитку нашої компанії, і ми щиро вдячні кожному з вас за активність, підтримку та участь у житті компанії.</p>
+                    <p>За цей час ми разом провели безліч конвоїв, створили круту атмосферу та зібрали сильну команду, яка продовжує рости з кожним днем.</p>
+                    <p>Окрема подяка всім, хто регулярно бере участь у наших заходах — саме ви робите <strong>NeoCrime</strong> живою та активною компанією!</p>
+                    <p>Ми не зупиняємось на досягнутому — попереду ще більше івентів, конвоїв та нових висот!</p>
+                    <p style="font-weight: bold; margin-top: 20px;">З повагою, Founder of NeoCrime VTC - !F4DED</p>
+                </div>
+            </div>
+
+            <div id="news-global-convoy" class="news-detail" style="display: none;">
+                <img src="https://i.postimg.cc/rsf9ryWy/prevvw1.png" alt="Глобальний конвой NeoCrime VTC">
+                <div class="news-modal-text">
+                    <h3>🌍 ГЛОБАЛЬНИЙ КОНВОЙ NEOCRIME VTC — 23 БЕРЕЗНЯ 2026</h3>
+                    <span class="news-date">25.03.2026 | Автор: !F4DED</span>
+                    <p>23 березня 2026 року компанія <strong>NeoCrime VTC</strong> успішно провела масштабний глобальний конвой, який об'єднав понад 20 віртуальних транспортних компаній.</p>
+                    <p>Ми щиро вдячні всім учасникам за активність, дисципліну та чудову атмосферу протягом усього маршруту. Завдяки вашій організованості та повазі один до одного цей івент пройшов на високому рівні та залишив лише позитивні враження.</p>
+                    <p>Окрема подяка всім VTC, які приєдналися до конвою — ваша підтримка та участь є надзвичайно важливою для розвитку спільноти.</p>
+                    <p style="font-weight: bold; margin-top: 20px;">Сподіваємося побачити вас на наступних заходах від NeoCrime VTC 💙</p>
+                    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-top: 20px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
+                        <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/el89RQAvT3A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+
+            <div id="news-event-racing" class="news-detail" style="display: none;">
+                <img src="https://i.postimg.cc/Zqh4NnqM/preview.png" alt="Івент-конвой Гонки на DLC">
+                <div class="news-modal-text">
+                    <h3>🚛 ІВЕНТ-КОНВОЙ «ГОНКИ НА DLC» — NEOCRIME VTC</h3>
+                    <span class="news-date">20.03.2026 | Автор: !F4DED</span>
+                    <p>19 березня 2026 року віртуальна транспортна компанія NeoCrime провела унікальний івент-конвой у форматі перегонів із призами, який подарував учасникам масу емоцій та драйву 🚛🔥</p>
+                    <p>Цього разу водії не просто їхали — вони змагались за перемогу, перевозячи непростий вантаж: 21 тонну бензину. Такий вантаж вимагав максимальної концентрації, адже транспорт легко втрачав стабільність і міг перевернутися в будь-який момент.</p>
+                    <p style="font-weight: bold; margin-top: 15px;">🏆 Результати перегонів:</p>
+                    <ul style="list-style: none; padding-left: 0; margin-bottom: 20px;">
+                        <li style="margin-bottom: 8px;">🥇 1 місце — приз: American Truck Simulator (ATS)</li>
+                        <li style="margin-bottom: 8px;">🥈 2 місце — приз: American Truck Simulator (ATS)</li>
+                        <li style="margin-bottom: 8px;">🥉 3 місце — DLC для Euro Truck Simulator 2 на вибір</li>
+                    </ul>
+                    <p>Незважаючи на складність маршруту та небезпечний вантаж, всі учасники успішно дісталися фінішу, продемонструвавши високий рівень водіння, дисципліни та командного духу.</p>
+                    <p>Івент пройшов у дружній атмосфері — кожен отримав задоволення від процесу, а гонка стала ще одним доказом того, що NeoCrime — це не просто VTC, а справжня спільнота однодумців 💛</p>
+                    <p style="font-weight: bold; margin-top: 20px;">Хочете побачити, як проходила ця напружена та драйвова гонка? 🚛🔥</p>
+                    <p>Ми підготували для вас відео з івенту, де ви зможете відчути атмосферу перегонів, побачити небезпечні моменти з перевезенням 21 тонни бензину та найцікавіші епізоди з маршруту.</p>
+                    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-top: 20px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
+                        <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/Je9nA4vQNZY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+
+            <div id="news-partnership-twisted" class="news-detail" style="display: none;">
+                <img src="https://i.postimg.cc/Gt2YW7Xx/partne.png" alt="Партнерство NeoCrime та Twisted Transport">
+                <div class="news-modal-text">
+                    <h3>🤝 ОФІЦІЙНА НОВИНА ПРО ПАРТНЕРСТВО VTC NEOCRIME × TWISTED TRANSPORT</h3>
+                    <span class="news-date">10.03.2026 | Автор: !F4DED</span>
+                    <p>Ми раді повідомити чудову новину для всієї спільноти TruckersMP — українська віртуальна транспортна компанія <strong style="color: #ff3333;">NeoCrime</strong> офіційно уклала партнерство з великою англійською VTC <strong style="color: #ff3333;">Twisted Transport</strong></p>
+                    <p><strong>Twisted Transport</strong> — це одна з відомих та верифікованих VTC у TruckersMP, заснована у березні 2022 року. Компанія активно розвивається у спільноті та об'єднує понад 150+ учасників з різних країн світу, регулярно організовує конвої, події та підтримує дружню атмосферу серед водіїв.</p>
+                    <p>Партнерство між NeoCrime та Twisted Transport відкриває нові можливості для обох компаній:</p>
+                    <ul style="list-style: none; padding-left: 0; margin-bottom: 20px;">
+                        <li style="margin-bottom: 12px;">🔹 спільна участь у конвоях та великих подіях;</li>
+                        <li style="margin-bottom: 12px;">🔹 взаємна підтримка заходів;</li>
+                        <li style="margin-bottom: 12px;">🔹 розширення міжнародних зв’язків у спільноті TruckersMP;</li>
+                        <li style="margin-bottom: 12px;">🔹 обмін досвідом між командами та учасниками.</li>
+                    </ul>
+                    <p>Ми впевнені, що ця співпраця стане важливим кроком у розвитку обох VTC та допоможе створювати ще більше цікавих і масштабних подій для всієї спільноти.</p>
+                    <p>🔗 <strong>Сторінка Twisted Transport на TruckersMP:</strong><br>
+                    <a href="https://truckersmp.com/vtc/53248" target="_blank" style="color: #4da6ff; text-decoration: none;">https://truckersmp.com/vtc/53248</a></p>
+                    <p>💬 <strong>Discord-сервер Twisted Transport:</strong><br>
+                    <a href="https://discord.gg/jpfEJ2ZhcD" target="_blank" style="color: #4da6ff; text-decoration: none;">https://discord.gg/jpfEJ2ZhcD</a></p>
+                    <p style="font-weight: bold; margin-top: 20px;">NeoCrime продовжує активно розвиватися та розширювати коло партнерів, і ми раді почати нову главу співпраці разом із Twisted Transport.</p>
+                </div>
+            </div>
+
+            <div id="news-skoda-rally" class="news-detail" style="display: none;">
+                <img src="https://i.postimg.cc/sDqnj1xf/Euro%20Truck%20Simulator%202%20Screenshot%202026%2003%2006%2021%2027%2030%2007.png" alt="Спільний автопробіг на Skoda">
+                <div class="news-modal-text">
+                    <h3>🚗 СПІЛЬНИЙ АВТОПРОБІГ НА SKODA</h3>
+                    <span class="news-date">06.03.2026 | Автор: !F4DED</span>
+                    <p>Команда <strong>NeoCrime</strong> взяла участь у спільному автопробігу на автомобілях Skoda, який відбувся разом із компаніями Ukraine Community Logistics та Fast Line UA. Захід пройшов у дружній атмосфері та об’єднав учасників для приємної та організованої поїздки.</p>
+                    <p>Під час автопробігу колона впевнено подолала запланований маршрут, демонструючи чудову координацію та дисципліну на дорозі. Усі учасники дотримувались порядку руху, завдяки чому поїздка пройшла комфортно та без жодних інцидентів.</p>
+                    <p>Такі спільні заходи — чудова можливість не лише насолодитися поїздкою, а й зміцнити дружні відносини між компаніями та спільнотою водіїв.</p>
+                    <p>Дякуємо <strong>Ukraine Community Logistics</strong> та <strong>Fast Line UA</strong> за участь у цьому автопробігу та за приємну атмосферу під час події. Сподіваємося на ще більше спільних заходів у майбутньому!</p>
+                </div>
+            </div>
+            
+            <div id="news-ats-expansion" class="news-detail" style="display: none;">
+                <img src="https://i.postimg.cc/bYQkpN99/ats%2020260228%20175811%2000.png" alt="NeoCrime ATS Expansion">
+                <div class="news-modal-text">
+                    <h3>🌎 NEOCRIME РОЗШИРЮЄТЬСЯ: ТЕПЕР І В AMERICAN TRUCK SIMULATOR</h3>
+                    <span class="news-date">03.03.2026 | Автор: !F4DED</span>
+                    <p>Спільнота <strong>NeoCrime</strong>, яка спочатку була створена як компанія для шанувальників Euro Truck Simulator 2, офіційно оголошує про новий етап розвитку. Ми активно розширюємо свою діяльність та виходимо за межі Європи — тепер NeoCrime представлена і в <strong>American Truck Simulator</strong>.</p>
+                    <p>З моменту заснування ми впевнено розвивалися в ETS2: організовували регулярні конвої, брали участь у великих заходах та об'єднували водіїв з різних куточків світу. Сьогодні ж ми робимо ще один крок вперед — запускаємо повноцінний напрямок у ATS.</p>
+                    <ul style="list-style: none; padding-left: 0; margin-top: 20px; margin-bottom: 20px;">
+                        <li style="margin-bottom: 15px;">
+                            <strong style="color: #4da6ff;">🔹 Відтепер у NeoCrime проводяться офіційні конвої в American Truck Simulator.</strong>
+                        </li>
+                        <li style="margin-bottom: 15px;">
+                            <strong style="color: #4da6ff;">🔹 Учасники можуть проявити себе як на європейських, так і на американських дорогах.</strong>
+                        </li>
+                        <li style="margin-bottom: 15px;">
+                            <strong style="color: #4da6ff;">🔹 Ми працюємо над розширенням структури компанії та залученням нових водіїв саме для ATS-напрямку.</strong>
+                        </li>
+                    </ul>
+                    <p>Нашою метою залишається створення активної, дружньої та організованої спільноти для всіх поціновувачів вантажних перевезень. NeoCrime — це не просто VTC, це команда, що постійно розвивається та відкриває нові можливості для своїх учасників.</p>
+                    <p>Попереду — ще більше подій, спільних рейсів та масштабних конвоїв!</p>
+                    <p style="font-weight: bold; font-size: 1.1em; margin-top: 20px;">NeoCrime — рухаємося вперед разом. 🚛🔥</p>
+                </div>
+            </div>
+            
+            <div id="news-feb-results" class="news-detail" style="display: none;">
+                <img src="https://i.postimg.cc/MZQgkqx6/ets2%2020260228%20211131%2000.png" alt="Підсумки лютого">
+                <div class="news-modal-text">
+                    <h3>🏆 NEOCRIME — ПІДСУМКИ ЛЮТОГО</h3>
+                    <span class="news-date">01.03.2026 | Автор: !F4DED</span>
+                    <p>Лютий став для NeoCrime по-справжньому проривним місяцем та ще одним кроком уперед у розвитку нашої спільноти 🚛🔥</p>
+                    <ul style="list-style: none; padding-left: 0; margin-top: 20px;">
+                        <li style="margin-bottom: 15px;">
+                            <strong style="color: #4da6ff;">🔹 Поповнення складу</strong><br>
+                            За цей місяць до нашої команди приєдналося понад 40 нових учасників. Ми раді бачити, як NeoCrime зростає та об'єднує все більше водіїв, які поділяють наші цінності та стиль.
+                        </li>
+                        <li style="margin-bottom: 15px;">
+                            <strong style="color: #4da6ff;">🔹 Офіційна валідація від TruckersMP</strong><br>
+                            Ми успішно отримали статус Validated VTC — це підтвердження стабільності, організованості та активності нашої компанії на міжнародному рівні. Цей етап відкриває для нас нові можливості та підкреслює нашу репутацію в спільноті.
+                        </li>
+                        <li style="margin-bottom: 15px;">
+                            <strong style="color: #4da6ff;">🔹 950 000 км за місяць</strong><br>
+                            Разом ми подолали майже 1 мільйон кілометрів доріг! Це результат командної роботи, дисципліни та постійної активності кожного учасника.
+                        </li>
+                        <li style="margin-bottom: 15px;">
+                            <strong style="color: #4da6ff;">🔹 Топ-9 серед VTC у TruckersHub</strong><br>
+                            За підсумками місяця NeoCrime посіла 9 місце серед інших VTC, що є вагомим досягненням та доказом нашої конкурентоспроможності.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="news-validated" class="news-detail" style="display: none;">
+                <img src="https://i.postimg.cc/R0pSwH1K/validated.png" alt="Validated VTC Status">
+                <div class="news-modal-text">
+                    <h3>🎉 NEOCRIME ОФІЦІЙНО ОТРИМАЛА СТАТУС VALIDATED VTC!</h3>
+                    <span class="news-date">26.02.2026 | Автор: !F4DED</span>
+                    <p>Ми раді повідомити надзвичайну новину — наша компанія <strong>NeoCrime</strong> офіційно отримала статус <strong>Validated VTC</strong> від TruckersMP!</p>
+                    <p>Це важливий крок у розвитку нашої спільноти та підтвердження того, що ми рухаємося у правильному напрямку. Статус Validated надається лише тим віртуальним транспортним компаніям, які відповідають високим стандартам активності, організації та внеску у розвиток спільноти.</p>
+                    <blockquote>За цей відносно короткий період ми не просто створили компанію — ми побудували систему.</blockquote>
+                    <p>NeoCrime стала не просто VTC, а організованою спільнотою з чіткою структурою, дисципліною та власним стилем. Ми сформували команду, яка рухається як єдиний механізм — злагоджено, впевнено та з амбіціями.</p>
+                    <p>Ми задали власний темп розвитку, створили впізнаваний бренд, вибудували внутрішню ієрархію та атмосферу, де кожен учасник є частиною чогось більшого.</p>
+                    <p style="margin-top: 20px;">Отримання статусу <strong>Validated</strong> — це не лише досягнення, а й відповідальність. Ми й надалі будемо підтримувати високий рівень організації, активності та якості нашої роботи.</p>
+                    <p>Дякуємо кожному учаснику NeoCrime за вклад у розвиток компанії. Без вас цього б не сталося. Попереду — ще більше цілей, ще більше кілометрів та нових досягнень.</p>
+                    <p style="font-weight: bold; color: #ff3333;">NeoCrime рухається тільки вперед! 🚀</p>
+                </div>
+            </div>
+
+            <div id="news-1" class="news-detail" style="display: none;">
+                <img src="https://i.postimg.cc/BnVyckK9/1mln.png" alt="1 Million KM">
+                <div class="news-modal-text">
+                    <h3>ВІТАЄМО NEOCRIME VTC З ВЕЛИКИМ ЮВІЛЕЄМ! 1 000 000 КІЛОМЕТРІВ ПОЗАДУ! 🚛💨</h3>
+                    <span class="news-date">25.02.2026 | Автор: !F4DED</span>
+                    <p>Це не просто цифра на лічильнику — це тисячі годин у дорозі, сотні доставлених вантажів та незламний дух нашої спільноти. Дякуємо кожному водію, хто доклав зусиль до цього неймовірного результату.</p>
+                    <blockquote>Дякую за 1 млн кілометрів! Разом ми — сила, яку не зупинити.</blockquote>
+                    <p>Попереду ще більше доріг, нових міст та спільних конвоїв. Тиснемо на газ і рухаємось до наступного мільйона!</p>
+                </div>
+            </div>
+
+            <div id="news-2" class="news-detail" style="display: none;">
+                <img src="https://i.postimg.cc/ZqMDdc68/banner-ua.png" alt="NeoCrime Automation">
+                <div class="news-modal-text">
+                    <h3>🚀 ТЕХНОЛОГІЧНИЙ ПРОРИВ У NEOCRIME: ПОВНА АВТОМАТИЗАЦІЯ!</h3>
+                    <span class="news-date">12.02.2026 | Автор: !F4DED</span>
+                    <p>Команда <strong>NeoCrime</strong> рада повідомити про важливий етап у житті нашої компанії! Ми успішно розробили та впровадили власну автоматизовану систему, повністю інтегровану з платформою <strong>TruckersHub</strong>!</p>
+                    <p>Завдяки наполегливій праці наших розробників, ми відмовилися від застарілих методів обліку. Тепер вся статистика та активність водіїв відслідковується у реальному часі.</p>
+                    <p style="font-size: 18px; font-weight: bold; color: #fff; margin-top: 25px;">Що це змінює?</p>
+                    <ul style="list-style: none; padding-left: 0; margin-bottom: 20px;">
+                        <li style="margin-bottom: 12px;">🔹 <strong>Повна автоматизація:</strong> система самостійно фіксує кілометраж та досягнення учасників.</li>
+                        <li style="margin-bottom: 12px;">🔹 <strong>Кар'єрне зростання:</strong> більше жодних ручних звітів — підвищення кваліфікації відбувається автоматично при досягненні нових вершин.</li>
+                        <li style="margin-bottom: 12px;">🔹 <strong>Прозорість та комфорт:</strong> ми створили умови, де водій може зосередитися виключно на дорозі та задоволенні від гри.</li>
+                    </ul>
+                    <p>Для нас це не просто технічне оновлення, а крок до побудови сучасної, зручної та професійної спільноти. NeoCrime продовжує розвиватися, впроваджуючи інновації для наших водіїв.</p>
+                    <blockquote>NeoCrime — технології, що рухають нас вперед!</blockquote>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ once: true, offset: 50 });
+    </script>
+
+    <script>
+        // Скрипт для мобільного меню (гамбургер)
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const headerContent = document.querySelector('.header-content');
+        const mobileIcon = mobileMenuBtn.querySelector('i');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            headerContent.classList.toggle('active');
+            if (headerContent.classList.contains('active')) {
+                mobileIcon.classList.remove('fa-bars');
+                mobileIcon.classList.add('fa-times');
+            } else {
+                mobileIcon.classList.remove('fa-times');
+                mobileIcon.classList.add('fa-bars');
+            }
+        });
+
+        document.querySelectorAll('.main-nav a, .btn-primary').forEach(link => {
+            link.addEventListener('click', () => {
+                headerContent.classList.remove('active');
+                mobileIcon.classList.remove('fa-times');
+                mobileIcon.classList.add('fa-bars');
+            });
+        });
+    </script>
+
+    <script>
+        // Скрипт для новин (Модальне вікно)
+        const newsModal = document.getElementById('news-modal');
+        const newsDetails = document.querySelectorAll('.news-detail');
+
+        function openNewsModal(newsId) {
+            newsDetails.forEach(detail => detail.style.display = 'none');
+            document.getElementById(newsId).style.display = 'block';
+            newsModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeNewsModal() {
+            newsModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        newsModal.addEventListener('click', (e) => {
+            if (e.target === newsModal) closeNewsModal();
+        });
+    </script>
+</body>
+</html>
