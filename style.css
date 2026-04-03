@@ -17,104 +17,136 @@ body {
     overflow-x: hidden;
 }
 
-/* --- ШАПКА (HEADER) --- */
+/* --- ШАПКА (HEADER) - СТИЛЬ КАПСУЛЫ --- */
 header {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background: rgba(10, 10, 10, 0.85);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255, 0, 0, 0.2);
+    top: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 95%;
+    max-width: 1200px;
+    background: rgba(12, 12, 12, 0.85);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 50px;
     z-index: 1000;
-    padding: 15px 0;
+    padding: 12px 30px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
 }
 
 .header-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
+    position: relative;
+}
+
+/* ЛОГОТИП */
+.logo-link {
+    text-decoration: none;
+    color: #ffffff;
 }
 
 .logo {
     display: flex;
     align-items: center;
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 900;
     letter-spacing: 1px;
 }
 
 #logo-img {
-    height: 40px;
-    margin-right: 15px;
+    height: 35px;
+    margin-right: 12px;
 }
 
-.logo span {
+.logo-red {
     color: #ff3333;
 }
 
+/* НАВИГАЦИЯ (МЕНЮ) - ЦЕНТРИРОВАНИЕ */
+.main-nav {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Возвращаем меню в горизонтальную линию и убираем точки */
 .main-nav ul {
     display: flex;
     list-style: none;
-    gap: 30px;
+    gap: 35px;
+    margin: 0;
+    padding: 0;
 }
 
 .main-nav a {
-    color: #e0e0e0;
+    color: #a0a0a0;
     text-decoration: none;
-    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700; /* Сделали шрифт жирнее */
     font-size: 14px;
     text-transform: uppercase;
-    transition: 0.3s;
+    letter-spacing: 1px;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: inline-block; /* Нужно для правильной анимации вылета */
 }
 
+/* ИГРОВОЙ ЭФФЕКТ ПРИ НАВЕДЕНИИ НА СЛОВА */
 .main-nav a:hover {
-    color: #ff3333;
-    text-shadow: 0 0 10px rgba(255, 51, 51, 0.5);
+    color: #ffffff;
+    transform: translateY(-3px) scale(1.05); /* Вылет вверх и легкое увеличение */
+    text-shadow: 2px 2px 0px #ff3333; /* Жесткая красная тень */
 }
 
+/* ПРАВЫЙ БЛОК (Кнопка и язык) */
 .header-actions {
     display: flex;
     align-items: center;
     gap: 20px;
 }
 
-.btn-primary {
-    background-color: #ff3333;
-    color: #fff;
-    padding: 12px 25px;
+/* КНОПКА В ХЕДЕРЕ */
+.btn-header-bw {
+    background-color: transparent;
+    color: #ffffff;
+    padding: 10px 22px;
     border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
     text-decoration: none;
-    font-weight: 700;
-    font-size: 14px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700; /* Сделали шрифт жирнее */
+    font-size: 13px;
     text-transform: uppercase;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(255, 51, 51, 0.3);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: inline-block;
 }
 
-.btn-primary:hover {
-    background-color: #e60000;
-    box-shadow: 0 0 20px rgba(255, 51, 51, 0.7);
-    transform: translateY(-2px);
+/* ИГРОВОЙ ЭФФЕКТ ПРИ НАВЕДЕНИИ НА КНОПКУ */
+.btn-header-bw:hover {
+    background-color: transparent;
+    color: #ffffff;
+    border-color: #ff3333;
+    transform: translateY(-3px) scale(1.05); /* Вылет */
+    text-shadow: 2px 2px 0px #ff3333; /* Жесткая тень текста */
+    box-shadow: 3px 3px 0px #ff3333; /* Жесткая тень самой кнопки */
 }
 
-/* --- ПЕРЕМИКАЧ МОВ (ПРАПОРИ) --- */
-.lang-switch {
+/* ПЕРЕКЛЮЧАТЕЛЬ ЯЗЫКА */
+.lang-switch-bw {
     position: relative;
     display: flex;
     align-items: center;
-    border: 1px solid #ff3333;
-    padding: 8px 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 8px 12px;
     border-radius: 30px;
     cursor: pointer;
     transition: 0.3s;
 }
 
-.lang-switch:hover {
-    background-color: rgba(255, 51, 51, 0.1);
+.lang-switch-bw:hover {
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .current-lang {
@@ -123,202 +155,405 @@ header {
     gap: 8px;
 }
 
-/* Налаштування картинок-прапорів */
-.current-lang img, .lang-dropdown img {
-    width: 24px;
+.current-lang img, .lang-dropdown-bw img {
+    width: 20px;
     height: auto;
     border-radius: 3px;
     display: block;
 }
 
-/* Стрілочка біля поточного прапора */
 .current-lang i {
     font-size: 12px;
-    color: #fff;
+    color: #ffffff;
     transition: 0.3s;
 }
 
-.lang-switch:hover .current-lang i {
+.lang-switch-bw:hover .current-lang i {
     transform: rotate(180deg);
-    color: #ff3333;
 }
 
-/* Випадаюче меню з іншими прапорами */
-.lang-dropdown {
+.lang-dropdown-bw {
     position: absolute;
-    top: 130%; /* Опускаємо меню трохи нижче кнопки */
+    top: 140%; 
     left: 50%;
     transform: translateX(-50%) translateY(10px);
-    background: rgba(10, 10, 10, 0.95);
-    border: 1px solid #ff3333;
+    background: rgba(12, 12, 12, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 15px;
     padding: 10px 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    
-    /* Ховаємо меню за замовчуванням */
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease;
-    box-shadow: 0 5px 15px rgba(255, 51, 51, 0.2);
     backdrop-filter: blur(5px);
 }
 
-/* Показуємо меню при наведенні */
-.lang-switch:hover .lang-dropdown {
+.lang-switch-bw:hover .lang-dropdown-bw {
     opacity: 1;
     visibility: visible;
     transform: translateX(-50%) translateY(0);
 }
 
-.lang-dropdown a {
+.lang-dropdown-bw a {
     display: block;
     transition: 0.3s;
 }
 
-.lang-dropdown a:hover {
-    transform: scale(1.15); /* Збільшуємо прапор при наведенні */
-    filter: drop-shadow(0 0 5px rgba(255, 51, 51, 0.6)); /* Світіння */
+.lang-dropdown-bw a:hover {
+    transform: scale(1.15); 
 }
 
 /* --- ПЕРВЫЙ ЭКРАН (HERO) --- */
 .hero {
-    height: 100vh;
-    position: relative;
+    height: 100vh; /* Возвращаем высоту на весь экран */
+    position: relative; /* Чтобы статистика и оверлей не улетали */
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    background-image: url('images/hero-bg.jpg'); 
+    background-image: url('images/hero-bg.jpg'); /* Возвращаем грузовики! */
     background-size: cover;
     background-position: center;
-    background-attachment: fixed; /* Оставляем красивый параллакс */
-    z-index: 1;
-    /* Убрали корявую тень box-shadow */
+    background-attachment: fixed; /* Эффект параллакса для грузовиков */
+    background-color: #080808; 
+    z-index: 10; /* Держим первый экран строго поверх 3D-кубов */
+    overflow: hidden; 
+    font-family: 'Montserrat', sans-serif !important;
 }
 
 .hero-overlay {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* ИДЕАЛЬНЫЙ ПЕРЕХОД: градиент плавно превращается в цвет #1a1a1a в самом низу */
-    background: linear-gradient(to bottom, rgba(26,26,26,0.2) 0%, rgba(26,26,26,0.6) 60%, #1a1a1a 100%);
+    top: 0; left: 0; width: 100%; height: 100%;
+    /* МАГІЯ ТУТ: Останній колір #0d0d0d ідеально зшиває 1 і 2 блоки */
+    background: linear-gradient(to bottom, rgba(13,13,13,0.3) 0%, rgba(13,13,13,0.7) 65%, #0d0d0d 100%);
     z-index: 1;
 }
 
+/* --- СТИЛИ КНОПОК ПЕРВОГО ЭКРАНА (ПО ЦЕНТРУ) --- */
+.hero-action {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; /* Чтобы на телефонах переносились красиво */
+}
+
+/* Настройки для круглых кнопок-иконок */
+.btn-cyber-social {
+    background-color: #000; 
+    color: #fff; 
+    border: 2px solid #000;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    z-index: 3;
+    width: 60px; /* Сделали их чуть крупнее для центра экрана */
+    height: 60px;
+    border-radius: 50%;
+    font-size: 24px;
+}
+
+/* ЭФФЕКТ ПРИ НАВЕДЕНИИ */
+.btn-cyber-social:hover {
+    background-color: transparent; 
+    color: #ff3333; 
+    border-color: #ff3333; 
+    transform: translate(-6px, -6px); /* Кибер-сдвиг */
+    box-shadow: 6px 6px 0px #ff3333; /* Жесткая тень */
+}
+
+/* --- КОНТЕНТ ПО ЦЕНТРУ --- */
 .hero-content {
     position: relative;
     z-index: 2;
-    max-width: 900px;
-    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.hero h1 {
-    font-family: 'Russo One', sans-serif; /* Геймерский шрифт */
-    font-size: 64px;
-    margin-bottom: 20px;
-    letter-spacing: 4px; /* Делаем буквы чуть шире друг от друга */
-    text-transform: uppercase; /* Делаем все буквы большими для эпичности */
-    
-    /* Убираем заливку текста (прозрачный внутри) */
-    color: transparent;
-    
-    /* Делаем красную обводку текста */
-    -webkit-text-stroke: 2px #ff3333;
-    
-    /* Добавляем эффект красного неонового свечения вокруг букв */
-    text-shadow: 0 0 15px rgba(255, 51, 51, 0.6), 
-                 0 0 30px rgba(255, 51, 51, 0.4);
-}
-
-.hero p {
-    font-size: 18px;
-    line-height: 1.8;
+.hero-welcome {
+    font-size: 20px;
+    font-weight: 500;
     color: #cccccc;
-    margin-bottom: 40px;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    opacity: 0; 
 }
 
-.hero-buttons {
+/* --- ГЛАВНЫЙ ЗАГОЛОВОК NEOCRIME --- */
+.hero-title {
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 110px; 
+    font-weight: 900; 
+    color: #ffffff; 
+    margin: 0;
+    line-height: 1;
+    letter-spacing: 8px; 
+    text-shadow: 4px 4px 0px #ff3333; /* Жесткая красная тень */
+}
+
+.hero-slogan {
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 19px;
+    font-weight: 400; 
+    color: #ffffff;
+    margin-top: 15px;
+    margin-bottom: 45px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    opacity: 0; 
+}
+
+/* --- АНИМАЦИЯ ВЫЛЕТАЮЩИХ СИМВОЛОВ --- */
+.char-span {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(50px);
+    animation: textRise 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.char-space {
+    display: inline-block;
+    width: 0.35em;
+}
+
+@keyframes textRise {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- АДАПТАЦИЯ ПОД ТЕЛЕФОНЫ --- */
+@media (max-width: 992px) {
+    .hero-title { font-size: 55px; letter-spacing: 3px; }
+    .hero-slogan { font-size: 12px; letter-spacing: 2px; }
+    
+    .btn-cyber-social {
+        width: 50px; /* На телефонах возвращаем компактный размер */
+        height: 50px;
+        font-size: 20px;
+    }
+}
+
+/* --- СТАТИСТИКА ВНИЗУ (DYNAMIC ISLAND СТИЛЬ) --- */
+.hero-stats-wrapper {
+    position: absolute;
+    bottom: 40px; /* Отступ от низа, чтобы плавало */
+    left: 0;
+    width: 100%;
     display: flex;
     justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
+    z-index: 10;
 }
 
-.btn-social {
-    background-color: #ff3333;
-    color: #fff;
-    padding: 15px 30px;
-    border-radius: 30px;
-    text-decoration: none;
-    font-weight: 700;
+.hero-stats-island {
+    background: rgba(10, 10, 10, 0.95); /* Строгий черный */
+    backdrop-filter: blur(15px); /* Легкое размытие заднего фона */
+    border: 1px solid rgba(255, 255, 255, 0.08); /* Чуть заметная грань для объема */
+    border-radius: 50px; /* Форма капсулы */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px; 
+    padding: 15px 50px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.9); /* Мощная тень вниз */
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-number-wrapper {
+    font-size: 32px; /* Чуть компактнее для элегантности */
+    font-weight: 900;
+    color: #ffffff; /* Полностью белый */
     display: flex;
     align-items: center;
-    gap: 10px;
-    transition: all 0.3s ease;
-    border: 1px solid transparent;
+    line-height: 1;
+    margin-bottom: 5px;
 }
 
-.btn-social:hover {
-    background-color: transparent;
-    border: 1px solid #ff3333;
+.stat-plus {
+    color: #ffffff; /* Никакого красного */
+    margin-left: 5px;
+}
+
+/* Элегантная серая линия между двумя блоками статистики */
+.stat-divider {
+    width: 1px;
+    height: 35px;
+    background: rgba(255, 255, 255, 0.15); 
+}
+
+.stat-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #888888; /* Строгий серый цвет */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Адаптация плашки под мобильные устройства */
+@media (max-width: 768px) {
+    .hero-stats-island {
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px 40px;
+        border-radius: 30px;
+    }
+    .stat-divider {
+        width: 80%;
+        height: 1px;
+    }
+}
+
+/* --- БЛОК ПЕРЕВАГ (FEATURES) --- */
+.features-section {
+    padding: 100px 0 50px;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+/* Обгортка для того, щоб не ламалася анімація появи (AOS) */
+.feature-wrapper {
+    display: flex;
+    height: 100%;
+}
+
+.feature-card {
+    background-color: #1e1e1e;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    
+    /* Дуже красива і плавна анімація "з пружинкою" */
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease; 
+}
+
+/* --- ЕФЕКТ ПРИ НАВЕДЕННІ НА ОБГОРТКУ --- */
+.feature-wrapper:hover .feature-card {
+    /* Картка цілком їде на 8px вліво і 8px вгору */
+    transform: translate(-8px, -8px); 
+    
+    /* Розсіяна напівпрозора червона тінь */
+    box-shadow: 12px 12px 18px rgba(255, 51, 51, 0.4); 
+}
+
+.feature-img {
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+}
+
+.feature-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+/* Легкий зум фотографії при наведенні */
+.feature-wrapper:hover .feature-img img {
+    transform: scale(1.05);
+}
+
+.feature-content {
+    padding: 25px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.feature-number {
     color: #ff3333;
-    box-shadow: 0 0 20px rgba(255, 51, 51, 0.5);
-    transform: translateY(-5px);
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 5px;
 }
 
-/* --- ОБЕРТКА ДЛЯ ОСТАЛЬНОГО САЙТА (БЛОК С ЛАЗЕРАМИ) --- */
+.feature-title {
+    color: #fff;
+    font-size: 18px;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+.feature-text {
+    color: #b3b3b3;
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Адаптація під планшети та телефони */
+@media (max-width: 1100px) {
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* --- ГЛАВНЫЙ ФОН САЙТА --- */
+body {
+    background-color: #080808; 
+    color: #ffffff;
+    overflow-x: hidden;
+}
+
+/* --- ОБЕРТКА --- */
 .cyber-wrapper {
     position: relative;
-    background-color: #1a1a1a; 
-    overflow: hidden;
     z-index: 2;
 }
 
-/* БЫСТРЫЕ ЛАЗЕРЫ (ОПТИМИЗИРОВАННЫЕ ОТ ЛАГОВ) */
-.cyber-wrapper::before, .cyber-wrapper::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    pointer-events: none;
-    z-index: 0;
-    /* Ускоряем работу браузера */
-    will-change: background-position; 
+/* Удаляем старый #bg, он больше не нужен */
+
+/* --- ЧЕРЕДОВАНИЕ ФОНОВ ДЛЯ БЛОКОВ --- */
+/* Темно-серый (Блоки 2, 4, 6...) */
+.team-section,
+.partners-section,
+.about-section,
+.ats-section,
+.gallery-section {
+    background-color: #0d0d0d; 
 }
 
-.cyber-wrapper::before {
-    /* Градиенты создают иллюзию свечения без тяжелых фильтров */
-    background-image: 
-        linear-gradient(to bottom, transparent, rgba(255,51,51,0.5) 80%, #fff 98%, transparent),
-        linear-gradient(to bottom, transparent, rgba(255,51,51,0.4) 85%, #ffb3b3 95%, transparent),
-        linear-gradient(to bottom, transparent, rgba(255,51,51,0.6) 90%, #fff 98%, transparent);
-    background-size: 3px 500px, 5px 300px, 2px 600px;
-    background-repeat: repeat-y; /* Повторяем по вертикали */
-    animation: cyberFall1 3s linear infinite;
+/* Темно-серый, но чуть светлее (Блоки 3, 5, 7...) */
+.news-section,
+.features-section,
+.crimeadmin-section,
+.faq-section {
+    background-color: #141414; 
 }
 
-.cyber-wrapper::after {
-    background-image: 
-        linear-gradient(to bottom, transparent, rgba(255,51,51,0.5) 80%, #fff 98%, transparent),
-        linear-gradient(to bottom, transparent, rgba(255,51,51,0.3) 85%, #ffb3b3 97%, transparent);
-    background-size: 2px 450px, 4px 350px;
-    background-repeat: repeat-y;
-    animation: cyberFall2 2s linear infinite reverse;
-}
-
-/* Раздельные анимации для стабильной работы */
-@keyframes cyberFall1 {
-    0% { background-position: 15% 0, 50% 0, 80% 0; }
-    100% { background-position: 15% 3000px, 50% 3000px, 80% 3000px; }
-}
-
-@keyframes cyberFall2 {
-    0% { background-position: 30% 0, 70% 0; }
-    100% { background-position: 30% 3000px, 70% 3000px; }
+/* Добавляем внутренние отступы секциям, чтобы текст не прилипал к краям фона */
+.team-section, .news-section, .partners-section, 
+.features-section, .about-section, .crimeadmin-section, 
+.ats-section, .faq-section, .gallery-section {
+    padding: 100px 0;
 }
 
 /* --- КОНТЕЙНЕРЫ КОНТЕНТА --- */
@@ -363,64 +598,95 @@ header {
 .team-grid {
     display: flex;
     justify-content: center;
-    gap: 25px;
-    flex-wrap: nowrap;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+/* Нова обгортка, як у feature-wrapper */
+.team-wrapper {
+    display: flex;
+    height: 100%;
 }
 
 .team-card {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-decoration: none;
-    background: #111111; 
-    border: 1px solid #222222;
-    border-radius: 20px;
-    padding: 35px 20px;
+    background-color: #1e1e1e; 
+    border: none;
+    border-radius: 10px; 
+    padding: 40px 20px;
     width: 280px;
     text-align: center;
-    transition: all 0.4s ease;
-    cursor: pointer;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    position: relative;
+    z-index: 1; 
+    
+    /* Точно така ж анімація, як у feature-card */
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
 }
 
-.team-card:hover {
-    transform: translateY(-10px);
-    border-color: #ff3333;
-    box-shadow: 0 10px 30px rgba(255, 51, 51, 0.3);
+/* ЕФЕКТ ПРИ НАВЕДЕННІ НА ОБГОРТКУ (аналог feature-wrapper:hover .feature-card) */
+.team-wrapper:hover .team-card {
+    transform: translate(-8px, -8px);
+    box-shadow: 12px 12px 18px rgba(255, 51, 51, 0.4);
+    z-index: 10; 
 }
 
+/* Обгортка аватару */
 .team-img-wrapper {
     width: 140px;
     height: 140px;
     margin: 0 auto 20px auto;
+    position: relative;
+}
+
+/* Червоне неонове кільце (рамка) */
+.team-img-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
     border-radius: 50%;
-    overflow: hidden;
     border: 3px solid #ff3333;
     box-shadow: 0 0 15px rgba(255, 51, 51, 0.4);
-    transition: all 0.5s ease;
+    z-index: 1;
 }
 
 .team-img-wrapper img {
+    position: relative;
+    z-index: 2; 
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
+    border-radius: 50%; 
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease-in-out;
 }
 
-.team-card:hover .team-img-wrapper img {
-    transform: scale(1.1);
+/* Аватар вилітає з рамки і провертається при наведенні на обгортку */
+.team-wrapper:hover .team-img-wrapper img {
+    transform: scale(1.3) rotate(15deg); 
+    box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.7); 
 }
 
 .team-card h3 {
     font-size: 22px;
-    font-weight: 700;
+    font-weight: 900;
     color: #ffffff;
     margin-bottom: 5px;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+.team-wrapper:hover h3 {
+    color: #ff3333; 
 }
 
 .team-card .role {
     font-size: 13px;
-    color: #ff3333;
+    color: #b3b3b3; 
     font-weight: 700;
     text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 @media (max-width: 1024px) {
@@ -429,36 +695,299 @@ header {
     }
 }
 
-/* --- БЛОК ПРО НАС (ПАРЯЩИЙ ТЕКСТ) --- */
-.about-content {
-    max-width: 900px;
-    margin: 0 auto;
-    text-align: center;
+/* --- БЛОК ПРО НАС (ОНОВЛЕНИЙ) --- */
+.about-container-new {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
 }
 
-.about-content p {
-    font-size: 18px;
+.about-left {
+    flex: 1;
+    max-width: 600px;
+}
+
+.about-left h2.section-title {
+    text-align: left;
+}
+
+.about-left h2.section-title::after {
+    margin: 15px 0 0 0;
+}
+
+.about-text-content p {
+    text-align: justify; 
+    font-size: 16px;
     line-height: 1.8;
     color: #eeeeee;
-    margin-bottom: 25px;
-    text-align: justify;
-    text-align-last: center;
+    margin-bottom: 20px;
     text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
 }
 
-.about-content p:last-child {
-    margin-bottom: 0;
+.about-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.highlight {
-    color: #ff3333;
-    font-weight: 700;
-    text-shadow: 0 0 10px rgba(255, 51, 51, 0.5);
+/* --- ВАНТАЖІВКА ТА ЕФЕКТ НАВЕДЕННЯ --- */
+.truck-parallax {
+    width: 100%;
+    max-width: 700px;
+    height: auto;
+    filter: drop-shadow(5px 5px 15px rgba(0, 0, 0, 0.5));
+    transition: all 0.4s ease; 
+    will-change: transform, filter; 
 }
 
-@media (max-width: 768px) {
-    .about-content p {
-        font-size: 16px;
+.truck-parallax:hover {
+    transform: translate(-10px, -10px); 
+    filter: drop-shadow(15px 15px 25px rgba(255, 51, 51, 0.6));
+}
+
+/* Клас для кожної букви (сховано за замовчуванням для скрипта) */
+.type-char {
+    opacity: 0;
+    transition: opacity 0.05s linear;
+}
+
+@media (max-width: 992px) {
+    .about-container-new {
+        flex-direction: column;
+        text-align: center;
+    }
+    .about-left {
+        max-width: 100%;
+    }
+    .about-left h2.section-title {
+        text-align: center;
+    }
+    .about-left h2.section-title::after {
+        margin: 15px auto 0;
+    }
+    .about-text-content p {
+        text-align: center;
+    }
+    
+    .truck-parallax:hover {
+        transform: translate(0, 0);
+    }
+
+}
+
+/* --- БЛОК БОТА CrimeADMIN --- */
+.crimeadmin-section {
+    padding: 50px 0 100px; /* Відступи секції */
+    overflow: hidden; /* Щоб збільшене фото не робило горизонтальний скролл */
+}
+
+.crimeadmin-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px; /* Відстань між фото і текстом */
+}
+
+/* Ліва колонка (Фото) */
+.crimeadmin-left {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* --- СТАТИЧНЕ ФОТО БОТА CrimeADMIN --- */
+.bot-img-static {
+    width: 100%;
+    max-width: 475px; /* Оптимальний збільшений розмір для цього бота */
+    height: auto;
+    
+    /* Зсуваємо фото вліво на 30px за замовчуванням */
+    transform: translateX(-30px);
+    
+    /* Базова легка тінь для об'єму (падає вліво-вниз) */
+    filter: drop-shadow(-5px 10px 20px rgba(0, 0, 0, 0.6));
+    
+    /* Плавна анімація для ВСІХ властивостей */
+    transition: all 0.5s ease; 
+    will-change: transform, filter; /* Оптимізація для браузера */
+}
+
+/* --- ЕФЕКТ ПРИ НАВЕДЕННІ НА ФОТО CrimeADMIN --- */
+.bot-img-static:hover {
+    /* Скасовуємо базовий зсув вліво (-30px) і додаємо зсув вправо-вгору. */
+    transform: translateX(20px) translateY(-15px);
+    
+    /* Розсіяна червона неонова тінь (дзеркально вліво-вгору) */
+    filter: drop-shadow(-15px -15px 30px rgba(255, 51, 51, 0.7));
+}
+
+/* Права колонка (Текст) */
+.crimeadmin-right {
+    flex: 1;
+    max-width: 600px;
+}
+
+/* Заголовок притискаємо вправо */
+.crimeadmin-right h2.section-title {
+    text-align: right;
+}
+
+/* Лінію під заголовком теж притискаємо вправо */
+.crimeadmin-right h2.section-title::after {
+    margin: 15px 0 0 auto;
+}
+
+/* Текст вирівнюємо в лінійку (по ширині) */
+.crimeadmin-text-content p {
+    text-align: justify; 
+    font-size: 16px;
+    line-height: 1.8;
+    color: #eeeeee;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
+}
+
+/* Адаптація для телефонів та планшетів */
+@media (max-width: 992px) {
+    .crimeadmin-container {
+        /* На мобільних міняємо порядок: спочатку текст, потім фото */
+        flex-direction: column-reverse;
+        text-align: center;
+        gap: 30px;
+    }
+    
+    .bot-img-static {
+        /* На мобільних прибираємо початковий зсув вліво */
+        transform: translateX(0);
+        max-width: 90%; /* Робимо компактнішим на телефоні */
+    }
+    
+    .bot-img-static:hover {
+        /* На мобільних прибираємо рух при наведенні, залишаємо тільки тінь */
+        transform: translateX(0) translateY(0);
+    }
+
+    .crimeadmin-right {
+        max-width: 100%;
+    }
+    
+    .crimeadmin-right h2.section-title {
+        text-align: center;
+    }
+    
+    .crimeadmin-right h2.section-title::after {
+        margin: 15px auto 0;
+    }
+    
+    .crimeadmin-text-content p {
+        text-align: center;
+    }
+}
+
+/* --- БЛОК ATS (АНАЛОГ CrimeROUTE) --- */
+.ats-section {
+    padding: 50px 0 100px;
+    overflow: hidden;
+}
+
+.ats-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+/* Ліва колонка (Текст) */
+.ats-left {
+    flex: 1;
+    max-width: 600px;
+}
+
+.ats-left h2.section-title {
+    text-align: left;
+}
+
+.ats-left h2.section-title::after {
+    margin: 15px 0 0 0;
+}
+
+.ats-text-content p {
+    text-align: justify; 
+    font-size: 16px;
+    line-height: 1.8;
+    color: #eeeeee;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
+}
+
+/* Права колонка (Фото) */
+.ats-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* --- СТАТИЧНЕ ФОТО ATS --- */
+.ats-img-static {
+    width: 850px; 
+    max-width: none; 
+    flex-shrink: 0; 
+    height: auto;
+    
+    /* Зсуваємо фото вправо за замовчуванням */
+    transform: translateX(80px); 
+    
+    /* Тінь падає вправо-вниз */
+    filter: drop-shadow(5px 10px 20px rgba(0, 0, 0, 0.6));
+    
+    transition: all 0.5s ease; 
+    will-change: transform, filter;
+}
+
+/* --- ЕФЕКТ ПРИ НАВЕДЕННІ НА ФОТО ATS --- */
+.ats-img-static:hover {
+    /* Рухається ще правіше і вгору */
+    transform: translateX(100px) translateY(-20px);
+    
+    /* Розсіяна червона неонова тінь */
+    filter: drop-shadow(15px 15px 35px rgba(255, 51, 51, 0.7));
+}
+
+/* Адаптація для телефонів */
+@media (max-width: 992px) {
+    .ats-container {
+        flex-direction: column; 
+        text-align: center;
+        gap: 30px;
+    }
+    
+    .ats-left {
+        max-width: 100%;
+    }
+    .ats-left h2.section-title {
+        text-align: center;
+    }
+    .ats-left h2.section-title::after {
+        margin: 15px auto 0;
+    }
+    .ats-text-content p {
+        text-align: center;
+    }
+
+    .ats-img-static {
+        width: 100%; 
+        max-width: 90%;
+        transform: translateX(0);
+    }
+    
+    .ats-img-static:hover {
+        transform: translateX(0) translateY(0);
     }
 }
 
@@ -529,6 +1058,34 @@ header {
 
 .partner-card:hover h3 {
     color: #ff3333;
+}
+
+/* --- КНОПКА "ПОДАТИ ЗАЯВКУ" (В СТИЛЕ ХЕДЕРА) --- */
+.btn-primary {
+    background-color: transparent;
+    color: #ffffff;
+    padding: 15px 35px; /* Слегка крупнее, чем в шапке */
+    border-radius: 30px;
+    border: 2px solid rgba(255, 255, 255, 0.3); /* Светлая рамка */
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: inline-block;
+    margin-top: 10px;
+}
+
+/* ИГРОВОЙ ЭФФЕКТ ПРИ НАВЕДЕНИИ */
+.btn-primary:hover {
+    background-color: transparent;
+    color: #ffffff;
+    border-color: #ff3333;
+    transform: translateY(-3px) scale(1.05); /* Вылет */
+    text-shadow: 2px 2px 0px #ff3333; /* Жесткая тень текста */
+    box-shadow: 4px 4px 0px #ff3333; /* Жесткая тень кнопки */
 }
 
 /* --- БЛОК FAQ --- */
@@ -1022,29 +1579,42 @@ header {
 }
 
 @media (max-width: 992px) {
+    header {
+        width: 90%;
+        padding: 10px 20px;
+        border-radius: 30px;
+    }
+
+    /* ДОБАВЬ ЭТОТ БЛОК, чтобы на телефоне меню вернулось в шторку */
+    .main-nav {
+        position: static; 
+        transform: none;
+    }
+
     .mobile-menu-btn {
-        display: block; /* Показуємо бургер на телефонах та планшетах */
+        display: block; 
     }
 
     .header-content {
         position: fixed;
         top: 0;
-        right: -100%; /* Ховаємо меню за правий край екрану */
-        width: 250px;
+        right: -100%; 
+        width: 260px;
         height: 100vh;
-        background: rgba(10, 10, 10, 0.98);
-        backdrop-filter: blur(10px);
+        background: rgba(12, 12, 12, 0.98); /* Черный фон */
+        backdrop-filter: blur(15px);
         flex-direction: column;
         justify-content: center;
         align-items: center;
         transition: right 0.4s ease;
-        border-left: 2px solid #ff3333;
+        border-left: 1px solid rgba(255, 255, 255, 0.1); /* Серая полоска вместо красной */
         z-index: 1000;
         padding: 50px 20px;
+        border-radius: 30px 0 0 30px; /* Скругление шторки слева */
     }
 
     .header-content.active {
-        right: 0; /* Меню виїжджає при додаванні цього класу */
+        right: 0; 
     }
 
     .main-nav ul {
@@ -1060,9 +1630,9 @@ header {
         width: 100%;
     }
 
-    .btn-primary {
+    .btn-header-bw {
         text-align: center;
-        width: 100%; /* Розтягуємо кнопку на всю ширину панелі */
+        width: 100%; 
     }
 }
 
@@ -1084,21 +1654,30 @@ header {
     gap: 30px;
 }
 
-.news-card {
-    background: #0c0c0c;
-    border: 1px solid #222;
-    border-radius: 15px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: all 0.4s ease;
+/* Нова обгортка, як у feature-wrapper */
+.news-wrapper {
     display: flex;
-    flex-direction: column;
+    height: 100%;
 }
 
-.news-card:hover {
-    border-color: #ff3333;
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(255, 51, 51, 0.15);
+.news-card {
+    background-color: #1e1e1e; 
+    border: none; 
+    border-radius: 10px; 
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    
+    /* Точно така ж анімація, як у feature-card */
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+}
+
+/* ЕФЕКТ ПРИ НАВЕДЕННІ НА ОБГОРТКУ (аналог feature-wrapper:hover .feature-card) */
+.news-wrapper:hover .news-card {
+    transform: translate(-8px, -8px); 
+    box-shadow: 12px 12px 18px rgba(255, 51, 51, 0.4);
 }
 
 .news-img-wrapper {
@@ -1114,7 +1693,7 @@ header {
     transition: transform 0.5s ease;
 }
 
-.news-card:hover .news-img-wrapper img {
+.news-wrapper:hover .news-img-wrapper img {
     transform: scale(1.05);
 }
 
@@ -1123,9 +1702,9 @@ header {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+    background-color: transparent;
 }
 
-/* Оновлений стиль дати (червоний колір, фірмовий шрифт) */
 .news-date {
     color: #ff3333;
     font-family: 'Montserrat', sans-serif;
@@ -1146,13 +1725,12 @@ header {
 }
 
 .news-author {
-    color: #666;
+    color: #b3b3b3; /* Зробили світлішим, щоб гармоніювало з фоном */
     font-size: 13px;
     margin-bottom: 20px;
     flex-grow: 1;
 }
 
-/* Оновлена кнопка "ДЕТАЛЬНІШЕ" */
 .read-more {
     color: #ff3333;
     font-family: 'Montserrat', sans-serif;
@@ -1166,25 +1744,27 @@ header {
     gap: 8px;
 }
 
-/* Ефекти при наведенні на картку */
 .news-card:hover .read-more {
     color: #ffffff;
 }
 
 .news-card:hover .read-more i {
-    transform: translateX(5px); /* Стрілочка плавно від'їжджає вправо */
+    transform: translateX(5px);
     transition: transform 0.3s ease;
 }
 
-/* --- МОДАЛЬНЕ ВІКНО НОВИН --- */
+/* --- МОДАЛЬНЕ ВІКНО НОВИН (ВІДКРИТА НОВИНА) --- */
 .news-modal-content {
-    background: #111;
+    background-color: #1e1e1e; /* Такий самий суворий фон */
     max-width: 800px;
     width: 90%;
     max-height: 85vh;
-    border-radius: 15px;
-    border: 1px solid #ff3333;
-    box-shadow: 0 0 40px rgba(255, 51, 51, 0.3);
+    border-radius: 10px; /* Суворі кути */
+    border: none; /* Прибрали червону обводку */
+    
+    /* Додали глибоку 3D-тінь, щоб вікно красиво "висіло" над сайтом */
+    box-shadow: 15px 15px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 51, 51, 0.2);
+    
     overflow-y: auto;
     position: relative;
 }
@@ -1194,12 +1774,12 @@ header {
     height: auto;
     max-height: 400px;
     object-fit: cover;
-    border-bottom: 2px solid #ff3333;
+    border-bottom: 3px solid #ff3333; /* Залишили червону лінію для акценту */
 }
 
 .news-modal-text {
     padding: 40px;
-    color: #ccc;
+    color: #cccccc;
     font-size: 16px;
     line-height: 1.8;
 }
@@ -1210,6 +1790,7 @@ header {
     font-weight: 900;
     margin-bottom: 15px;
     line-height: 1.3;
+    text-transform: uppercase; /* Робить заголовок більш суворим */
 }
 
 .news-modal-text .news-date {
@@ -1217,6 +1798,7 @@ header {
     display: flex;
     margin-bottom: 30px;
     font-size: 14px;
+    font-weight: 700;
 }
 
 .news-modal-text p {
@@ -1224,13 +1806,14 @@ header {
 }
 
 .news-modal-text blockquote {
-    background: rgba(255, 51, 51, 0.05);
+    background: #111111; /* Ще темніший фон для цитат */
     border-left: 4px solid #ff3333;
     padding: 20px;
     margin: 30px 0;
     font-style: italic;
     color: #fff;
     font-size: 18px;
+    border-radius: 0 10px 10px 0;
 }
 
 /* Кастомний скроллбар для попапа новин */
@@ -1239,50 +1822,11 @@ header {
 }
 
 .news-modal-content::-webkit-scrollbar-track {
-    background: #111;
-    border-radius: 0 15px 15px 0;
+    background: #111111;
+    border-radius: 0 10px 10px 0;
 }
 
 .news-modal-content::-webkit-scrollbar-thumb {
     background: #ff3333;
     border-radius: 4px;
-}
-
-/* --- 404 ERROR PAGE --- */
-.error-page {
-    background-color: #1a1a1a;
-    overflow: hidden;
-}
-
-.error-code {
-    font-family: 'Russo One', sans-serif;
-    font-size: 150px;
-    margin: 0;
-    line-height: 1;
-    color: transparent;
-    -webkit-text-stroke: 3px #ff3333;
-    text-shadow: 0 0 20px rgba(255, 51, 51, 0.6), 0 0 40px rgba(255, 51, 51, 0.4);
-}
-
-.error-title {
-    font-size: 32px;
-    font-weight: 900;
-    color: #fff;
-    margin: 10px 0 20px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-.error-desc {
-    font-size: 18px;
-    color: #ccc;
-    line-height: 1.6;
-    margin-bottom: 30px;
-}
-
-/* Адаптация под телефоны */
-@media (max-width: 768px) {
-    .error-code { font-size: 100px; -webkit-text-stroke: 2px #ff3333; }
-    .error-title { font-size: 24px; }
-    .error-desc { font-size: 16px; }
 }

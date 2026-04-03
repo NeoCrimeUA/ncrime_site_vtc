@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NeoCrime — VTC в TruckersMP</title>
     
-    <link rel="icon" type="image/png" href="/images/logo.png">
+    <link rel="icon" type="image/png" src="https://i.postimg.cc/kXRwBm94/LOGO%202.png">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
@@ -16,39 +16,40 @@
 </head>
 <body>
 
-    <header data-aos="fade-down" data-aos-duration="800">
-    <div class="header-container">
-        <a href="#home" class="logo-link" style="text-decoration: none; color: white; display: flex; align-items: center;">
-            <div class="logo">
-                <img src="images/logo.png" alt="NE Logo" id="logo-img"> Neo<span style="color: #ff3333;">Crime</span>
+    <header>
+        <div class="header-container">
+            <a href="#home" class="logo-link">
+                <div class="logo">
+                    <img src="images/logo.png" alt="NE Logo" id="logo-img"> Neo<span class="logo-red">Crime</span>
+                </div>
+            </a>
+            
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
             </div>
-        </a>
-        
-        <div class="mobile-menu-btn">
-            <i class="fas fa-bars"></i>
-        </div>
 
-        <div class="header-content">
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="#home">Головна</a></li>
-                    <li><a href="#team">Команда</a></li>
-                    <li><a href="#about">Про нас</a></li>
-                    <li><a href="#gallery">Галерея</a></li>
-                </ul>
-            </nav>
+            <div class="header-content">
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="#home">Головна</a></li>
+                        <li><a href="#team">Команда</a></li>
+                        <li><a href="#about">Про нас</a></li>
+                        <li><a href="#gallery">Галерея</a></li>
+                    </ul>
+                </nav>
 
-            <div class="header-actions">
-                <a href="https://discord.gg/zGzy7Gcdgy" target="_blank" class="btn-primary">Розпочати свій шлях</a>
-                
-                <div class="lang-switch">
-                    <div class="current-lang">
-                        <img src="https://flagcdn.com/w40/ua.png" alt="UA">
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
+                <div class="header-actions">
+                    <a href="https://discord.gg/zGzy7Gcdgy" target="_blank" class="btn-header-bw">Розпочати шлях</a>
                     
-                    <div class="lang-dropdown">
-                        <a href="eng.html"><img src="https://flagcdn.com/w40/gb.png" alt="EN"></a>
+                    <div class="lang-switch-bw">
+                        <div class="current-lang">
+                            <img src="https://flagcdn.com/w40/ua.png" alt="UA">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        
+                        <div class="lang-dropdown-bw">
+                            <a href="/eng"><img src="https://flagcdn.com/w40/gb.png" alt="EN"></a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -57,191 +58,204 @@
 
     <section id="home" class="hero">
         <div class="hero-overlay"></div>
+
         <div class="hero-content">
-            <h1 data-aos="zoom-in" data-aos-duration="1000">Вітаємо у NeoCrime</h1>
-            <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
-                Це дружнє та згуртоване українське ком'юніті, де кожен водій — важлива частина однієї команди. Нас об'єднують спільні цінності, взаємна підтримка та любов до дороги. Тут кожен знайде своє місце, допомогу та справжнє відчуття єдності.
-            </p>
+            <p class="hero-welcome" data-aos="fade-up" data-aos-duration="800">Welcome to</p>
             
-            <div class="hero-buttons" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
-                <a href="https://discord.gg/zGzy7Gcdgy" target="_blank" class="btn-social"><i class="fab fa-discord"></i> Discord</a>
-                <a href="https://www.tiktok.com/@neocrime_vtc" target="_blank" class="btn-social"><i class="fab fa-tiktok"></i> TikTok</a>
-                <a href="https://www.youtube.com/@NeoCrimeVTC" target="_blank" class="btn-social"><i class="fab fa-youtube"></i> YouTube</a>
-                <a href="https://truckersmp.com/vtc/85940" target="_blank" class="btn-social"><i class="fas fa-heart"></i> TruckersMP</a>
+            <h1 class="hero-title animate-chars">NEOCRIME</h1>
+            
+            <p class="hero-slogan" data-aos="fade-up" data-aos-duration="800" data-aos-delay="1200">Контроль на кожному кілометрі</p>
+            
+            <div class="hero-action" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="2000">
+                <a href="https://discord.gg/zGzy7Gcdgy" target="_blank" title="Discord" class="btn-cyber-social"><i class="fab fa-discord"></i></a>
+                <a href="https://www.tiktok.com/@neocrime_vtc" target="_blank" title="TikTok" class="btn-cyber-social"><i class="fab fa-tiktok"></i></a>
+                <a href="https://www.youtube.com/@NeoCrimeVTC" target="_blank" title="YouTube" class="btn-cyber-social"><i class="fab fa-youtube"></i></a>
+                <a href="https://truckersmp.com/vtc/85940" target="_blank" title="TruckersMP" class="btn-cyber-social"><i class="fas fa-truck"></i></a>
+            </div>
+        </div>
+
+        <div class="hero-stats-wrapper">
+            <div class="hero-stats-island" data-aos="fade-up" data-aos-duration="800">
+                <div class="stat-item">
+                    <div class="stat-number-wrapper">
+                        <span class="stat-number count-up" data-target="2000000">0</span>
+                        <span class="stat-plus">+</span>
+                    </div>
+                    <span class="stat-label">КМ ПРОЙДЕНО</span>
+                </div>
+                
+                <div class="stat-divider"></div>
+
+                <div class="stat-item">
+                    <div class="stat-number-wrapper">
+                        <span class="stat-number count-up" data-target="110">0</span>
+                        <span class="stat-plus">+</span>
+                    </div>
+                    <span class="stat-label">УЧАСНИКІВ</span>
+                </div>
             </div>
         </div>
     </section>
 
     <div class="cyber-wrapper">
 
-        <section id="news" class="news-section">
-            <div class="container">
-                <div class="news-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
-                    <h2 class="section-title" data-aos="fade-up" style="margin-bottom: 0;">Новини</h2>
-                    <a href="full_news.html" data-aos="fade-up" style="color: #ff3333; text-decoration: none; font-weight: bold; display: flex; align-items: center; gap: 8px; font-family: 'Montserrat', sans-serif; font-size: 16px; transition: 0.3s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
-                        ВСІ НОВИНИ <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-                
-                <div style="width: 100%;">
-                    <style>
-                        .news-grid-static {
-                            display: grid;
-                            grid-template-columns: repeat(3, 1fr);
-                            gap: 20px;
-                        }
-                        .news-grid-static .news-card {
-                            width: 100%;
-                            min-width: auto;
-                        }
-                        @media (max-width: 992px) {
-                            .news-grid-static { grid-template-columns: repeat(2, 1fr); }
-                        }
-                        @media (max-width: 768px) {
-                            .news-grid-static { grid-template-columns: 1fr; }
-                        }
-                    </style>
-
-                    <div class="news-grid-static" id="news-grid">
-                        
-                        <div class="news-card" data-aos="fade-up" data-aos-delay="50" onclick="openNewsModal('news-fast-line-ua')">
-                            <div class="news-img-wrapper">
-                                <img src="https://i.postimg.cc/7ZKxHNBb/image.png" alt="Партнерство з Fast Line UA">
-                            </div>
-                            <div class="news-content">
-                                <span class="news-date"><i class="far fa-calendar-alt"></i> 31.03.2026</span>
-                                <h3 class="news-title">ОФІЦІЙНЕ ПАРТНЕРСТВО VTC NEOCRIME × FAST LINE UA</h3>
-                                <p class="news-author">Автор: !F4DED</p>
-                                <span class="read-more">ДЕТАЛЬНІШЕ <i class="fas fa-arrow-right"></i></span>
-                            </div>
-                        </div>
-
-                        <div class="news-card" data-aos="fade-up" data-aos-delay="100" onclick="openNewsModal('news-100-members')">
-                            <div class="news-img-wrapper">
-                                <img src="https://i.postimg.cc/htjSzNHj/photosss.png" alt="NeoCrime VTC досягли позначки у 100 учасників!">
-                            </div>
-                            <div class="news-content">
-                                <span class="news-date"><i class="far fa-calendar-alt"></i> 25.03.2026</span>
-                                <h3 class="news-title">NEOCRIME VTC ДОСЯГЛИ ПОЗНАЧКИ У 100 УЧАСНИКІВ! 🎉</h3>
-                                <p class="news-author">Автор: !F4DED</p>
-                                <span class="read-more">ДЕТАЛЬНІШЕ <i class="fas fa-arrow-right"></i></span>
-                            </div>
-                        </div>
-
-                        <div class="news-card" data-aos="fade-up" data-aos-delay="150" onclick="openNewsModal('news-global-convoy')">
-                            <div class="news-img-wrapper">
-                                <img src="https://i.postimg.cc/rsf9ryWy/prevvw1.png" alt="Глобальний конвой NeoCrime VTC">
-                            </div>
-                            <div class="news-content">
-                                <span class="news-date"><i class="far fa-calendar-alt"></i> 25.03.2026</span>
-                                <h3 class="news-title">ГЛОБАЛЬНИЙ КОНВОЙ NEOCRIME VTC — 23 БЕРЕЗНЯ 2026</h3>
-                                <p class="news-author">Автор: !F4DED</p>
-                                <span class="read-more">ДЕТАЛЬНІШЕ <i class="fas fa-arrow-right"></i></span>
-                            </div>
-                        </div>
-
-                        <div class="news-card" data-aos="fade-up" data-aos-delay="200" onclick="openNewsModal('news-event-racing')">
-                            <div class="news-img-wrapper">
-                                <img src="https://i.postimg.cc/Zqh4NnqM/preview.png" alt="Івент-конвой Гонки на DLC">
-                            </div>
-                            <div class="news-content">
-                                <span class="news-date"><i class="far fa-calendar-alt"></i> 20.03.2026</span>
-                                <h3 class="news-title">ІВЕНТ-КОНВОЙ «ГОНКИ НА DLC» — NEOCRIME VTC</h3>
-                                <p class="news-author">Автор: !F4DED</p>
-                                <span class="read-more">ДЕТАЛЬНІШЕ <i class="fas fa-arrow-right"></i></span>
-                            </div>
-                        </div>            
-
-                        <div class="news-card" data-aos="fade-up" data-aos-delay="250" onclick="openNewsModal('news-partnership-twisted')">
-                            <div class="news-img-wrapper">
-                                <img src="https://i.postimg.cc/Gt2YW7Xx/partne.png" alt="Партнерство NeoCrime та Twisted Transport">
-                            </div>
-                            <div class="news-content">
-                                <span class="news-date"><i class="far fa-calendar-alt"></i> 10.03.2026</span>
-                                <h3 class="news-title">ОФІЦІЙНЕ ПАРТНЕРСТВО VTC NEOCRIME × TWISTED TRANSPORT</h3>
-                                <p class="news-author">Автор: !F4DED</p>
-                                <span class="read-more">ДЕТАЛЬНІШЕ <i class="fas fa-arrow-right"></i></span>
-                            </div>
-                        </div>
-
-                        <div class="news-card" data-aos="fade-up" data-aos-delay="300" onclick="openNewsModal('news-skoda-rally')">
-                            <div class="news-img-wrapper">
-                                <img src="https://i.postimg.cc/sDqnj1xf/Euro%20Truck%20Simulator%202%20Screenshot%202026%2003%2006%2021%2027%2030%2007.png" alt="Спільний автопробіг на Skoda">
-                            </div>
-                            <div class="news-content">
-                                <span class="news-date"><i class="far fa-calendar-alt"></i> 06.03.2026</span>
-                                <h3 class="news-title">СПІЛЬНИЙ АВТОПРОБІГ НА SKODA</h3>
-                                <p class="news-author">Автор: !F4DED</p>
-                                <span class="read-more">ДЕТАЛЬНІШЕ <i class="fas fa-arrow-right"></i></span>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <section id="team" class="team-section">
             <div class="container">
                 <h2 class="section-title" data-aos="fade-up">Наша команда</h2>
                 
                 <div class="team-grid">
-                    <a href="https://discord.com/users/1212878561195729007" target="_blank" class="team-card" data-aos="fade-up" data-aos-delay="100">
-                        <div class="team-img-wrapper">
-                            <img src="https://i.postimg.cc/c4SwPJ3j/4a9b1676e1f3205c826ef6cd219ec4ab.jpg" alt="!F4DED">
-                        </div>
-                        <h3>!F4DED</h3>
-                        <p class="role">Founder</p>
-                    </a>
+                    <div class="team-wrapper" data-aos="fade-up" data-aos-delay="100">
+                        <a href="https://discord.com/users/1212878561195729007" target="_blank" class="team-card">
+                            <div class="team-img-wrapper">
+                                <img src="https://i.postimg.cc/c4SwPJ3j/4a9b1676e1f3205c826ef6cd219ec4ab.jpg" alt="!F4DED">
+                            </div>
+                            <h3>!F4DED</h3>
+                            <p class="role">Founder</p>
+                        </a>
+                    </div>
 
-                    <a href="https://discord.com/users/1229497941941682298" target="_blank" class="team-card" data-aos="fade-up" data-aos-delay="200">
-                        <div class="team-img-wrapper">
-                            <img src="https://i.postimg.cc/8z35Qy3g/Screenshot-20260227-023159-com-zhiliaoapp-musically-Detail-Activity.jpg" alt="POROX">
-                        </div>
-                        <h3>POROX</h3>
-                        <p class="role">General Manager</p>
-                    </a>
+                    <div class="team-wrapper" data-aos="fade-up" data-aos-delay="200">
+                        <a href="https://discord.com/users/1229497941941682298" target="_blank" class="team-card">
+                            <div class="team-img-wrapper">
+                                <img src="https://i.postimg.cc/8z35Qy3g/Screenshot-20260227-023159-com-zhiliaoapp-musically-Detail-Activity.jpg" alt="POROX">
+                            </div>
+                            <h3>POROX</h3>
+                            <p class="role">General Manager</p>
+                        </a>
+                    </div>
 
-                    <a href="https://discord.com/users/854862391710580756" target="_blank" class="team-card" data-aos="fade-up" data-aos-delay="400">
-                        <div class="team-img-wrapper">
-                            <img src="images/helld4wg.jpg" alt="helld4wg">
-                        </div>
-                        <h3>helld4wg</h3>
-                        <p class="role">Head of Moderation</p>
-                    </a>
+                    <div class="team-wrapper" data-aos="fade-up" data-aos-delay="400">
+                        <a href="https://discord.com/users/854862391710580756" target="_blank" class="team-card">
+                            <div class="team-img-wrapper">
+                                <img src="images/helld4wg.jpg" alt="helld4wg">
+                            </div>
+                            <h3>helld4wg</h3>
+                            <p class="role">Head of Moderation</p>
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="about" class="about-section">
-            <div class="container">
-                <h2 class="section-title" data-aos="fade-up">Про нас</h2>
+        <section id="news" class="news-section">
+    <div class="container">
+        <div class="news-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+            <h2 class="section-title" data-aos="fade-up" style="margin-bottom: 0;">Новини</h2>
+            <a href="full_news.html" data-aos="fade-up" style="color: #ff3333; text-decoration: none; font-weight: bold; display: flex; align-items: center; gap: 8px; font-family: 'Montserrat', sans-serif; font-size: 16px; transition: 0.3s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+                ВСІ НОВИНИ <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+        
+        <div style="width: 100%;">
+            <style>
+                .news-grid-static {
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+                    gap: 20px;
+                }
+                .news-grid-static .news-card {
+                    width: 100%;
+                    min-width: auto;
+                }
+                @media (max-width: 992px) {
+                    .news-grid-static { grid-template-columns: repeat(2, 1fr); }
+                }
+                @media (max-width: 768px) {
+                    .news-grid-static { grid-template-columns: 1fr; }
+                }
+            </style>
+
+            <div class="news-grid-static" id="news-grid">
                 
-                <div class="about-content" data-aos="fade-up" data-aos-delay="100">
-                    <p>
-                        <span class="highlight">NeoCrime</span> — це українська віртуальна транспортна компанія, заснована 8 січня 2026 року її власником F4DED. Незважаючи на те, що компанія є відносно новою, NeoCrime стрімко розвивається та продовжує зростати, об’єднуючи спільноту захоплених віртуальних водіїв.
-                    </p>
-                    <p>
-                        Компанія об’єднує гравців, які поділяють пристрасть до вантажоперевезень, командної роботи та дослідження доріг у Euro Truck Simulator 2 та American Truck Simulator у мультиплеєрі через TruckersMP. NeoCrime прагне створити дружню та активну атмосферу, де водії можуть насолоджуватися грою разом, представляючи компанію на дорогах Європи.
-                    </p>
-                    <p>
-                        NeoCrime активно бере участь у спільноті TruckersMP. Наші водії регулярно відвідують відкриті конвої та масштабні заходи, організовані іншими VTC, гідно представляючи компанію та налагоджуючи зв’язки всередині спільноти.
-                    </p>
-                    <p>
-                        Окрім участі в зовнішніх заходах, NeoCrime також організовує власні конвої та івенти, об’єднуючи водіїв з різних компаній для спільних подорожей, живого спілкування та справжньої атмосфери віртуальних перевезень.
-                    </p>
-                    <p>
-                        Однією з ключових цінностей NeoCrime є підтримка дружньої, взаємодопоміжної та активної спільноти. Компанія вітає водіїв з будь-яким рівнем досвіду — від новачків до досвідчених гравців, створюючи місце, де кожен може відчути себе частиною команди.
-                    </p>
-                    <p>
-                        NeoCrime зосереджується на командній роботі, поважному стилі водіння та активній участі у житті спільноти. Завдяки регулярним конвоям, івентам та активностям компанія продовжує розвиватися та зміцнювати свою присутність у світі TruckersMP.
-                    </p>
-                    <p>
-                        Сьогодні NeoCrime — це українська VTC, що швидко розвивається, постійно розширює свою спільноту, організовує нові заходи та формує сильну присутність у сфері віртуальних перевезень.
-                    </p>
+                <div class="news-wrapper" data-aos="fade-up" data-aos-delay="50">
+                    <div class="news-card" onclick="openNewsModal('news-fast-line-ua')">
+                        <div class="news-img-wrapper">
+                            <img src="https://i.postimg.cc/7ZKxHNBb/image.png" alt="Партнерство з Fast Line UA">
+                        </div>
+                        <div class="news-content">
+                            <span class="news-date"><i class="far fa-calendar-alt"></i> 31.03.2026</span>
+                            <h3 class="news-title">ОФІЦІЙНЕ ПАРТНЕРСТВО VTC NEOCRIME × FAST LINE UA</h3>
+                            <p class="news-author">Автор: !F4DED</p>
+                            <span class="read-more">ДЕТАЛЬНІШЕ <i class="fas fa-arrow-right"></i></span>
+                        </div>
+                    </div>
                 </div>
+
+                <div class="news-wrapper" data-aos="fade-up" data-aos-delay="100">
+                    <div class="news-card" onclick="openNewsModal('news-100-members')">
+                        <div class="news-img-wrapper">
+                            <img src="https://i.postimg.cc/htjSzNHj/photosss.png" alt="NeoCrime VTC досягли позначки у 100 учасників!">
+                        </div>
+                        <div class="news-content">
+                            <span class="news-date"><i class="far fa-calendar-alt"></i> 25.03.2026</span>
+                            <h3 class="news-title">NEOCRIME VTC ДОСЯГЛИ ПОЗНАЧКИ У 100 УЧАСНИКІВ! 🎉</h3>
+                            <p class="news-author">Автор: !F4DED</p>
+                            <span class="read-more">ДЕТАЛЬНІШЕ <i class="fas fa-arrow-right"></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="news-wrapper" data-aos="fade-up" data-aos-delay="150">
+                    <div class="news-card" onclick="openNewsModal('news-global-convoy')">
+                        <div class="news-img-wrapper">
+                            <img src="https://i.postimg.cc/rsf9ryWy/prevvw1.png" alt="Глобальний конвой NeoCrime VTC">
+                        </div>
+                        <div class="news-content">
+                            <span class="news-date"><i class="far fa-calendar-alt"></i> 25.03.2026</span>
+                            <h3 class="news-title">ГЛОБАЛЬНИЙ КОНВОЙ NEOCRIME VTC — 23 БЕРЕЗНЯ 2026</h3>
+                            <p class="news-author">Автор: !F4DED</p>
+                            <span class="read-more">ДЕТАЛЬНІШЕ <i class="fas fa-arrow-right"></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="news-wrapper" data-aos="fade-up" data-aos-delay="200">
+                    <div class="news-card" onclick="openNewsModal('news-event-racing')">
+                        <div class="news-img-wrapper">
+                            <img src="https://i.postimg.cc/Zqh4NnqM/preview.png" alt="Івент-конвой Гонки на DLC">
+                        </div>
+                        <div class="news-content">
+                            <span class="news-date"><i class="far fa-calendar-alt"></i> 20.03.2026</span>
+                            <h3 class="news-title">ІВЕНТ-КОНВОЙ «ГОНКИ НА DLC» — NEOCRIME VTC</h3>
+                            <p class="news-author">Автор: !F4DED</p>
+                            <span class="read-more">ДЕТАЛЬНІШЕ <i class="fas fa-arrow-right"></i></span>
+                        </div>
+                    </div>
+                </div>            
+
+                <div class="news-wrapper" data-aos="fade-up" data-aos-delay="250">
+                    <div class="news-card" onclick="openNewsModal('news-partnership-twisted')">
+                        <div class="news-img-wrapper">
+                            <img src="https://i.postimg.cc/Gt2YW7Xx/partne.png" alt="Партнерство NeoCrime та Twisted Transport">
+                        </div>
+                        <div class="news-content">
+                            <span class="news-date"><i class="far fa-calendar-alt"></i> 10.03.2026</span>
+                            <h3 class="news-title">ОФІЦІЙНЕ ПАРТНЕРСТВО VTC NEOCRIME × TWISTED TRANSPORT</h3>
+                            <p class="news-author">Автор: !F4DED</p>
+                            <span class="read-more">ДЕТАЛЬНІШЕ <i class="fas fa-arrow-right"></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="news-wrapper" data-aos="fade-up" data-aos-delay="300">
+                    <div class="news-card" onclick="openNewsModal('news-skoda-rally')">
+                        <div class="news-img-wrapper">
+                            <img src="https://i.postimg.cc/sDqnj1xf/Euro%20Truck%20Simulator%202%20Screenshot%202026%2003%2006%2021%2027%2030%2007.png" alt="Спільний автопробіг на Skoda">
+                        </div>
+                        <div class="news-content">
+                            <span class="news-date"><i class="far fa-calendar-alt"></i> 06.03.2026</span>
+                            <h3 class="news-title">СПІЛЬНИЙ АВТОПРОБІГ НА SKODA</h3>
+                            <p class="news-author">Автор: !F4DED</p>
+                            <span class="read-more">ДЕТАЛЬНІШЕ <i class="fas fa-arrow-right"></i></span>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-        </section>
+        </div>
+    </div>
+</section>
 
         <section id="partners" class="partners-section">
     <div class="container">
@@ -273,6 +287,157 @@
         </div>
     </div>
 </section>
+
+        <section id="features" class="features-section">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: 50px;">
+                    <h2 class="section-title" data-aos="fade-up">Наші переваги</h2>
+                    <p style="color: #cccccc; font-size: 16px; margin-top: -40px;" data-aos="fade-up" data-aos-delay="100">Що робить спільноту NeoCrime особливою</p>
+                </div>
+                
+                <div class="features-grid">
+                    
+                    <div class="feature-wrapper" data-aos="fade-up" data-aos-delay="50">
+                        <div class="feature-card">
+                            <div class="feature-img">
+                                <img src="https://i.ibb.co/9mVjqCpQ/community.png" alt="Дружнє ком'юніті">
+                            </div>
+                            <div class="feature-content">
+                                <span class="feature-number">01</span>
+                                <h3 class="feature-title">Дружнє ком'юніті</h3>
+                                <p class="feature-text">Ми пишаємося нашою теплою атмосферою! У NeoCrime кожен водій знайде підтримку, допомогу та чудову компанію для спільних рейсів. Стань частиною нашої згуртованої команди на віртуальних дорогах!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="feature-wrapper" data-aos="fade-up" data-aos-delay="150">
+                        <div class="feature-card">
+                            <div class="feature-img">
+                                <img src="https://i.ibb.co/39dVRftx/sklad.png" alt="Досвідчений склад">
+                            </div>
+                            <div class="feature-content">
+                                <span class="feature-number">02</span>
+                                <h3 class="feature-title">Досвідчений склад</h3>
+                                <p class="feature-text">Наша команда адміністраторів завжди готова допомогти. Ми забезпечуємо комфортну гру, швидко вирішуємо будь-які питання та створюємо всі умови для вашого розвитку у світі віртуальних перевезень.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="feature-wrapper" data-aos="fade-up" data-aos-delay="250">
+                        <div class="feature-card">
+                            <div class="feature-img">
+                                <img src="https://i.ibb.co/fBW8BnL/convoys.png" alt="Регулярні конвої">
+                            </div>
+                            <div class="feature-content">
+                                <span class="feature-number">03</span>
+                                <h3 class="feature-title">Регулярні конвої</h3>
+                                <p class="feature-text">Ми регулярно проводимо спільні виїзди в ETS2 та ATS. Це ідеальна можливість насолодитися мальовничими маршрутами в колоні, покращити свої навички командного водіння та круто провести час разом!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="feature-wrapper" data-aos="fade-up" data-aos-delay="350">
+                        <div class="feature-card">
+                            <div class="feature-img">
+                                <img src="https://i.ibb.co/Y4qznDq8/events.png" alt="Унікальні івенти">
+                            </div>
+                            <div class="feature-content">
+                                <span class="feature-number">04</span>
+                                <h3 class="feature-title">Унікальні івенти</h3>
+                                <p class="feature-text">NeoCrime регулярно влаштовує нестандартні події, від спільних автопробігів до екстремальних гонок на вантажівках. Беріть участь, проявляйте себе та вигравайте цінні нагороди і DLC!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <section id="about" class="about-section">
+            <div class="container about-container-new">
+                
+                <div class="about-left" data-aos="fade-right" data-aos-duration="1000">
+                    <h2 class="section-title left-align">Про нас</h2>
+                    
+                    <div class="about-text-content" id="typewriter-text">
+                        <p>
+                            <span class="highlight">NeoCrime</span> — це українська віртуальна транспортна компанія, заснована 8 січня 2026 року її власником F4DED. Незважаючи на те, що компанія є відносно новою, NeoCrime стрімко розвивається та продовжує зростати, об’єднуючи спільноту захоплених віртуальних водіїв.
+                        </p>
+                        <p>
+                            Компанія об’єднує гравців, які поділяють пристрасть до вантажоперевезень, командної роботи та дослідження доріг у Euro Truck Simulator 2 та American Truck Simulator у мультиплеєрі через TruckersMP.
+                        </p>
+                        <p>
+                            NeoCrime активно бере участь у спільноті TruckersMP. Наші водії регулярно відвідують відкриті конвої та масштабні заходи, гідно представляючи компанію та налагоджуючи зв’язки всередині спільноти.
+                        </p>
+                        <p>
+                            Однією з ключових цінностей NeoCrime є підтримка дружньої, взаємодопоміжної та активної спільноти. Компанія вітає водіїв з будь-яким рівнем досвіду — від новачків до досвідчених гравців, створюючи місце, де кожен може відчути себе частиною команди.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="about-right" data-aos="fade-left" data-aos-duration="1200">
+                    <img src="https://i.ibb.co/ymqH8jDn/SCANIA-1.png" alt="NeoCrime Scania" id="truck-img" class="truck-parallax">
+                </div>
+
+            </div>
+        </section>
+
+        <section id="crimeadmin" class="crimeadmin-section">
+            <div class="container crimeadmin-container">
+                
+                <div class="crimeadmin-left" data-aos="fade-right" data-aos-duration="1200">
+                    <img src="https://i.ibb.co/B5NjJCf8/Crime-ADMIN.png" alt="CrimeADMIN Bot" class="bot-img-static">
+                </div>
+
+                <div class="crimeadmin-right" data-aos="fade-left" data-aos-duration="1000">
+                    <h2 class="section-title right-align">CrimeADMIN</h2>
+                    
+                    <div class="crimeadmin-text-content" id="typewriter-bot-text">
+                        <p>
+                            <span class="highlight">CrimeADMIN</span> — це наша гордість та унікальна розробка. Багатофункціональний Discord-бот, створений спеціально для повної автоматизації та керування всіма процесами всередині віртуальної компанії NeoCrime.
+                        </p>
+                        <p>
+                            Бот має власну складну <b>економіку</b> (CrimeCoin та Гривні) і <b>систему рівнів (EXP)</b>. Наші водії заробляють кошти за участь у конвоях, проходження кваліфікаційних тестів, відкриття кейсів з тягачами та щоденну активність.
+                        </p>
+                        <p>
+                            CrimeADMIN бере на себе всю рутину: він автоматично обробляє анкети нових кандидатів, керує системою скарг, видає зарплати та надає доступ до інтерактивного <b>автопарку</b>, де транспорт розподілено за класами та досвідом водія.
+                        </p>
+                        <p>
+                            На вихідних бот автоматично запускає глобальний івент <b>Road Kings Weekend</b>, фіксуючи активність у голосових каналах та скидаючи "Таємні кейси". А завдяки надійній системі <b>Anti-Raid</b>, наш сервер завжди залишається у безпеці!
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <section id="ats" class="ats-section">
+            <div class="container ats-container">
+                
+                <div class="ats-left" data-aos="fade-right" data-aos-duration="1000">
+                    <h2 class="section-title left-align">Американський <span style="color: #ff3333;">стандарт</span></h2>
+                    
+                    <div class="ats-text-content" id="typewriter-ats-text">
+                        <p>
+                            <span class="highlight">NeoCrime</span> — це компанія без кордонів. Ми не обмежуємось лише просторами Європи, а активно розвиваємо та масштабуємо наш рух на безкрайніх хайвеях American Truck Simulator.
+                        </p>
+                        <p>
+                            Наша команда регулярно організовує власні масштабні конвої в ATS, активно відвідує відкриті івенти від партнерів та створює унікальні події для всієї спільноти гравців.
+                        </p>
+                        <p>
+                            Атмосфера потужних класичних американських тягачів, пустелі, безкінечні прямі дороги та злагоджена командна гра — усе це чекає на тебе у нашому американському підрозділі!
+                        </p>
+                    </div>
+                </div>
+
+                <div class="ats-right" data-aos="fade-left" data-aos-duration="1200">
+                    <img src="https://i.ibb.co/4ZC8hRq5/ats-truck-1.png" alt="ATS Truck NeoCrime" class="ats-img-static">
+                </div>
+
+            </div>
+        </section>
 
         <section id="faq" class="faq-section">
             <div class="container faq-container">
@@ -636,10 +801,163 @@
         </div>
     </div>
 
+    <script>
+        /* --- АНІМАЦІЯ ТЕКСТУ НА ГЛАВНОМУ ЕКРАНІ (ПОВТОРЮЄТЬСЯ) --- */
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedTexts = document.querySelectorAll('.animate-chars');
+            
+            animatedTexts.forEach((textElement) => {
+                const text = textElement.textContent;
+                textElement.textContent = ''; 
+
+                let globalDelay = 0.2;
+                for (let i = 0; i < text.length; i++) {
+                    const span = document.createElement('span');
+                    if (text[i] === ' ') {
+                        span.innerHTML = '&nbsp;';
+                        span.className = 'char-space';
+                    } else {
+                        span.textContent = text[i];
+                        span.className = 'char-span';
+                        span.style.animationDelay = `${globalDelay}s`;
+                        globalDelay += 0.04; 
+                    }
+                    textElement.appendChild(span);
+                }
+            });
+
+            // Обновление при скролле
+            const heroObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const chars = entry.target.querySelectorAll('.char-span');
+                        chars.forEach(char => {
+                            char.style.animation = 'none';
+                            void char.offsetWidth; // Триггер рефлоу
+                            char.style.animation = null;
+                        });
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            animatedTexts.forEach(el => heroObserver.observe(el));
+        });
+    </script>
+
+    <script>
+        /* --- СЛАЙДЕР ДЛЯ ATS БЛОКУ (CROSSFADE) --- */
+        document.addEventListener('DOMContentLoaded', () => {
+            const slides = document.querySelectorAll('.ats-slider .slide');
+            if (slides.length === 0) return;
+            
+            let currentSlide = 0;
+
+            // Функція зміни слайду кожні 5 секунд (5000 мілісекунд)
+            setInterval(() => {
+                // Ховаємо поточний слайд
+                slides[currentSlide].classList.remove('active');
+                
+                // Визначаємо наступний слайд (якщо дійшли до кінця, повертаємось на 0)
+                currentSlide = (currentSlide + 1) % slides.length;
+                
+                // Показуємо новий слайд
+                slides[currentSlide].classList.add('active');
+            }, 5000); 
+        });
+    </script>
+
+    <script>
+        /* --- АНІМАЦІЯ ЛІЧИЛЬНИКА СТАТИСТИКИ (ПОВТОРЮЄТЬСЯ) --- */
+        document.addEventListener('DOMContentLoaded', () => {
+            const counters = document.querySelectorAll('.count-up');
+            const animationDuration = 2000; 
+
+            const statObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const counter = entry.target;
+                        const target = +counter.getAttribute('data-target');
+                        const increment = target / (animationDuration / 16); 
+                        let currentCount = 0;
+
+                        const updateCount = () => {
+                            currentCount += increment;
+                            if (currentCount < target) {
+                                counter.innerText = Math.ceil(currentCount).toLocaleString('ru-RU');
+                                requestAnimationFrame(updateCount); 
+                            } else {
+                                counter.innerText = target.toLocaleString('ru-RU');
+                            }
+                        };
+                        updateCount();
+                    } else {
+                        // Скидаємо на 0, коли блок виходить за межі екрану
+                        entry.target.innerText = '0';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            counters.forEach(counter => statObserver.observe(counter));
+        });
+    </script>
+
+    <script>
+        /* --- ЕФЕКТ "ДРУКАРСЬКОЇ МАШИНКИ" (ПОВТОРЮЄТЬСЯ) --- */
+        function initTypewriter(elementId) {
+            const textContainer = document.getElementById(elementId);
+            if (!textContainer) return;
+            
+            const walker = document.createTreeWalker(textContainer, NodeFilter.SHOW_TEXT, null, false);
+            const textNodes = [];
+            let node;
+            while(node = walker.nextNode()) textNodes.push(node);
+            
+            textNodes.forEach(node => {
+                const text = node.nodeValue;
+                if (text.trim() === '') return; 
+                
+                const fragment = document.createDocumentFragment();
+                for (let i = 0; i < text.length; i++) {
+                    const span = document.createElement('span');
+                    span.textContent = text[i];
+                    span.className = 'type-char';
+                    fragment.appendChild(span);
+                }
+                node.parentNode.replaceChild(fragment, node);
+            });
+
+            const chars = textContainer.querySelectorAll('.type-char');
+            let timeouts = [];
+
+            const observer = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting) {
+                    chars.forEach((char, index) => {
+                        const t = setTimeout(() => {
+                            char.style.opacity = '1';
+                        }, index * 3); 
+                        timeouts.push(t);
+                    });
+                } else {
+                    // Очищаємо всі таймери і приховуємо букви, коли йдемо з блоку
+                    timeouts.forEach(t => clearTimeout(t));
+                    timeouts = [];
+                    chars.forEach(char => char.style.opacity = '0');
+                }
+            }, { threshold: 0.2 }); 
+
+            observer.observe(textContainer);
+        }
+
+        initTypewriter('typewriter-text');       
+        initTypewriter('typewriter-bot-text');    
+        initTypewriter('typewriter-route-text');  
+        initTypewriter('typewriter-ats-text');    
+    </script>
+
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({
-            once: true,
+            once: false,
             offset: 100
         });
     </script>

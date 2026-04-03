@@ -15,39 +15,40 @@
 </head>
 <body>
 
-    <header data-aos="fade-down" data-aos-duration="800">
-    <div class="header-container">
-        <a href="#home" class="logo-link" style="text-decoration: none; color: white; display: flex; align-items: center;">
-            <div class="logo">
-                <img src="images/logo.png" alt="NE Logo" id="logo-img"> Neo<span style="color: #ff3333;">Crime</span>
+    <header>
+        <div class="header-container">
+            <a href="#home" class="logo-link">
+                <div class="logo">
+                    <img src="images/logo.png" alt="NE Logo" id="logo-img"> Neo<span class="logo-red">Crime</span>
+                </div>
+            </a>
+            
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
             </div>
-        </a>
-        
-        <div class="mobile-menu-btn">
-            <i class="fas fa-bars"></i>
-        </div>
-        
-        <div class="header-content">
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#team">Team</a></li>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#gallery">Gallery</a></li>
-                </ul>
-            </nav>
 
-            <div class="header-actions">
-                <a href="https://discord.gg/zGzy7Gcdgy" target="_blank" class="btn-primary">Start Your Journey</a>
-                
-                <div class="lang-switch">
-                    <div class="current-lang">
-                        <img src="https://flagcdn.com/w40/gb.png" alt="EN">
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
+            <div class="header-content">
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#team">Team</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                    </ul>
+                </nav>
+
+                <div class="header-actions">
+                    <a href="https://discord.gg/zGzy7Gcdgy" target="_blank" class="btn-header-bw">Start Journey</a>
                     
-                    <div class="lang-dropdown">
-                        <a href="https://neocrime.space"><img src="https://flagcdn.com/w40/ua.png" alt="UA"></a>
+                    <div class="lang-switch-bw">
+                        <div class="current-lang">
+                            <img src="https://flagcdn.com/w40/gb.png" alt="EN">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        
+                        <div class="lang-dropdown-bw">
+                            <a href="https://neocrime.space/"><img src="https://flagcdn.com/w40/ua.png" alt="UA"></a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -56,20 +57,84 @@
 
     <section id="home" class="hero">
         <div class="hero-overlay"></div>
+
         <div class="hero-content">
-            <h1 data-aos="zoom-in" data-aos-duration="1000">Welcome to NeoCrime</h1>
-            <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
-                This is a friendly and united Ukrainian community where every driver is a crucial part of one team. We are united by common values, mutual support, and a love for the road. Here, everyone will find their place, assistance, and a true sense of unity.
-            </p>
+            <p class="hero-welcome" data-aos="fade-up" data-aos-duration="800">Welcome to</p>
             
-            <div class="hero-buttons" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
-                <a href="https://discord.gg/zGzy7Gcdgy" target="_blank" class="btn-social"><i class="fab fa-discord"></i> Discord</a>
-                <a href="https://www.tiktok.com/@neocrime_vtc" target="_blank" class="btn-social"><i class="fab fa-tiktok"></i> TikTok</a>
-                <a href="https://www.youtube.com/@NeoCrimeVTC" target="_blank" class="btn-social"><i class="fab fa-youtube"></i> YouTube</a>
-                <a href="https://truckersmp.com/vtc/85940" target="_blank" class="btn-social"><i class="fas fa-heart"></i> TruckersMP</a>
+            <h1 class="hero-title animate-chars">NEOCRIME</h1>
+            
+            <p class="hero-slogan" data-aos="fade-up" data-aos-duration="800" data-aos-delay="1200">Control on every kilometer</p>
+            
+            <div class="hero-action" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="2000">
+                <a href="https://discord.gg/zGzy7Gcdgy" target="_blank" title="Discord" class="btn-cyber-social"><i class="fab fa-discord"></i></a>
+                <a href="https://www.tiktok.com/@neocrime_vtc" target="_blank" title="TikTok" class="btn-cyber-social"><i class="fab fa-tiktok"></i></a>
+                <a href="https://www.youtube.com/@NeoCrimeVTC" target="_blank" title="YouTube" class="btn-cyber-social"><i class="fab fa-youtube"></i></a>
+                <a href="https://truckersmp.com/vtc/85940" target="_blank" title="TruckersMP" class="btn-cyber-social"><i class="fas fa-truck"></i></a>
+            </div>
+        </div>
+
+        <div class="hero-stats-wrapper">
+            <div class="hero-stats-island" data-aos="fade-up" data-aos-duration="800">
+                <div class="stat-item">
+                    <div class="stat-number-wrapper">
+                        <span class="stat-number count-up" data-target="2000000">0</span>
+                        <span class="stat-plus">+</span>
+                    </div>
+                    <span class="stat-label">KM DRIVEN</span>
+                </div>
+                
+                <div class="stat-divider"></div>
+
+                <div class="stat-item">
+                    <div class="stat-number-wrapper">
+                        <span class="stat-number count-up" data-target="110">0</span>
+                        <span class="stat-plus">+</span>
+                    </div>
+                    <span class="stat-label">MEMBERS</span>
+                </div>
             </div>
         </div>
     </section>
+
+    <div class="cyber-wrapper">
+
+        <section id="team" class="team-section">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">Our Team</h2>
+                
+                <div class="team-grid">
+                    <div class="team-wrapper" data-aos="fade-up" data-aos-delay="100">
+                        <a href="https://discord.com/users/1212878561195729007" target="_blank" class="team-card">
+                            <div class="team-img-wrapper">
+                                <img src="https://i.postimg.cc/c4SwPJ3j/4a9b1676e1f3205c826ef6cd219ec4ab.jpg" alt="!F4DED">
+                            </div>
+                            <h3>!F4DED</h3>
+                            <p class="role">Founder</p>
+                        </a>
+                    </div>
+
+                    <div class="team-wrapper" data-aos="fade-up" data-aos-delay="200">
+                        <a href="https://discord.com/users/1229497941941682298" target="_blank" class="team-card">
+                            <div class="team-img-wrapper">
+                                <img src="https://i.postimg.cc/8z35Qy3g/Screenshot-20260227-023159-com-zhiliaoapp-musically-Detail-Activity.jpg" alt="POROX">
+                            </div>
+                            <h3>POROX</h3>
+                            <p class="role">General Manager</p>
+                        </a>
+                    </div>
+
+                    <div class="team-wrapper" data-aos="fade-up" data-aos-delay="400">
+                        <a href="https://discord.com/users/854862391710580756" target="_blank" class="team-card">
+                            <div class="team-img-wrapper">
+                                <img src="images/helld4wg.jpg" alt="helld4wg">
+                            </div>
+                            <h3>helld4wg</h3>
+                            <p class="role">Head of Moderation</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
     <div class="cyber-wrapper">
 
@@ -103,75 +168,87 @@
 
                     <div class="news-grid-static" id="news-grid">
                         
-                        <div class="news-card" data-aos="fade-up" data-aos-delay="50" onclick="openNewsModal('news-fast-line-ua')">
-                            <div class="news-img-wrapper">
-                                <img src="https://i.postimg.cc/7ZKxHNBb/image.png" alt="Partnership with Fast Line UA">
-                            </div>
-                            <div class="news-content">
-                                <span class="news-date"><i class="far fa-calendar-alt"></i> 31.03.2026</span>
-                                <h3 class="news-title">OFFICIAL PARTNERSHIP VTC NEOCRIME × FAST LINE UA</h3>
-                                <p class="news-author">Author: !F4DED</p>
-                                <span class="read-more">READ MORE <i class="fas fa-arrow-right"></i></span>
-                            </div>
-                        </div>
-
-                        <div class="news-card" data-aos="fade-up" data-aos-delay="100" onclick="openNewsModal('news-100-members-en')">
-                            <div class="news-img-wrapper">
-                                <img src="https://i.postimg.cc/htjSzNHj/photosss.png" alt="NeoCrime VTC reached 100 members!">
-                            </div>
-                            <div class="news-content">
-                                <span class="news-date"><i class="far fa-calendar-alt"></i> 25.03.2026</span>
-                                <h3 class="news-title">NEOCRIME VTC REACHED THE MILESTONE OF 100 MEMBERS! 🎉</h3>
-                                <p class="news-author">Author: !F4DED</p>
-                                <span class="read-more">READ MORE <i class="fas fa-arrow-right"></i></span>
+                        <div class="news-wrapper" data-aos="fade-up" data-aos-delay="50">
+                            <div class="news-card" onclick="openNewsModal('news-fast-line-ua')">
+                                <div class="news-img-wrapper">
+                                    <img src="https://i.postimg.cc/7ZKxHNBb/image.png" alt="Partnership with Fast Line UA">
+                                </div>
+                                <div class="news-content">
+                                    <span class="news-date"><i class="far fa-calendar-alt"></i> 31.03.2026</span>
+                                    <h3 class="news-title">OFFICIAL PARTNERSHIP VTC NEOCRIME × FAST LINE UA</h3>
+                                    <p class="news-author">Author: !F4DED</p>
+                                    <span class="read-more">READ MORE <i class="fas fa-arrow-right"></i></span>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="news-card" data-aos="fade-up" data-aos-delay="150" onclick="openNewsModal('news-global-convoy')">
-                            <div class="news-img-wrapper">
-                                <img src="https://i.postimg.cc/rsf9ryWy/prevvw1.png" alt="Global Convoy by NeoCrime VTC">
-                            </div>
-                            <div class="news-content">
-                                <span class="news-date"><i class="far fa-calendar-alt"></i> 25.03.2026</span>
-                                <h3 class="news-title">GLOBAL CONVOY BY NEOCRIME VTC — MARCH 23, 2026</h3>
-                                <p class="news-author">Author: !F4DED</p>
-                                <span class="read-more">READ MORE <i class="fas fa-arrow-right"></i></span>
-                            </div>
-                        </div>
-
-                        <div class="news-card" data-aos="fade-up" data-aos-delay="200" onclick="openNewsModal('news-event-racing-en')">
-                            <div class="news-img-wrapper">
-                                <img src="https://i.postimg.cc/Zqh4NnqM/preview.png" alt="Convoy Event Racing for DLC">
-                            </div>
-                            <div class="news-content">
-                                <span class="news-date"><i class="far fa-calendar-alt"></i> 20.03.2026</span>
-                                <h3 class="news-title">CONVOY EVENT «RACING FOR DLC» — NEOCRIME VTC</h3>
-                                <p class="news-author">Author: !F4DED</p>
-                                <span class="read-more">READ MORE <i class="fas fa-arrow-right"></i></span>
+                        <div class="news-wrapper" data-aos="fade-up" data-aos-delay="100">
+                            <div class="news-card" onclick="openNewsModal('news-100-members-en')">
+                                <div class="news-img-wrapper">
+                                    <img src="https://i.postimg.cc/htjSzNHj/photosss.png" alt="NeoCrime VTC reached 100 members!">
+                                </div>
+                                <div class="news-content">
+                                    <span class="news-date"><i class="far fa-calendar-alt"></i> 25.03.2026</span>
+                                    <h3 class="news-title">NEOCRIME VTC REACHED THE MILESTONE OF 100 MEMBERS! 🎉</h3>
+                                    <p class="news-author">Author: !F4DED</p>
+                                    <span class="read-more">READ MORE <i class="fas fa-arrow-right"></i></span>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="news-card" data-aos="fade-up" data-aos-delay="250" onclick="openNewsModal('news-partnership-twisted')">
-                            <div class="news-img-wrapper">
-                                <img src="https://i.postimg.cc/Gt2YW7Xx/partne.png" alt="Partnership NeoCrime and Twisted Transport">
-                            </div>
-                            <div class="news-content">
-                                <span class="news-date"><i class="far fa-calendar-alt"></i> 10.03.2026</span>
-                                <h3 class="news-title">OFFICIAL PARTNERSHIP VTC NEOCRIME × TWISTED TRANSPORT</h3>
-                                <p class="news-author">Author: !F4DED</p>
-                                <span class="read-more">READ MORE <i class="fas fa-arrow-right"></i></span>
+                        <div class="news-wrapper" data-aos="fade-up" data-aos-delay="150">
+                            <div class="news-card" onclick="openNewsModal('news-global-convoy')">
+                                <div class="news-img-wrapper">
+                                    <img src="https://i.postimg.cc/rsf9ryWy/prevvw1.png" alt="Global Convoy by NeoCrime VTC">
+                                </div>
+                                <div class="news-content">
+                                    <span class="news-date"><i class="far fa-calendar-alt"></i> 25.03.2026</span>
+                                    <h3 class="news-title">GLOBAL CONVOY BY NEOCRIME VTC — MARCH 23, 2026</h3>
+                                    <p class="news-author">Author: !F4DED</p>
+                                    <span class="read-more">READ MORE <i class="fas fa-arrow-right"></i></span>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="news-card" data-aos="fade-up" data-aos-delay="300" onclick="openNewsModal('news-skoda-rally')">
-                            <div class="news-img-wrapper">
-                                <img src="https://i.postimg.cc/sDqnj1xf/Euro%20Truck%20Simulator%202%20Screenshot%202026%2003%2006%2021%2027%2030%2007.png" alt="Joint convoy on Skoda">
+                        <div class="news-wrapper" data-aos="fade-up" data-aos-delay="200">
+                            <div class="news-card" onclick="openNewsModal('news-event-racing-en')">
+                                <div class="news-img-wrapper">
+                                    <img src="https://i.postimg.cc/Zqh4NnqM/preview.png" alt="Convoy Event Racing for DLC">
+                                </div>
+                                <div class="news-content">
+                                    <span class="news-date"><i class="far fa-calendar-alt"></i> 20.03.2026</span>
+                                    <h3 class="news-title">CONVOY EVENT «RACING FOR DLC» — NEOCRIME VTC</h3>
+                                    <p class="news-author">Author: !F4DED</p>
+                                    <span class="read-more">READ MORE <i class="fas fa-arrow-right"></i></span>
+                                </div>
                             </div>
-                            <div class="news-content">
-                                <span class="news-date"><i class="far fa-calendar-alt"></i> 06.03.2026</span>
-                                <h3 class="news-title">JOINT CONVOY ON SKODA</h3>
-                                <p class="news-author">Author: !F4DED</p>
-                                <span class="read-more">READ MORE <i class="fas fa-arrow-right"></i></span>
+                        </div>
+
+                        <div class="news-wrapper" data-aos="fade-up" data-aos-delay="250">
+                            <div class="news-card" onclick="openNewsModal('news-partnership-twisted')">
+                                <div class="news-img-wrapper">
+                                    <img src="https://i.postimg.cc/Gt2YW7Xx/partne.png" alt="Partnership NeoCrime and Twisted Transport">
+                                </div>
+                                <div class="news-content">
+                                    <span class="news-date"><i class="far fa-calendar-alt"></i> 10.03.2026</span>
+                                    <h3 class="news-title">OFFICIAL PARTNERSHIP VTC NEOCRIME × TWISTED TRANSPORT</h3>
+                                    <p class="news-author">Author: !F4DED</p>
+                                    <span class="read-more">READ MORE <i class="fas fa-arrow-right"></i></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="news-wrapper" data-aos="fade-up" data-aos-delay="300">
+                            <div class="news-card" onclick="openNewsModal('news-skoda-rally')">
+                                <div class="news-img-wrapper">
+                                    <img src="https://i.postimg.cc/sDqnj1xf/Euro%20Truck%20Simulator%202%20Screenshot%202026%2003%2006%2021%2027%2030%2007.png" alt="Joint convoy on Skoda">
+                                </div>
+                                <div class="news-content">
+                                    <span class="news-date"><i class="far fa-calendar-alt"></i> 06.03.2026</span>
+                                    <h3 class="news-title">JOINT CONVOY ON SKODA</h3>
+                                    <p class="news-author">Author: !F4DED</p>
+                                    <span class="read-more">READ MORE <i class="fas fa-arrow-right"></i></span>
+                                </div>
                             </div>
                         </div>
 
@@ -180,98 +257,183 @@
             </div>
         </section>
 
-        <section id="team" class="team-section">
+        <section id="partners" class="partners-section">
             <div class="container">
-                <h2 class="section-title" data-aos="fade-up">Our Team</h2>
+                <h2 class="section-title" data-aos="fade-up">Our Partners</h2>
                 
-                <div class="team-grid">
-                    <a href="https://discord.com/users/1212878561195729007" target="_blank" class="team-card" data-aos="fade-up" data-aos-delay="100">
-                        <div class="team-img-wrapper">
-                            <img src="https://i.postimg.cc/c4SwPJ3j/4a9b1676e1f3205c826ef6cd219ec4ab.jpg" alt="!F4DED">
+                <div class="partners-grid">
+                    <a href="https://truckersmp.com/vtc/77792" target="_blank" class="partner-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="partner-img-wrapper">
+                            <img src="https://i.postimg.cc/SNS076Xy/emblen1.png" alt="Fast Line UA">
                         </div>
-                        <h3>!F4DED</h3>
-                        <p class="role">Founder</p>
+                        <h3>Fast Line UA</h3>
+                    </a>
+                    
+                    <a href="https://truckersmp.com/vtc/53248" target="_blank" class="partner-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="partner-img-wrapper">
+                            <img src="https://static.truckersmp.com/images/vtc/logo/53248.1767544066.png" alt="Twisted Transport">
+                        </div>
+                        <h3>Twisted Transport</h3>
                     </a>
 
-                    <a href="https://discord.com/users/1229497941941682298" target="_blank" class="team-card" data-aos="fade-up" data-aos-delay="200">
-                        <div class="team-img-wrapper">
-                            <img src="https://i.postimg.cc/8z35Qy3g/Screenshot-20260227-023159-com-zhiliaoapp-musically-Detail-Activity.jpg" alt="POROX">
+                    <a href="https://truckersmp.com/vtc/83571" target="_blank" class="partner-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="partner-img-wrapper">
+                            <img src="https://static.truckersmp.com/images/vtc/logo/83571.1774390034.png" alt="OSS Logistics">
                         </div>
-                        <h3>POROX</h3>
-                        <p class="role">General Manager</p>
+                        <h3>DCB Logistics</h3>
                     </a>
+                </div>
+            </div>
+        </section>
 
-                    <a href="https://discord.com/users/854862391710580756" target="_blank" class="team-card" data-aos="fade-up" data-aos-delay="400">
-                        <div class="team-img-wrapper">
-                            <img src="images/helld4wg.jpg" alt="helld4wg">
+        <section id="features" class="features-section">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: 50px;">
+                    <h2 class="section-title" data-aos="fade-up">Our Features</h2>
+                    <p style="color: #cccccc; font-size: 16px; margin-top: -40px;" data-aos="fade-up" data-aos-delay="100">What makes the NeoCrime community special</p>
+                </div>
+                
+                <div class="features-grid">
+                    
+                    <div class="feature-wrapper" data-aos="fade-up" data-aos-delay="50">
+                        <div class="feature-card">
+                            <div class="feature-img">
+                                <img src="https://i.ibb.co/9mVjqCpQ/community.png" alt="Friendly Community">
+                            </div>
+                            <div class="feature-content">
+                                <span class="feature-number">01</span>
+                                <h3 class="feature-title">Friendly Community</h3>
+                                <p class="feature-text">We are proud of our warm atmosphere! In NeoCrime, every driver will find support, help, and great company for joint deliveries. Become part of our united team on virtual roads!</p>
+                            </div>
                         </div>
-                        <h3>helld4wg</h3>
-                        <p class="role">Head of Moderation</p>
-                    </a>
+                    </div>
+
+                    <div class="feature-wrapper" data-aos="fade-up" data-aos-delay="150">
+                        <div class="feature-card">
+                            <div class="feature-img">
+                                <img src="https://i.ibb.co/39dVRftx/sklad.png" alt="Experienced Staff">
+                            </div>
+                            <div class="feature-content">
+                                <span class="feature-number">02</span>
+                                <h3 class="feature-title">Experienced Staff</h3>
+                                <p class="feature-text">Our admin team is always ready to help. We ensure comfortable gameplay, quickly resolve any issues, and create the best conditions for your growth in the virtual trucking world.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="feature-wrapper" data-aos="fade-up" data-aos-delay="250">
+                        <div class="feature-card">
+                            <div class="feature-img">
+                                <img src="https://i.ibb.co/fBW8BnL/convoys.png" alt="Regular Convoys">
+                            </div>
+                            <div class="feature-content">
+                                <span class="feature-number">03</span>
+                                <h3 class="feature-title">Regular Convoys</h3>
+                                <p class="feature-text">We regularly host joint drives in ETS2 and ATS. This is a perfect opportunity to enjoy scenic routes in a convoy, improve your team driving skills, and have a great time together!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="feature-wrapper" data-aos="fade-up" data-aos-delay="350">
+                        <div class="feature-card">
+                            <div class="feature-img">
+                                <img src="https://i.ibb.co/Y4qznDq8/events.png" alt="Unique Events">
+                            </div>
+                            <div class="feature-content">
+                                <span class="feature-number">04</span>
+                                <h3 class="feature-title">Unique Events</h3>
+                                <p class="feature-text">NeoCrime regularly organizes non-standard events, from joint road trips to extreme truck races. Participate, show your skills, and win valuable rewards and DLCs!</p>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
 
         <section id="about" class="about-section">
-            <div class="container">
-                <h2 class="section-title" data-aos="fade-up">About Us</h2>
+            <div class="container about-container-new">
                 
-                <div class="about-content" data-aos="fade-up" data-aos-delay="100">
-                    <p>
-                        <span class="highlight">NeoCrime</span> is a Ukrainian Virtual Trucking Company founded on January 8, 2026, by its owner F4DED. Despite being a relatively new company, NeoCrime has been developing rapidly and continues to grow its community of passionate virtual drivers.
-                    </p>
-                    <p>
-                        The company brings together players who share a passion for trucking, teamwork, and exploring the roads of Euro Truck Simulator 2 and American Truck Simulator in multiplayer through TruckersMP. NeoCrime aims to create a friendly and active environment where drivers can enjoy the game together while representing the company on the roads of Europe.
-                    </p>
-                    <p>
-                        NeoCrime actively participates in the TruckersMP community. Our drivers regularly attend public convoys and large-scale events organized by other VTCs, proudly representing the company and building connections within the community.
-                    </p>
-                    <p>
-                        In addition to participating in external events, NeoCrime also organizes its own convoys and community events, bringing together drivers from different companies to enjoy well-organized journeys, social interaction, and the true atmosphere of virtual trucking.
-                    </p>
-                    <p>
-                        One of the core values of NeoCrime is maintaining a friendly, supportive, and active community. The company welcomes drivers of all experience levels, from beginners to experienced players, providing a place where everyone can feel part of a team.
-                    </p>
-                    <p>
-                        NeoCrime focuses on teamwork, respectful driving, and active community participation. Through regular convoys, events, and community activities, the company continues to grow and strengthen its presence within the TruckersMP world.
-                    </p>
-                    <p>
-                        Today, NeoCrime is a rapidly developing Ukrainian VTC, constantly expanding its community, organizing new events, and building a strong presence in the virtual trucking scene.
-                    </p>
+                <div class="about-left" data-aos="fade-right" data-aos-duration="1000">
+                    <h2 class="section-title left-align">About Us</h2>
+                    
+                    <div class="about-text-content" id="typewriter-text">
+                        <p>
+                            <span class="highlight">NeoCrime</span> is a Ukrainian Virtual Trucking Company founded on January 8, 2026, by its owner F4DED. Despite being a relatively new company, NeoCrime has been developing rapidly and continues to grow its community of passionate virtual drivers.
+                        </p>
+                        <p>
+                            The company brings together players who share a passion for trucking, teamwork, and exploring the roads of Euro Truck Simulator 2 and American Truck Simulator in multiplayer through TruckersMP.
+                        </p>
+                        <p>
+                            NeoCrime actively participates in the TruckersMP community. Our drivers regularly attend public convoys and large-scale events, proudly representing the company and building connections within the community.
+                        </p>
+                        <p>
+                            One of the core values of NeoCrime is maintaining a friendly, supportive, and active community. We welcome drivers of all experience levels, from beginners to experienced players, providing a place where everyone can feel part of a team.
+                        </p>
+                    </div>
                 </div>
+
+                <div class="about-right" data-aos="fade-left" data-aos-duration="1200">
+                    <img src="https://i.ibb.co/ymqH8jDn/SCANIA-1.png" alt="NeoCrime Scania" id="truck-img" class="truck-parallax">
+                </div>
+
             </div>
         </section>
 
-        <section id="partners" class="partners-section">
-    <div class="container">
-        <h2 class="section-title" data-aos="fade-up">Our Partners</h2>
-        
-        <div class="partners-grid">
-
-            <a href="https://truckersmp.com/vtc/77792" target="_blank" class="partner-card" data-aos="fade-up" data-aos-delay="300">
-                <div class="partner-img-wrapper">
-                    <img src="https://i.postimg.cc/SNS076Xy/emblen1.png" alt="Fast Line UA">
+        <section id="crimeadmin" class="crimeadmin-section">
+            <div class="container crimeadmin-container">
+                
+                <div class="crimeadmin-left" data-aos="fade-right" data-aos-duration="1200">
+                    <img src="https://i.ibb.co/B5NjJCf8/Crime-ADMIN.png" alt="CrimeADMIN Bot" class="bot-img-static">
                 </div>
-                <h3>Fast Line UA</h3>
-            </a>
-            
-            <a href="https://truckersmp.com/vtc/53248" target="_blank" class="partner-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="partner-img-wrapper">
-                    <img src="https://static.truckersmp.com/images/vtc/logo/53248.1767544066.png" alt="Twisted Transport">
-                </div>
-                <h3>Twisted Transport</h3>
-            </a>
 
-            <a href="https://truckersmp.com/vtc/83571" target="_blank" class="partner-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="partner-img-wrapper">
-                    <img src="https://static.truckersmp.com/images/vtc/logo/83571.1774390034.png" alt="OSS Logistics">
+                <div class="crimeadmin-right" data-aos="fade-left" data-aos-duration="1000">
+                    <h2 class="section-title right-align">CrimeADMIN</h2>
+                    
+                    <div class="crimeadmin-text-content" id="typewriter-bot-text">
+                        <p>
+                            <span class="highlight">CrimeADMIN</span> is our pride and unique development. A multifunctional Discord bot created specifically to fully automate and manage all processes within the NeoCrime virtual company.
+                        </p>
+                        <p>
+                            The bot features its own complex <b>economy</b> (CrimeCoins and currency) and an <b>EXP level system</b>. Our drivers earn currency by participating in convoys, passing qualification tests, opening truck cases, and through daily activity.
+                        </p>
+                        <p>
+                            CrimeADMIN handles all the routine: it automatically processes applications from new candidates, manages the report system, issues salaries, and provides access to an interactive <b>fleet</b> where vehicles are distributed by class and driver experience.
+                        </p>
+                        <p>
+                            On weekends, the bot automatically launches the global <b>Road Kings Weekend</b> event, tracking voice channel activity and dropping "Secret Cases". And thanks to a reliable <b>Anti-Raid</b> system, our server always remains safe!
+                        </p>
+                    </div>
                 </div>
-                <h3>DCB Logistics</h3>
-            </a>
 
-        </div>
-    </div>
-</section>
+            </div>
+        </section>
+
+        <section id="ats" class="ats-section">
+            <div class="container ats-container">
+                
+                <div class="ats-left" data-aos="fade-right" data-aos-duration="1000">
+                    <h2 class="section-title left-align">American <span style="color: #ff3333;">Standard</span></h2>
+                    
+                    <div class="ats-text-content" id="typewriter-ats-text">
+                        <p>
+                            <span class="highlight">NeoCrime</span> is a company without borders. We do not limit ourselves to the spaces of Europe, but actively develop and scale our movement on the endless highways of American Truck Simulator.
+                        </p>
+                        <p>
+                            Our team regularly organizes our own large-scale convoys in ATS, actively attends public events from partners, and creates unique events for the entire gaming community.
+                        </p>
+                        <p>
+                            The atmosphere of powerful classic American trucks, deserts, endless straight roads, and coordinated teamwork — all this awaits you in our American division!
+                        </p>
+                    </div>
+                </div>
+
+                <div class="ats-right" data-aos="fade-left" data-aos-duration="1200">
+                    <img src="https://i.ibb.co/4ZC8hRq5/ats-truck-1.png" alt="ATS Truck NeoCrime" class="ats-img-static">
+                </div>
+
+            </div>
+        </section>
 
         <section id="faq" class="faq-section">
             <div class="container faq-container">
@@ -638,10 +800,327 @@
         </div>
     </div>
 
+    <script>
+        /* --- HERO TEXT ANIMATION (REPEATING) --- */
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedTexts = document.querySelectorAll('.animate-chars');
+            
+            animatedTexts.forEach((textElement) => {
+                const text = textElement.textContent;
+                textElement.textContent = ''; 
+
+                let globalDelay = 0.2;
+                for (let i = 0; i < text.length; i++) {
+                    const span = document.createElement('span');
+                    if (text[i] === ' ') {
+                        span.innerHTML = '&nbsp;';
+                        span.className = 'char-space';
+                    } else {
+                        span.textContent = text[i];
+                        span.className = 'char-span';
+                        span.style.animationDelay = `${globalDelay}s`;
+                        globalDelay += 0.04; 
+                    }
+                    textElement.appendChild(span);
+                }
+            });
+
+            // Update on scroll
+            const heroObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const chars = entry.target.querySelectorAll('.char-span');
+                        chars.forEach(char => {
+                            char.style.animation = 'none';
+                            void char.offsetWidth; // Trigger reflow
+                            char.style.animation = null;
+                        });
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            animatedTexts.forEach(el => heroObserver.observe(el));
+        });
+    </script>
+
+    <script>
+        /* --- ATS SLIDER (CROSSFADE) --- */
+        document.addEventListener('DOMContentLoaded', () => {
+            const slides = document.querySelectorAll('.ats-slider .slide');
+            if (slides.length === 0) return;
+            
+            let currentSlide = 0;
+
+            setInterval(() => {
+                slides[currentSlide].classList.remove('active');
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides[currentSlide].classList.add('active');
+            }, 5000); 
+        });
+    </script>
+
+    <script>
+        /* --- STATS COUNTER ANIMATION (REPEATING) --- */
+        document.addEventListener('DOMContentLoaded', () => {
+            const counters = document.querySelectorAll('.count-up');
+            const animationDuration = 2000; 
+
+            const statObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const counter = entry.target;
+                        const target = +counter.getAttribute('data-target');
+                        const increment = target / (animationDuration / 16); 
+                        let currentCount = 0;
+
+                        const updateCount = () => {
+                            currentCount += increment;
+                            if (currentCount < target) {
+                                counter.innerText = Math.ceil(currentCount).toLocaleString('en-US');
+                                requestAnimationFrame(updateCount); 
+                            } else {
+                                counter.innerText = target.toLocaleString('en-US');
+                            }
+                        };
+                        updateCount();
+                    } else {
+                        // Reset to 0 when out of view
+                        entry.target.innerText = '0';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            counters.forEach(counter => statObserver.observe(counter));
+        });
+    </script>
+
+    <script>
+        /* --- TYPEWRITER EFFECT (REPEATING) --- */
+        function initTypewriter(elementId) {
+            const textContainer = document.getElementById(elementId);
+            if (!textContainer) return;
+            
+            const walker = document.createTreeWalker(textContainer, NodeFilter.SHOW_TEXT, null, false);
+            const textNodes = [];
+            let node;
+            while(node = walker.nextNode()) textNodes.push(node);
+            
+            textNodes.forEach(node => {
+                const text = node.nodeValue;
+                if (text.trim() === '') return; 
+                
+                const fragment = document.createDocumentFragment();
+                for (let i = 0; i < text.length; i++) {
+                    const span = document.createElement('span');
+                    span.textContent = text[i];
+                    span.className = 'type-char';
+                    fragment.appendChild(span);
+                }
+                node.parentNode.replaceChild(fragment, node);
+            });
+
+            const chars = textContainer.querySelectorAll('.type-char');
+            let timeouts = [];
+
+            const observer = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting) {
+                    chars.forEach((char, index) => {
+                        const t = setTimeout(() => {
+                            char.style.opacity = '1';
+                        }, index * 3); 
+                        timeouts.push(t);
+                    });
+                } else {
+                    timeouts.forEach(t => clearTimeout(t));
+                    timeouts = [];
+                    chars.forEach(char => char.style.opacity = '0');
+                }
+            }, { threshold: 0.2 }); 
+
+            observer.observe(textContainer);
+        }
+
+        initTypewriter('typewriter-text');       
+        initTypewriter('typewriter-bot-text');    
+        initTypewriter('typewriter-route-text');  
+        initTypewriter('typewriter-ats-text');    
+    </script>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Init AOS with repeating animation
+        AOS.init({
+            once: false,
+            offset: 100
+        });
+    </script>
+
+    <script>
+        // Accordion Script (FAQ)
+        const accordionHeaders = document.querySelectorAll('.accordion-header');
+
+        accordionHeaders.forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.parentElement;
+                const content = header.nextElementSibling;
+                
+                item.classList.toggle('active');
+                
+                if (item.classList.contains('active')) {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                } else {
+                    content.style.maxHeight = null;
+                }
+            });
+        });
+    </script>
+
+    <script>
+        // UPDATED Gallery Lightbox Script with smooth transitions
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const closeBtn = document.querySelector('.lightbox-close');
+        const prevBtn = document.querySelector('.lightbox-prev');
+        const nextBtn = document.querySelector('.lightbox-next');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        
+        let currentIndex = 0;
+        let isAnimating = false; 
+
+        function changeImageWithFade(newIndex) {
+            if (isAnimating) return; 
+            isAnimating = true;
+
+            lightboxImg.classList.add('switching');
+
+            setTimeout(() => {
+                currentIndex = newIndex;
+                lightboxImg.src = galleryItems[currentIndex].src;
+                
+                lightboxImg.classList.remove('switching');
+                
+                setTimeout(() => { isAnimating = false; }, 400);
+            }, 400);
+        }
+
+        function openLightbox(index) {
+            currentIndex = index;
+            lightboxImg.src = galleryItems[currentIndex].src;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function showNext() {
+            let newIndex = (currentIndex + 1) % galleryItems.length;
+            changeImageWithFade(newIndex);
+        }
+
+        function showPrev() {
+            let newIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
+            changeImageWithFade(newIndex);
+        }
+
+        galleryItems.forEach((item, index) => {
+            item.addEventListener('click', () => openLightbox(index));
+        });
+
+        closeBtn.addEventListener('click', closeLightbox);
+        nextBtn.addEventListener('click', showNext);
+        prevBtn.addEventListener('click', showPrev);
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') showNext();
+            if (e.key === 'ArrowLeft') showPrev();
+        });
+    </script>
+
+    <script>
+        // Mobile Menu Script (Hamburger)
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const headerContent = document.querySelector('.header-content');
+        const mobileIcon = mobileMenuBtn.querySelector('i');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            headerContent.classList.toggle('active');
+            
+            if (headerContent.classList.contains('active')) {
+                mobileIcon.classList.remove('fa-bars');
+                mobileIcon.classList.add('fa-times');
+            } else {
+                mobileIcon.classList.remove('fa-times');
+                mobileIcon.classList.add('fa-bars');
+            }
+        });
+
+        document.querySelectorAll('.main-nav a, .btn-primary, .btn-header-bw').forEach(link => {
+            link.addEventListener('click', () => {
+                headerContent.classList.remove('active');
+                mobileIcon.classList.remove('fa-times');
+                mobileIcon.classList.add('fa-bars');
+            });
+        });
+    </script>
+
+    <script>
+        // News Modal Script
+        const newsModal = document.getElementById('news-modal');
+        const newsDetails = document.querySelectorAll('.news-detail');
+
+        function openNewsModal(newsId) {
+            newsDetails.forEach(detail => detail.style.display = 'none');
+            document.getElementById(newsId).style.display = 'block';
+            
+            newsModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeNewsModal() {
+            newsModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        newsModal.addEventListener('click', (e) => {
+            if (e.target === newsModal) closeNewsModal();
+        });
+    </script>
+
+    <script>
+        // Smooth scroll without adding # to URL
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    e.preventDefault(); 
+                    
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({
-            once: true,
+            once: false,
             offset: 100
         });
     </script>
