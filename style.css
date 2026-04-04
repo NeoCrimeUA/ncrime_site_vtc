@@ -732,25 +732,12 @@ body {
     align-items: center;
 }
 
-/* --- ВАНТАЖІВКА ТА ЕФЕКТ НАВЕДЕННЯ --- */
+/* --- ВАНТАЖІВКА (СТАТИЧНА ПІСЛЯ ВИЛЬОТУ) --- */
 .truck-parallax {
     width: 100%;
     max-width: 700px;
     height: auto;
     filter: drop-shadow(5px 5px 15px rgba(0, 0, 0, 0.5));
-    transition: all 0.4s ease; 
-    will-change: transform, filter; 
-}
-
-.truck-parallax:hover {
-    transform: translate(-10px, -10px); 
-    filter: drop-shadow(15px 15px 25px rgba(255, 51, 51, 0.6));
-}
-
-/* Клас для кожної букви (сховано за замовчуванням для скрипта) */
-.type-char {
-    opacity: 0;
-    transition: opacity 0.05s linear;
 }
 
 @media (max-width: 992px) {
@@ -802,27 +789,10 @@ body {
 /* --- СТАТИЧНЕ ФОТО БОТА CrimeADMIN --- */
 .bot-img-static {
     width: 100%;
-    max-width: 475px; /* Оптимальний збільшений розмір для цього бота */
+    max-width: 475px; 
     height: auto;
-    
-    /* Зсуваємо фото вліво на 30px за замовчуванням */
     transform: translateX(-30px);
-    
-    /* Базова легка тінь для об'єму (падає вліво-вниз) */
     filter: drop-shadow(-5px 10px 20px rgba(0, 0, 0, 0.6));
-    
-    /* Плавна анімація для ВСІХ властивостей */
-    transition: all 0.5s ease; 
-    will-change: transform, filter; /* Оптимізація для браузера */
-}
-
-/* --- ЕФЕКТ ПРИ НАВЕДЕННІ НА ФОТО CrimeADMIN --- */
-.bot-img-static:hover {
-    /* Скасовуємо базовий зсув вліво (-30px) і додаємо зсув вправо-вгору. */
-    transform: translateX(20px) translateY(-15px);
-    
-    /* Розсіяна червона неонова тінь (дзеркально вліво-вгору) */
-    filter: drop-shadow(-15px -15px 30px rgba(255, 51, 51, 0.7));
 }
 
 /* Права колонка (Текст) */
@@ -939,25 +909,10 @@ body {
     max-width: none; 
     flex-shrink: 0; 
     height: auto;
-    
-    /* Зсуваємо фото вправо за замовчуванням */
     transform: translateX(80px); 
-    
-    /* Тінь падає вправо-вниз */
     filter: drop-shadow(5px 10px 20px rgba(0, 0, 0, 0.6));
-    
-    transition: all 0.5s ease; 
-    will-change: transform, filter;
 }
-
-/* --- ЕФЕКТ ПРИ НАВЕДЕННІ НА ФОТО ATS --- */
-.ats-img-static:hover {
-    /* Рухається ще правіше і вгору */
-    transform: translateX(100px) translateY(-20px);
-    
-    /* Розсіяна червона неонова тінь */
-    filter: drop-shadow(15px 15px 35px rgba(255, 51, 51, 0.7));
-}
+/* Блок .ats-img-static:hover ПОВНІСТЮ ВИДАЛИ */
 
 /* Адаптація для телефонів */
 @media (max-width: 992px) {
@@ -1829,4 +1784,47 @@ body {
 .news-modal-content::-webkit-scrollbar-thumb {
     background: #ff3333;
     border-radius: 4px;
+}
+
+/* --- КНОПКА "ВСІ НОВИНИ" --- */
+.btn-news {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 28px;
+    background-color: transparent;
+    color: #ffffff;
+    border: 2px solid #ff3333; /* Фірмовий червоний контур */
+    border-radius: 30px; /* Капсульна форма під стиль сайту */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.btn-news i {
+    transition: transform 0.3s ease;
+}
+
+/* Ефект при наведенні: заливка, виліт вгору та рух стрілочки */
+.btn-news:hover {
+    background-color: #ff3333;
+    color: #ffffff;
+    box-shadow: 0 8px 20px rgba(255, 51, 51, 0.4);
+    transform: translateY(-4px);
+}
+
+.btn-news:hover i {
+    transform: translateX(6px);
+}
+
+/* Адаптація для телефонів (щоб кнопка красиво ставала під заголовком) */
+@media (max-width: 768px) {
+    .news-header {
+        flex-direction: column;
+        gap: 20px;
+    }
 }
