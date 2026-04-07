@@ -1466,9 +1466,13 @@ body {
 .last-updated {
     text-align: center;
     color: #ff3333;
-    font-size: 14px;
-    margin-top: -40px;
-    margin-bottom: 50px;
+    font-size: 16px;
+    font-weight: 800; /* Жирний шрифт */
+    margin-top: 10px;
+    margin-bottom: 25px; /* Відступ вниз до самої плашки */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(255, 51, 51, 0.4); /* Легке неонове світіння */
 }
 
 .legal-content {
@@ -1827,4 +1831,1217 @@ body {
         flex-direction: column;
         gap: 20px;
     }
+}
+
+/* --- ОНОВЛЕНІ СТИЛІ СПЕЦІАЛЬНО ДЛЯ СТОРІНКИ БОТА --- */
+    
+    .bot-hero {
+        height: 100vh;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Центрування контенту по горизонталі */
+        justify-content: center; /* Центрування контенту по вертикалі */
+        text-align: center; /* Центрування тексту */
+        
+        /* ВСТАВ СИЛКУ НА ФОНОВУ КАРТИНКУ В URL() НИЖЧЕ */
+        background-image: url('https://i.ibb.co/PvqqwwJ8/5ets2-20260329-204713-00.png'); 
+        
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed; /* Ефект параллакса */
+        background-color: #080808; 
+        z-index: 10;
+        overflow: hidden;
+        font-family: 'Montserrat', sans-serif !important;
+    }
+
+    .bot-hero-overlay {
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        /* Градієнт для плавного переходу в чорний фон сайту */
+        background: linear-gradient(to bottom, rgba(13,13,13,0.3) 0%, rgba(13,13,13,0.7) 65%, #080808 100%);
+        z-index: 1;
+    }
+
+    .bot-hero-content {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column; /* Вертикальне розташування */
+        align-items: center; /* Центрування */
+        gap: 30px; /* Відстань між елементами */
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 40px;
+        margin-top: -50px; /* Легкий підйом контенту вгору */
+    }
+
+    /* Величезний логотип по центру */
+    .bot-logo-centered {
+        width: 280px; /* Збільшений розмір */
+        height: auto;
+        filter: drop-shadow(0 0 25px rgba(0, 0, 0, 0.7)); /* Тільки легка чорна тінь */
+        margin-bottom: 20px;
+    }
+
+    /* Текстова група по центру */
+    .bot-text-group-centered {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Центрування */
+        text-align: center;
+    }
+
+    /* Заголовок CrimeADMIN */
+    .bot-name {
+        font-family: 'Montserrat', sans-serif !important;
+        font-size: 85px;
+        font-weight: 700; /* Напівжирний/Жирний */
+        color: #ffffff;
+        margin: 0;
+        line-height: 1;
+        letter-spacing: 2px;
+        text-shadow: 4px 4px 0px #ff3333; /* Жесткая красная тень */
+    }
+
+    /* Підзаголовок */
+    .bot-subtitle {
+        font-family: 'Montserrat', sans-serif !important;
+        font-size: 26px;
+        font-weight: 300; /* Тонкий */
+        color: #cccccc;
+        margin-top: 15px;
+        margin-bottom: 50px; /* Відступ до кнопки */
+        letter-spacing: 4px;
+        text-transform: uppercase;
+    }
+
+    /* --- ОНОВЛЕНИЙ ВЕЛИКИЙ ДИНАМІЧНИЙ ОСТРІВ --- */
+    /* Скасовуємо AOS та змушуємо з'являтися відразу */
+    .bot-legal-wrapper-immediate {
+        position: absolute;
+        bottom: 50px; /* Відступ від низу, щоб плавало */
+        left: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        z-index: 10;
+        opacity: 1 !important; /* Гарантована видимість */
+        visibility: visible !important; /* Гарантована видимість */
+        transform: none !important; /* Скасування будь-яких зрушень */
+    }
+
+    .bot-legal-island-large {
+        background: rgba(10, 10, 10, 0.95); /* Строгий черный */
+        backdrop-filter: blur(15px); /* Легкое размытие заднего фона */
+        border: 1px solid rgba(255, 255, 255, 0.08); /* Чуть заметная грань */
+        border-radius: 50px; /* Форма капсулы */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 35px; /* Більша відстань */
+        padding: 20px 60px; /* Збільшений розмір острова */
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.9); /* Мощная тень вниз */
+    }
+
+    .bot-legal-island-large a {
+        color: #888888 !important; /* Сірий колір лейблів */
+        text-decoration: none;
+        font-size: 15px !important; /* Збільшений розмір */
+        font-weight: 600 !important;
+        text-transform: uppercase;
+        letter-spacing: 1px !important;
+        transition: all 0.3s ease;
+    }
+
+    .bot-legal-island-large a:hover {
+        color: #ff3333 !important; /* Червоний колір при наведенні */
+        text-shadow: 0 0 10px rgba(255, 51, 51, 0.5);
+    }
+
+    /* Спеціальний червоний розділювач-крапка */
+    .legal-divider-dot {
+        width: 6px;
+        height: 6px;
+        background-color: #ff3333;
+        border-radius: 50%;
+        box-shadow: 0 0 10px rgba(255, 51, 51, 0.7);
+    }
+
+    /* --- АДАПТАЦІЯ ДЛЯ ТЕЛЕФОНІВ --- */
+    @media (max-width: 992px) {
+        .bot-name { font-size: 50px; text-shadow: 2px 2px 0px #ff3333; }
+        .bot-subtitle { font-size: 16px; margin-bottom: 35px; }
+        .bot-logo-centered { width: 180px; }
+        
+        /* Мобільний Dynamic Island */
+        .bot-legal-island-large {
+            flex-direction: column !important;
+            gap: 15px !important;
+            padding: 20px 40px !important;
+            border-radius: 30px !important;
+            width: auto !important;
+        }
+        .legal-divider-dot { display: none; }
+    }
+
+    /* --- АНИМАЦИИ ДЛЯ СТРАНИЦЫ БОТА --- */
+
+/* Контейнер для букв (чтобы они не схлопывались) */
+.char-span {
+    display: inline-block;
+    opacity: 0;
+    transform: translateX(-20px); /* Начальная позиция чуть левее для эффекта волны */
+    animation: waveRight 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+/* Анимация волны слева направо */
+@keyframes waveRight {
+    0% {
+        opacity: 0;
+        transform: translateX(-30px) skewX(-15deg);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0) skewX(0deg);
+    }
+}
+
+/* Общий класс для появления элементов снизу вверх */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+/* Задержки для последовательности (чтобы всё не вылетало одновременно) */
+.bot-subtitle.fade-in-up {
+    animation-delay: 0.8s; /* Появится после того, как "пробежит" волна заголовка */
+}
+
+.bot-text-group-centered .btn-primary.fade-in-up {
+    animation-delay: 1s; /* Кнопка появляется последней */
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Анимация для логотипа (мягкое масштабирование) */
+.bot-logo-centered {
+    opacity: 0;
+    transform: scale(0.8);
+    animation: logoScale 1s ease-out forwards;
+}
+
+@keyframes logoScale {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* --- СЕКЦІЯ ІНФОРМАЦІЇ ПРО БОТА --- */
+.bot-info-section {
+    background-color: #080808; /* Точне злиття з Hero-блоком */
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.bot-info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 80px;
+    align-items: center;
+}
+
+/* Візуальна частина (Зображення/Карточка) */
+.bot-info-visual {
+    position: relative;
+}
+
+.bot-card-mockup {
+    position: relative;
+    z-index: 2;
+    transform: perspective(1000px) rotateY(-5deg);
+    transition: transform 0.5s ease;
+}
+
+.bot-card-mockup:hover {
+    transform: perspective(1000px) rotateY(0deg) scale(1.02);
+}
+
+.mockup-img {
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(255, 51, 51, 0.2);
+}
+
+.mockup-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(circle, rgba(255, 51, 51, 0.1) 0%, transparent 70%);
+    z-index: -1;
+}
+
+/* Текстова частина */
+.section-title-left {
+    font-size: 42px;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.section-title-left::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: #ff3333;
+    margin-top: 10px;
+}
+
+.bot-description {
+    font-size: 18px;
+    color: #ccc;
+    line-height: 1.8;
+    margin-bottom: 40px;
+}
+
+/* Міні-фічі */
+.features-mini-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.mini-feature {
+    display: flex;
+    gap: 20px;
+}
+
+.mini-feature i {
+    font-size: 24px;
+    color: #ff3333;
+    margin-top: 5px;
+}
+
+.mini-feature h4 {
+    font-size: 18px;
+    color: #fff;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.mini-feature p {
+    font-size: 14px;
+    color: #888;
+    line-height: 1.5;
+}
+
+.bot-cta-box {
+    margin-top: 50px;
+    padding: 20px;
+    border-left: 3px solid #ff3333;
+    background: rgba(255, 255, 255, 0.03);
+    font-style: italic;
+    color: #aaa;
+}
+
+.text-red { color: #ff3333; }
+
+/* Адаптація */
+@media (max-width: 992px) {
+    .bot-info-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 50px;
+    }
+    .section-title-left::after {
+        margin: 10px auto;
+    }
+    .features-mini-grid {
+        grid-template-columns: 1fr;
+        text-align: left;
+    }
+    .bot-card-mockup {
+        transform: none;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+}
+
+/* --- СЕКЦІЯ КОМАНД БОТА --- */
+.bot-commands-section {
+    background-color: #141414; /* Світліший сірий колір для чергування блоків */
+    padding: 100px 0;
+    position: relative;
+    border-top: 1px solid rgba(255, 255, 255, 0.05); /* Легкий розділювач */
+}
+
+.commands-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.command-card {
+    background: rgba(10, 10, 10, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 30px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Додаємо стиль для нової обгортки */
+.command-wrapper {
+    display: flex;
+    height: 100%;
+}
+
+/* Ширина картки має заповнювати обгортку */
+.command-card {
+    background: rgba(10, 10, 10, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 30px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    width: 100%; /* Додали це */
+}
+
+/* ТЕПЕР ПРАЦЮВАТИМЕ ІДЕАЛЬНО: при наведенні на обгортку, картка вилітає */
+.command-wrapper:hover .command-card {
+    transform: translate(-10px, -10px); 
+    border-color: rgba(255, 51, 51, 0.6); 
+    box-shadow: 15px 15px 35px rgba(0, 0, 0, 0.9), 0 0 15px rgba(255, 51, 51, 0.2); 
+    background: rgba(15, 15, 15, 0.95);
+    z-index: 5; 
+}
+
+.cmd-icon {
+    font-size: 35px;
+    color: #ff3333;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px rgba(255, 51, 51, 0.5);
+}
+
+.command-card h3 {
+    font-size: 22px;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.cmd-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.cmd-list li {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 14px;
+    color: #b3b3b3;
+    line-height: 1.6;
+}
+
+.cmd-list li:last-child {
+    margin-bottom: 0;
+}
+
+/* Стиль для самої команди (/work, /balance) */
+.cmd-badge {
+    background: #ff3333;
+    color: #ffffff;
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    flex-shrink: 0; /* Щоб плашка не стискалася, якщо текст довгий */
+    box-shadow: 0 2px 5px rgba(255, 51, 51, 0.3);
+}
+
+.cmd-desc {
+    font-style: italic;
+    color: #888888;
+}
+
+/* Адаптація під екрани */
+@media (max-width: 1100px) {
+    .commands-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .commands-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* --- СЕКЦІЯ АВТОМАТИЗАЦІЇ --- */
+.bot-automation-section {
+    background-color: #080808; /* Повертаємося до нашого першого кольору */
+    padding: 100px 0;
+    position: relative;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+}
+
+.automation-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+/* Ліста фіч */
+.auto-features {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.auto-item {
+    display: flex;
+    gap: 20px;
+    background: rgba(20, 20, 20, 0.4);
+    padding: 20px;
+    border-radius: 12px;
+    border-left: 3px solid #ff3333;
+    transition: all 0.3s ease;
+}
+
+.auto-item:hover {
+    background: rgba(255, 51, 51, 0.05);
+    transform: translateX(10px);
+}
+
+.auto-icon {
+    font-size: 24px;
+    color: #ff3333;
+    padding-top: 2px;
+}
+
+.auto-info h4 {
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.auto-info p {
+    color: #a0a0a0;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* --- КІБЕР ТЕРМІНАЛ --- */
+.cyber-terminal {
+    background: #0a0a0a;
+    border-radius: 10px;
+    border: 1px solid #333;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 51, 51, 0.1);
+    overflow: hidden;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.terminal-header {
+    background: #1a1a1a;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #333;
+    position: relative;
+}
+
+.terminal-header .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.dot.red { background: #ff5f56; }
+.dot.yellow { background: #ffbd2e; }
+.dot.green { background: #27c93f; }
+
+.terminal-title {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    left: 0;
+    font-size: 12px;
+    color: #888;
+    pointer-events: none;
+}
+
+.terminal-body {
+    padding: 20px;
+    color: #cccccc;
+    font-size: 14px;
+    line-height: 1.6;
+    height: 350px;
+    overflow-y: hidden;
+}
+
+.term-prompt {
+    color: #ff3333;
+    font-weight: bold;
+}
+
+.term-line { margin-bottom: 5px; }
+.term-line.system { color: #888; font-style: italic; }
+.term-line.success { color: #27c93f; }
+.term-line.warning { color: #ffbd2e; }
+.term-line.info { color: #00bfff; }
+.term-line.action { color: #cccccc; }
+
+/* Анімації для терміналу */
+.cursor {
+    display: inline-block;
+    width: 8px;
+    height: 15px;
+    background: #fff;
+    animation: blink 1s step-end infinite;
+    vertical-align: middle;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.dots {
+    display: inline-block;
+    width: 20px;
+    text-align: left;
+    animation: loadingDots 2s infinite steps(4);
+    overflow: hidden;
+    vertical-align: bottom;
+}
+
+@keyframes loadingDots {
+    0% { width: 0px; }
+    100% { width: 20px; }
+}
+
+/* Адаптація */
+@media (max-width: 992px) {
+    .automation-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .cyber-terminal {
+        margin-top: 30px;
+    }
+}
+
+/* --- ИСПРАВЛЕНИЕ ЦВЕТОВ СЕКЦИЙ --- */
+
+/* Темный блок (Автоматизация) */
+.bot-automation-section {
+    background-color: #080808; /* Глубокий черный */
+}
+
+/* Светло-серый блок (CrimeADMIN Jr. - блок с конвоями) */
+.jr-bot-intro-section {
+    background-color: #141414; /* Светло-серый, как в .news-section */
+    padding: 100px 0;
+    position: relative;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Снова темный блок (TruckersHub API) */
+.jr-thub-section {
+    background-color: #080808; /* Возврат к черному */
+}
+
+.jr-thub-section {
+    background-color: #080808; /* Основний темний фон сайту */
+    padding: 100px 0;
+    position: relative;
+}
+
+/* Контейнер для розподілу тексту і візуалу 50/50 */
+.split-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+}
+
+/* Для другого блоку міняємо місцями (візуал зліва, текст справа) */
+.split-container.reverse {
+    flex-direction: row-reverse;
+}
+
+.split-text {
+    flex: 1;
+    max-width: 600px;
+}
+
+.split-visual {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --- ВИРІВНЮВАННЯ ДЛЯ ПРАВОГО БЛОКУ --- */
+.right-align .section-title-left {
+    text-align: right;
+}
+
+.right-align .section-title-left::after {
+    margin: 15px 0 0 auto; /* Лінія підпису зсувається вправо */
+}
+
+.right-align .bot-description {
+    text-align: right;
+}
+
+/* --- СТИЛЬ СПИСКІВ (Без фону і рамок) --- */
+.cyber-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.cyber-list-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+/* Якщо текст вирівняно по правому краю, міняємо порядок іконки і тексту */
+.right-list .cyber-list-item {
+    flex-direction: row-reverse;
+    text-align: right;
+}
+
+.cyber-list-item i {
+    font-size: 28px;
+    margin-top: 5px;
+    text-shadow: 0 0 15px rgba(255, 51, 51, 0.4); /* Легке світіння іконок */
+}
+
+.cyber-list-item h4 {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.cyber-list-item p {
+    color: #aaaaaa;
+    font-size: 15px;
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* --- ВІЗУАЛІЗАЦІЯ ГОЛОГРАМИ --- */
+.jr-hologram {
+    position: relative;
+    width: 350px;
+    height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.holo-icon {
+    font-size: 140px;
+    color: #ff3333; /* Сделали цвет полностью непрозрачным, чтобы силуэт был четким */
+    
+    /* Оставили только одно легкое свечение с прозрачностью 40% */
+    text-shadow: 0 0 15px rgba(255, 51, 51, 0.4); 
+    
+    animation: holoFloat 3s ease-in-out infinite;
+    position: relative;
+    z-index: 2;
+}
+
+/* Адаптация для мобильных остается такой же (если она у тебя прописана ниже) */
+@media (max-width: 992px) {
+    .holo-icon {
+        font-size: 100px;
+    }
+}
+
+/* Лінія сканування, що їздить вгору-вниз */
+.holo-scanline {
+    position: absolute;
+    top: 0;
+    left: 10%;
+    width: 80%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 15px #ffffff, 0 0 30px #ff3333;
+    z-index: 3;
+    opacity: 0.7;
+    animation: scanlineMove 2.5s linear infinite;
+    border-radius: 50%;
+}
+
+/* Підставка-проєктор знизу */
+.holo-base {
+    position: absolute;
+    bottom: 20px;
+    width: 200px;
+    height: 30px;
+    background: radial-gradient(ellipse at center, rgba(255, 51, 51, 0.4) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(8px);
+    z-index: 1;
+}
+
+/* Анімація левітації іконки */
+@keyframes holoFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+/* Анімація сканлайну */
+@keyframes scanlineMove {
+    0% { top: 15%; opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { top: 85%; opacity: 0; }
+}
+
+/* --- АДАПТАЦІЯ ПІД МОБІЛЬНІ ПРИСТРОЇ --- */
+@media (max-width: 992px) {
+    .split-container, .split-container.reverse {
+        flex-direction: column;
+        text-align: center;
+        gap: 50px;
+    }
+
+    .right-align .section-title-left,
+    .right-align .bot-description,
+    .right-list .cyber-list-item {
+        text-align: center;
+    }
+
+    .right-align .section-title-left::after {
+        margin: 15px auto 0;
+    }
+
+    .cyber-list-item, .right-list .cyber-list-item {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cyber-list-item i {
+        margin-top: 0;
+        margin-bottom: 15px;
+    }
+    
+    .jr-hologram {
+        width: 250px;
+        height: 250px;
+    }
+
+    .holo-icon {
+        font-size: 100px;
+    }
+}
+
+/* --- СЕКЦІЯ TRUCKERSHUB (Фон) --- */
+.jr-thub-section {
+    background-color: #080808; /* Світліший чорний фон */
+    padding: 100px 0;
+    position: relative;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* --- ВІЗУАЛІЗАЦІЯ ГОЛОГРАМИ (Повернено з минулого коду) --- */
+.split-visual {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.jr-hologram {
+    position: relative;
+    width: 350px;
+    height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.holo-icon {
+    font-size: 140px;
+    color: #ff3333; /* Щільний червоний колір без прозорості */
+    text-shadow: none; /* ПОВНІСТЮ прибираємо світіння для ідеально чіткого силуету */
+    animation: holoFloat 3s ease-in-out infinite;
+    position: relative;
+    z-index: 2;
+}
+
+/* Лінія сканування, що їздить вгору-вниз */
+.holo-scanline {
+    position: absolute;
+    top: 0;
+    left: 10%;
+    width: 80%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 15px #ffffff, 0 0 30px #ff3333;
+    z-index: 3;
+    opacity: 0.7;
+    animation: scanlineMove 2.5s linear infinite;
+    border-radius: 50%;
+}
+
+/* Підставка-проєктор знизу */
+.holo-base {
+    position: absolute;
+    bottom: 20px;
+    width: 200px;
+    height: 30px;
+    background: radial-gradient(ellipse at center, rgba(255, 51, 51, 0.4) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(8px);
+    z-index: 1;
+}
+
+/* Анімація левітації іконки */
+@keyframes holoFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+/* Анімація сканлайну */
+@keyframes scanlineMove {
+    0% { top: 15%; opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { top: 85%; opacity: 0; }
+}
+
+/* Мобільна адаптація для голограми */
+@media (max-width: 992px) {
+    .jr-hologram {
+        width: 250px;
+        height: 250px;
+    }
+
+    .holo-icon {
+        font-size: 100px;
+    }
+}
+
+/* --- ЕКОСИСТЕМА БОТІВ (НОВИЙ HERO) - Оновлена версія --- */
+
+.bot-hero-content {
+    /* Робимо загальний контейнер flexbox для вирівнювання іконок над текстом */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px; /* Відступ між іконками та текстом */
+}
+
+/* 1. Блок іконок/карток екосистеми (Тепер вище) */
+.ecosystem-bots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    margin-top: 0; /* Прибираємо старий відступ */
+}
+
+/* Картки вибору бота */
+.eco-bot-card {
+    background: rgba(10, 10, 10, 0.4); /* Зробили трохи прозорішим для легшого вигляду */
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 20px;
+    padding: 30px 40px; /* Трохи компактніше */
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    width: 280px;
+    backdrop-filter: blur(8px);
+}
+
+.eco-bot-card:hover {
+    background: rgba(15, 15, 15, 0.8);
+    border-color: rgba(255, 51, 51, 0.4);
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 51, 51, 0.2);
+}
+
+.eco-bot-img {
+    width: 100px; /* Трохи зменшили */
+    height: 100px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.eco-bot-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.8));
+    transition: transform 0.4s ease;
+}
+
+.eco-bot-card:hover .eco-bot-img img {
+    transform: scale(1.1); /* Менш агресивне збільшення */
+}
+
+.eco-bot-card h3 {
+    color: #ffffff;
+    font-size: 20px; /* Відкоригували розмір */
+    font-weight: 800;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.eco-bot-label {
+    color: #aaaaaa; /* Трохи світліше */
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* 2. Блок тексту NeoCrime Ecosystem (Тепер нижче) */
+.bot-text-group-centered {
+    margin-bottom: 0;
+    text-align: center;
+    position: relative;
+    z-index: 2; /* Щоб був поверх карток, якщо вони перекриваються на мобільному */
+}
+
+/* Повернули розмір заголовка назад */
+.bot-name {
+    font-size: 85px !important; 
+    margin-bottom: 10px;
+}
+
+.bot-subtitle {
+    margin-top: 0;
+}
+
+/* --- Адаптація для мобільних пристроїв --- */
+@media (max-width: 992px) {
+    .bot-name {
+        font-size: 60px !important; 
+    }
+}
+
+@media (max-width: 768px) {
+    /* На телефоні залишаємо все в стовпчик: Іконка 1 -> Іконка 2 -> Текст */
+    .bot-hero-content {
+        gap: 30px;
+    }
+    
+    .ecosystem-bots {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .eco-bot-card {
+        width: 100%;
+        max-width: 300px;
+        flex-direction: column; /* Жорстко фіксуємо стовпчик всередині картки */
+        padding: 20px 30px;
+        text-align: center;
+    }
+    
+    .eco-bot-img {
+        width: 70px;
+        height: 70px;
+        margin-bottom: 15px;
+        margin-right: 0;
+    }
+    
+    .bot-name {
+        font-size: 40px !important;
+        letter-spacing: 0;
+    }
+}
+
+/* --- СТИЛІ ДЛЯ ВКЛАДОК (TABS) НА СТОРІНКАХ TERMS / PRIVACY --- */
+.legal-tabs-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 40px;
+    margin-top: -20px;
+}
+
+.legal-tab-btn {
+    background: transparent;
+    color: #888888;
+    border: 2px solid #333333;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+.legal-tab-btn:hover {
+    color: #ffffff;
+    border-color: #ff3333;
+    box-shadow: 0 0 15px rgba(255, 51, 51, 0.2);
+}
+
+.legal-tab-btn.active {
+    background: #ff3333;
+    color: #ffffff;
+    border-color: #ff3333;
+    box-shadow: 0 5px 20px rgba(255, 51, 51, 0.4);
+}
+
+.legal-tab-content {
+    display: none; /* Приховуємо всі вкладки за замовчуванням */
+    animation: fadeInTab 0.5s ease-in-out;
+}
+
+.legal-tab-content.active {
+    display: block; /* Показуємо тільки активну */
+}
+
+@keyframes fadeInTab {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 600px) {
+    .legal-tabs-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    .legal-tab-btn {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+/* --- СТИЛІ ДЛЯ КАРТОК ПРАВИЛ (TERMS CARDS) --- */
+.terms-intro {
+    text-align: center;
+    color: #cccccc;
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+
+.legal-cards-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Відстань між карточками */
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.legal-card {
+    background: rgba(15, 15, 15, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-left: 4px solid #ff3333; /* Фірмовий червоний акцент зліва */
+    border-radius: 12px;
+    padding: 30px;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Ефект виділення карточки при наведенні */
+.legal-card:hover {
+    background: rgba(20, 20, 20, 0.9);
+    transform: translateX(8px); /* Легкий зсув вправо */
+    border-color: rgba(255, 51, 51, 0.3);
+    border-left: 4px solid #ff3333;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), 0 0 15px rgba(255, 51, 51, 0.1);
+}
+
+.legal-card h3 {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 15px;
+    margin-top: 0;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.legal-card h3 i {
+    color: #ff3333; /* Червоні іконки біля заголовків */
+    font-size: 22px;
+}
+
+.legal-card p {
+    color: #b3b3b3;
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 10px;
+}
+
+/* Красиві списки всередині карточок */
+.legal-card ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.legal-card li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 8px;
+    color: #cccccc;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* Заміна нудних крапок на стильні стрілочки */
+.legal-card li::before {
+    content: '\f0da'; 
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    top: 2px;
+    color: #ff3333;
 }

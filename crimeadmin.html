@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrimeADMIN — NeoCrime VTC Bot</title>
+    
+    <link rel="icon" type="image/png" href="/images/logo.png">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* --- НОВІ СТИЛІ СПЕЦІАЛЬНО ДЛЯ СТОРІНКИ БОТА --- */
+        
+        /* Модифікація Hero-блоку з індексу */
+        .bot-hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            /* ВСТАВ СИЛКУ НА ФОНОВУ КАРТИНКУ В URL() НИЖЧЕ */
+            background-image: url('https://i.ibb.co/5XVywP2K/image.png'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Ефект параллакса */
+            background-color: #080808; 
+            z-index: 10;
+            overflow: hidden;
+            font-family: 'Montserrat', sans-serif !important;
+        }
+
+        .bot-hero-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            /* Градієнт для плавного переходу в чорний фон сайту */
+            background: linear-gradient(to bottom, rgba(13,13,13,0.3) 0%, rgba(13,13,13,0.7) 65%, #080808 100%);
+            z-index: 1;
+        }
+
+        .bot-hero-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center; /* Центрування по вертикалі */
+            gap: 50px; /* Відстань між лого і текстом */
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* Величезний логотип */
+        .bot-logo {
+            width: 280px; /* Збільшений розмір */
+            height: auto;
+            filter: drop-shadow(0 0 25px rgba(0, 0, 0, 0.7)); /* Тільки легка чорна тінь, без червоної */
+            flex-shrink: 0;
+        }
+
+        /* Права текстова група */
+        .bot-text-group {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; /* Вирівнювання по лівому краю */
+            text-align: left;
+        }
+
+        /* Заголовок CrimeADMIN */
+        .bot-name {
+            font-family: 'Montserrat', sans-serif !important;
+            font-size: 85px;
+            font-weight: 700; /* Напівжирний/Жирний */
+            color: #ffffff;
+            margin: 0;
+            line-height: 1;
+            letter-spacing: 2px;
+            text-shadow: 4px 4px 0px #ff3333; /* Жесткая красная тень */
+        }
+
+        /* Підзаголовок */
+        .bot-subtitle {
+            font-family: 'Montserrat', sans-serif !important;
+            font-size: 26px;
+            font-weight: 300; /* Тонкий */
+            color: #cccccc;
+            margin-top: 15px;
+            margin-bottom: 50px; /* Відступ до кнопки */
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        /* Модифікація Динамічного Острову під юридичні посилання */
+        .bot-legal-island {
+            /* Перевизначаємо відступи та відстань між елементами */
+            gap: 25px !important;
+            padding: 12px 35px !important;
+        }
+
+        .bot-legal-island a {
+            color: #888888 !important; /* Сірий колір, як у лейблів на індексі */
+            text-decoration: none;
+            font-size: 13px !important; /* Менший розмір */
+            font-weight: 600 !important;
+            text-transform: uppercase;
+            letter-spacing: 1px !important;
+            transition: all 0.3s ease;
+        }
+
+        .bot-legal-island a:hover {
+            color: #ff3333 !important; /* Червоний колір при наведенні */
+            text-shadow: 0 0 8px rgba(255, 51, 51, 0.5);
+        }
+
+        /* Спеціальний червоний розділювач-крапка */
+        .legal-divider-dot {
+            width: 5px;
+            height: 5px;
+            background-color: #ff3333;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(255, 51, 51, 0.7);
+        }
+
+        /* --- АДАПТАЦІЯ ДЛЯ ТЕЛЕФОНІВ --- */
+        @media (max-width: 992px) {
+            .bot-hero-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 30px;
+                padding: 0 20px;
+            }
+            .bot-logo { width: 180px; }
+            .bot-text-group {
+                align-items: center;
+                text-align: center;
+            }
+            .bot-name { font-size: 50px; text-shadow: 2px 2px 0px #ff3333; }
+            .bot-subtitle { font-size: 16px; margin-bottom: 35px; }
+            
+            /* Мобільний Dynamic Island */
+            .hero-stats-island {
+                flex-direction: column !important;
+                gap: 12px !important;
+                padding: 15px 30px !important;
+                border-radius: 20px !important;
+                width: auto !important;
+            }
+            .legal-divider-dot { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo-link">
+                <div class="logo">
+                    <img src="images/logo.png" alt="NE Logo" id="logo-img"> Neo<span class="logo-red">Crime</span>
+                </div>
+            </a>
+            
+            <div class="header-content active"> 
+                <div class="header-actions">
+                    <a href="#" class="btn-header-bw" data-en="Home" data-ua="Головна">Home</a>
+                    <a href="https://neocrime.space/" class="btn-header-bw" target="_blank" data-en="Main Site" data-ua="Основний сайт">Main Site</a>
+                    
+                    <div class="lang-switch-bw" id="lang-toggle" style="cursor: pointer;">
+                        <div class="current-lang">
+                            <img src="https://flagcdn.com/w40/gb.png" alt="EN" id="current-lang-img">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="lang-dropdown-bw">
+                            <div>
+                                <img src="https://flagcdn.com/w40/ua.png" alt="UA" id="dropdown-lang-img">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="bot-hero">
+    <div class="bot-hero-overlay"></div>
+
+    <div class="bot-hero-content">
+        
+        <div class="ecosystem-bots fade-in-up">
+            
+            <a href="#crimeadmin-main" class="eco-bot-card">
+                <div class="eco-bot-img">
+                    <img src="images/logo.png" alt="CrimeADMIN">
+                </div>
+                <h3>CrimeADMIN</h3>
+                <span class="eco-bot-label" data-en="Main module" data-ua="Головний модуль">Main module</span>
+            </a>
+            
+            <a href="#crimeadmin-jr" class="eco-bot-card">
+                <div class="eco-bot-img">
+                    <img src="images/logo.png" alt="CrimeADMIN Jr.">
+                </div>
+                <h3>CrimeADMIN <span class="text-red">Jr.</span></h3>
+                <span class="eco-bot-label" data-en="Utility module" data-ua="Службовий модуль">Utility module</span>
+            </a>
+
+        </div>
+
+        <div class="bot-text-group-centered">
+            <h1 class="bot-name animate-chars">NeoCrime EcoSystem</h1> 
+            <p class="bot-subtitle fade-in-up" data-en="Intelligent VTC management systems" data-ua="Інтелектуальні системи управління VTC">Intelligent VTC management systems</p>
+        </div>
+
+    </div>
+
+    <div class="bot-legal-wrapper-immediate">
+        <div class="bot-legal-island-large">
+            <a href="/crimeadmin-privacy" data-en="Privacy Policy" data-ua="Політика конфіденційності">Privacy Policy</a>
+            <span class="legal-divider-dot"></span>
+            <a href="/crimeadmin-terms" data-en="Terms of Service" data-ua="Угода користування">Terms of Service</a>
+        </div>
+    </div>
+</section>
+
+    <section id="crimeadmin-main" class="bot-info-section">
+    <div class="container">
+        <div class="bot-info-grid">
+            
+            <div class="bot-info-visual" data-aos="fade-right">
+                <div class="bot-card-mockup">
+                    <img src="https://i.ibb.co/Y70ZcDCW/Screenshot-28.png" alt="CrimeADMIN Interface" class="mockup-img">
+                    <div class="mockup-glow"></div>
+                </div>
+            </div>
+
+            <div class="bot-info-text" data-aos="fade-left">
+                <h2 class="section-title-left"><span data-en="About the system" data-ua="Про систему">About the system</span> <span class="text-red">CrimeADMIN</span></h2>
+                
+                <p class="bot-description" data-en="CrimeADMIN is the pride and unique development of NeoCrime. A multifunctional Discord bot created specifically for full automation and management of all processes within the virtual company." data-ua="CrimeADMIN — це гордість та унікальна розробка NeoCrime. Багатофункціональний Discord-бот, створений спеціально для повної автоматизації та керування всіма процесами всередині віртуальної компанії.">
+                    CrimeADMIN is the pride and unique development of NeoCrime. A multifunctional Discord bot created specifically for full automation and management of all processes within the virtual company.
+                </p>
+
+                <div class="features-mini-grid">
+                    <div class="mini-feature">
+                        <i class="fas fa-coins"></i>
+                        <div>
+                            <h4 data-en="Economy & Levels" data-ua="Економіка та Рівні">Economy & Levels</h4>
+                            <p data-en="Own currency CrimeCoin and experience (EXP) system for activity, convoys, and tests." data-ua="Власна валюта CrimeCoin та система досвіду (EXP) за активність, конвої та тести.">Own currency CrimeCoin and experience (EXP) system for activity, convoys, and tests.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mini-feature">
+                        <i class="fas fa-robot"></i>
+                        <div>
+                            <h4 data-en="Full Automation" data-ua="Повна Автоматизація">Full Automation</h4>
+                            <p data-en="Application processing, complaint management, and automatic salary payouts to drivers." data-ua="Обробка анкет, керування скаргами та автоматична видача зарплат водіям.">Application processing, complaint management, and automatic salary payouts to drivers.</p>
+                        </div>
+                    </div>
+
+                    <div class="mini-feature">
+                        <i class="fas fa-truck-moving"></i>
+                        <div>
+                            <h4 data-en="Interactive Fleet" data-ua="Інтерактивний Автопарк">Interactive Fleet</h4>
+                            <p data-en="Access to vehicles categorized by class and driver experience." data-ua="Доступ до транспорту, розподіленого за класами та досвідом водія.">Access to vehicles categorized by class and driver experience.</p>
+                        </div>
+                    </div>
+
+                    <div class="mini-feature">
+                        <i class="fas fa-shield-alt"></i>
+                        <div>
+                            <h4 data-en="Security & Events" data-ua="Безпека та Івенти">Security & Events</h4>
+                            <p data-en="Anti-Raid system and launching the Road Kings Weekend event with 'Secret Cases'." data-ua="Система Anti-Raid та запуск івенту Road Kings Weekend з 'Таємними кейсами'.">Anti-Raid system and launching the Road Kings Weekend event with "Secret Cases".</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bot-cta-box">
+                    <p data-en="The bot is constantly updated, adding new features for your comfort in NeoCrime." data-ua="Бот постійно оновлюється, додаючи нові можливості для вашого комфорту в NeoCrime.">The bot is constantly updated, adding new features for your comfort in NeoCrime.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bot-commands-section" data-aos="fade-up">
+    <div class="container">
+        <h2 class="section-title" data-en="Bot Features" data-ua="Функціонал бота">Bot Features</h2>
+        
+        <div class="commands-grid">
+            <div class="command-wrapper" data-aos="zoom-in" data-aos-delay="100"> 
+                <div class="command-card">
+                    <div class="cmd-icon"><i class="fas fa-wallet"></i></div>
+                    <h3 data-en="Economy" data-ua="Економіка">Economy</h3>
+                    <ul class="cmd-list">
+                        <li><span class="cmd-badge">/work</span> <span data-en="Get salary and EXP (once per 24 hours). The longer the daily streak, the higher the bonus." data-ua="Отримати зарплату та EXP (раз на 24 год). Чим більша серія днів, тим вищий бонус.">Get salary and EXP (once per 24 hours). The longer the daily streak, the higher the bonus.</span></li>
+                        <li><span class="cmd-badge">/balance</span> <span data-en="Check account balance (CrimeCoin, Bonuses, EXP)." data-ua="Перевірка рахунку (CrimeCoin, Бонуси, Досвід).">Check account balance (CrimeCoin, Bonuses, EXP).</span></li>
+                        <li><span class="cmd-badge">/pay</span> <span data-en="Transfer funds between players (10% bank fee)." data-ua="Переказ коштів між гравцями (комісія банку 10%).">Transfer funds between players (10% bank fee).</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="command-wrapper" data-aos="zoom-in" data-aos-delay="200">
+                <div class="command-card">
+                    <div class="cmd-icon"><i class="fas fa-box-open"></i></div>
+                    <h3 data-en="Case System" data-ua="Система Кейсів">Case System</h3>
+                    <ul class="cmd-list">
+                        <li><span class="cmd-badge">/case_menu</span> <span data-en="Open cases (Daily, Regular, Unique, Secret)." data-ua="Відкриття кейсів (Щоденний, Звичайний, Унікальний, Таємний).">Open cases (Daily, Regular, Unique, Secret).</span></li>
+                        <li><i class="fas fa-truck-moving text-red"></i> <span class="cmd-desc" data-en="Cases drop unique trucks for your personal fleet or large amounts of CrimeCoins." data-ua="З кейсів випадають унікальні тягачі для вашого персонального автопарку або великі суми CrimeCoin.">Cases drop unique trucks for your personal fleet or large amounts of CrimeCoins.</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="command-wrapper" data-aos="zoom-in" data-aos-delay="300">
+                <div class="command-card">
+                    <div class="cmd-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3 data-en="Statistics" data-ua="Статистика">Statistics</h3>
+                    <ul class="cmd-list">
+                        <li><span class="cmd-badge">/stats</span> <span data-en="Your profile: level, number of convoys, days in the company." data-ua="Ваш профіль: рівень, кількість конвоїв, дні в компанії.">Your profile: level, number of convoys, days in the company.</span></li>
+                        <li><span class="cmd-badge">/top</span> <span data-en="Top 10 richest and highest level leaders." data-ua="Топ-10 багатіїв та лідерів за рівнем.">Top 10 richest and highest level leaders.</span></li>
+                        <li><span class="cmd-badge">/top_activity</span> <span data-en="Rating by convoys, donations, and work shifts." data-ua="Рейтинг за конвоями, пожертвами та робочими змінами.">Rating by convoys, donations, and work shifts.</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="command-wrapper" data-aos="zoom-in" data-aos-delay="400">
+                <div class="command-card">
+                    <div class="cmd-icon"><i class="fas fa-dice"></i></div>
+                    <h3 data-en="NeoCrime Casino" data-ua="Казино NeoCrime">NeoCrime Casino</h3>
+                    <ul class="cmd-list">
+                        <li><span class="cmd-badge">/slot</span> <span data-en="Slot machine (bet up to 500 CC)." data-ua="Ігровий автомат (ставка до 500 CC).">Slot machine (bet up to 500 CC).</span></li>
+                        <li><span class="cmd-badge">/dice</span> <span data-en="Dice roll for even/odd." data-ua="Кидок кубика на парне/непарне.">Dice roll for even/odd.</span></li>
+                        <li><span class="cmd-badge">/roulette</span> <span data-en="Roulette (Red, Black, Green)." data-ua="Рулетка (Червоне, Чорне, Зелене).">Roulette (Red, Black, Green).</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="command-wrapper" data-aos="zoom-in" data-aos-delay="500">
+                <div class="command-card">
+                    <div class="cmd-icon"><i class="fas fa-brain"></i></div>
+                    <h3 data-en="Testing" data-ua="Тестування">Testing</h3>
+                    <ul class="cmd-list">
+                        <li><span class="cmd-badge">/quiz</span> <span data-en="Test on traffic rules, ETS2/ATS, and company charter (once per hour)." data-ua="Тест на знання правил ПДР, ETS2/ATS та статуту компанії (раз на годину).">Test on traffic rules, ETS2/ATS, and company charter (once per hour).</span></li>
+                        <li><i class="fas fa-check-circle text-red"></i> <span class="cmd-desc" data-en="A correct answer gives CrimeCoin and EXP, a wrong one - a fine." data-ua="Правильна відповідь дає CrimeCoin та EXP, неправильна — штраф.">A correct answer gives CrimeCoin and EXP, a wrong one - a fine.</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="command-wrapper" data-aos="zoom-in" data-aos-delay="600">
+                <div class="command-card">
+                    <div class="cmd-icon"><i class="fas fa-users"></i></div>
+                    <h3 data-en="Social Life" data-ua="Соціальне життя">Social Life</h3>
+                    <ul class="cmd-list">
+                        <li><span class="cmd-badge">/birthday</span> <span data-en="Set your birthday." data-ua="Встановити свою дату народження.">Set your birthday.</span></li>
+                        <li><span class="cmd-badge">/birthdays</span> <span data-en="View the company holiday calendar." data-ua="Переглянути календар свят компанії.">View the company holiday calendar.</span></li>
+                        <li><i class="fas fa-sort-numeric-up-alt text-red"></i> <span class="cmd-desc" data-en="Automatic counting in a separate channel with its own leaderboard." data-ua="Автоматична лічилка в окремому каналі з власною статистикою лідерів.">Automatic counting in a separate channel with its own leaderboard.</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bot-automation-section">
+    <div class="container">
+        <div class="automation-grid">
+            
+            <div class="automation-text" data-aos="fade-right">
+                <h2 class="section-title-left"><span data-en="Automation —" data-ua="Автоматизація —">Automation —</span> <span class="text-red" data-en="Our Choice" data-ua="Наш вибір">Our Choice</span></h2>
+                <p class="bot-description" data-en="We left the routine in the past. CrimeADMIN takes care of all the bureaucracy, allowing management to focus on company development, and drivers — on the road." data-ua="Ми залишили рутину в минулому. CrimeADMIN бере на себе всю бюрократію, дозволяючи керівництву зосередитись на розвитку компанії, а водіям — на дорозі.">
+                    We left the routine in the past. CrimeADMIN takes care of all the bureaucracy, allowing management to focus on company development, and drivers — on the road.
+                </p>
+
+                <div class="auto-features">
+                    <div class="auto-item">
+                        <div class="auto-icon"><i class="fas fa-id-badge"></i></div>
+                        <div class="auto-info">
+                            <h4 data-en="VTC Management" data-ua="Управління VTC">VTC Management</h4>
+                            <p data-en="Dynamic nickname changing with position tags, automatic access granting, and real-time public team list updating." data-ua="Динамічна зміна нікнеймів з тегами посад, автоматична видача доступів та оновлення публічного списку команди в реальному часі.">Dynamic nickname changing with position tags, automatic access granting, and real-time public team list updating.</p>
+                        </div>
+                    </div>
+
+                    <div class="auto-item">
+                        <div class="auto-icon"><i class="fas fa-file-signature"></i></div>
+                        <div class="auto-info">
+                            <h4 data-en="Smart Applications" data-ua="Smart-Анкети">Smart Applications</h4>
+                            <p data-en="One-click application processing. The bot automatically removes old roles, assigns new ones, formats the nickname, and creates a log for instructors." data-ua="Обробка заявок в один клік. Бот сам знімає старі ролі, видає нові, форматує нікнейм та створює лог для інструкторів.">One-click application processing. The bot automatically removes old roles, assigns new ones, formats the nickname, and creates a log for instructors.</p>
+                        </div>
+                    </div>
+
+                    <div class="auto-item">
+                        <div class="auto-icon"><i class="fas fa-shield-virus"></i></div>
+                        <div class="auto-info">
+                            <h4 data-en="Anti-Raid Shield" data-ua="Anti-Raid Shield">Anti-Raid Shield</h4>
+                            <p data-en="Built-in neuro-guard. The bot continuously analyzes server activity in the background. If it detects any sabotage attempts or security threats, it instantly and independently neutralizes the violator." data-ua="Вбудований нейро-охоронець. Бот у фоновому режимі безперервно аналізує активність на сервері. При виявленні будь-яких спроб саботажу чи загрози безпеці, він миттєво та самостійно нейтралізує порушника.">Built-in neuro-guard. The bot continuously analyzes server activity in the background. If it detects any sabotage attempts or security threats, it instantly and independently neutralizes the violator.</p>
+                        </div>
+                    </div>
+
+                    <div class="auto-item">
+                        <div class="auto-icon"><i class="fas fa-stopwatch"></i></div>
+                        <div class="auto-info">
+                            <h4 data-en="Road Kings Tracker" data-ua="Road Kings Tracker">Road Kings Tracker</h4>
+                            <p data-en="On weekends, the system independently tracks your activity in voice channels, quietly crediting salary and EXP every hour." data-ua="На вихідних система самостійно відстежує вашу активність у голосових каналах, непомітно нараховуючи зарплату та EXP щогодини.">On weekends, the system independently tracks your activity in voice channels, quietly crediting salary and EXP every hour.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="automation-visual" data-aos="fade-left">
+                <div class="cyber-terminal">
+                    <div class="terminal-header">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                        <div class="terminal-title">bash - crimeadmin_sys</div>
+                    </div>
+                    <div class="terminal-body">
+                        <p class="term-line"><span class="term-prompt">root@neocrime:~#</span> ./start_bot.sh</p>
+                        <p class="term-line system">[SYSTEM] Initializing CrimeADMIN v2.0...</p>
+                        <p class="term-line wait">Loading modules <span class="dots">...</span></p>
+                        <p class="term-line success">✔ VTC Management module loaded</p>
+                        <p class="term-line success">✔ Economy & DB modules synced</p>
+                        <p class="term-line warning">⚠ [ANTI-RAID] Shield is active and monitoring.</p>
+                        <br>
+                        <p class="term-line action">> Event detected: New Application APP-0042</p>
+                        <p class="term-line action">> Executing: Assigning [Candidate] role...</p>
+                        <p class="term-line success">✔ Roles updated. Nickname formatted.</p>
+                        <br>
+                        <p class="term-line action">> Cronjob: Checking expired shop roles...</p>
+                        <p class="term-line info">ℹ No expired roles found.</p>
+                        <p class="term-line cursor-blink"><span class="term-prompt">root@neocrime:~#</span> <span class="cursor">_</span></p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section id="crimeadmin-jr" class="jr-bot-intro-section">
+    <div class="container">
+        <div class="split-container">
+            
+            <div class="split-text" data-aos="fade-right">
+                <h2 class="section-title-left">CrimeADMIN <span class="text-red">Jr.</span></h2>
+                <p class="bot-description" data-en="The utility module of the system. Its element is logistics, continuous monitoring, and full synchronization with spreadsheets." data-ua="Службовий модуль системи. Його стихія — логістика, безперервний моніторинг та повна синхронізація з електронними таблицями.">
+                    The utility module of the system. Its element is logistics, continuous monitoring, and full synchronization with spreadsheets.
+                </p>
+                
+                <div class="cyber-list">
+                    <div class="cyber-list-item">
+                        <i class="fas fa-route text-red"></i>
+                        <div>
+                            <h4 data-en="Convoy Automation" data-ua="Автоматизація Конвоїв">Convoy Automation</h4>
+                            <p data-en="Logisticians just need to enter data into a Google Sheet. The bot will extract the information, create a beautiful announcement, and publish it on schedule." data-ua="Логістам достатньо вписати дані в Google Таблицю. Бот сам дістане інформацію, сформує красивий анонс і опублікує його за розкладом.">Logisticians just need to enter data into a Google Sheet. The bot will extract the information, create a beautiful announcement, and publish it on schedule.</p>
+                        </div>
+                    </div>
+                    <div class="cyber-list-item">
+                        <i class="fas fa-link text-red"></i>
+                        <div>
+                            <h4 data-en="Chain Queue" data-ua="Ланцюжкова черга">Chain Queue</h4>
+                            <p data-en="If several trips are scheduled for a day, the system builds them into a smart queue and publishes them sequentially one after another." data-ua="Якщо на день заплановано кілька рейсів, система вибудовує їх у розумну чергу і публікує послідовно один за одним.">If several trips are scheduled for a day, the system builds them into a smart queue and publishes them sequentially one after another.</p>
+                        </div>
+                    </div>
+                    <div class="cyber-list-item">
+                        <i class="fas fa-headset text-red"></i>
+                        <div>
+                            <h4 data-en="Voice Gatherings and Telegram" data-ua="Voice-збори та Telegram">Voice Gatherings and Telegram</h4>
+                            <p data-en="Automatic creation of gathering notifications in the voice channel and instant duplication of routes to the corporate Telegram." data-ua="Автоматичне створення сповіщень про збори в голосовому каналі та миттєве дублювання маршрутів у корпоративний Telegram.">Automatic creation of gathering notifications in the voice channel and instant duplication of routes to the corporate Telegram.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="split-visual" data-aos="fade-left">
+                <div class="jr-hologram">
+                    <i class="fas fa-truck-loading holo-icon"></i>
+                    <div class="holo-scanline"></div>
+                    <div class="holo-base"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="jr-thub-section">
+    <div class="container">
+        <div class="split-container">
+            
+            <div class="split-visual" data-aos="fade-right">
+                <div class="jr-hologram">
+                    <i class="fas fa-globe-europe holo-icon"></i> 
+                    <div class="holo-scanline"></div>
+                    <div class="holo-base"></div>
+                </div>
+            </div>
+
+            <div class="split-text" data-aos="fade-left">
+                <span class="pre-title text-red">CrimeADMIN Jr.</span>
+                <h2 class="section-title-left">TruckersHub API</h2>
+                
+                <div class="jr-description-box">
+                    <p class="bot-description" data-en="The bot is directly connected to the TruckersHub database, allowing for full automation of HR management and the hosting of company global events." data-ua="Бот безпосередньо підключений до бази даних TruckersHub, що дозволяє повністю автоматизувати роботу з кадрами та проведення глобальних івентів компанії.">
+                        The bot is directly connected to the TruckersHub database, allowing for full automation of HR management and the hosting of company global events.
+                    </p>
+                    
+                    <div class="cyber-list">
+                        <div class="cyber-list-item">
+                            <i class="fas fa-level-up-alt text-red"></i>
+                            <div>
+                                <h4 data-en="Auto-Rank System" data-ua="Система Авто-Рангів">Auto-Rank System</h4>
+                                <p data-en="Tracks mileage and automatically promotes drivers (from Trainee to Veteran), independently assigning roles in Discord and sending congratulations." data-ua="Відстежує пробіг і автоматично підвищує водіїв (від Стажера до Ветерана), самостійно видаючи ролі в Discord та надсилаючи привітання.">Tracks mileage and automatically promotes drivers (from Trainee to Veteran), independently assigning roles in Discord and sending congratulations.</p>
+                            </div>
+                        </div>
+                        <div class="cyber-list-item">
+                            <i class="fas fa-camera text-red"></i>
+                            <div>
+                                <h4 data-en="Road Kings Tracking" data-ua="Фіксація Road Kings">Road Kings Tracking</h4>
+                                <p data-en="From Friday to Monday, the system quietly 'takes a snapshot' of each participant's starting mileage to begin the global event." data-ua="З п'ятниці по понеділок система непомітно 'фотографує' стартовий кілометраж кожного учасника для початку глобального івенту.">From Friday to Monday, the system quietly 'takes a snapshot' of each participant's starting mileage to begin the global event.</p>
+                            </div>
+                        </div>
+                        <div class="cyber-list-item">
+                            <i class="fas fa-coins text-red"></i>
+                            <div>
+                                <h4 data-en="Road Monetization" data-ua="Монетизація доріг">Road Monetization</h4>
+                                <p data-en="Every kilometer driven on weekends is converted into CrimeCoin. The bot automatically calculates the salary in PMs and forms the TOP-10 best drivers." data-ua="Кожен пройдений на вихідних кілометр конвертується у CrimeCoin. Бот автоматично вираховує зарплату в ПП та формує ТОП-10 найкращих водіїв.">Every kilometer driven on weekends is converted into CrimeCoin. The bot automatically calculates the salary in PMs and forms the TOP-10 best drivers.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+
+        </div>
+    </div>
+</section>
+
+    <footer class="site-footer">
+    <div class="container footer-container">
+        
+        <div class="footer-col about-col">
+            <div class="logo">Neo<span>Crime</span></div>
+            <p data-en="NeoCrime is an ambitious Ukrainian VTC, confidently moving forward, creating its own success story in the vastness of TruckersMP. It is a place where style, discipline, and team spirit combine into a single force, and every member becomes part of a great and confident movement." data-ua="NeoCrime — це амбіційна українська VTC, що впевнено рухається вперед, створюючи власну історію успіху на просторах TruckersMP. Це місце, де стиль, дисципліна та командний дух поєднуються в єдину силу, а кожен учасник стає частиною великого та впевненого руху.">NeoCrime is an ambitious Ukrainian VTC, confidently moving forward, creating its own success story in the vastness of TruckersMP. It is a place where style, discipline, and team spirit combine into a single force, and every member becomes part of a great and confident movement.</p>
+            
+            <div class="social-img-links">
+                <a href="https://discord.gg/zGzy7Gcdgy" target="_blank"><img src="images/social1.png" alt="Social 1"></a>
+                <a href="https://www.tiktok.com/@neocrime_vtc" target="_blank"><img src="images/social2.png" alt="Social 2"></a>
+                <a href="https://truckersmp.com/vtc/85940" target="_blank"><img src="images/social3.png" alt="Social 3"></a>
+                <a href="https://truckershub.in/vtc/1775" target="_blank"><img src="images/social4.png" alt="Social 4"></a>
+            </div>
+        </div>
+
+        <div class="footer-col nav-col">
+            <h4 data-en="Navigation" data-ua="Навігація">Navigation</h4>
+            <ul>
+                <li><a href="/" data-en="Home" data-ua="Головна">Home</a></li>
+                <li><a href="/#about" data-en="About Us" data-ua="Про нас">About Us</a></li>
+                <li><a href="/#gallery" data-en="Gallery" data-ua="Галерея">Gallery</a></li>
+                <li><a href="/crimeadmin-privacy" data-en="Privacy Policy" data-ua="Політика приватності">Privacy Policy</a></li>
+                <li><a href="/crimeadmin-terms" data-en="Terms of Service" data-ua="Угода користування">Terms of Service</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col contact-col">
+            <h4 data-en="Contacts" data-ua="Контакти">Contacts</h4>
+            <ul>
+                <li><i class="fas fa-envelope"></i> <a href="mailto:neocrime10@gmail.com">neocrime10@gmail.com</a></li>
+                <li><i class="fab fa-discord"></i> <a href="https://discord.gg/zGzy7Gcdgy" target="_blank">https://discord.gg/zGzy7Gcdgy</a></li>
+            </ul>
+        </div>
+        
+    </div>
+    
+    <div class="footer-bottom">
+        <p data-en="&copy; 2026 NeoCrime. All rights reserved." data-ua="&copy; 2026 NeoCrime. Всі права захищені.">&copy; 2026 NeoCrime. All rights reserved.</p>
+    </div>
+</footer>
+
+    <script>
+    /* --- ПЕРЕМИКАЧ МОВИ (LANGUAGE TOGGLE) --- */
+    document.addEventListener('DOMContentLoaded', () => {
+        // Знаходимо кнопку та прапорці
+        const langBtn = document.getElementById('lang-toggle');
+        const currentLangImg = document.getElementById('current-lang-img');
+        const dropdownLangImg = document.getElementById('dropdown-lang-img');
+        
+        let currentLang = 'en'; // Сторінка спочатку англійською
+
+        if (langBtn) {
+            langBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Змінюємо поточну мову в змінній
+                currentLang = currentLang === 'en' ? 'ua' : 'en';
+
+                // Міняємо прапорці місцями
+                if (currentLang === 'ua') {
+                    currentLangImg.src = "https://flagcdn.com/w40/ua.png";
+                    dropdownLangImg.src = "https://flagcdn.com/w40/gb.png";
+                } else {
+                    currentLangImg.src = "https://flagcdn.com/w40/gb.png";
+                    dropdownLangImg.src = "https://flagcdn.com/w40/ua.png";
+                }
+
+                // Шукаємо всі елементи, де є атрибут data-en і підміняємо текст
+                document.querySelectorAll('[data-en]').forEach(el => {
+                    el.innerHTML = el.getAttribute(`data-${currentLang}`);
+                });
+            });
+        }
+    });
+</script>
+
+    <script>
+        /* --- АНІМАЦІЯ ТЕКСТУ (CrimeADMIN) --- */
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedTexts = document.querySelectorAll('.animate-chars');
+            animatedTexts.forEach((textElement) => {
+                const text = textElement.textContent;
+                textElement.textContent = ''; 
+                let globalDelay = 0.2;
+                for (let i = 0; i < text.length; i++) {
+                    const span = document.createElement('span');
+                    if (text[i] === ' ') {
+                        span.innerHTML = '&nbsp;';
+                        span.className = 'char-space';
+                    } else {
+                        span.textContent = text[i];
+                        span.className = 'char-span';
+                        span.style.animationDelay = `${globalDelay}s`;
+                        globalDelay += 0.04; 
+                    }
+                    textElement.appendChild(span);
+                }
+            });
+        });
+    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        /* --- ИНИЦИАЛИЗАЦИЯ АНИМАЦИЙ (ЧТОБЫ БЛОКИ ПОЯВИЛИСЬ) --- */
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        /* --- ПЛАВНЫЙ СКРОЛЛ НА КНОПКЕ И ЛОГОТИПЕ --- */
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                
+                // Если кликнули на Home или Логотип (где ссылка просто #)
+                if (targetId === '#') {
+                    e.preventDefault();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    return;
+                }
+                
+                // Для всех остальных ссылок на секции (например #crimeadmin-main)
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    e.preventDefault(); 
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
