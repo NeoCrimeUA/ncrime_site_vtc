@@ -3045,3 +3045,91 @@ body {
     top: 2px;
     color: #ff3333;
 }
+
+/* --- БЛОК NEOCRIME DRIVERHUB --- */
+.driverhub-section {
+    padding: 100px 0;
+    overflow: hidden;
+    background-color: #141414; /* Оставляем серым для чередования */
+}
+
+/* Корректируем цвета последующих секций для сохранения зебры */
+.crimeadmin-section { background-color: #0d0d0d !important; }
+.ats-section { background-color: #141414 !important; }
+
+/* Перекрашиваем секцию FAQ (Приєднуйся до нашої спільноти) в черный тип фона, как галерея */
+.faq-section { 
+    background-color: #0d0d0d !important; 
+}
+
+.driverhub-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.driverhub-left {
+    flex: 1;
+    max-width: 600px;
+}
+
+.driverhub-left h2.section-title {
+    text-align: left;
+}
+
+.driverhub-left h2.section-title::after {
+    margin: 15px 0 0 0;
+}
+
+.driverhub-text-content p {
+    text-align: justify;
+}
+
+.driverhub-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* ОБНОВЛЕННЫЙ СТИЛЬ КАРТИНКИ: точно такой же, как .truck-parallax в About Section */
+.driverhub-img {
+    width: 100%;
+    max-width: 700px; /* Увеличено до размеров картинки из About */
+    height: auto;
+    filter: drop-shadow(5px 5px 15px rgba(0, 0, 0, 0.5)); /* Чистая тень без красного свечения */
+    /* Убраны рамки, границы и скругления, чтобы картинка сидела нативно */
+}
+
+/* Мобильная адаптация */
+@media (max-width: 992px) {
+    .driverhub-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 40px;
+    }
+    
+    .driverhub-left {
+        max-width: 100%;
+    }
+    
+    .driverhub-left h2.section-title {
+        text-align: center;
+    }
+    
+    .driverhub-left h2.section-title::after {
+        margin: 15px auto 0;
+    }
+    
+    .driverhub-text-content p,
+    .driverhub-section .cyber-list-item div {
+        text-align: center !important;
+    }
+
+    .driverhub-section .cyber-list-item {
+        flex-direction: column;
+        align-items: center !important;
+    }
+}
