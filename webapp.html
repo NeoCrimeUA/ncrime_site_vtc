@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NeoCrime Mini App</title>
+    <title>NeoCrime Web App</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        /* Используем системные цвета темы Telegram для нативного вида */
         body {
-            background-color: var(--tg-theme-bg-color, #181818);
+            background-color: var(--tg-theme-bg-color, #111111);
             color: var(--tg-theme-text-color, #ffffff);
             font-family: 'Montserrat', sans-serif;
             display: flex;
@@ -20,55 +19,66 @@
             margin: 0;
             text-align: center;
         }
-        .container {
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        .card {
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            max-width: 80%;
+        }
+        .important {
+            font-weight: 900;
+            color: var(--tg-theme-button-color, #ffaa00);
         }
     </style>
 </head>
 <body>
-    <div id="app-content" class="container">
-        <h2>Синхронизация...</h2>
+    <div id="display-box" class="card">
+        <h2>Загрузка профиля...</h2>
     </div>
 
     <script>
-        // Инициализация Web App
-        const tg = window.Telegram.WebApp;
-        tg.expand(); // Открываем приложение на весь экран
+        const webapp = window.Telegram.WebApp;
+        webapp.expand();
 
-        const tgUser = tg.initDataUnsafe?.user;
-        const contentDiv = document.getElementById('app-content');
+        const userContainer = document.getElementById('display-box');
+        const tgUserData = webapp.initDataUnsafe?.user;
 
-        if (tgUser) {
-            // Запрос к твоему API
+        if (tgUserData) {
+            // Запрос отправляется на тот же домен, где работают остальные функции десктопной программы
             fetch('https://api.neocrime.space/tg_auth', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ tg_id: tgUser.id })
+                body: JSON.stringify({ tg_id: tgUserData.id })
             })
-            .then(res => res.json())
-            .then(data => {
-                if (data.status === 'ok') {
-                    // Отрисовка профиля при успешной авторизации
-                    contentDiv.innerHTML = `
-                        <h2>${data.nickname}</h2>
-                        <p>Накатано: <b>${data.mileage} км</b></p>
+            .then(response => response.json().then(data => ({ status: response.status, body: data })))
+            .then(res => {
+                if (res.body.status === 'ok') {
+                    userContainer.innerHTML = `
+                        <h2>Привет, <span class="important">${res.body.nickname}</span></h2>
+                        <p>Твой текущий пробег:</p>
+                        <h1>${res.body.mileage} км</h1>
                     `;
                 } else {
-                    // Если TG ID нет в базе
-                    contentDiv.innerHTML = `
-                        <h3>Аккаунт не привязан</h3>
-                        <p>Пожалуйста, привяжи свой Telegram в Discord канале компании.</p>
+                    // Вывод конкретной причины ошибки, переданной с бэкенда
+                    userContainer.innerHTML = `
+                        <h3>Авторизация не удалась</h3>
+                        <p>${res.body.reason || 'Неизвестная ошибка'}</p>
                     `;
                 }
             })
-            .catch(err => {
-                contentDiv.innerHTML = '<h3>Ошибка подключения к серверу API.</h3>';
+            .catch(error => {
+                userContainer.innerHTML = `
+                    <h3>Ошибка соединения</h3>
+                    <p>Не удалось подключиться к API сервера. Проверьте сеть или статус сервера.</p>
+                `;
             });
         } else {
-            contentDiv.innerHTML = '<h3>Пожалуйста, открой приложение через Telegram.</h3>';
+            userContainer.innerHTML = `
+                <h3>Вход заблокирован</h3>
+                <p>Пожалуйста, откройте это приложение внутри Telegram.</p>
+            `;
         }
     </script>
 </body>
