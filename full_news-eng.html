@@ -427,7 +427,10 @@
     </script>
 
     <script>
-        const NEWS_ENDPOINT = "/news_en";
+                const API_BASE = window.location.hostname === 'api.neocrime.space'
+            ? ''
+            : 'https://api.neocrime.space';
+        const NEWS_ENDPOINT = `${API_BASE}/news_en`;
         const NEWS_LIMIT = null;
         const NEWS_EMPTY_TEXT = "No news yet.";
         const NEWS_ERROR_TEXT = "Failed to load news.";

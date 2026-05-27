@@ -1067,7 +1067,10 @@
     </script>
 
     <script>
-        const NEWS_ENDPOINT = "/news";
+                const API_BASE = window.location.hostname === 'api.neocrime.space'
+            ? ''
+            : 'https://api.neocrime.space';
+        const NEWS_ENDPOINT = `${API_BASE}/news`;
         const NEWS_LIMIT = 6;
         const NEWS_EMPTY_TEXT = "Новин поки немає.";
         const NEWS_ERROR_TEXT = "Не вдалося завантажити новини.";
