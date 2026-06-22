@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Галерея — NeoCrime</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+  *{ box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root{
+    --primary: 0 72% 35%;
+    --primary-foreground: 0 0% 100%;
+    --bg-dark: 0 0% 6%;
+  }
+
+  html, body{
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  body{
+    background-color: #1a1b1b;
+    color: #fff;
+    font-family: 'Montserrat', ui-sans-serif, system-ui, -apple-system, sans-serif;
+    line-height: 1.5;
+  }
+
+  a{ color: inherit; text-decoration: none; }
+  button{ font: inherit; cursor: pointer; }
+
+  .text-primary{ color: hsl(var(--primary)); }
+
+  /* ===== HEADER — точна копія з news.html ===== */
+  .site-header{
+    position: fixed;
+    top: 0; left: 0;
+    z-index: 50;
+    width: 100%;
+    padding: 0.75rem 1.25rem;
+    background-color: rgba(15, 16, 16, 0.88);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+  .header-inner{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1552px;
+    margin: 0 auto;
+  }
+  .logo-link{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .logo-link img{
+    width: 40px; height: 40px;
+    border-radius: 9999px;
+    display: block;
+    background-color: rgba(255,255,255,0.08);
+  }
+  .logo-link h1{
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #fff;
+  }
+  .main-nav ul{
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+  }
+  .nav-link{
+    color: #fff;
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 4px;
+  }
+  .nav-link::after{
+    content: '';
+    position: absolute;
+    width: 0; height: 2px;
+    bottom: 0; left: 0;
+    background-color: hsl(var(--primary));
+    transition: width 0.3s ease;
+  }
+  .nav-link:hover::after{ width: 100%; }
+  .nav-link.active::after{ width: 100%; }
+  .nav-link.active{ color: hsl(var(--primary)); }
+
+  /* ===== ПЕРЕМИКАЧ МОВИ ===== */
+  .lang-switch-bw{
+    position: relative;
+    display: flex; align-items: center;
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 8px 12px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-left: 0.5rem;
+  }
+  .lang-switch-bw:hover{ background-color: rgba(255,255,255,0.1); }
+  .current-lang{ display: flex; align-items: center; gap: 8px; }
+  .current-lang img, .lang-dropdown-bw img{
+    width: 20px; height: auto;
+    border-radius: 3px; display: block;
+  }
+  .current-lang i{ font-size: 12px; color: #fff; transition: 0.3s; }
+  .lang-switch-bw:hover .current-lang i{ transform: rotate(180deg); }
+  .lang-dropdown-bw{
+    position: absolute;
+    top: 140%; left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: rgba(12,12,12,0.95);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 15px;
+    padding: 10px 15px;
+    display: flex; flex-direction: column; align-items: center; gap: 10px;
+    opacity: 0; visibility: hidden;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+  }
+  .lang-switch-bw:hover .lang-dropdown-bw{
+    opacity: 1; visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+  .lang-dropdown-bw a{ display: block; transition: 0.3s; }
+  .lang-dropdown-bw a:hover{ transform: scale(1.15); }
+
+  .burger-btn{
+    display: none;
+    background: transparent; border: none;
+    padding: 0.5rem; border-radius: 9999px;
+    transition: background-color 0.2s ease;
+  }
+  .burger-btn:hover{ background-color: rgba(255,255,255,0.08); }
+  .burger-btn svg{ width: 28px; height: 28px; fill: #fff; }
+
+  @media(max-width:768px){
+    .main-nav{ display: none; }
+    .burger-btn{ display: flex; }
+  }
+
+  /* ===== HERO ФОТО — точна копія з news.html ===== */
+  .hero-photo-wrap{
+    position: relative;
+    width: 100%; height: 620px;
+    overflow: hidden;
+    background-color: #1a1b1b;
+  }
+  .hero-photo-wrap::after{
+    content: "";
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg,rgba(26,27,27,0.1) 0%,rgba(26,27,27,0.4) 60%,rgba(26,27,27,1) 100%);
+    z-index: 20; pointer-events: none;
+  }
+  .hero-photo-wrap img{
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+  }
+  .hero-content{
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    z-index: 30; text-align: center;
+    padding: 0 1rem;
+  }
+  .hero-content h1{
+    font-size: 2.75rem;
+    font-weight: 800; color: #fff;
+    letter-spacing: -0.02em;
+  }
+  .hero-content p{
+    margin-top: 0.5rem;
+    font-size: 1.15rem; color: #fff; font-weight: 500;
+  }
+  @media(min-width:768px){
+    .hero-content h1{ font-size: 4rem; }
+    .hero-content p{ font-size: 1.5rem; }
+  }
+
+  /* ===== СЕКЦІЯ ГАЛЕРЕЇ ===== */
+  .gallery-section{
+    width: 100%;
+    max-width: 1552px;
+    margin: 0 auto;
+    padding: 5rem 1.25rem;
+    text-align: left;
+  }
+
+  /* Заголовок — той самий паттерн, що в index.html .benefits-header */
+  .gallery-header-flex{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .gallery-header-flex h2{
+    font-size: 2rem;
+    font-weight: 700;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 0.5rem;
+    letter-spacing: -0.01em;
+    color: #fff;
+  }
+  .gallery-header-flex h2::after{
+    content: "";
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 60%; height: 3px;
+    background: hsl(var(--primary));
+    border-radius: 2px;
+  }
+  .gallery-header-flex p{
+    margin-top: 0.75rem;
+    color: #e5e5e5;
+    font-size: 1.05rem;
+    font-weight: 400;
+  }
+
+  /* Лічильник і фільтр рядок */
+  .gallery-meta-row{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+  .gallery-count{
+    font-size: 0.9rem;
+    color: #9c9c9c;
+  }
+  .gallery-count span{
+    color: #fff;
+    font-weight: 600;
+  }
+
+  /* ===== GRID — точна копія з index.html ===== */
+  .gallery-grid{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+  @media(max-width:1200px){
+    .gallery-grid{ grid-template-columns: repeat(3, 1fr); }
+  }
+  @media(max-width:992px){
+    .gallery-grid{ grid-template-columns: repeat(2, 1fr); }
+  }
+  @media(max-width:640px){
+    .gallery-grid{ grid-template-columns: 1fr; }
+  }
+
+  /* ===== КАРТКА — 1 в 1 з index.html ===== */
+  .gallery-card{
+    position: relative;
+    height: 260px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.12);
+    background-color: #262626;
+    cursor: pointer;
+    /* анімація появи */
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.45s ease, transform 0.45s ease;
+  }
+  .gallery-card.visible{
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .gallery-card-img{
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+    transition: filter 0.4s ease, transform 0.4s ease;
+  }
+  .gallery-card:hover .gallery-card-img{
+    filter: blur(6px) brightness(0.6);
+    transform: scale(1.04);
+  }
+  .gallery-card-overlay{
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg,rgba(0,0,0,0) 55%,rgba(0,0,0,0.65) 100%);
+    pointer-events: none;
+  }
+  .gallery-card-title{
+    position: absolute;
+    left: 1rem; bottom: 1rem;
+    z-index: 2;
+    color: hsl(var(--primary));
+    font-weight: 700; font-size: 1.05rem;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+  }
+  .gallery-card:hover .gallery-card-title{
+    opacity: 1; transform: translateY(0);
+  }
+  /* 4 стрілки "розгорнути" — точна копія з index.html */
+  .gallery-card-expand{
+    position: absolute; inset: 0; z-index: 2;
+    display: flex; align-items: center; justify-content: center;
+    pointer-events: none;
+  }
+  .gallery-card-expand svg{
+    width: 46px; height: 46px;
+    opacity: 0; transform: scale(0.7);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.6));
+  }
+  .gallery-card:hover .gallery-card-expand svg{
+    opacity: 1; transform: scale(1);
+  }
+  .gallery-card-expand svg .arrow-tl{ transition: transform 0.35s ease; }
+  .gallery-card-expand svg .arrow-tr{ transition: transform 0.35s ease; }
+  .gallery-card-expand svg .arrow-bl{ transition: transform 0.35s ease; }
+  .gallery-card-expand svg .arrow-br{ transition: transform 0.35s ease; }
+  .gallery-card:hover .arrow-tl{ transform: translate(-3px,-3px); }
+  .gallery-card:hover .arrow-tr{ transform: translate(3px,-3px); }
+  .gallery-card:hover .arrow-bl{ transform: translate(-3px,3px); }
+  .gallery-card:hover .arrow-br{ transform: translate(3px,3px); }
+
+  /* Скелетон-заглушка поки фото грузиться */
+  .gallery-card-skeleton{
+    position: absolute; inset: 0;
+    background: linear-gradient(90deg, #262626 25%, #303030 50%, #262626 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+  @keyframes shimmer{
+    0%{ background-position: 200% 0; }
+    100%{ background-position: -200% 0; }
+  }
+  .gallery-card-img.loaded + .gallery-card-skeleton,
+  .gallery-card-img.loaded ~ .gallery-card-skeleton{ display: none; }
+
+  /* ===== СТАН ПОРОЖНЬОЇ ГАЛЕРЕЇ ===== */
+  .gallery-empty{
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 4rem 0;
+    color: #9c9c9c;
+  }
+  .gallery-empty i{ font-size: 3rem; margin-bottom: 1rem; display: block; opacity: 0.4; }
+  .gallery-empty p{ font-size: 1.1rem; }
+
+  /* ===== ЛАЙТБОКС — точна копія з index.html ===== */
+  .gallery-lightbox{
+    position: fixed; inset: 0; z-index: 200;
+    background-color: rgba(0,0,0,0.9);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex; justify-content: center; align-items: center;
+    padding: 2rem;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  .gallery-lightbox.active{ opacity: 1; pointer-events: all; }
+  .gallery-lightbox-img{
+    max-width: 90vw; max-height: 88vh;
+    border-radius: 8px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+    transform: scale(0.96);
+    transition: transform 0.3s ease;
+    display: block;
+  }
+  .gallery-lightbox.active .gallery-lightbox-img{ transform: scale(1); }
+
+  /* Кнопка закрити */
+  .gallery-lightbox-close{
+    position: absolute; top: 1.5rem; right: 1.5rem;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff; font-size: 1.5rem;
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    display: flex; justify-content: center; align-items: center;
+    transition: background 0.2s;
+  }
+  .gallery-lightbox-close:hover{ background: rgba(255,255,255,0.18); }
+
+  /* Навігація по лайтбоксу (стрілки ліво/право) */
+  .lightbox-nav{
+    position: absolute; top: 50%; transform: translateY(-50%);
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff; font-size: 1.2rem;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    display: flex; justify-content: center; align-items: center;
+    transition: background 0.2s, transform 0.2s;
+    cursor: pointer;
+  }
+  .lightbox-nav:hover{
+    background: rgba(255,255,255,0.18);
+    transform: translateY(-50%) scale(1.08);
+  }
+  .lightbox-nav-prev{ left: 1.5rem; }
+  .lightbox-nav-next{ right: 4.5rem; }
+
+  /* Підпис під фото в лайтбоксі */
+  .lightbox-caption{
+    position: absolute;
+    bottom: 1.5rem; left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 30px;
+    padding: 0.4rem 1.2rem;
+    font-size: 0.85rem; color: #e5e5e5;
+    white-space: nowrap; max-width: 80vw;
+    overflow: hidden; text-overflow: ellipsis;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+  .gallery-lightbox.active .lightbox-caption{ opacity: 1; }
+
+  /* ===== КНОПКА "ЗАВАНТАЖИТИ ЩЕ" ===== */
+  .btn-load-more{
+    display: inline-flex;
+    align-items: center; justify-content: center; gap: 0.6rem;
+    padding: 14px 36px;
+    font-size: 15px; font-weight: 600;
+    color: #fff;
+    background: transparent;
+    border: 1.5px solid rgba(255,255,255,0.25);
+    border-radius: 50px;
+    transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+    letter-spacing: 0.3px;
+  }
+  .btn-load-more:hover:not(:disabled){
+    border-color: rgba(255,255,255,0.55);
+    background: rgba(255,255,255,0.06);
+    transform: scale(1.02);
+  }
+  .btn-load-more:disabled{ opacity: 0.45; cursor: not-allowed; }
+  .btn-load-more .fa-spinner{ animation: spin 0.8s linear infinite; }
+  @keyframes spin{ to{ transform: rotate(360deg); } }
+
+  .load-more-wrap{
+    text-align: center;
+    margin-top: 3rem;
+  }
+  .all-loaded-msg{
+    margin-top: 3rem;
+    text-align: center;
+    color: #9c9c9c;
+    font-size: 0.9rem;
+  }
+
+  /* ===== FOOTER — точна копія з news.html ===== */
+  .site-footer{
+    background-color: #080808;
+    padding: 70px 0 20px;
+    border-top: 2px solid #222;
+    position: relative; z-index: 10;
+  }
+  .footer-container{
+    display: flex; justify-content: space-between;
+    flex-wrap: wrap; gap: 40px;
+    border-bottom: 1px solid #1a1a1a;
+    padding-bottom: 40px;
+    max-width: 1552px; margin: 0 auto;
+    padding-left: 1.25rem; padding-right: 1.25rem;
+  }
+  .footer-col{ flex: 1; min-width: 250px; }
+  .about-col .footer-logo{
+    display: flex; align-items: center;
+    font-size: 22px; font-weight: 900; letter-spacing: 1px;
+    margin-bottom: 15px; color: #fff;
+  }
+  .about-col .footer-logo span{ color: #ff3333; }
+  .about-col p{ font-size: 14px; color: #888; line-height: 1.6; margin-bottom: 25px; }
+  .social-img-links{ display: flex; gap: 15px; }
+  .social-img-links a{
+    display: block; width: 40px; height: 40px;
+    border-radius: 8px; overflow: hidden;
+    border: 1px solid #333; transition: all 0.3s ease;
+    background-color: #111;
+  }
+  .social-img-links a img{ width:100%; height:100%; object-fit:contain; padding:5px; transition:all 0.3s ease; }
+  .social-img-links a:hover{
+    border-color: #ff3333;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(255,51,51,0.3);
+  }
+  .footer-col h4{ font-size:18px; color:#fff; margin-bottom:25px; position:relative; }
+  .footer-col h4::after{ content:''; display:block; width:30px; height:2px; background-color:#ff3333; margin-top:10px; }
+  .nav-col ul, .contact-col ul{ list-style: none; }
+  .nav-col li, .contact-col li{ margin-bottom: 15px; }
+  .nav-col a, .contact-col a{ color:#888; font-size:14px; transition:all 0.3s ease; display:flex; align-items:center; gap:12px; }
+  .nav-col a::before{ content:'\f054'; font-family:'Font Awesome 6 Free'; font-weight:900; color:#ff3333; font-size:10px; transition:transform 0.3s ease; }
+  .nav-col a:hover, .contact-col a:hover{ color: #ff3333; }
+  .nav-col a:hover::before{ transform: translateX(3px); }
+  .contact-col i{ color:#ff3333; font-size:16px; width:20px; text-align:center; }
+  .footer-bottom{ text-align:center; padding-top:25px; max-width:1552px; margin:0 auto; padding-left:1.25rem; padding-right:1.25rem; }
+  .footer-bottom p{ color:#555; font-size:13px; }
+
+  /* ===== SCROLL REVEAL ===== */
+  .reveal{
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.7s cubic-bezier(0.25,1,0.5,1), transform 0.7s cubic-bezier(0.25,1,0.5,1);
+  }
+  .reveal.revealed{ opacity:1; transform:translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo-link" href="index.html">
+      <img alt="NeoCrime Logo" loading="lazy" width="40" height="40" decoding="async" src="images/logo.avif">
+      <h1>NeoCrime</h1>
+    </a>
+
+    <nav class="main-nav">
+      <ul>
+        <li><a class="nav-link" href="index.html">Головна</a></li>
+        <li><a class="nav-link" href="events.html">Події</a></li>
+        <li><a class="nav-link" href="news.html">Новини</a></li>
+        <li><a class="nav-link" href="team.html">Команда</a></li>
+        <li><a class="nav-link" href="contact.html">Контакти</a></li>
+        <li class="lang-switch-bw">
+          <div class="current-lang">
+            <img src="https://flagcdn.com/w40/ua.png" alt="UA">
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="lang-dropdown-bw">
+            <a href="gallery-eng.html"><img src="https://flagcdn.com/w40/gb.png" alt="EN"></a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+
+    <button class="burger-btn" aria-label="Меню">
+      <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"/>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<!-- ===== HERO ФОТО ===== -->
+<div class="hero-photo-wrap">
+  <img src="images/gallery.avif" alt="Галерея NeoCrime" loading="eager">
+  <div class="hero-content">
+    <h1>Галерея</h1>
+    <p>Найкращі моменти спільноти NeoCrime</p>
+  </div>
+</div>
+
+<!-- ===== ОСНОВНИЙ КОНТЕНТ ===== -->
+<main>
+  <section class="gallery-section">
+
+    <!-- Сетка карточек — заполняется через JS -->
+    <div class="gallery-grid" id="gallery-container">
+      <!-- скелетони показуються одразу, поки API ще не відповів -->
+      <div class="gallery-card"><div class="gallery-card-skeleton"></div></div>
+      <div class="gallery-card"><div class="gallery-card-skeleton"></div></div>
+      <div class="gallery-card"><div class="gallery-card-skeleton"></div></div>
+      <div class="gallery-card"><div class="gallery-card-skeleton"></div></div>
+      <div class="gallery-card"><div class="gallery-card-skeleton"></div></div>
+      <div class="gallery-card"><div class="gallery-card-skeleton"></div></div>
+      <div class="gallery-card"><div class="gallery-card-skeleton"></div></div>
+      <div class="gallery-card"><div class="gallery-card-skeleton"></div></div>
+    </div>
+
+    <!-- Кнопка завантажити ще / повідомлення "все завантажено" -->
+    <div class="load-more-wrap" id="load-more-wrap" style="display:none;">
+      <button class="btn-load-more" id="btn-load-more">
+        <i class="fas fa-images"></i>
+        <span id="load-more-text">Завантажити ще</span>
+      </button>
+    </div>
+  </section>
+</main>
+
+<!-- ===== ЛАЙТБОКС — точна копія з index.html + навігація ===== -->
+<div id="gallery-lightbox" class="gallery-lightbox">
+  <button class="gallery-lightbox-close" id="lightbox-close" aria-label="Закрити">&times;</button>
+  <button class="lightbox-nav lightbox-nav-prev" id="lightbox-prev" aria-label="Попереднє фото">
+    <i class="fas fa-chevron-left"></i>
+  </button>
+  <img class="gallery-lightbox-img" id="gallery-lightbox-img" src="" alt="Gallery photo">
+  <button class="lightbox-nav lightbox-nav-next" id="lightbox-next" aria-label="Наступне фото">
+    <i class="fas fa-chevron-right"></i>
+  </button>
+  <div class="lightbox-caption" id="lightbox-caption"></div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div class="footer-container">
+
+    <div class="footer-col about-col">
+      <div class="footer-logo">Neo<span>Crime</span></div>
+      <p>NeoCrime — це амбіційна українська VTC, що впевнено рухається вперед, створюючи власну історію успіху на просторах TruckersMP. Це місце, де стиль, дисципліна та командний дух поєднуються в єдину силу, а кожен учасник стає частиною великого та впевненого руху.</p>
+      <div class="social-img-links">
+        <a href="https://discord.gg/zGzy7Gcdgy" target="_blank"><img src="images/social/1.avif" alt="Discord"></a>
+        <a href="https://www.tiktok.com/@neocrime_vtc" target="_blank"><img src="images/social/2.avif" alt="TikTok"></a>
+        <a href="https://truckersmp.com/vtc/85940" target="_blank"><img src="images/social/3.avif" alt="TruckersMP"></a>
+        <a href="https://www.twitch.tv/neocrime_vtc" target="_blank"><img src="images/social/4.avif" alt="TruckersHub"></a>
+      </div>
+    </div>
+
+    <div class="footer-col nav-col">
+      <h4>Навігація</h4>
+      <ul>
+        <li><a href="index.html">Головна</a></li>
+        <li><a href="news.html">Новини</a></li>
+        <li><a href="contact.html">Контакти</a></li>
+        <li><a href="privacy.html">Політика приватності</a></li>
+        <li><a href="terms.html">Угода користування</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col contact-col">
+      <h4>Контакти</h4>
+      <ul>
+        <li><i class="fas fa-envelope"></i><a href="mailto:neocrime10@gmail.com">neocrime10@gmail.com</a></li>
+        <li><i class="fab fa-discord"></i><a href="https://discord.gg/zGzy7Gcdgy" target="_blank">discord.gg/zGzy7Gcdgy</a></li>
+      </ul>
+    </div>
+
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 NeoCrime. Всі права захищені.</p>
+  </div>
+</footer>
+
+<!-- ===== SCROLL REVEAL ===== -->
+<script>
+(function(){
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        const el = entry.target;
+        el.classList.add('revealed');
+        el.addEventListener('transitionend', function onEnd(e){
+          if(e.propertyName === 'transform'){
+            el.style.transform = '';
+            el.style.transition = '';
+            el.removeEventListener('transitionend', onEnd);
+          }
+        });
+        observer.unobserve(el);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+})();
+</script>
+
+<!-- ===== ГАЛЕРЕЯ ===== -->
+<script>
+(function(){
+  const API_URL        = 'https://api.neocrime.space/gallery';
+  const PAGE_SIZE      = 16;   // скільки карток підвантажується за раз
+
+  const container      = document.getElementById('gallery-container');
+  const loadMoreWrap   = document.getElementById('load-more-wrap');
+  const loadMoreBtn    = document.getElementById('btn-load-more');
+  const loadMoreText   = document.getElementById('load-more-text');
+  const allLoadedMsg   = null;
+  const countLoaded    = null;
+  const countTotal     = null;
+  const lightbox       = document.getElementById('gallery-lightbox');
+  const lightboxImg    = document.getElementById('gallery-lightbox-img');
+  const lightboxCaption= document.getElementById('lightbox-caption');
+  const lightboxClose  = document.getElementById('lightbox-close');
+  const lightboxPrev   = document.getElementById('lightbox-prev');
+  const lightboxNext   = document.getElementById('lightbox-next');
+
+  let allItems   = [];   // увесь масив із API (вже відсортований DESC)
+  let rendered   = 0;    // скільки карток уже в DOM
+  let currentIdx = 0;    // індекс активного фото в лайтбоксі
+
+  // ---- SVG стрілок "розгорнути" — точна копія з gallery.js / index.html ----
+  function expandSVG(){
+    return `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <polyline class="arrow-tl" points="9,3 3,3 3,9"   stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <polyline class="arrow-tr" points="15,3 21,3 21,9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <polyline class="arrow-bl" points="9,21 3,21 3,15" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <polyline class="arrow-br" points="15,21 21,21 21,15" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>`;
+  }
+
+  // ---- Побудова картки ----
+  function buildCard(item, globalIdx){
+    const card = document.createElement('div');
+    card.className = 'gallery-card';
+    card.dataset.idx = globalIdx;
+
+    const img = document.createElement('img');
+    img.className = 'gallery-card-img';
+    img.alt = item.title || 'Gallery photo';
+    img.loading = 'lazy';
+
+    const skeleton = document.createElement('div');
+    skeleton.className = 'gallery-card-skeleton';
+
+    // Ховаємо скелетон тільки коли фото завантажилось
+    img.addEventListener('load',  () => { img.classList.add('loaded'); skeleton.style.display = 'none'; });
+    img.addEventListener('error', () => { skeleton.style.display = 'none'; });
+    img.src = item.photo_url;
+
+    const overlay = document.createElement('div');
+    overlay.className = 'gallery-card-overlay';
+
+    const titleEl = document.createElement('div');
+    titleEl.className = 'gallery-card-title';
+    titleEl.textContent = item.title || '';
+
+    const expand = document.createElement('div');
+    expand.className = 'gallery-card-expand';
+    expand.innerHTML = expandSVG();
+
+    card.appendChild(img);
+    card.appendChild(skeleton);
+    card.appendChild(overlay);
+    if(item.title) card.appendChild(titleEl);
+    card.appendChild(expand);
+
+    // Відкрити лайтбокс по кліку
+    card.addEventListener('click', () => openLightbox(globalIdx));
+
+    // Анімація появи — невелика затримка для "каскаду"
+    requestAnimationFrame(() => {
+      setTimeout(() => card.classList.add('visible'), (globalIdx % PAGE_SIZE) * 40);
+    });
+
+    return card;
+  }
+
+  // ---- Відрендерити наступну сторінку ----
+  function renderPage(){
+    const end = Math.min(rendered + PAGE_SIZE, allItems.length);
+    const frag = document.createDocumentFragment();
+    for(let i = rendered; i < end; i++){
+      frag.appendChild(buildCard(allItems[i], i));
+    }
+    container.appendChild(frag);
+    rendered = end;
+
+    // Показуємо/ховаємо кнопку "завантажити ще"
+    if(rendered >= allItems.length){
+      loadMoreWrap.style.display = 'none';
+    } else {
+      loadMoreWrap.style.display = 'block';
+    }
+  }
+
+  // ---- Завантажити всі фото з API ----
+  async function loadGallery(){
+    try {
+      const res  = await fetch(API_URL);
+      const data = await res.json();
+
+      // Очищаємо скелетони
+      container.innerHTML = '';
+
+      if(!data.items || data.items.length === 0){
+        container.innerHTML = `
+          <div class="gallery-empty">
+            <i class="fas fa-images"></i>
+            <p>У галереї поки немає фотографій</p>
+          </div>`;
+        return;
+      }
+
+      allItems = data.items;
+
+      // Рендеримо першу сторінку
+      renderPage();
+
+    } catch(err){
+      console.error('[Gallery] Помилка завантаження:', err);
+      container.innerHTML = `
+        <div class="gallery-empty">
+          <i class="fas fa-circle-exclamation"></i>
+          <p>Не вдалося завантажити галерею. Спробуйте оновити сторінку.</p>
+        </div>`;
+    }
+  }
+
+  // ---- Кнопка "Завантажити ще" ----
+  loadMoreBtn.addEventListener('click', () => {
+    loadMoreBtn.disabled = true;
+    loadMoreText.textContent = 'Завантаження...';
+    loadMoreBtn.querySelector('i').className = 'fas fa-spinner';
+
+    // Невелика пауза щоб користувач бачив лоадер (API локальний, відповідь миттєва)
+    setTimeout(() => {
+      renderPage();
+      loadMoreBtn.disabled = false;
+      loadMoreText.textContent = 'Завантажити ще';
+      loadMoreBtn.querySelector('i').className = 'fas fa-images';
+    }, 300);
+  });
+
+  // ---- Лайтбокс ----
+  function openLightbox(idx){
+    currentIdx = idx;
+    const item = allItems[idx];
+    lightboxImg.src      = item.photo_url;
+    lightboxCaption.textContent = item.title || '';
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    updateNavButtons();
+  }
+
+  function closeLightbox(){
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+    // Невелика затримка перед очищенням src щоб не було "мигання"
+    setTimeout(() => { lightboxImg.src = ''; }, 300);
+  }
+
+  function navigateLightbox(direction){
+    const newIdx = currentIdx + direction;
+    if(newIdx < 0 || newIdx >= allItems.length) return;
+    currentIdx = newIdx;
+    lightboxImg.style.opacity = '0';
+    setTimeout(() => {
+      const item = allItems[currentIdx];
+      lightboxImg.src = item.photo_url;
+      lightboxCaption.textContent = item.title || '';
+      lightboxImg.style.opacity = '1';
+      updateNavButtons();
+    }, 150);
+  }
+
+  function updateNavButtons(){
+    lightboxPrev.style.display = currentIdx > 0 ? 'flex' : 'none';
+    lightboxNext.style.display = currentIdx < allItems.length - 1 ? 'flex' : 'none';
+  }
+
+  lightboxImg.style.transition = 'opacity 0.15s ease';
+
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightboxPrev.addEventListener('click',  () => navigateLightbox(-1));
+  lightboxNext.addEventListener('click',  () => navigateLightbox(+1));
+
+  // Закрити по кліку на фон
+  lightbox.addEventListener('click', (e) => {
+    if(e.target === lightbox) closeLightbox();
+  });
+
+  // Клавіатура: ESC, ←, →
+  document.addEventListener('keydown', (e) => {
+    if(!lightbox.classList.contains('active')) return;
+    if(e.key === 'Escape')     closeLightbox();
+    if(e.key === 'ArrowLeft')  navigateLightbox(-1);
+    if(e.key === 'ArrowRight') navigateLightbox(+1);
+  });
+
+  // ---- Старт ----
+  loadGallery();
+})();
+</script>
+
+</body>
+</html>

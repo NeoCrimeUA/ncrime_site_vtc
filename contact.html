@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Контакти — NeoCrime</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+  *{ box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root{
+    --primary: 0 72% 35%;
+    --primary-foreground: 0 0% 100%;
+    --bg-dark: 0 0% 6%;
+  }
+
+  html, body{
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  body{
+    background-color: #1a1b1b;
+    color: #fff;
+    font-family: 'Montserrat', ui-sans-serif, system-ui, -apple-system, sans-serif;
+    line-height: 1.5;
+  }
+
+  a{ color: inherit; text-decoration: none; }
+  button{ font: inherit; cursor: pointer; }
+
+  .text-primary{ color: hsl(var(--primary)); }
+
+  /* ===== HEADER — точна копія з news.html ===== */
+  .site-header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 50;
+    width: 100%;
+    padding: 0.75rem 1.25rem;
+    background-color: rgba(15, 16, 16, 0.88);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+  .header-inner{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1552px;
+    margin: 0 auto;
+  }
+  .logo-link{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .logo-link img{
+    width: 40px;
+    height: 40px;
+    border-radius: 9999px;
+    display: block;
+    background-color: rgba(255,255,255,0.08);
+  }
+  .logo-link h1{
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #fff;
+  }
+  .main-nav ul{
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+  }
+  .nav-link{
+    color: #fff;
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 4px;
+  }
+  .nav-link::after{
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: hsl(var(--primary));
+    transition: width 0.3s ease;
+  }
+  .nav-link:hover::after{
+    width: 100%;
+  }
+  .nav-link.active::after{
+    width: 100%;
+  }
+  .nav-link.active{
+    color: hsl(var(--primary));
+  }
+
+  /* ===== ПЕРЕМИКАЧ МОВИ ===== */
+  .lang-switch-bw {
+    position: relative;
+    display: flex;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 8px 12px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-left: 0.5rem;
+  }
+  .lang-switch-bw:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  .current-lang {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .current-lang img, .lang-dropdown-bw img {
+    width: 20px;
+    height: auto;
+    border-radius: 3px;
+    display: block;
+  }
+  .current-lang i {
+    font-size: 12px;
+    color: #ffffff;
+    transition: 0.3s;
+  }
+  .lang-switch-bw:hover .current-lang i {
+    transform: rotate(180deg);
+  }
+  .lang-dropdown-bw {
+    position: absolute;
+    top: 140%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: rgba(12, 12, 12, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 10px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+  }
+  .lang-switch-bw:hover .lang-dropdown-bw {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+  .lang-dropdown-bw a {
+    display: block;
+    transition: 0.3s;
+  }
+  .lang-dropdown-bw a:hover {
+    transform: scale(1.15);
+  }
+
+  .burger-btn{
+    display: none;
+    background: transparent;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 9999px;
+    transition: background-color 0.2s ease;
+  }
+  .burger-btn:hover{ background-color: rgba(255,255,255,0.08); }
+  .burger-btn svg{ width: 28px; height: 28px; fill: #fff; }
+
+  @media (max-width: 768px){
+    .main-nav{ display: none; }
+    .burger-btn{ display: flex; }
+  }
+
+  /* ===== HERO ФОТО — точна копія з news.html ===== */
+  .hero-photo-wrap{
+    position: relative;
+    width: 100%;
+    height: 620px;
+    overflow: hidden;
+    background-color: #1a1b1b;
+  }
+  .hero-photo-wrap::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(26, 27, 27, 0.1) 0%, rgba(26, 27, 27, 0.4) 60%, rgba(26, 27, 27, 1) 100%);
+    z-index: 20;
+    pointer-events: none;
+  }
+  .hero-photo-wrap img{
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .hero-content{
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 30;
+    text-align: center;
+    padding: 0 1rem;
+  }
+  .hero-content h1{
+    font-size: 2.75rem;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -0.02em;
+  }
+  .hero-content p{
+    margin-top: 0.5rem;
+    font-size: 1.15rem;
+    color: #fff;
+    font-weight: 500;
+  }
+  @media (min-width: 768px){
+    .hero-content h1{ font-size: 4rem; }
+    .hero-content p{ font-size: 1.5rem; }
+  }
+
+  /* ===== СЕКЦІЯ КОНТАКТІВ ===== */
+  .contact-section {
+    width: 100%;
+    max-width: 1552px;
+    margin: 0 auto;
+    padding: 5rem 1.25rem;
+    text-align: left;
+  }
+  .contact-header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .contact-header-flex h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 0.5rem;
+    letter-spacing: -0.01em;
+    color: #fff;
+  }
+  .contact-header-flex h2::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60%;
+    height: 3px;
+    background: hsl(var(--primary));
+    border-radius: 2px;
+  }
+  .contact-subtitle {
+    margin-top: 1.25rem;
+    color: #e5e5e5;
+    font-size: 1.1rem;
+    max-width: 900px;
+    font-weight: 400;
+  }
+
+  /* ===== ВАРІАНТИ ЗВЕРНЕННЯ ===== */
+  .topic-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 3rem;
+  }
+  .topic-option {
+    position: relative;
+  }
+  .topic-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0; height: 0;
+  }
+  .topic-option label {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 1.25rem 1.5rem;
+    background-color: #262626;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+  .topic-option .topic-icon {
+    flex-shrink: 0;
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 1.1rem;
+    color: #9c9c9c;
+    transition: all 0.3s ease;
+  }
+  .topic-option .topic-text strong {
+    display: block;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.2rem;
+  }
+  .topic-option .topic-text span {
+    font-size: 0.85rem;
+    color: #9c9c9c;
+  }
+  .topic-option label:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+    background-color: #2c2c2c;
+  }
+
+  /* "Питання" — жовтий акцент при виборі */
+  .topic-option input#topic-question:checked + label {
+    border-color: #FFD700;
+    background-color: rgba(255, 215, 0, 0.08);
+  }
+  .topic-option input#topic-question:checked + label .topic-icon {
+    background: #FFD700;
+    border-color: #FFD700;
+    color: #1a1b1b;
+  }
+  .topic-option input#topic-question:focus-visible + label {
+    outline: 2px solid #FFD700;
+    outline-offset: 2px;
+  }
+
+  /* "Скарга" — червоний акцент при виборі */
+  .topic-option input#topic-complaint:checked + label {
+    border-color: hsl(var(--primary));
+    background-color: rgba(180, 40, 40, 0.08);
+  }
+  .topic-option input#topic-complaint:checked + label .topic-icon {
+    background: hsl(var(--primary));
+    border-color: hsl(var(--primary));
+    color: #fff;
+  }
+  .topic-option input#topic-complaint:focus-visible + label {
+    outline: 2px solid hsl(var(--primary));
+    outline-offset: 2px;
+  }
+  @media (max-width: 640px) {
+    .topic-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ===== ФОРМА ===== */
+  .contact-form {
+    margin-top: 2.5rem;
+    background-color: #262626;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    padding: 2.5rem;
+  }
+  @media (max-width: 640px) {
+    .contact-form { padding: 1.5rem; }
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+  @media (max-width: 640px) {
+    .form-row { grid-template-columns: 1fr; }
+  }
+
+  .form-field {
+    margin-bottom: 1.5rem;
+  }
+  .form-field:last-child { margin-bottom: 0; }
+
+  .form-field label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #bcbcbc;
+    margin-bottom: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .form-field .optional-tag {
+    text-transform: none;
+    font-weight: 400;
+    color: #6e6e6e;
+    letter-spacing: 0;
+  }
+
+  .form-field input[type="text"],
+  .form-field input[type="email"],
+  .form-field textarea {
+    width: 100%;
+    background-color: #1a1b1b;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 10px;
+    padding: 0.85rem 1.1rem;
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: #fff;
+    transition: all 0.25s ease;
+  }
+  .form-field input::placeholder,
+  .form-field textarea::placeholder {
+    color: #6e6e6e;
+  }
+  .form-field input:hover,
+  .form-field textarea:hover {
+    border-color: rgba(255, 255, 255, 0.25);
+  }
+  .form-field input:focus,
+  .form-field textarea:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.45);
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.08);
+  }
+  .form-field textarea {
+    resize: vertical;
+    min-height: 150px;
+    line-height: 1.6;
+  }
+  .form-field .char-counter {
+    margin-top: 0.4rem;
+    font-size: 0.78rem;
+    color: #6e6e6e;
+    text-align: right;
+  }
+
+  /* Honeypot — приховане поле для ботів */
+  .hp-field {
+    position: absolute;
+    left: -9999px;
+    width: 1px; height: 1px;
+    overflow: hidden;
+  }
+
+  /* ===== КНОПКА ВІДПРАВКИ — нейтральна сіра, зеленіє при успіху ===== */
+  .btn-submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    width: 100%;
+    padding: 15px 32px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+    background: #3a3a3a;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50px;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    text-align: center;
+    letter-spacing: 0.3px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  }
+  .btn-submit:hover:not(:disabled) {
+    background: #494949;
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: scale(1.02);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+  }
+  .btn-submit:active:not(:disabled) {
+    transform: scale(0.98);
+  }
+  .btn-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  .btn-submit.is-success {
+    background: #1f9d55;
+    border-color: #1f9d55;
+  }
+  .btn-submit.is-success:hover {
+    background: #22b35f;
+    border-color: #22b35f;
+  }
+  .btn-submit .fa-spinner {
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  @media (min-width: 640px) {
+    .btn-submit { width: auto; min-width: 240px; }
+  }
+
+  .form-footer-row {
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .form-note {
+    font-size: 0.82rem;
+    color: #6e6e6e;
+    max-width: 480px;
+  }
+
+  /* Статус-повідомлення */
+  .form-status {
+    margin-top: 1.25rem;
+    padding: 0.9rem 1.2rem;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: none;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .form-status.show { display: flex; }
+  .form-status.success {
+    background: rgba(34, 197, 94, 0.1);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    color: #4ade80;
+  }
+  .form-status.error {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: #f87171;
+  }
+
+  /* ===== АЛЬТЕРНАТИВНІ СПОСОБИ ЗВ'ЯЗКУ ===== */
+  .alt-contact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+  }
+  .alt-contact-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background-color: #262626;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s ease;
+  }
+  .alt-contact-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.35);
+  }
+  .alt-contact-card .alt-icon {
+    flex-shrink: 0;
+    width: 48px; height: 48px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.06);
+    color: #fff;
+    font-size: 1.3rem;
+  }
+  .alt-contact-card strong {
+    display: block;
+    font-size: 0.95rem;
+    color: #fff;
+    margin-bottom: 0.15rem;
+  }
+  .alt-contact-card span {
+    font-size: 0.85rem;
+    color: #9c9c9c;
+  }
+  @media (max-width: 640px) {
+    .alt-contact-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ===== FOOTER — точна копія з news.html ===== */
+  .site-footer {
+    background-color: #080808;
+    padding: 70px 0 20px;
+    border-top: 2px solid #222;
+    position: relative;
+    z-index: 10;
+  }
+  .footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+    border-bottom: 1px solid #1a1a1a;
+    padding-bottom: 40px;
+    max-width: 1552px;
+    margin: 0 auto;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+  .footer-col {
+    flex: 1;
+    min-width: 250px;
+  }
+  .about-col .footer-logo {
+    display: flex;
+    align-items: center;
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    color: #fff;
+  }
+  .about-col .footer-logo span {
+    color: #ff3333;
+  }
+  .about-col p {
+    font-size: 14px;
+    color: #888;
+    line-height: 1.6;
+    margin-bottom: 25px;
+  }
+  .social-img-links {
+    display: flex;
+    gap: 15px;
+  }
+  .social-img-links a {
+    display: block;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #333;
+    transition: all 0.3s ease;
+    background-color: #111;
+  }
+  .social-img-links a img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 5px;
+    transition: all 0.3s ease;
+  }
+  .social-img-links a:hover {
+    border-color: #ff3333;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(255, 51, 51, 0.3);
+  }
+  .footer-col h4 {
+    font-size: 18px;
+    color: #fff;
+    margin-bottom: 25px;
+    position: relative;
+  }
+  .footer-col h4::after {
+    content: '';
+    display: block;
+    width: 30px;
+    height: 2px;
+    background-color: #ff3333;
+    margin-top: 10px;
+  }
+  .nav-col ul, .contact-col ul {
+    list-style: none;
+  }
+  .nav-col li, .contact-col li {
+    margin-bottom: 15px;
+  }
+  .nav-col a, .contact-col a {
+    color: #888;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .nav-col a::before {
+    content: '\f054';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: #ff3333;
+    font-size: 10px;
+    transition: transform 0.3s ease;
+  }
+  .nav-col a:hover, .contact-col a:hover {
+    color: #ff3333;
+  }
+  .nav-col a:hover::before {
+    transform: translateX(3px);
+  }
+  .contact-col i {
+    color: #ff3333;
+    font-size: 16px;
+    width: 20px;
+    text-align: center;
+  }
+  .footer-bottom {
+    text-align: center;
+    padding-top: 25px;
+    max-width: 1552px;
+    margin: 0 auto;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+  .footer-bottom p {
+    color: #555;
+    font-size: 13px;
+  }
+
+  /* ===== SCROLL REVEAL — точна копія з news.html ===== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.7s cubic-bezier(0.25, 1, 0.5, 1), transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+  .reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo-link" href="index.html">
+      <img alt="NeoCrime Logo" loading="lazy" width="40" height="40" decoding="async"
+           src="images/logo.avif">
+      <h1>NeoCrime</h1>
+    </a>
+
+    <nav class="main-nav">
+      <ul>
+        <li><a class="nav-link" href="index.html">Головна</a></li>
+        <li><a class="nav-link" href="events.html">Події</a></li>
+        <li><a class="nav-link" href="news.html">Новини</a></li>
+        <li><a class="nav-link" href="team.html">Команда</a></li>
+        <li><a class="nav-link" href="contact.html">Контакти</a></li>
+        <li class="lang-switch-bw">
+          <div class="current-lang">
+            <img src="https://flagcdn.com/w40/ua.png" alt="UA">
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="lang-dropdown-bw">
+            <a href="contact-eng.html"><img src="https://flagcdn.com/w40/gb.png" alt="EN"></a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+
+    <button class="burger-btn" aria-label="Меню">
+      <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"></path>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<!-- ===== HERO ФОТО ===== -->
+<div class="hero-photo-wrap">
+  <img src="images/contact.avif" alt="Контакти NeoCrime" loading="eager">
+  <div class="hero-content">
+    <h1>Контакти</h1>
+    <p>Ми завжди на зв'язку зі спільнотою NeoCrime</p>
+  </div>
+</div>
+
+<!-- ===== ОСНОВНИЙ КОНТЕНТ ===== -->
+<main>
+  <section class="contact-section">
+
+    <div class="contact-header-flex reveal">
+      <div>
+        <h2>Зв'язатися з нами</h2>
+        <p class="contact-subtitle">Маєте питання, пропозицію чи скаргу? Заповніть форму нижче, і команда NeoCrime відповість якнайшвидше.</p>
+      </div>
+    </div>
+
+    <form id="contact-form" novalidate>
+
+      <!-- Вибір теми звернення -->
+      <div class="topic-grid reveal">
+        <div class="topic-option">
+          <input type="radio" name="topic" id="topic-question" value="question" checked>
+          <label for="topic-question">
+            <span class="topic-icon"><i class="fas fa-circle-question"></i></span>
+            <span class="topic-text">
+              <strong>Питання</strong>
+              <span>Загальне запитання до команди</span>
+            </span>
+          </label>
+        </div>
+        <div class="topic-option">
+          <input type="radio" name="topic" id="topic-complaint" value="complaint">
+          <label for="topic-complaint">
+            <span class="topic-icon"><i class="fas fa-triangle-exclamation"></i></span>
+            <span class="topic-text">
+              <strong>Скарга</strong>
+              <span>Повідомити про проблему чи порушення</span>
+            </span>
+          </label>
+        </div>
+      </div>
+
+      <div class="contact-form reveal">
+
+        <div class="form-row">
+          <div class="form-field">
+            <label for="field-name">Ваше ім'я / нік</label>
+            <input type="text" id="field-name" name="name" placeholder="Наприклад, Jason" maxlength="100" required>
+          </div>
+          <div class="form-field">
+            <label for="field-contact">Зв'язок <span class="optional-tag">(email, Discord, telegram)</span></label>
+            <input type="text" id="field-contact" name="contact" placeholder="example@mail.com або @nickname" maxlength="150" required>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="field-message">Повідомлення</label>
+          <textarea id="field-message" name="message" placeholder="Опишіть ваше питання чи ситуацію якомога детальніше..." maxlength="1500" required></textarea>
+          <div class="char-counter"><span id="message-count">0</span> / 1500</div>
+        </div>
+
+        <div class="form-field">
+          <label for="field-extra">Додаткова інформація <span class="optional-tag">(необов'язково)</span></label>
+          <textarea id="field-extra" name="extra" placeholder="Посилання, скріншоти, ID конвою тощо" maxlength="500" style="min-height: 90px;"></textarea>
+        </div>
+
+        <!-- Honeypot: невидиме людям, але видиме ботам поле -->
+        <div class="hp-field" aria-hidden="true">
+          <label for="field-hp">Не заповнюйте це поле</label>
+          <input type="text" id="field-hp" name="website" tabindex="-1" autocomplete="off">
+        </div>
+
+        <div class="form-footer-row">
+          <p class="form-note">Надсилаючи форму, ви погоджуєтесь з <a href="privacy.html" class="text-primary">політикою приватності</a> NeoCrime.</p>
+          <button type="submit" class="btn-submit" id="submit-btn">
+            <i class="fas fa-paper-plane"></i>
+            <span id="submit-btn-text">Надіслати</span>
+          </button>
+        </div>
+
+        <div class="form-status" id="form-status"></div>
+
+      </div>
+    </form>
+
+    <!-- Альтернативні способи зв'язку -->
+    <div class="alt-contact-grid reveal">
+      <a class="alt-contact-card" href="mailto:neocrime10@gmail.com">
+        <span class="alt-icon"><i class="fas fa-envelope"></i></span>
+        <span>
+          <strong>Email</strong>
+          <span>neocrime10@gmail.com</span>
+        </span>
+      </a>
+      <a class="alt-contact-card" href="https://discord.gg/zGzy7Gcdgy" target="_blank" rel="noopener noreferrer">
+        <span class="alt-icon"><i class="fab fa-discord"></i></span>
+        <span>
+          <strong>Discord</strong>
+          <span>discord.gg/zGzy7Gcdgy</span>
+        </span>
+      </a>
+    </div>
+
+  </section>
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div class="footer-container">
+
+    <div class="footer-col about-col">
+      <div class="footer-logo">Neo<span>Crime</span></div>
+      <p>NeoCrime — це амбіційна українська VTC, що впевнено рухається вперед, створюючи власну історію успіху на просторах TruckersMP. Це місце, де стиль, дисципліна та командний дух поєднуються в єдину силу, а кожен учасник стає частиною великого та впевненого руху.</p>
+
+      <div class="social-img-links">
+        <a href="https://discord.gg/zGzy7Gcdgy" target="_blank"><img src="images/social/1.avif" alt="Discord"></a>
+        <a href="https://www.tiktok.com/@neocrime_vtc" target="_blank"><img src="images/social/2.avif" alt="TikTok"></a>
+        <a href="https://truckersmp.com/vtc/85940" target="_blank"><img src="images/social/3.avif" alt="TruckersMP"></a>
+        <a href="https://www.twitch.tv/neocrime_vtc" target="_blank"><img src="images/social/4.avif" alt="TruckersHub"></a>
+      </div>
+    </div>
+
+    <div class="footer-col nav-col">
+      <h4>Навігація</h4>
+      <ul>
+        <li><a href="index.html">Головна</a></li>
+        <li><a href="news.html">Новини</a></li>
+        <li><a href="contact.html">Контакти</a></li>
+        <li><a href="privacy.html">Політика приватності</a></li>
+        <li><a href="terms.html">Угода користування</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col contact-col">
+      <h4>Контакти</h4>
+      <ul>
+        <li><i class="fas fa-envelope"></i> <a href="mailto:neocrime10@gmail.com">neocrime10@gmail.com</a></li>
+        <li><i class="fab fa-discord"></i> <a href="https://discord.gg/zGzy7Gcdgy" target="_blank">discord.gg/zGzy7Gcdgy</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2026 NeoCrime. Всі права захищені.</p>
+  </div>
+</footer>
+
+<!-- ===== SCROLL REVEAL ===== -->
+<script>
+  (function () {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          el.classList.add('revealed');
+          el.addEventListener('transitionend', function onEnd(e) {
+            if (e.propertyName === 'transform') {
+              el.style.transform = '';
+              el.style.transition = '';
+              el.removeEventListener('transitionend', onEnd);
+            }
+          });
+          observer.unobserve(el);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  })();
+</script>
+
+<!-- ===== ЛІЧИЛЬНИК СИМВОЛІВ ===== -->
+<script>
+  (function () {
+    const textarea = document.getElementById('field-message');
+    const counter = document.getElementById('message-count');
+    textarea.addEventListener('input', () => {
+      counter.textContent = textarea.value.length;
+    });
+  })();
+</script>
+
+<!-- ===== ВІДПРАВКА ФОРМИ ===== -->
+<script>
+(function () {
+  const form        = document.getElementById('contact-form');
+  const submitBtn   = document.getElementById('submit-btn');
+  const submitText  = document.getElementById('submit-btn-text');
+  const statusBox   = document.getElementById('form-status');
+
+  function showStatus(type, message) {
+    statusBox.className = `form-status show ${type}`;
+    statusBox.innerHTML = `<i class="fas ${type === 'success' ? 'fa-circle-check' : 'fa-circle-exclamation'}"></i> ${message}`;
+  }
+
+  function setLoading(isLoading) {
+    submitBtn.disabled = isLoading;
+    submitBtn.querySelector('i').className = isLoading ? 'fas fa-spinner' : 'fas fa-paper-plane';
+    submitText.textContent = isLoading ? 'Надсилання...' : 'Надіслати';
+  }
+
+  function showSuccessButton() {
+    submitBtn.classList.add('is-success');
+    submitBtn.querySelector('i').className = 'fas fa-check';
+    submitText.textContent = 'Надіслано';
+    setTimeout(() => {
+      submitBtn.classList.remove('is-success');
+      submitBtn.querySelector('i').className = 'fas fa-paper-plane';
+      submitText.textContent = 'Надіслати';
+    }, 4000);
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    statusBox.classList.remove('show');
+
+    const topic   = form.querySelector('input[name="topic"]:checked')?.value || 'question';
+    const name    = form.name.value.trim();
+    const contact = form.contact.value.trim();
+    const message = form.message.value.trim();
+    const extra   = form.extra.value.trim();
+    const website = form.website.value; // honeypot
+
+    if (!name || !contact || !message) {
+      showStatus('error', "Будь ласка, заповніть усі обов'язкові поля.");
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const res = await fetch('https://api.neocrime.space/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ topic, name, contact, message, extra, website }),
+      });
+
+      const data = await res.json().catch(() => ({}));
+
+      if (!res.ok || data.status !== 'success') {
+        throw new Error(data.message || 'Сталася помилка');
+      }
+
+      showStatus('success', 'Дякуємо! Ваше повідомлення надіслано команді NeoCrime.');
+      form.reset();
+      document.getElementById('message-count').textContent = '0';
+      setLoading(false);
+      showSuccessButton();
+      return;
+
+    } catch (err) {
+      console.error('[Contact]', err);
+      showStatus('error', 'Не вдалося надіслати повідомлення. Спробуйте пізніше або напишіть нам у Discord.');
+      setLoading(false);
+    }
+  });
+})();
+</script>
+
+<!-- ===== ПЛАВНИЙ СКРОЛ ВГОРУ (лого) ===== -->
+<script>
+  document.querySelectorAll('a.logo-link, a[href="index.html"]').forEach(link => {
+    link.addEventListener('click', function (e) {
+      if (window.location.pathname === '/' || window.location.pathname.endsWith('index.html') || window.location.pathname === '') {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

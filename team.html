@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Команда — NeoCrime</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+  *{ box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root{
+    --primary: 0 72% 35%;
+    --primary-foreground: 0 0% 100%;
+    --bg-dark: 0 0% 6%;
+  }
+
+  html, body{
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  body{
+    background-color: #1a1b1b;
+    color: #fff;
+    font-family: 'Montserrat', ui-sans-serif, system-ui, -apple-system, sans-serif;
+    line-height: 1.5;
+  }
+
+  a{ color: inherit; text-decoration: none; }
+  button{ font: inherit; cursor: pointer; }
+
+  .text-primary{ color: hsl(var(--primary)); }
+
+  /* ===== HEADER ===== */
+  .site-header{
+    position: fixed;
+    top: 0; left: 0;
+    z-index: 50;
+    width: 100%;
+    padding: 0.75rem 1.25rem;
+    background-color: rgba(15, 16, 16, 0.88);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+  .header-inner{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1552px;
+    margin: 0 auto;
+  }
+  .logo-link{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .logo-link img{
+    width: 40px; height: 40px;
+    border-radius: 9999px;
+    display: block;
+    background-color: rgba(255,255,255,0.08);
+  }
+  .logo-link h1{
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #fff;
+  }
+  .main-nav ul{
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+  }
+  .nav-link{
+    color: #fff;
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 4px;
+  }
+  .nav-link::after{
+    content: '';
+    position: absolute;
+    width: 0; height: 2px;
+    bottom: 0; left: 0;
+    background-color: hsl(var(--primary));
+    transition: width 0.3s ease;
+  }
+  .nav-link:hover::after{ width: 100%; }
+  .nav-link.active::after{ width: 100%; }
+  .nav-link.active{ color: hsl(var(--primary)); }
+
+  /* ===== ПЕРЕМИКАЧ МОВИ ===== */
+  .lang-switch-bw {
+    position: relative;
+    display: flex; align-items: center;
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 8px 12px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-left: 0.5rem;
+  }
+  .lang-switch-bw:hover { background-color: rgba(255,255,255,0.1); }
+  .current-lang { display: flex; align-items: center; gap: 8px; }
+  .current-lang img, .lang-dropdown-bw img { width: 20px; height: auto; border-radius: 3px; display: block; }
+  .current-lang i { font-size: 12px; color: #fff; transition: 0.3s; }
+  .lang-switch-bw:hover .current-lang i { transform: rotate(180deg); }
+  .lang-dropdown-bw {
+    position: absolute;
+    top: 140%; left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: rgba(12,12,12,0.95);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 15px;
+    padding: 10px 15px;
+    display: flex; flex-direction: column;
+    align-items: center; gap: 10px;
+    opacity: 0; visibility: hidden;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+  }
+  .lang-switch-bw:hover .lang-dropdown-bw {
+    opacity: 1; visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+  .lang-dropdown-bw a { display: block; transition: 0.3s; }
+  .lang-dropdown-bw a:hover { transform: scale(1.15); }
+
+  .burger-btn{
+    display: none;
+    background: transparent; border: none;
+    padding: 0.5rem;
+    border-radius: 9999px;
+    transition: background-color 0.2s ease;
+  }
+  .burger-btn:hover{ background-color: rgba(255,255,255,0.08); }
+  .burger-btn svg{ width: 28px; height: 28px; fill: #fff; }
+
+  @media (max-width: 768px){
+    .main-nav{ display: none; }
+    .burger-btn{ display: flex; }
+  }
+
+  /* ===== HERO ФОТО ===== */
+  .hero-photo-wrap{
+    position: relative;
+    width: 100%; height: 620px;
+    overflow: hidden;
+    background-color: #1a1b1b;
+  }
+  .hero-photo-wrap::after{
+    content: "";
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(26,27,27,0.1) 0%, rgba(26,27,27,0.4) 60%, rgba(26,27,27,1) 100%);
+    z-index: 20; pointer-events: none;
+  }
+  .hero-photo-wrap img{
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+  }
+  .hero-content{
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    z-index: 30; text-align: center; padding: 0 1rem;
+  }
+  .hero-content h1{
+    font-size: 2.75rem; font-weight: 800;
+    color: #fff; letter-spacing: -0.02em;
+  }
+  .hero-content p{
+    margin-top: 0.5rem; font-size: 1.15rem;
+    color: #fff; font-weight: 500;
+  }
+  @media (min-width: 768px){
+    .hero-content h1{ font-size: 4rem; }
+    .hero-content p{ font-size: 1.5rem; }
+  }
+
+  /* ===== СЕКЦІЯ КОМАНДИ ===== */
+  .team-section {
+    width: 100%;
+    max-width: 1552px;
+    margin: 0 auto;
+    padding: 5rem 1.25rem;
+  }
+
+  /* Заголовок секції */
+  .section-header {
+    margin-bottom: 3.5rem;
+  }
+  .section-header h2 {
+    font-size: 2rem; font-weight: 700;
+    position: relative; display: inline-block;
+    padding-bottom: 0.5rem; letter-spacing: -0.01em;
+    color: #fff;
+  }
+  .section-header h2::after {
+    content: "";
+    position: absolute; bottom: 0; left: 0;
+    width: 60%; height: 3px;
+    background: hsl(var(--primary));
+    border-radius: 2px;
+  }
+  .section-header p {
+    margin-top: 1.25rem; color: #e5e5e5;
+    font-size: 1.1rem; max-width: 900px; font-weight: 400;
+  }
+
+  /* Мітка ступеня */
+  .degree-label {
+    display: flex; align-items: center; gap: 0.75rem;
+    margin-bottom: 1.75rem; margin-top: 0;
+  }
+  #team-container > div:not(:first-child) .degree-label {
+    margin-top: 4rem;
+  }
+  .degree-label-line {
+    flex: 1; height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.14) 50%, rgba(255,255,255,0.14) 100%);
+  }
+  .degree-label-line.line-left {
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.14) 100%);
+  }
+  .degree-label-line.line-right {
+    background: linear-gradient(90deg, rgba(255,255,255,0.14) 0%, transparent 100%);
+  }
+  .degree-label-text {
+    font-size: 0.75rem; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    white-space: nowrap;
+    padding: 4px 14px;
+    border-radius: 20px;
+  }
+  .degree-1 .degree-label-text {
+    color: #FFD700;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    background: rgba(255, 215, 0, 0.08);
+  }
+  .degree-2 .degree-label-text {
+    color: #9ca3f0;
+    border: 1px solid rgba(88, 101, 242, 0.3);
+    background: rgba(88, 101, 242, 0.08);
+  }
+  .degree-3 .degree-label-text {
+    color: #9c9c9c;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.04);
+  }
+
+  .degree-1, .degree-2, .degree-3 {
+    margin-bottom: 0.5rem;
+  }
+
+  /* Ряд карток */
+  .team-row {
+    display: grid;
+    gap: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+  /* Ряд 1 (CEO, COO, CAO — 3 людини): центруємо */
+  .team-row.row-1 {
+    grid-template-columns: repeat(3, minmax(0, 220px));
+    justify-content: center;
+  }
+  /* Ряди 2–3: центруємо, картки не розтягуються на всю ширину */
+  .team-row.row-2,
+  .team-row.row-3 {
+    grid-template-columns: repeat(auto-fit, minmax(0, 160px));
+    justify-content: center;
+  }
+
+  /* ===== КАРТКА УЧАСНИКА ===== */
+  .team-card {
+    display: flex; flex-direction: column;
+    align-items: center; text-align: center;
+    padding: 1.75rem 1rem 1.5rem;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    cursor: pointer;
+    text-decoration: none; color: inherit;
+    transition:
+      transform 0.3s cubic-bezier(0.25, 1, 0.5, 1),
+      border-color 0.3s ease,
+      background 0.3s ease,
+      box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  /* Нижня лінія-акцент при ховері */
+  .team-card::after {
+    content: "";
+    position: absolute; bottom: 0; left: 0;
+    width: 0; height: 3px;
+    border-radius: 0 0 14px 14px;
+    transition: width 0.35s ease;
+  }
+  .degree-1 .team-card::after { background: #FFD700; }
+  .degree-2 .team-card::after { background: #9ca3f0; }
+  .degree-3 .team-card::after { background: hsl(var(--primary)); }
+
+  .team-card:hover {
+    transform: translateY(-6px);
+    background: rgba(255,255,255,0.07);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+  }
+  .degree-1 .team-card:hover { border-color: rgba(255,215,0,0.35); }
+  .degree-2 .team-card:hover { border-color: rgba(88,101,242,0.35); }
+  .degree-3 .team-card:hover { border-color: rgba(255,255,255,0.2); }
+  .team-card:hover::after { width: 100%; }
+
+  /* Аватар */
+  .team-avatar-wrap {
+    position: relative;
+    width: 90px; height: 90px;
+    margin-bottom: 1rem;
+    flex-shrink: 0;
+  }
+  .team-row.row-1 .team-avatar-wrap {
+    width: 108px; height: 108px;
+  }
+  .team-avatar {
+    width: 100%; height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    background-color: #262626;
+    transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+  .team-card:hover .team-avatar { transform: scale(1.07); }
+
+  /* Кільце навколо аватара */
+  .team-avatar-ring {
+    position: absolute; inset: -4px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease;
+  }
+  .degree-1 .team-avatar-ring { border-color: rgba(255,215,0,0.5); }
+  .degree-2 .team-avatar-ring { border-color: rgba(88,101,242,0.5); }
+  .degree-3 .team-avatar-ring { border-color: rgba(255,255,255,0.15); }
+  .team-card:hover .team-avatar-ring { opacity: 1; }
+  .degree-1 .team-card:hover .team-avatar-ring { border-color: #FFD700; }
+  .degree-2 .team-card:hover .team-avatar-ring { border-color: #9ca3f0; }
+  .degree-3 .team-card:hover .team-avatar-ring { border-color: rgba(255,255,255,0.4); }
+
+  /* Ім'я */
+  .team-name {
+    font-size: 0.95rem; font-weight: 700;
+    color: #fff; line-height: 1.3;
+    margin-bottom: 0.35rem;
+  }
+  .team-row.row-1 .team-name { font-size: 1.05rem; }
+
+  /* Посада */
+  .team-position {
+    font-size: 0.78rem; font-weight: 500;
+    color: #9c9c9c; line-height: 1.4;
+  }
+  .degree-1 .team-position { color: rgba(255,215,0,0.75); }
+  .degree-2 .team-position { color: rgba(156,163,240,0.85); }
+
+  /* Іконка посилання */
+  .team-link-icon {
+    margin-top: 0.75rem;
+    font-size: 0.75rem; color: #666;
+    transition: color 0.3s ease;
+  }
+  .degree-1 .team-card:hover .team-link-icon { color: #FFD700; }
+  .degree-2 .team-card:hover .team-link-icon { color: #9ca3f0; }
+  .degree-3 .team-card:hover .team-link-icon { color: hsl(var(--primary)); }
+
+  /* Адаптив */
+  @media (max-width: 900px) {
+    .team-row.row-1 { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); justify-content: start; }
+  }
+  @media (max-width: 480px) {
+    .team-row { grid-template-columns: repeat(2, 1fr) !important; }
+  }
+
+  /* ===== SCROLL REVEAL ===== */
+  .reveal {
+    opacity: 0; transform: translateY(40px);
+    transition: opacity 0.7s cubic-bezier(0.25,1,0.5,1), transform 0.7s cubic-bezier(0.25,1,0.5,1);
+  }
+  .reveal.revealed { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.05s; }
+  .reveal-delay-2 { transition-delay: 0.10s; }
+  .reveal-delay-3 { transition-delay: 0.15s; }
+  .reveal-delay-4 { transition-delay: 0.20s; }
+  .reveal-delay-5 { transition-delay: 0.25s; }
+  .reveal-delay-6 { transition-delay: 0.30s; }
+
+  /* ===== FOOTER ===== */
+  .site-footer {
+    background-color: #080808;
+    padding: 70px 0 20px;
+    border-top: 2px solid #222;
+    position: relative; z-index: 10;
+  }
+  .footer-container {
+    display: flex; justify-content: space-between;
+    flex-wrap: wrap; gap: 40px;
+    border-bottom: 1px solid #1a1a1a;
+    padding-bottom: 40px;
+    max-width: 1552px; margin: 0 auto;
+    padding-left: 1.25rem; padding-right: 1.25rem;
+  }
+  .footer-col { flex: 1; min-width: 250px; }
+  .about-col .footer-logo {
+    display: flex; align-items: center;
+    font-size: 22px; font-weight: 900;
+    letter-spacing: 1px; margin-bottom: 15px; color: #fff;
+  }
+  .about-col .footer-logo span { color: #ff3333; }
+  .about-col p { font-size: 14px; color: #888; line-height: 1.6; margin-bottom: 25px; }
+  .social-img-links { display: flex; gap: 15px; }
+  .social-img-links a {
+    display: block; width: 40px; height: 40px;
+    border-radius: 8px; overflow: hidden;
+    border: 1px solid #333; transition: all 0.3s ease; background-color: #111;
+  }
+  .social-img-links a img { width: 100%; height: 100%; object-fit: contain; padding: 5px; transition: all 0.3s ease; }
+  .social-img-links a:hover { border-color: #ff3333; transform: translateY(-5px); box-shadow: 0 5px 15px rgba(255,51,51,0.3); }
+  .footer-col h4 { font-size: 18px; color: #fff; margin-bottom: 25px; position: relative; }
+  .footer-col h4::after { content: ''; display: block; width: 30px; height: 2px; background-color: #ff3333; margin-top: 10px; }
+  .nav-col ul, .contact-col ul { list-style: none; }
+  .nav-col li, .contact-col li { margin-bottom: 15px; }
+  .nav-col a, .contact-col a { color: #888; font-size: 14px; transition: all 0.3s ease; display: flex; align-items: center; gap: 12px; }
+  .nav-col a::before { content: '\f054'; font-family: 'Font Awesome 6 Free'; font-weight: 900; color: #ff3333; font-size: 10px; transition: transform 0.3s ease; }
+  .nav-col a:hover, .contact-col a:hover { color: #ff3333; }
+  .nav-col a:hover::before { transform: translateX(3px); }
+  .contact-col i { color: #ff3333; font-size: 16px; width: 20px; text-align: center; }
+  .footer-bottom { text-align: center; padding-top: 25px; max-width: 1552px; margin: 0 auto; padding-left: 1.25rem; padding-right: 1.25rem; }
+  .footer-bottom p { color: #555; font-size: 13px; }
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo-link" href="index.html">
+      <img alt="NeoCrime Logo" loading="lazy" width="40" height="40" decoding="async" src="images/logo.avif">
+      <h1>NeoCrime</h1>
+    </a>
+
+    <nav class="main-nav">
+      <ul>
+        <li><a class="nav-link" href="index.html">Головна</a></li>
+        <li><a class="nav-link" href="events.html">Події</a></li>
+        <li><a class="nav-link" href="news.html">Новини</a></li>
+        <li><a class="nav-link" href="team.html">Команда</a></li>
+        <li><a class="nav-link" href="contact.html">Контакти</a></li>
+        <li class="lang-switch-bw">
+          <div class="current-lang">
+            <img src="https://flagcdn.com/w40/ua.png" alt="UA">
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="lang-dropdown-bw">
+            <a href="team-eng.html"><img src="https://flagcdn.com/w40/gb.png" alt="EN"></a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+
+    <button class="burger-btn" aria-label="Меню">
+      <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"/>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<!-- ===== HERO ФОТО ===== -->
+<div class="hero-photo-wrap">
+  <img src="images/team.avif" alt="Команда NeoCrime" loading="eager">
+  <div class="hero-content">
+    <h1>Команда</h1>
+    <p>Люди, які рухають NeoCrime вперед</p>
+  </div>
+</div>
+
+<!-- ===== ОСНОВНИЙ КОНТЕНТ ===== -->
+<main>
+  <section class="team-section">
+
+    <div id="team-container">
+      <p style="color:#9c9c9c;">Завантаження команди...</p>
+    </div>
+
+  </section>
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-col about-col">
+      <div class="footer-logo">Neo<span>Crime</span></div>
+      <p>NeoCrime — це амбіційна українська VTC, що впевнено рухається вперед, створюючи власну історію успіху на просторах TruckersMP. Це місце, де стиль, дисципліна та командний дух поєднуються в єдину силу, а кожен учасник стає частиною великого та впевненого руху.</p>
+      <div class="social-img-links">
+        <a href="https://discord.gg/zGzy7Gcdgy" target="_blank"><img src="images/social/1.avif" alt="Discord"></a>
+        <a href="https://www.tiktok.com/@neocrime_vtc" target="_blank"><img src="images/social/2.avif" alt="TikTok"></a>
+        <a href="https://truckersmp.com/vtc/85940" target="_blank"><img src="images/social/3.avif" alt="TruckersMP"></a>
+        <a href="https://www.twitch.tv/neocrime_vtc" target="_blank"><img src="images/social/4.avif" alt="TruckersHub"></a>
+      </div>
+    </div>
+    <div class="footer-col nav-col">
+      <h4>Навігація</h4>
+      <ul>
+        <li><a href="index.html">Головна</a></li>
+        <li><a href="news.html">Новини</a></li>
+        <li><a href="contact.html">Контакти</a></li>
+        <li><a href="privacy.html">Політика приватності</a></li>
+        <li><a href="terms.html">Угода користування</a></li>
+      </ul>
+    </div>
+    <div class="footer-col contact-col">
+      <h4>Контакти</h4>
+      <ul>
+        <li><i class="fas fa-envelope"></i> <a href="mailto:neocrime10@gmail.com">neocrime10@gmail.com</a></li>
+        <li><i class="fab fa-discord"></i> <a href="https://discord.gg/zGzy7Gcdgy" target="_blank">discord.gg/zGzy7Gcdgy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 NeoCrime. Всі права захищені.</p>
+  </div>
+</footer>
+
+<!-- ===== SCROLL REVEAL ===== -->
+<script>
+  (function () {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          el.classList.add('revealed');
+          el.addEventListener('transitionend', function onEnd(e) {
+            if (e.propertyName === 'transform') {
+              el.style.transform = '';
+              el.style.transition = '';
+              el.removeEventListener('transitionend', onEnd);
+            }
+          });
+          observer.unobserve(el);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  })();
+</script>
+
+<!-- ===== КОМАНДА З АПІ ===== -->
+<script>
+(function () {
+  const container = document.getElementById('team-container');
+
+  // Назви ступенів
+  const DEGREE_NAMES = {
+    1: '⭐ Вище керівництво',
+    2: '🔹 Старший склад',
+    3: '🔸 Команда'
+  };
+  const DEGREE_ROW_CLASS = { 1: 'row-1', 2: 'row-2', 3: 'row-3' };
+  const DEGREE_DELAYS = ['reveal-delay-1','reveal-delay-2','reveal-delay-3','reveal-delay-4','reveal-delay-5','reveal-delay-6'];
+
+  // Scroll-reveal observer для карток (ті самі налаштування, що і для .reveal)
+  const cardObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        cardObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+
+  function buildCard(item) {
+    const card = document.createElement('a');
+    card.className = 'team-card reveal';
+    card.href = item.profile_url || '#';
+    card.target = item.profile_url ? '_blank' : '_self';
+    card.rel = 'noopener noreferrer';
+
+    const avatarFallback = 'https://cdn.discordapp.com/embed/avatars/0.png';
+
+    card.innerHTML = `
+      <div class="team-avatar-wrap">
+        <img
+          class="team-avatar"
+          src="${item.avatar_url || avatarFallback}"
+          alt="${item.name}"
+          loading="lazy"
+          onerror="this.src='${avatarFallback}'"
+        >
+        <div class="team-avatar-ring"></div>
+      </div>
+      <div class="team-name">${item.name}</div>
+      <div class="team-position">${item.position}</div>
+      ${item.profile_url ? '<div class="team-link-icon"><i class="fab fa-discord"></i></div>' : ''}
+    `;
+
+    return card;
+  }
+
+  async function loadTeam() {
+    try {
+      const res = await fetch('https://api.neocrime.space/team');
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const data = await res.json();
+
+      if (data.status !== 'success' || !Array.isArray(data.items) || !data.items.length) {
+        container.innerHTML = '<p style="color:#9c9c9c;">Команда тимчасово недоступна.</p>';
+        return;
+      }
+
+      // Групуємо по ступеню (API вже сортує: degree ASC)
+      const groups = {};
+      data.items.forEach(item => {
+        const d = item.degree;
+        if (!groups[d]) groups[d] = [];
+        groups[d].push(item);
+      });
+
+      container.innerHTML = '';
+
+      // Рендеримо ступені у порядку 1 → 2 → 3
+      [1, 2, 3].forEach(degree => {
+        const members = groups[degree];
+        if (!members || !members.length) return;
+
+        // Блок ступеня
+        const degreeBlock = document.createElement('div');
+        degreeBlock.className = `degree-${degree}`;
+
+        // Мітка
+        const labelRow = document.createElement('div');
+        labelRow.className = 'degree-label reveal';
+        labelRow.innerHTML = `
+          <div class="degree-label-line line-left"></div>
+          <span class="degree-label-text">${DEGREE_NAMES[degree] || 'Інші'}</span>
+          <div class="degree-label-line line-right"></div>
+        `;
+        degreeBlock.appendChild(labelRow);
+
+        // Ряд карток
+        const row = document.createElement('div');
+        row.className = `team-row ${DEGREE_ROW_CLASS[degree] || ''} reveal`;
+        members.forEach((item, idx) => {
+          const card = buildCard(item);
+          // Додаємо delay-клас (циклічно, щоб не виходити за межі масиву)
+          const delayClass = DEGREE_DELAYS[idx % DEGREE_DELAYS.length];
+          card.classList.add(delayClass);
+          row.appendChild(card);
+        });
+        degreeBlock.appendChild(row);
+
+        container.appendChild(degreeBlock);
+      });
+
+      // Підключаємо reveal observer до всіх нових елементів
+      container.querySelectorAll('.reveal').forEach(el => cardObserver.observe(el));
+
+    } catch (err) {
+      console.error('[Team]', err);
+      container.innerHTML = '<p style="color:#9c9c9c;">Не вдалося завантажити команду. Спробуйте пізніше.</p>';
+    }
+  }
+
+  loadTeam();
+})();
+</script>
+
+<!-- ===== ПЛАВНИЙ СКРОЛ ВГОРУ (лого) ===== -->
+<script>
+  document.querySelectorAll('a.logo-link, a[href="index.html"]').forEach(link => {
+    link.addEventListener('click', function (e) {
+      if (window.location.pathname === '/' || window.location.pathname.endsWith('index.html') || window.location.pathname === '') {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
