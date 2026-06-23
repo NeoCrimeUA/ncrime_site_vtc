@@ -679,11 +679,11 @@
 })();
 </script>
 
-<!-- ===== ПЛАВНИЙ СКРОЛ ВГОРУ (лого) ===== -->
+<!-- ===== ПЛАВНИЙ СКРОЛ ВГОРУ (Команда в хедері та футері) ===== -->
 <script>
-  document.querySelectorAll('a.logo-link, a[href="index.html"]').forEach(link => {
+  document.querySelectorAll('a[href="/team"]').forEach(link => {
     link.addEventListener('click', function (e) {
-      if (window.location.pathname === '/' || window.location.pathname.endsWith('index.html') || window.location.pathname === '') {
+      if (window.location.pathname === '/team') {
         e.preventDefault();
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }

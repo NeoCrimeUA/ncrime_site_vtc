@@ -710,10 +710,10 @@
 </footer>
 
 <script>
-  /* ===== ПЛАВНИЙ СКРОЛ ВГОРУ (лого + Головна) ===== */
-  document.querySelectorAll('a.logo-link, a[href="index.html"]').forEach(link => {
+  /* ===== ПЛАВНИЙ СКРОЛ ВГОРУ (Події в хедері та футері) ===== */
+  document.querySelectorAll('a[href="/events"]').forEach(link => {
     link.addEventListener('click', function (e) {
-      if (window.location.pathname === '/' || window.location.pathname.endsWith('index.html') || window.location.pathname === '') {
+      if (window.location.pathname === '/events') {
         e.preventDefault();
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }

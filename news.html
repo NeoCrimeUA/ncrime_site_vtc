@@ -888,11 +888,11 @@
 })();
 </script>
 
-<!-- ===== ПЛАВНИЙ СКРОЛ ВГОРУ (лого) — точна копія з index.html ===== -->
+<!-- ===== ПЛАВНИЙ СКРОЛ ВГОРУ (Новини в хедері та футері) ===== -->
 <script>
-  document.querySelectorAll('a.logo-link, a[href="index.html"]').forEach(link => {
+  document.querySelectorAll('a[href="/news"]').forEach(link => {
     link.addEventListener('click', function (e) {
-      if (window.location.pathname === '/' || window.location.pathname.endsWith('index.html') || window.location.pathname === '') {
+      if (window.location.pathname === '/news') {
         e.preventDefault();
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }

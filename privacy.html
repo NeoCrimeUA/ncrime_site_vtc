@@ -473,5 +473,17 @@
   })();
 </script>
 
+<!-- ===== ПЛАВНИЙ СКРОЛ ВГОРУ (Приватність у футері) ===== -->
+<script>
+  document.querySelectorAll('a[href="/privacy"]').forEach(link => {
+    link.addEventListener('click', function (e) {
+      if (window.location.pathname === '/privacy') {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+
 </body>
 </html>
