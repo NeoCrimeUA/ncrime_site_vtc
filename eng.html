@@ -1,0 +1,1623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NeoCrime</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+  *{ box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root{
+    /* ===== Колірна палітра NeoCrime ===== */
+    --primary: 0 72% 35%;            /* основний темно-червоний акцент (текст/іконки) */
+    --primary-foreground: 0 0% 100%;
+    --bg-dark: 0 0% 6%;              /* майже чорний фон сторінки */
+  }
+
+  html, body{
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  body{
+  background-color: #1a1b1b; /* Новый тёмно-серый цвет */
+  color: #fff;
+  font-family: 'Montserrat', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+}
+
+  a{ color: inherit; text-decoration: none; }
+  button{ font: inherit; cursor: pointer; }
+
+  .text-primary{ color: hsl(var(--primary)); }
+
+  .site-header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  width: 100%;
+  padding: 0.75rem 1.25rem;
+  background-color: rgba(15, 16, 16, 0.88); /* Цвет #1a1b1b, затемнено и менее прозрачно */
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+  .header-inner{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1552px;
+    margin: 0 auto;
+  }
+  .logo-link{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .logo-link img{
+    width: 40px;
+    height: 40px;
+    border-radius: 9999px;
+    display: block;
+    background-color: rgba(255,255,255,0.08);
+  }
+  .logo-link h1{
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #fff;
+  }
+  .main-nav ul{
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+  }
+  
+  /* Оновлені посилання хедера з анімацією підкреслення */
+  .nav-link{
+    color: #fff;
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 4px;
+  }
+  .nav-link::after{
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: hsl(var(--primary)); /* Тёмно-красная полоска */
+    transition: width 0.3s ease;
+  }
+  .nav-link:hover::after{
+    width: 100%;
+  }
+
+  /* ===== ПЕРЕМИКАЧ МОВИ ===== */
+  .lang-switch-bw {
+    position: relative;
+    display: flex;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 8px 12px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-left: 0.5rem;
+  }
+  .lang-switch-bw:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  .current-lang {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .current-lang img, .lang-dropdown-bw img {
+    width: 20px;
+    height: auto;
+    border-radius: 3px;
+    display: block;
+  }
+  .current-lang i {
+    font-size: 12px;
+    color: #ffffff;
+    transition: 0.3s;
+  }
+  .lang-switch-bw:hover .current-lang i {
+    transform: rotate(180deg);
+  }
+  .lang-dropdown-bw {
+    position: absolute;
+    top: 140%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: rgba(12, 12, 12, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 10px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+  }
+  .lang-switch-bw:hover .lang-dropdown-bw {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+  .lang-dropdown-bw a {
+    display: block;
+    transition: 0.3s;
+  }
+  .lang-dropdown-bw a:hover {
+    transform: scale(1.15);
+  }
+
+  .burger-btn{
+    display: none;
+    background: transparent;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 9999px;
+    transition: background-color 0.2s ease;
+  }
+  .burger-btn:hover{ background-color: rgba(255,255,255,0.08); }
+  .burger-btn svg{ width: 28px; height: 28px; fill: #fff; }
+
+  @media (max-width: 768px){
+    .main-nav{ display: none; }
+    .burger-btn{ display: flex; }
+  }
+
+  .hero-video-wrap{
+  position: relative;
+  width: 100%;
+  height: 620px;
+  overflow: hidden;
+  background-color: #1a1b1b; /* Цвет под видео */
+}
+
+/* Плавный бесшовный переход из видео в новый фон страницы */
+.hero-video-wrap::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(26, 27, 27, 0.1) 0%, rgba(26, 27, 27, 0.4) 60%, rgba(26, 27, 27, 1) 100%);
+  z-index: 20;
+  pointer-events: none;
+}
+  .hero-video-wrap video{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .hero-content{
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 30;
+    text-align: center;
+    padding: 0 1rem;
+  }
+  .hero-content h1{
+    font-size: 2.75rem;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -0.02em;
+  }
+  .hero-content p{
+    margin-top: 0.5rem;
+    font-size: 1.15rem;
+    color: #fff;
+    font-weight: 500;
+  }
+  @media (min-width: 768px){
+    .hero-content h1{ font-size: 4rem; }
+    .hero-content p{ font-size: 1.5rem; }
+  }
+
+  .hero-buttons{
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  /* ===== ЄДИНИЙ СТИЛЬ КНОПОК ===== */
+  .btn-hero {
+    display: inline-block;
+    padding: 14px 32px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    text-align: center;
+    text-decoration: none;
+    letter-spacing: 0.3px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+  }
+
+  .btn-hero:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: scale(1.06);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    color: #ffffff;
+  }
+
+  .btn-hero:active {
+    transform: scale(0.97);
+  }
+
+  /* ===== ABOUT US & STATS ===== */
+  .about-section{
+    width: 100%;
+    max-width: 1552px;
+    margin: 0 auto;
+    padding: 4rem 1.25rem;
+  }
+  .custom-underline{
+    position: relative;
+    display: inline-block;
+    font-size: 2rem;
+    font-weight: 700;
+    padding-bottom: 0.5rem;
+    letter-spacing: -0.01em;
+  }
+  .custom-underline::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 60%;
+    height: 3px;
+    background: hsl(var(--primary));
+    border-radius: 2px;
+  }
+  .about-text{
+    margin-top: 1.25rem;
+    color: #e5e5e5;
+    font-size: 1.1rem;
+    max-width: 900px;
+  }
+
+  /* Стили для блока красивых белых чисел (как на референсе) */
+  .stats-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 4.5rem;
+    text-align: center;
+  }
+  .stats-grid .stat-item {
+    flex: 0 1 200px;
+  }
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    align-items: center;
+    text-align: center;
+  }
+  .stat-number {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #ffffff; /* Белые числа */
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .stat-label {
+    font-size: 0.95rem;
+    color: #9c9c9c; /* Серые аккуратные подписи */
+    font-weight: 500;
+  }
+
+  @media (max-width: 992px) {
+    .stats-grid {
+      gap: 2.5rem 1.5rem;
+    }
+  }
+  @media (max-width: 480px) {
+    .stats-grid {
+      gap: 2rem;
+    }
+    .stat-number {
+      font-size: 2.5rem;
+    }
+  }
+
+  /* ===== БЛОК НАШІ ПЕРЕВАГИ ===== */
+  .benefits-section {
+    width: 100%;
+    max-width: 1552px;
+    margin: 0 auto;
+    padding: 5rem 1.25rem;
+    text-align: left; /* Выравнивание по левому краю как в Про нас */
+  }
+  .benefits-header {
+    margin-bottom: 3.5rem;
+  }
+  .benefits-header h2 {
+    font-size: 2rem; /* Размер 1 в 1 как в Про нас */
+    font-weight: 700;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 0.5rem;
+    letter-spacing: -0.01em;
+    color: #fff;
+  }
+  .benefits-header h2::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0; /* Линия начинается слева */
+    width: 60%; /* Длина линии 1 в 1 как в Про нас */
+    height: 3px;
+    background: hsl(var(--primary)); /* Красная полоска */
+    border-radius: 2px;
+  }
+  .benefits-subtitle {
+    margin-top: 1.25rem; /* Отступ и стиль текста 1 в 1 как в Про нас */
+    color: #e5e5e5;
+    font-size: 1.1rem;
+    max-width: 900px;
+    font-weight: 400;
+  }
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+  .benefit-card {
+    background-color: #262626;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    overflow: hidden;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+  /* Анимация увеличения карточки преимуществ */
+  .benefit-card:hover {
+    transform: scale(1.03);
+  }
+  /* Красная полоска на дне карточки преимуществ */
+  .benefit-card::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 4px;
+    background-color: hsl(var(--primary));
+    transition: width 0.3s ease;
+  }
+  .benefit-card:hover::after {
+    width: 100%;
+  }
+  .benefit-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+  }
+  .benefit-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .benefit-num {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: hsl(var(--primary)); /* Красный цвет для номера */
+  }
+  .benefit-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: #fff;
+  }
+  .benefit-desc {
+    font-size: 0.9rem;
+    color: #bcbcbc;
+    line-height: 1.6;
+    margin-top: 0.25rem;
+  }
+
+  /* Адаптивность для планшетов и мобилок */
+  @media (max-width: 1024px) {
+    .benefits-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+  }
+  @media (max-width: 640px) {
+    .benefits-grid {
+      grid-template-columns: 1fr;
+    }
+    .benefits-header h2 {
+      font-size: 2rem;
+    }
+  }
+/* ===== БЛОК ОСТАННІ НОВИНИ ===== */
+  .news-section {
+    width: 100%;
+    max-width: 1552px;
+    margin: 0 auto;
+    padding: 5rem 1.25rem;
+    text-align: left;
+  }
+  /* Флекс-контейнер для заголовка и кнопки "Всі новини" */
+  .news-header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  /* btn-all-news використовує стиль btn-hero */
+  .btn-all-news {
+    display: inline-block;
+    padding: 14px 32px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    text-align: center;
+    text-decoration: none;
+    letter-spacing: 0.3px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    white-space: nowrap;
+  }
+  .btn-all-news:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: scale(1.06);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    color: #ffffff;
+  }
+  .btn-all-news:active {
+    transform: scale(0.97);
+  }
+
+  /* Адаптивность шапки новостей для мобилок */
+  @media (max-width: 640px) {
+    .news-header-flex {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.25rem;
+    }
+    .btn-all-news {
+      width: 100%; /* На мобилках кнопка растянется во всю ширину для удобства нажатия */
+    }
+  }
+  .news-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+  }
+  .news-card {
+    background-color: #262626;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    overflow: hidden;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+  /* Анимация увеличения карточки */
+  .news-card:hover {
+    transform: scale(1.03);
+  }
+  /* Анимация красной полоски слева направо на дне карточки */
+  .news-card::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 4px;
+    background-color: hsl(var(--primary));
+    transition: width 0.3s ease;
+  }
+  .news-card:hover::after {
+    width: 100%;
+  }
+  .news-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+  }
+  .news-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+  .news-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
+  }
+  .news-summary {
+    font-size: 0.95rem;
+    color: #bcbcbc;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+    flex-grow: 1;
+  }
+  .news-divider {
+    border: none;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.1);
+    margin-bottom: 0.75rem;
+  }
+  .news-meta {
+    font-size: 0.85rem;
+    color: #9c9c9c;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+  }
+  .news-more {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: hsl(var(--primary));
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* ===== МОДАЛЬНОЕ ОКНО (По референсу) ===== */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  .modal-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+  .modal-content {
+    background-color: #1a1b1b;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    max-width: 800px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+  }
+  .modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    font-size: 1.5rem;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    transition: background 0.2s;
+  }
+  .modal-close:hover {
+    background: hsl(var(--primary));
+  }
+  .modal-hero-img {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    display: block;
+    border-bottom: 4px solid hsl(var(--primary)); /* Красная линия под фото как на скрине */
+  }
+  .modal-inner-body {
+    padding: 2.5rem;
+  }
+  .modal-inner-title {
+    font-size: 2rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    color: #fff;
+    margin-bottom: 0.75rem;
+  }
+  .modal-inner-meta {
+    font-size: 0.9rem;
+    color: hsl(var(--primary));
+    font-weight: 700;
+    margin-bottom: 2rem;
+  }
+  .modal-inner-meta span {
+    color: #9c9c9c;
+  }
+  .modal-inner-desc {
+    font-size: 1.05rem;
+    color: #e5e5e5;
+    line-height: 1.7;
+  }
+  .modal-inner-desc p {
+    margin-bottom: 1.25rem;
+  }
+
+  /* Адаптивность для новостей */
+  @media (max-width: 992px) {
+    .news-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .news-grid { grid-template-columns: 1fr; }
+    .modal-inner-body { padding: 1.5rem; }
+    .modal-inner-title { font-size: 1.5rem; }
+  }
+  @media (max-width: 640px) {
+    .benefits-grid {
+      grid-template-columns: 1fr;
+    }
+    .benefits-header h2 {
+      font-size: 1.75rem; /* Чуть уменьшаем на мобилках, так как базовый стал меньше */
+    }
+  }
+
+  /* ===== БЛОК НАШІ ПОДІЇ ===== */
+  .events-section {
+    width: 100%;
+    max-width: 1552px;
+    margin: 0 auto;
+    padding: 5rem 1.25rem;
+    text-align: left;
+  }
+  .events-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+  }
+  .event-card {
+    background-color: #262626;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    overflow: hidden;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+  /* Анимации карточки (как у новостей) */
+  .event-card:hover {
+    transform: scale(1.03);
+  }
+  .event-card::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 4px;
+    background-color: hsl(var(--primary));
+    transition: width 0.3s ease;
+  }
+  .event-card:hover::after {
+    width: 100%;
+  }
+  .event-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+  }
+  .event-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+  .event-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.3;
+    margin-bottom: 1.25rem;
+    min-height: 2.6rem; /* Выравнивает высоту, если заголовки разной длины */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .event-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    font-size: 0.95rem;
+    color: #bcbcbc;
+    margin-bottom: 1.75rem;
+    flex-grow: 1;
+  }
+  .event-detail-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .event-detail-item svg {
+    color: hsl(var(--primary)); /* Иконки в цвет бренда */
+    flex-shrink: 0;
+  }
+  .event-detail-item strong {
+    color: #fff;
+    font-weight: 600;
+  }
+  /* Кнопка View Event в стиле кнопок из Hero-блока */
+  .btn-event {
+    background-color: #3b3a3a;
+    color: #fff;
+    padding: .75rem 1.5rem;
+    border: none;
+    border-radius: .375rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    transition: all .2s ease-in-out;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    text-align: center;
+  }
+  .btn-event:hover {
+    background-color: #525151;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,.2);
+  }
+
+  /* Адаптивность для сетки событий */
+  @media (max-width: 992px) {
+    .events-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .events-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ===== ПАРТНЕРИ ===== */
+  .partners-section {
+    width: 100%;
+    max-width: 1552px;
+    margin: 0 auto;
+    padding: 5rem 1.25rem;
+    text-align: left;
+  }
+  .partners-viewport {
+    margin-top: 3.5rem;
+    overflow: hidden;
+    cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: none;
+  }
+  .partners-viewport.dragging {
+    cursor: grabbing;
+  }
+  .partners-track {
+    display: flex;
+    gap: 1.5rem;
+    will-change: transform;
+  }
+  .partner-card {
+    position: relative;
+    flex: 0 0 calc((100% - 3rem) / 3); /* 3 картки на десктопі, gap 1.5rem * 2 */
+    height: 220px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background-color: #262626;
+  }
+  .partner-card-banner {
+    position: absolute;
+    inset: -10px; /* запас, щоб блюр не показав прозорі краї */
+    background-size: cover;
+    background-position: center;
+    filter: blur(18px) brightness(0.55);
+    transform: scale(1.12);
+    transition: filter 0.5s ease, transform 0.5s ease;
+  }
+  .partner-card:hover .partner-card-banner {
+    filter: blur(2px) brightness(0.45);
+    transform: scale(1.04);
+  }
+  .partner-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.55) 100%);
+  }
+  .partner-card-content {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.9rem;
+    padding: 1rem;
+  }
+  .partner-card-logo {
+    width: 78px;
+    height: 78px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #1a1b1b;
+    border: 2px solid rgba(255,255,255,0.25);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    pointer-events: none;
+  }
+  .partner-card:hover .partner-card-logo {
+    transform: scale(1.12);
+  }
+  .partner-card-name {
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.05rem;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+    pointer-events: none;
+  }
+  .partner-card:hover .partner-card-name {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .partner-card a.partner-card-link {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+  }
+
+  @media (max-width: 992px) {
+    .partner-card { flex: 0 0 calc((100% - 1.5rem) / 2); }
+  }
+  @media (max-width: 640px) {
+    .partner-card { flex: 0 0 100%; }
+  }
+
+  /* ===== ГАЛЕРЕЯ ===== */
+  .gallery-section {
+    width: 100%;
+    max-width: 1552px;
+    margin: 0 auto;
+    padding: 5rem 1.25rem;
+    text-align: left;
+  }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+  }
+  .gallery-card {
+    position: relative;
+    height: 260px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background-color: #262626;
+    cursor: pointer;
+  }
+  .gallery-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: filter 0.4s ease, transform 0.4s ease;
+  }
+  .gallery-card:hover .gallery-card-img {
+    filter: blur(6px) brightness(0.6);
+    transform: scale(1.04);
+  }
+  .gallery-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 55%, rgba(0,0,0,0.65) 100%);
+    pointer-events: none;
+  }
+  .gallery-card-title {
+    position: absolute;
+    left: 1rem;
+    bottom: 1rem;
+    z-index: 2;
+    color: hsl(var(--primary));
+    font-weight: 700;
+    font-size: 1.05rem;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+  }
+  .gallery-card:hover .gallery-card-title {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  /* 4 стрілки "розгорнути", що розходяться по кутах від центру */
+  .gallery-card-expand {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+  }
+  .gallery-card-expand svg {
+    width: 46px;
+    height: 46px;
+    opacity: 0;
+    transform: scale(0.7);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.6));
+  }
+  .gallery-card:hover .gallery-card-expand svg {
+    opacity: 1;
+    transform: scale(1);
+  }
+  .gallery-card-expand svg .arrow-tl { transition: transform 0.35s ease; }
+  .gallery-card-expand svg .arrow-tr { transition: transform 0.35s ease; }
+  .gallery-card-expand svg .arrow-bl { transition: transform 0.35s ease; }
+  .gallery-card-expand svg .arrow-br { transition: transform 0.35s ease; }
+  .gallery-card:hover .arrow-tl { transform: translate(-3px, -3px); }
+  .gallery-card:hover .arrow-tr { transform: translate(3px, -3px); }
+  .gallery-card:hover .arrow-bl { transform: translate(-3px, 3px); }
+  .gallery-card:hover .arrow-br { transform: translate(3px, 3px); }
+
+  @media (max-width: 992px) {
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .gallery-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Лайтбокс галереї — без червоної рамки/лінії, на відміну від модалки новин */
+  .gallery-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background-color: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  .gallery-lightbox.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+  .gallery-lightbox-img {
+    max-width: 90vw;
+    max-height: 88vh;
+    border-radius: 8px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+    transform: scale(0.96);
+    transition: transform 0.3s ease;
+  }
+  .gallery-lightbox.active .gallery-lightbox-img {
+    transform: scale(1);
+  }
+  .gallery-lightbox-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background 0.2s;
+  }
+  .gallery-lightbox-close:hover {
+    background: rgba(255, 255, 255, 0.18);
+  }
+
+  /* ===== FOOTER ===== */
+  .site-footer {
+    background-color: #080808;
+    padding: 70px 0 20px;
+    border-top: 2px solid #222;
+    position: relative;
+    z-index: 10;
+  }
+
+  .footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+    border-bottom: 1px solid #1a1a1a;
+    padding-bottom: 40px;
+    max-width: 1552px;
+    margin: 0 auto;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .footer-col {
+    flex: 1;
+    min-width: 250px;
+  }
+
+  .about-col .footer-logo {
+    display: flex;
+    align-items: center;
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    color: #fff;
+  }
+
+  .about-col .footer-logo span {
+    color: #ff3333;
+  }
+
+  .about-col p {
+    font-size: 14px;
+    color: #888;
+    line-height: 1.6;
+    margin-bottom: 25px;
+  }
+
+  .social-img-links {
+    display: flex;
+    gap: 15px;
+  }
+
+  .social-img-links a {
+    display: block;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #333;
+    transition: all 0.3s ease;
+    background-color: #111;
+  }
+
+  .social-img-links a img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 5px;
+    transition: all 0.3s ease;
+  }
+
+  .social-img-links a:hover {
+    border-color: #ff3333;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(255, 51, 51, 0.3);
+  }
+
+  .footer-col h4 {
+    font-size: 18px;
+    color: #fff;
+    margin-bottom: 25px;
+    position: relative;
+  }
+
+  .footer-col h4::after {
+    content: '';
+    display: block;
+    width: 30px;
+    height: 2px;
+    background-color: #ff3333;
+    margin-top: 10px;
+  }
+
+  .nav-col ul, .contact-col ul {
+    list-style: none;
+  }
+
+  .nav-col li, .contact-col li {
+    margin-bottom: 15px;
+  }
+
+  .nav-col a, .contact-col a {
+    color: #888;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .nav-col a::before {
+    content: '\f054';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: #ff3333;
+    font-size: 10px;
+    transition: transform 0.3s ease;
+  }
+
+  .nav-col a:hover, .contact-col a:hover {
+    color: #ff3333;
+  }
+
+  .nav-col a:hover::before {
+    transform: translateX(3px);
+  }
+
+  .contact-col i {
+    color: #ff3333;
+    font-size: 16px;
+    width: 20px;
+    text-align: center;
+  }
+
+  .footer-bottom {
+    text-align: center;
+    padding-top: 25px;
+    max-width: 1552px;
+    margin: 0 auto;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .footer-bottom p {
+    color: #555;
+    font-size: 13px;
+  }
+
+  /* ===== SCROLL REVEAL АНІМАЦІЇ ===== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.7s cubic-bezier(0.25, 1, 0.5, 1), transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+  .reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  /* Картки після появи — скидаємо transform щоб hover scale працював чисто */
+  .benefit-card.revealed,
+  .news-card.revealed {
+    transform: none;
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+  .benefit-card.revealed:hover {
+    transform: scale(1.03) !important;
+  }
+  .news-card.revealed:hover {
+    transform: scale(1.03) !important;
+  }
+  /* Затримка для карток у ряд */
+  .reveal-delay-1 { transition-delay: 0.05s; }
+  .reveal-delay-2 { transition-delay: 0.15s; }
+  .reveal-delay-3 { transition-delay: 0.25s; }
+  .reveal-delay-4 { transition-delay: 0.35s; }
+
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo-link" href="/eng">
+      <img alt="NeoCrime Logo" loading="lazy" width="40" height="40" decoding="async"
+           src="images/logo.avif">
+      <h1>NeoCrime</h1>
+    </a>
+
+    <nav class="main-nav">
+      <ul>
+        <li><a class="nav-link" href="/eng">Home</a></li>
+        <li><a class="nav-link" href="/events-eng">Events</a></li>
+        <li><a class="nav-link" href="/news-eng">News</a></li>
+        <li><a class="nav-link" href="/team-eng">Team</a></li>
+        <li><a class="nav-link" href="/contact-eng">Contact</a></li>
+        <li class="lang-switch-bw">
+          <div class="current-lang">
+            <img src="https://flagcdn.com/w40/gb.png" alt="EN">
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="lang-dropdown-bw">
+            <a href="https://neocrime.space/"><img src="https://flagcdn.com/w40/ua.png" alt="UA"></a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+
+    <button class="burger-btn" aria-label="Menu">
+      <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"></path>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<main>
+
+    <div class="hero-video-wrap">
+      <video id="hero_video" autoplay loop muted playsinline>
+        <source type="video/mp4" src="https://www.image2url.com/r2/default/videos/1782146035965-51f1927e-6b30-4e42-a7d9-ac636c1b2931.mp4">
+      </video>
+
+      <div class="hero-content">
+        <h1>NeoCrime</h1>
+        <p>Control at every kilometer!</p>
+        <div class="hero-buttons">
+          <a href="https://truckersmp.com/vtc/85940" target="_blank" rel="noreferrer" class="btn-hero">TruckersMP</a>
+          <a href="https://discord.gg/zGzy7Gcdgy" target="_blank" rel="noreferrer" class="btn-hero">Discord</a>
+        </div>
+      </div>
+    </div>
+
+    <section class="about-section">
+      <div>
+        <h2 class="custom-underline">About Us</h2>
+        <p class="about-text">
+          <span class="text-primary">NeoCrime</span> is an active and friendly community
+          that professionally explores the roads of ETS2 and ATS. We focus on active
+          participation in the TruckersMP community life, attending numerous public events
+          every week, as well as running our own popular convoys once every two weeks.
+        </p>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-number" id="stat-km">—</div>
+          <div class="stat-label">Kilometers</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" id="stat-drivers">—</div>
+          <div class="stat-label">Drivers</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" id="stat-discord">—</div>
+          <div class="stat-label">Discord Members</div>
+        </div>
+      </div>
+    </section>
+    <!-- ====================== НАШІ ПЕРЕВАГИ ====================== -->
+    <section class="benefits-section">
+      <div class="benefits-header reveal">
+        <h2>Our Benefits</h2>
+        <p class="benefits-subtitle">What makes the NeoCrime community special</p>
+      </div>
+
+      <div class="benefits-grid">
+        <!-- Картка 01 -->
+        <div class="benefit-card reveal reveal-delay-1">
+          <img src="images/benefits/1.avif" alt="Friendly community" class="benefit-img">
+          <div class="benefit-content">
+            <span class="benefit-num">01</span>
+            <h3 class="benefit-title">Friendly Community</h3>
+            <p class="benefit-desc">We take pride in our warm atmosphere! At NeoCrime, every driver will find support, help, and great company for joint trips. Become part of our close-knit team on the virtual roads!</p>
+          </div>
+        </div>
+
+        <!-- Картка 02 -->
+        <div class="benefit-card reveal reveal-delay-2">
+          <img src="images/benefits/2.avif" alt="Experienced staff" class="benefit-img">
+          <div class="benefit-content">
+            <span class="benefit-num">02</span>
+            <h3 class="benefit-title">Experienced Staff</h3>
+            <p class="benefit-desc">Our team of administrators is always ready to help. We ensure a comfortable game experience, quickly resolve any issues, and create all the conditions for your growth in the world of virtual trucking.</p>
+          </div>
+        </div>
+
+        <!-- Картка 03 -->
+        <div class="benefit-card reveal reveal-delay-3">
+          <img src="images/benefits/3.avif" alt="Regular convoys" class="benefit-img">
+          <div class="benefit-content">
+            <span class="benefit-num">03</span>
+            <h3 class="benefit-title">Regular Convoys</h3>
+            <p class="benefit-desc">We regularly hold joint trips in ETS2 and ATS. This is the perfect opportunity to enjoy scenic routes in a convoy, improve your teamwork driving skills, and have a great time together!</p>
+          </div>
+        </div>
+
+        <!-- Картка 04 -->
+        <div class="benefit-card reveal reveal-delay-4">
+          <img src="images/benefits/4.avif" alt="Unique events" class="benefit-img">
+          <div class="benefit-content">
+            <span class="benefit-num">04</span>
+            <h3 class="benefit-title">Unique Events</h3>
+            <p class="benefit-desc">NeoCrime regularly organizes unconventional events, from group road trips to extreme truck races. Take part, show your skills, and win valuable prizes and DLC!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ====================== ОСТАННІ НОВИНИ ====================== -->
+    <section class="news-section">
+      <div class="benefits-header news-header-flex reveal">
+        <div>
+          <h2>Latest News</h2>
+          <p class="benefits-subtitle">Stay up to date with the latest events from NeoCrime</p>
+        </div>
+        <a href="/news-eng" class="btn-all-news">All News</a>
+      </div>
+
+      <div class="news-grid reveal" id="news-container">
+        <p style="color: #9c9c9c; grid-column: 1/-1;">Loading news...</p>
+      </div>
+    </section>
+    <section class="events-section">
+      <div class="benefits-header news-header-flex reveal">
+        <div>
+          <h2>Our Events</h2>
+          <p class="benefits-subtitle">Official convoys and events of our company on TruckersMP</p>
+        </div>
+        <a href="/events-eng" class="btn-all-news">All Events</a>
+      </div>
+
+      <div class="events-grid reveal" id="events-container">
+        <p style="color: #9c9c9c; grid-column: 1/-1;">Loading events...</p>
+      </div>
+    </section>
+
+    <section class="partners-section">
+      <div class="benefits-header reveal">
+        <h2>Our Partners</h2>
+        <p class="benefits-subtitle">VTC companies we collaborate with</p>
+      </div>
+
+      <div class="partners-viewport reveal" id="partners-viewport">
+        <div class="partners-track" id="partners-track">
+          <p style="color: #9c9c9c;">Loading partners...</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery-section">
+      <div class="benefits-header news-header-flex reveal">
+        <div>
+          <h2>Gallery</h2>
+          <p class="benefits-subtitle">The best moments of the NeoCrime community</p>
+        </div>
+        <a href="/gallery-eng" class="btn-all-news">Open Gallery</a>
+      </div>
+
+      <div class="gallery-grid reveal" id="gallery-container">
+        <p style="color: #9c9c9c; grid-column: 1/-1;">Loading gallery...</p>
+      </div>
+    </section>
+
+    <!-- Всплывающее модальное окно для детального просмотра новости -->
+    <div id="news-modal" class="modal-overlay">
+      <div class="modal-content">
+        <button class="modal-close" aria-label="Close">&times;</button>
+        <img class="modal-hero-img" src="" alt="News Image">
+        <div class="modal-inner-body">
+          <h3 class="modal-inner-title"></h3>
+          <div class="modal-inner-meta"></div>
+          <div class="modal-inner-desc"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Лайтбокс для повноекранного перегляду фото з галереї -->
+    <div id="gallery-lightbox" class="gallery-lightbox">
+      <button class="gallery-lightbox-close" aria-label="Close">&times;</button>
+      <img class="gallery-lightbox-img" id="gallery-lightbox-img" src="" alt="Gallery photo">
+    </div>
+  </main>
+<script src="js/events.js"></script>
+<script src="js/news-eng.js"></script>
+<script src="js/partners.js"></script>
+<script src="js/gallery.js"></script>
+
+<script>
+  /* ===== SCROLL REVEAL ===== */
+  (function () {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          el.classList.add('revealed');
+          // Після завершення transition знімаємо inline transform
+          // щоб hover-анімації карток (scale) не конфліктували
+          el.addEventListener('transitionend', function onEnd(e) {
+            if (e.propertyName === 'transform') {
+              el.style.transform = '';
+              el.style.transition = '';
+              el.removeEventListener('transitionend', onEnd);
+            }
+          });
+          observer.unobserve(el);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  })();
+</script>
+
+<footer class="site-footer">
+  <div class="footer-container">
+
+    <div class="footer-col about-col">
+      <div class="footer-logo">Neo<span>Crime</span></div>
+      <p>NeoCrime is an ambitious Ukrainian VTC that is confidently moving forward, building its own success story across TruckersMP. It's a place where style, discipline, and team spirit come together as one force, and every member becomes part of a great and confident movement.</p>
+
+      <div class="social-img-links">
+        <a href="https://discord.gg/zGzy7Gcdgy" target="_blank"><img src="images/social/1.avif" alt="Discord"></a>
+        <a href="https://www.tiktok.com/@neocrime_vtc" target="_blank"><img src="images/social/2.avif" alt="TikTok"></a>
+        <a href="https://truckersmp.com/vtc/85940" target="_blank"><img src="images/social/3.avif" alt="TruckersMP"></a>
+        <a href="https://www.twitch.tv/neocrime_vtc" target="_blank"><img src="images/social/4.avif" alt="TruckersHub"></a>
+      </div>
+    </div>
+
+    <div class="footer-col nav-col">
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="/eng">Home</a></li>
+        <li><a href="/news-eng">News</a></li>
+        <li><a href="/contact-eng">Contact</a></li>
+        <li><a href="/privacy-eng">Privacy Policy</a></li>
+        <li><a href="/terms-eng">Terms of Use</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col contact-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><i class="fas fa-envelope"></i> <a href="mailto:neocrime10@gmail.com">neocrime10@gmail.com</a></li>
+        <li><i class="fab fa-discord"></i> <a href="https://discord.gg/zGzy7Gcdgy" target="_blank">discord.gg/zGzy7Gcdgy</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2026 NeoCrime. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  /* ===== ПЛАВНИЙ СКРОЛ ВГОРУ (лого + Головна в хедері та футері) ===== */
+  document.querySelectorAll('a.logo-link, a[href="/eng"]').forEach(link => {
+    link.addEventListener('click', function (e) {
+      // Якщо ми вже на головній — скролимо вгору плавно
+      if (window.location.pathname === '/eng' ||
+          window.location.pathname === '/eng/' ||
+          window.location.pathname.endsWith('index-eng.html')) {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+
+<script>
+  /* ===== VTC STATS — лічильник з апішки ===== */
+  (function () {
+    const API_URL = 'https://api.neocrime.space/vtc_stats';
+
+    function formatNumber(n) {
+      return n.toLocaleString('en-US');
+    }
+
+    function animateCounter(el, target, duration) {
+      const start = performance.now();
+      const from = 0;
+      function step(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        // easeOutExpo
+        const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+        const current = Math.round(from + (target - from) * ease);
+        el.textContent = formatNumber(current);
+        if (progress < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+
+    async function loadStats() {
+      try {
+        const res = await fetch(API_URL);
+        const data = await res.json();
+
+        if (data.status !== 'success') return;
+
+        const kmEl      = document.getElementById('stat-km');
+        const driversEl = document.getElementById('stat-drivers');
+        const discordEl = document.getElementById('stat-discord');
+
+        // Спостерігаємо — запускаємо анімацію тільки коли секція потрапляє у вьюпорт
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            observer.disconnect();
+
+            animateCounter(kmEl,      data.th_distance  || 0, 2000);
+            animateCounter(driversEl, data.tmp_members  || 0, 1600);
+            animateCounter(discordEl, data.discord_members || 0, 1800);
+          });
+        }, { threshold: 0.3 });
+
+        // Спостерігаємо за батьківською секцією stats-grid
+        const grid = document.querySelector('.stats-grid');
+        if (grid) observer.observe(grid);
+
+      } catch (e) {
+        console.warn('[VTC Stats] Помилка завантаження:', e);
+      }
+    }
+
+    loadStats();
+  })();
+</script>
+</body>
+</html>
