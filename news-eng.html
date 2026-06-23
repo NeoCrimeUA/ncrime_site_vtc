@@ -762,8 +762,131 @@
   })();
 </script>
 
-<!-- ===== НОВИНИ З АПІ — підключення зовнішнього news-eng.js ===== -->
-<script src="js/news-eng.js"></script>
+<!-- ===== NEWS FROM API — full list, dedicated script (does NOT reuse news-eng.js from eng.html) ===== -->
+<script>
+(function () {
+  const container  = document.getElementById('news-container');
+  const modal       = document.getElementById('news-modal');
+  const modalClose   = modal.querySelector('.modal-close');
+  const modalImg     = modal.querySelector('.modal-hero-img');
+  const modalTitle   = modal.querySelector('.modal-inner-title');
+  const modalMeta    = modal.querySelector('.modal-inner-meta');
+  const modalDesc    = modal.querySelector('.modal-inner-desc');
+
+  /* Storage for fetched news */
+  let fetchedNews = [];
+
+  /* Convert "DD.MM.YYYY" date string into a Date object for accurate sorting */
+  function parseDate(dateStr) {
+    const parts = dateStr.split('.');
+    if (parts.length === 3) {
+      return new Date(parts[2], parts[1] - 1, parts[0]);
+    }
+    return new Date(0);
+  }
+
+  /* IntersectionObserver for card reveal — same as index.html/eng.html */
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        el.classList.add('revealed');
+        el.addEventListener('transitionend', function onEnd(e) {
+          if (e.propertyName === 'transform') {
+            el.style.transform = '';
+            el.style.transition = '';
+            el.removeEventListener('transitionend', onEnd);
+          }
+        });
+        revealObserver.unobserve(el);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  /* Load ALL news from the endpoint */
+  async function loadNews() {
+    try {
+      const response = await fetch('https://api.neocrime.space/news_en');
+      if (!response.ok) throw new Error('Failed to load data');
+
+      const data = await response.json();
+
+      if (data.status === 'success' && Array.isArray(data.news)) {
+        fetchedNews = data.news;
+
+        /* Sort the array by date (newest to oldest) */
+        fetchedNews.sort((a, b) => parseDate(b.date) - parseDate(a.date));
+
+        /* Clear the loading text from the container */
+        container.innerHTML = '';
+
+        if (!fetchedNews.length) {
+          container.innerHTML = '<p style="color: #9c9c9c; grid-column: 1/-1;">No news available.</p>';
+          return;
+        }
+
+        /* Render ALL cards (unlike eng.html, which shows only the top 3) */
+        fetchedNews.forEach(item => {
+          const card = document.createElement('div');
+          card.className = 'news-card reveal';
+          card.setAttribute('data-id', item.id);
+
+          card.innerHTML = `
+            <img src="${item.photo_link}" alt="${item.title}" class="news-img" loading="lazy">
+            <div class="news-content">
+              <h3 class="news-title">${item.title}</h3>
+              <p class="news-summary">${item.summary}</p>
+              <hr class="news-divider">
+              <div class="news-meta">${item.author} — ${item.date}</div>
+              <div class="news-more">Read more</div>
+            </div>
+          `;
+
+          card.addEventListener('click', () => openModal(item.id));
+
+          container.appendChild(card);
+          revealObserver.observe(card);
+        });
+      } else {
+        container.innerHTML = '<p style="color: #9c9c9c; grid-column: 1/-1;">Failed to load news.</p>';
+      }
+    } catch (error) {
+      console.error(error);
+      container.innerHTML = '<p style="color: #9c9c9c; grid-column: 1/-1;">An error occurred while connecting to the server.</p>';
+    }
+  }
+
+  /* Open the modal window with the full news item */
+  function openModal(id) {
+    const item = fetchedNews.find(n => n.id === id);
+    if (!item) return;
+
+    modalImg.src = item.photo_link;
+    modalImg.alt = item.title;
+    modalTitle.textContent = item.title;
+
+    modalMeta.innerHTML = `${item.date} | <span>Author: ${item.author}</span>`;
+
+    const formattedDescription = item.description.replace(/\n/g, '<br>');
+    modalDesc.innerHTML = `<p>${formattedDescription}</p>`;
+
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  /* Close the modal window */
+  function closeModal() {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  modalClose.addEventListener('click', closeModal);
+  modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+  loadNews();
+})();
+</script>
 
 <!-- ===== ПЛАВНИЙ СКРОЛ ВГОРУ (News у хедері та футері) ===== -->
 <script>
