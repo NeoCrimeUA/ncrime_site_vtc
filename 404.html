@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 — NeoCrime</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+  *{ box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root{
+    --primary: 0 72% 35%;
+    --primary-foreground: 0 0% 100%;
+    --bg-dark: 0 0% 6%;
+  }
+
+  html, body{
+    width: 100%;
+    overflow-x: hidden;
+    height: 100%;
+  }
+
+  body{
+    background-color: #1a1b1b;
+    color: #fff;
+    font-family: 'Montserrat', ui-sans-serif, system-ui, -apple-system, sans-serif;
+    line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  a{ color: inherit; text-decoration: none; }
+  button{ font: inherit; cursor: pointer; }
+
+  .text-primary{ color: hsl(var(--primary)); }
+
+  /* ===== HEADER ===== */
+  .site-header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 50;
+    width: 100%;
+    padding: 0.75rem 1.25rem;
+    background-color: rgba(15, 16, 16, 0.88);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+  .header-inner{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1552px;
+    margin: 0 auto;
+  }
+  .logo-link{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .logo-link img{
+    width: 40px;
+    height: 40px;
+    border-radius: 9999px;
+    display: block;
+    background-color: rgba(255,255,255,0.08);
+  }
+  .logo-link h1{
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #fff;
+  }
+  .main-nav ul{
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+  }
+  .nav-link{
+    color: #fff;
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 4px;
+  }
+  .nav-link::after{
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: hsl(var(--primary));
+    transition: width 0.3s ease;
+  }
+  .nav-link:hover::after{
+    width: 100%;
+  }
+
+  /* ===== ПЕРЕМИКАЧ МОВИ ===== */
+  .lang-switch-bw {
+    position: relative;
+    display: flex;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 8px 12px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-left: 0.5rem;
+  }
+  .lang-switch-bw:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  .current-lang {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .current-lang img, .lang-dropdown-bw img {
+    width: 20px;
+    height: auto;
+    border-radius: 3px;
+    display: block;
+  }
+  .current-lang i {
+    font-size: 12px;
+    color: #ffffff;
+    transition: 0.3s;
+  }
+  .lang-switch-bw:hover .current-lang i {
+    transform: rotate(180deg);
+  }
+  .lang-dropdown-bw {
+    position: absolute;
+    top: 140%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: rgba(12, 12, 12, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 10px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+  }
+  .lang-switch-bw:hover .lang-dropdown-bw {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+  .lang-dropdown-bw a {
+    display: block;
+    transition: 0.3s;
+  }
+  .lang-dropdown-bw a:hover {
+    transform: scale(1.15);
+  }
+
+  .burger-btn{
+    display: none;
+    background: transparent;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 9999px;
+    transition: background-color 0.2s ease;
+  }
+  .burger-btn:hover{ background-color: rgba(255,255,255,0.08); }
+  .burger-btn svg{ width: 28px; height: 28px; fill: #fff; }
+
+  @media (max-width: 768px){
+    .main-nav{ display: none; }
+    .burger-btn{ display: flex; }
+  }
+
+  /* ===== 404 SECTION ===== */
+  .not-found-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 8rem 1.25rem 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Фоновий розмитий номер */
+  .not-found-bg-num {
+    position: absolute;
+    font-size: clamp(14rem, 30vw, 28rem);
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.03);
+    letter-spacing: -0.05em;
+    user-select: none;
+    pointer-events: none;
+    line-height: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+  }
+
+  .not-found-badge {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #9c9c9c;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 50px;
+    padding: 6px 18px;
+    margin-bottom: 2rem;
+  }
+
+  .not-found-number {
+    font-size: clamp(5rem, 16vw, 11rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: #fff;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Підкреслення під 404 */
+  .not-found-number::after {
+    content: "";
+    display: block;
+    width: 60%;
+    height: 4px;
+    background: hsl(var(--primary));
+    border-radius: 2px;
+    margin: 1rem auto 0;
+  }
+
+  .not-found-title {
+    font-size: clamp(1.4rem, 4vw, 2.2rem);
+    font-weight: 700;
+    color: #fff;
+    margin-top: 2rem;
+    letter-spacing: -0.01em;
+    position: relative;
+    z-index: 1;
+  }
+
+  .not-found-desc {
+    margin-top: 1rem;
+    font-size: 1.05rem;
+    color: #9c9c9c;
+    max-width: 520px;
+    line-height: 1.7;
+    font-weight: 400;
+    position: relative;
+    z-index: 1;
+  }
+
+  .not-found-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Кнопки — стиль btn-hero з index */
+  .btn-hero {
+    display: inline-block;
+    padding: 14px 32px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    text-align: center;
+    text-decoration: none;
+    letter-spacing: 0.3px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+  }
+  .btn-hero:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: scale(1.06);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    color: #ffffff;
+  }
+  .btn-hero:active {
+    transform: scale(0.97);
+  }
+
+  /* Розділювач із швидкими посиланнями */
+  .not-found-links {
+    display: flex;
+    gap: 2rem;
+    margin-top: 3.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .not-found-link-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: #9c9c9c;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.25s ease;
+    padding: 1.25rem 1.5rem;
+    background: #262626;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    min-width: 110px;
+    position: relative;
+    overflow: hidden;
+  }
+  .not-found-link-item::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: hsl(var(--primary));
+    transition: width 0.3s ease;
+  }
+  .not-found-link-item:hover::after {
+    width: 100%;
+  }
+  .not-found-link-item:hover {
+    color: #fff;
+    border-color: rgba(255,255,255,0.18);
+  }
+  .not-found-link-item i {
+    font-size: 1.3rem;
+    color: #fff;
+  }
+
+  /* ===== SCROLL REVEAL ===== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.65s cubic-bezier(0.25, 1, 0.5, 1), transform 0.65s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+  .reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+  .reveal-delay-5 { transition-delay: 0.5s; }
+
+  /* ===== FOOTER ===== */
+  .site-footer {
+    background-color: #080808;
+    padding: 70px 0 20px;
+    border-top: 2px solid #222;
+    position: relative;
+    z-index: 10;
+  }
+
+  .footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+    border-bottom: 1px solid #1a1a1a;
+    padding-bottom: 40px;
+    max-width: 1552px;
+    margin: 0 auto;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .footer-col {
+    flex: 1;
+    min-width: 250px;
+  }
+
+  .about-col .footer-logo {
+    display: flex;
+    align-items: center;
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    color: #fff;
+  }
+
+  .about-col .footer-logo span {
+    color: #ff3333;
+  }
+
+  .about-col p {
+    font-size: 14px;
+    color: #888;
+    line-height: 1.6;
+    margin-bottom: 25px;
+  }
+
+  .social-img-links {
+    display: flex;
+    gap: 15px;
+  }
+
+  .social-img-links a {
+    display: block;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #333;
+    transition: all 0.3s ease;
+    background-color: #111;
+  }
+
+  .social-img-links a img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 5px;
+    transition: all 0.3s ease;
+  }
+
+  .social-img-links a:hover {
+    border-color: #ff3333;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(255, 51, 51, 0.3);
+  }
+
+  .footer-col h4 {
+    font-size: 18px;
+    color: #fff;
+    margin-bottom: 25px;
+    position: relative;
+  }
+
+  .footer-col h4::after {
+    content: '';
+    display: block;
+    width: 30px;
+    height: 2px;
+    background-color: #ff3333;
+    margin-top: 10px;
+  }
+
+  .nav-col ul, .contact-col ul {
+    list-style: none;
+  }
+
+  .nav-col li, .contact-col li {
+    margin-bottom: 15px;
+  }
+
+  .nav-col a, .contact-col a {
+    color: #888;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .nav-col a::before {
+    content: '\f054';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: #ff3333;
+    font-size: 10px;
+    transition: transform 0.3s ease;
+  }
+
+  .nav-col a:hover, .contact-col a:hover {
+    color: #ff3333;
+  }
+
+  .nav-col a:hover::before {
+    transform: translateX(3px);
+  }
+
+  .contact-col i {
+    color: #ff3333;
+    font-size: 16px;
+    width: 20px;
+    text-align: center;
+  }
+
+  .footer-bottom {
+    text-align: center;
+    padding-top: 25px;
+    max-width: 1552px;
+    margin: 0 auto;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .footer-bottom p {
+    color: #555;
+    font-size: 13px;
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo-link" href="https://neocrime.space">
+      <img alt="NeoCrime Logo" loading="lazy" width="40" height="40" decoding="async"
+           src="images/logo.avif">
+      <h1>NeoCrime</h1>
+    </a>
+
+    <nav class="main-nav">
+      <ul>
+        <li><a class="nav-link" href="https://neocrime.space">Головна</a></li>
+        <li><a class="nav-link" href="/events">Події</a></li>
+        <li><a class="nav-link" href="/news">Новини</a></li>
+        <li><a class="nav-link" href="/team">Команда</a></li>
+        <li><a class="nav-link" href="/contact">Контакти</a></li>
+        <li class="lang-switch-bw">
+          <div class="current-lang">
+            <img src="https://flagcdn.com/w40/ua.png" alt="UA">
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="lang-dropdown-bw">
+            <a href="/eng"><img src="https://flagcdn.com/w40/gb.png" alt="EN"></a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+
+    <button class="burger-btn" aria-label="Меню">
+      <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"></path>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<main>
+  <section class="not-found-section">
+
+    <!-- Фоновий декоративний текст -->
+    <div class="not-found-bg-num">404</div>
+
+    <div class="not-found-badge reveal">Помилка сторінки</div>
+
+    <div class="not-found-number reveal reveal-delay-1">404</div>
+
+    <h2 class="not-found-title reveal reveal-delay-2">Сторінку не знайдено</h2>
+
+    <p class="not-found-desc reveal reveal-delay-3">
+      Схоже, ця дорога нікуди не веде. Сторінка, яку ви шукаєте, була переміщена, видалена або ніколи не існувала.
+    </p>
+
+    <div class="not-found-actions reveal reveal-delay-4">
+      <a href="https://neocrime.space" class="btn-hero">
+        <i class="fas fa-home" style="margin-right: 8px;"></i> На головну
+      </a>
+      <a href="/contact" class="btn-hero">Зв'язатись з нами</a>
+    </div>
+
+    <div class="not-found-links reveal reveal-delay-5">
+      <a href="/events" class="not-found-link-item">
+        <i class="fas fa-calendar-alt"></i>
+        Події
+      </a>
+      <a href="/news" class="not-found-link-item">
+        <i class="fas fa-newspaper"></i>
+        Новини
+      </a>
+      <a href="/team" class="not-found-link-item">
+        <i class="fas fa-users"></i>
+        Команда
+      </a>
+      <a href="https://discord.gg/zGzy7Gcdgy" target="_blank" class="not-found-link-item">
+        <i class="fab fa-discord"></i>
+        Discord
+      </a>
+    </div>
+
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-container">
+
+    <div class="footer-col about-col">
+      <div class="footer-logo">Neo<span>Crime</span></div>
+      <p>NeoCrime — це амбіційна українська VTC, що впевнено рухається вперед, створюючи власну історію успіху на просторах TruckersMP. Це місце, де стиль, дисципліна та командний дух поєднуються в єдину силу, а кожен учасник стає частиною великого та впевненого руху.</p>
+
+      <div class="social-img-links">
+        <a href="https://discord.gg/zGzy7Gcdgy" target="_blank"><img src="images/social/1.avif" alt="Discord"></a>
+        <a href="https://www.tiktok.com/@neocrime_vtc" target="_blank"><img src="images/social/2.avif" alt="TikTok"></a>
+        <a href="https://truckersmp.com/vtc/85940" target="_blank"><img src="images/social/3.avif" alt="TruckersMP"></a>
+        <a href="https://www.twitch.tv/neocrime_vtc" target="_blank"><img src="images/social/4.avif" alt="TruckersHub"></a>
+      </div>
+    </div>
+
+    <div class="footer-col nav-col">
+      <h4>Навігація</h4>
+      <ul>
+        <li><a href="https://neocrime.space">Головна</a></li>
+        <li><a href="/news">Новини</a></li>
+        <li><a href="/contact">Контакти</a></li>
+        <li><a href="/privacy">Політика приватності</a></li>
+        <li><a href="/terms">Угода користування</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col contact-col">
+      <h4>Контакти</h4>
+      <ul>
+        <li><i class="fas fa-envelope"></i> <a href="mailto:neocrime10@gmail.com">neocrime10@gmail.com</a></li>
+        <li><i class="fab fa-discord"></i> <a href="https://discord.gg/zGzy7Gcdgy" target="_blank">discord.gg/zGzy7Gcdgy</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2026 NeoCrime. Всі права захищені.</p>
+  </div>
+</footer>
+
+<script>
+  /* ===== SCROLL REVEAL ===== */
+  (function () {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          el.classList.add('revealed');
+          el.addEventListener('transitionend', function onEnd(e) {
+            if (e.propertyName === 'transform') {
+              el.style.transform = '';
+              el.style.transition = '';
+              el.removeEventListener('transitionend', onEnd);
+            }
+          });
+          observer.unobserve(el);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -20px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  })();
+
+  /* ===== ПЛАВНИЙ СКРОЛ ВГОРУ ===== */
+  document.querySelectorAll('a.logo-link, a[href="/index"], a[href="index.html"]').forEach(link => {
+    link.addEventListener('click', function (e) {
+      if (window.location.pathname === '/' ||
+          window.location.pathname === '/index' ||
+          window.location.pathname.endsWith('index.html') ||
+          window.location.pathname === '') {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
