@@ -911,7 +911,7 @@
   }
   .partner-card:hover .partner-card-banner,
   .partner-card.touch-active .partner-card-banner {
-    filter: blur(2px) brightness(0.45);
+    filter: blur(0px) brightness(0.45);
     transform: scale(1.04);
   }
   .partner-card-overlay {
@@ -960,6 +960,11 @@
   .partner-card.touch-active .partner-card-name {
     opacity: 1;
     transform: translateY(0);
+  }
+  .partner-card,
+  .partner-card-logo,
+  .partner-card-banner {
+    -webkit-touch-callout: none;
   }
   .partner-card a.partner-card-link {
     position: absolute;
