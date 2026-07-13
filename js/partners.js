@@ -26,6 +26,9 @@
   let inertiaActive = false;
   let rafId = null;
 
+  let isHovering = false;      // пауза автоплею при наведенні мишкою (десктоп)
+  let activeTouchCard = null;  // картка, яку зараз тримають пальцем (мобільний)
+
   function escHtml(str) {
     const d = document.createElement("div");
     d.textContent = String(str || "");
@@ -67,9 +70,10 @@
   }
 
   function renderPartners() {
-    // Дублюємо набір карток, щоб стрічка була безшовною при автоматичному русі вправо нескінченно
+    // Потроюємо набір карток — стрічка виходить довшою і безшовною
+    // навіть коли партнерів мало (менше видно "склейку" циклу)
     const singleSetHTML = items.map(cardHTML).join("");
-    track.innerHTML = singleSetHTML + singleSetHTML;
+    track.innerHTML = singleSetHTML.repeat(3);
 
     // Рахуємо ширину після рендеру (потрібно дочекатись layout)
     requestAnimationFrame(() => {
@@ -101,7 +105,7 @@
   //  Основний цикл анімації: автоплей + інерція
   // ------------------------------------------------------------
   function tick() {
-    if (!isDragging) {
+    if (!isDragging && !isHovering) {
       if (inertiaActive) {
         // Інерційне доїзжання після відпускання, швидкість поступово згасає
         setTrackPosition(posX + dragVelocity);
@@ -144,6 +148,15 @@
     lastDragX = clientX;
     lastDragTime = performance.now();
     dragVelocity = 0;
+
+    // На мобільному — знімаємо блюр з картки, яку саме тримають пальцем
+    if (e.touches) {
+      const card = e.target.closest(".partner-card");
+      if (card) {
+        activeTouchCard = card;
+        card.classList.add("touch-active");
+      }
+    }
   }
 
   function onPointerMove(e) {
@@ -174,6 +187,11 @@
     const v = Math.max(-40, Math.min(40, dragVelocity));
     dragVelocity = v;
     inertiaActive = Math.abs(v) > 0.3;
+
+    if (activeTouchCard) {
+      activeTouchCard.classList.remove("touch-active");
+      activeTouchCard = null;
+    }
   }
 
   viewport.addEventListener("mousedown", onPointerDown);
@@ -183,6 +201,12 @@
   viewport.addEventListener("touchstart", onPointerDown, { passive: false });
   viewport.addEventListener("touchmove", onPointerMove, { passive: false });
   viewport.addEventListener("touchend", onPointerUp);
+  viewport.addEventListener("touchcancel", onPointerUp);
+
+  // Пауза автоплею при наведенні мишкою — без цього картка "втікає" з-під
+  // курсору кожні кілька кадрів і блюр встигає лише мигнути, а не плавно зникнути
+  viewport.addEventListener("mouseenter", () => { isHovering = true; });
+  viewport.addEventListener("mouseleave", () => { isHovering = false; });
 
   // Забороняємо браузеру тягнути картинку логотипу/посилання як файл
   viewport.addEventListener("dragstart", (e) => e.preventDefault());
