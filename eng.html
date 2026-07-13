@@ -909,7 +909,8 @@
     transform: scale(1.12);
     transition: filter 0.5s ease, transform 0.5s ease;
   }
-  .partner-card:hover .partner-card-banner {
+  .partner-card:hover .partner-card-banner,
+  .partner-card.touch-active .partner-card-banner {
     filter: blur(2px) brightness(0.45);
     transform: scale(1.04);
   }
@@ -940,7 +941,8 @@
     transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
     pointer-events: none;
   }
-  .partner-card:hover .partner-card-logo {
+  .partner-card:hover .partner-card-logo,
+  .partner-card.touch-active .partner-card-logo {
     transform: scale(1.12);
   }
   .partner-card-name {
@@ -954,7 +956,8 @@
     text-shadow: 0 2px 6px rgba(0,0,0,0.6);
     pointer-events: none;
   }
-  .partner-card:hover .partner-card-name {
+  .partner-card:hover .partner-card-name,
+  .partner-card.touch-active .partner-card-name {
     opacity: 1;
     transform: translateY(0);
   }
