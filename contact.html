@@ -183,6 +183,33 @@
   @media (max-width: 768px){
     .main-nav{ display: none; }
     .burger-btn{ display: flex; }
+
+    /* ДОДАНО: бургер-меню */
+    .main-nav.active{
+      display: block;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background: rgba(15, 16, 16, 0.97);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+    .main-nav.active ul{
+      flex-direction: column;
+      gap: 0;
+      padding: 0.5rem 1.25rem 1.25rem;
+    }
+    .main-nav.active .nav-link{
+      display: block;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .main-nav.active .lang-switch-bw{
+      margin: 1rem 0 0.25rem;
+      justify-content: center;
+    }
+    body.nav-open{ overflow: hidden; }
   }
 
   /* ===== HERO ФОТО — точна копія з news.html ===== */
@@ -845,7 +872,7 @@
         </div>
 
         <div class="form-footer-row">
-          <p class="form-note">Надсилаючи форму, ви погоджуєтесь з <a href="privacy.html" class="text-primary">політикою приватності</a> NeoCrime.</p>
+          <p class="form-note">Надсилаючи форму, ви погоджуєтесь з <a href="/privacy" class="text-primary">політикою приватності</a> NeoCrime.</p>
           <button type="submit" class="btn-submit" id="submit-btn">
             <i class="fas fa-paper-plane"></i>
             <span id="submit-btn-text">Надіслати</span>
@@ -1044,5 +1071,34 @@
   });
 </script>
 
+<script>
+  /* ===== БУРГЕР-МЕНЮ ===== */
+  (function () {
+    const burger = document.querySelector('.burger-btn');
+    const nav = document.querySelector('.main-nav');
+    if (!burger || !nav) return;
+
+    burger.addEventListener('click', function () {
+      nav.classList.toggle('active');
+      document.body.classList.toggle('nav-open');
+    });
+
+    nav.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        nav.classList.remove('active');
+        document.body.classList.remove('nav-open');
+      });
+    });
+
+    document.addEventListener('click', function (e) {
+      if (nav.classList.contains('active') &&
+          !nav.contains(e.target) &&
+          !burger.contains(e.target)) {
+        nav.classList.remove('active');
+        document.body.classList.remove('nav-open');
+      }
+    });
+  })();
+</script>
 </body>
 </html>
