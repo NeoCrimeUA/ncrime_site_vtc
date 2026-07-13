@@ -408,6 +408,7 @@
   /* Кнопка закрити */
   .gallery-lightbox-close{
     position: absolute; top: 1.5rem; right: 1.5rem;
+    z-index: 10;
     background: rgba(255,255,255,0.08);
     border: 1px solid rgba(255,255,255,0.2);
     color: #fff; font-size: 1.5rem;
@@ -421,6 +422,7 @@
   /* Навігація по лайтбоксу (стрілки ліво/право) */
   .lightbox-nav{
     position: absolute; top: 50%; transform: translateY(-50%);
+    z-index: 10;
     background: rgba(255,255,255,0.08);
     border: 1px solid rgba(255,255,255,0.2);
     color: #fff; font-size: 1.2rem;
@@ -435,13 +437,14 @@
     transform: translateY(-50%) scale(1.08);
   }
   .lightbox-nav-prev{ left: 1.5rem; }
-  .lightbox-nav-next{ right: 4.5rem; }
+  .lightbox-nav-next{ right: 1.5rem; }
 
   /* Підпис під фото в лайтбоксі */
   .lightbox-caption{
     position: absolute;
     bottom: 1.5rem; left: 50%;
     transform: translateX(-50%);
+    z-index: 10;
     background: rgba(0,0,0,0.55);
     backdrop-filter: blur(4px);
     border: 1px solid rgba(255,255,255,0.1);
@@ -455,6 +458,27 @@
     pointer-events: none;
   }
   .gallery-lightbox.active .lightbox-caption{ opacity: 1; }
+
+  /* ===== Мобільна адаптація лайтбоксу ===== */
+  @media(max-width:640px){
+    .gallery-lightbox{ padding: 1rem; }
+    .gallery-lightbox-close{
+      top: 0.75rem; right: 0.75rem;
+      width: 36px; height: 36px;
+      font-size: 1.3rem;
+    }
+    .lightbox-nav{
+      width: 40px; height: 40px;
+      font-size: 1.05rem;
+    }
+    .lightbox-nav-prev{ left: 0.75rem; }
+    .lightbox-nav-next{ right: 0.75rem; }
+    .lightbox-caption{
+      bottom: 0.75rem;
+      max-width: 90vw;
+      font-size: 0.8rem;
+    }
+  }
 
   /* ===== КНОПКА "ЗАВАНТАЖИТИ ЩЕ" ===== */
   .btn-load-more{
