@@ -70,15 +70,34 @@
   }
 
   function renderPartners() {
-    // Потроюємо набір карток — стрічка виходить довшою і безшовною
-    // навіть коли партнерів мало (менше видно "склейку" циклу)
     const singleSetHTML = items.map(cardHTML).join("");
-    track.innerHTML = singleSetHTML.repeat(3);
 
-    // Рахуємо ширину після рендеру (потрібно дочекатись layout)
+    // Спочатку рендеримо один комплект, щоб виміряти реальну ширину картки,
+    // а тоді розрахувати скільки комплектів треба, щоб стрічка була довгою
+    // і "склейка" циклу була непомітною на будь-якій ширині екрана.
+    track.innerHTML = singleSetHTML;
+
     requestAnimationFrame(() => {
-      measure();
-      startAutoplay();
+      const cards = track.querySelectorAll(".partner-card");
+      if (!cards.length) return;
+
+      const gap = parseFloat(getComputedStyle(track).gap) || 0;
+      const singleCardWidth = cards[0].getBoundingClientRect().width + gap;
+      const singleSetWidth = singleCardWidth * items.length;
+      const viewportWidth = viewport.getBoundingClientRect().width || window.innerWidth;
+
+      // Стрічка має бути довшою за кілька екранів, щоб рух виглядав
+      // тривалим і безперервним навіть коли партнерів мало
+      const minWidth = viewportWidth * 6;
+      let repeats = Math.max(3, Math.ceil(minWidth / (singleSetWidth || 1)));
+      repeats = Math.min(repeats, 15); // розумна межа, щоб не роздувати DOM
+
+      track.innerHTML = singleSetHTML.repeat(repeats);
+
+      requestAnimationFrame(() => {
+        measure();
+        startAutoplay();
+      });
     });
   }
 
@@ -179,14 +198,32 @@
     lastDragTime = now;
   }
 
-  function onPointerUp() {
+  function onPointerUp(e) {
     if (!isDragging) return;
+    const isTouchEnd = !!(e && e.type === "touchend");
+
     isDragging = false;
     viewport.classList.remove("dragging");
     // Запускаємо інерцію тільки якщо швидкість реалістична (захист від випадкових сплесків)
     const v = Math.max(-40, Math.min(40, dragVelocity));
     dragVelocity = v;
     inertiaActive = Math.abs(v) > 0.3;
+
+    if (isTouchEnd) {
+      // Не даємо браузеру самому емулювати клік з тача (щоб не було
+      // подвійного переходу за посиланням і "залипання" блюру)
+      if (e.cancelable) e.preventDefault();
+
+      const wasTap = dragMoved <= DRAG_CLICK_THRESHOLD;
+      if (wasTap && activeTouchCard) {
+        // Короткий тап без зрушення пальця = одразу перехід за посиланням партнера
+        const linkEl = activeTouchCard.querySelector(".partner-card-link");
+        const href = linkEl ? linkEl.getAttribute("href") : null;
+        if (href && href !== "#") {
+          window.open(href, "_blank", "noopener,noreferrer");
+        }
+      }
+    }
 
     if (activeTouchCard) {
       activeTouchCard.classList.remove("touch-active");
@@ -200,7 +237,7 @@
 
   viewport.addEventListener("touchstart", onPointerDown, { passive: false });
   viewport.addEventListener("touchmove", onPointerMove, { passive: false });
-  viewport.addEventListener("touchend", onPointerUp);
+  viewport.addEventListener("touchend", onPointerUp, { passive: false });
   viewport.addEventListener("touchcancel", onPointerUp);
 
   // Пауза автоплею при наведенні мишкою — без цього картка "втікає" з-під
