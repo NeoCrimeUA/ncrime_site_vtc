@@ -26,7 +26,6 @@
   let inertiaActive = false;
   let rafId = null;
 
-  let isHovering = false;      // пауза автоплею при наведенні мишкою (десктоп)
   let activeTouchCard = null;  // картка, яку зараз тримають пальцем (мобільний)
 
   function escHtml(str) {
@@ -124,7 +123,7 @@
   //  Основний цикл анімації: автоплей + інерція
   // ------------------------------------------------------------
   function tick() {
-    if (!isDragging && !isHovering) {
+    if (!isDragging) {
       if (inertiaActive) {
         // Інерційне доїзжання після відпускання, швидкість поступово згасає
         setTrackPosition(posX + dragVelocity);
@@ -239,11 +238,6 @@
   viewport.addEventListener("touchmove", onPointerMove, { passive: false });
   viewport.addEventListener("touchend", onPointerUp, { passive: false });
   viewport.addEventListener("touchcancel", onPointerUp);
-
-  // Пауза автоплею при наведенні мишкою — без цього картка "втікає" з-під
-  // курсору кожні кілька кадрів і блюр встигає лише мигнути, а не плавно зникнути
-  viewport.addEventListener("mouseenter", () => { isHovering = true; });
-  viewport.addEventListener("mouseleave", () => { isHovering = false; });
 
   // Забороняємо браузеру тягнути картинку логотипу/посилання як файл
   viewport.addEventListener("dragstart", (e) => e.preventDefault());

@@ -441,6 +441,353 @@
     .events-grid { grid-template-columns: 1fr; }
   }
 
+  /* ===== КАЛЕНДАР ПОДІЙ ===== */
+  .calendar-section-layout{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    margin-top: 3.5rem;
+  }
+  .calendar-image-col{
+    position: relative;
+    flex: 1 1 auto;
+    min-width: 0;
+    height: 480px;
+    overflow: hidden;
+  }
+  .calendar-decor-image{
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    pointer-events: none;
+    -webkit-mask-image:
+      linear-gradient(to right, transparent 0%, #000 38%, #000 62%, transparent 100%),
+      linear-gradient(to bottom, transparent 0%, #000 38%, #000 62%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-image:
+      linear-gradient(to right, transparent 0%, #000 38%, #000 62%, transparent 100%),
+      linear-gradient(to bottom, transparent 0%, #000 38%, #000 62%, transparent 100%);
+    mask-composite: intersect;
+  }
+  .calendar-visual-col{
+    flex: 0 0 auto;
+  }
+
+  :root{
+    --cal-own: 262 83% 66%;      /* фіолетовий — наші події */
+    --cal-attending: 0 72% 45%;  /* червоний — події, на які ми йдемо */
+    --cal-none: 0 0% 22%;        /* сірий — днів без подій */
+  }
+
+  .calendar-card{
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #262626;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+    padding: 1.1rem;
+  }
+  .calendar-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 0.9rem;
+  }
+  .calendar-month-label{
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #fff;
+    text-align: center;
+    min-width: 120px;
+    text-transform: capitalize;
+  }
+  .calendar-nav-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: #3b3a3a;
+    border: none;
+    color: #fff;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+  }
+  .calendar-nav-btn svg{ width: 15px; height: 15px; }
+  .calendar-nav-btn:hover:not(:disabled){
+    background-color: #6e6e6e;
+  }
+  .calendar-nav-btn:disabled{
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  .calendar-weekdays{
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.3rem;
+    margin-bottom: 0.3rem;
+  }
+  .calendar-weekday{
+    text-align: center;
+    font-size: 0.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: #8a8a8a;
+    padding: 0.2rem 0;
+  }
+
+  .calendar-grid{
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.3rem;
+  }
+  .calendar-day{
+    position: relative;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background-color: #1f1f1f;
+    color: #d8d8d8;
+    font-weight: 600;
+    font-size: 0.68rem;
+    transition: all 0.15s ease;
+  }
+  .calendar-day-empty{
+    background: transparent;
+    border: none;
+  }
+  .calendar-day:disabled{
+    cursor: default;
+  }
+  .calendar-day:not(:disabled){
+    cursor: pointer;
+  }
+  .calendar-day:not(:disabled):hover{
+    transform: scale(1.1);
+    border-color: rgba(255, 255, 255, 0.4);
+    z-index: 1;
+  }
+  .calendar-day-attending{
+    background-color: hsl(var(--cal-attending));
+    border-color: hsl(var(--cal-attending));
+    color: #fff;
+  }
+  .calendar-day-own{
+    background-color: hsl(var(--cal-own));
+    border-color: hsl(var(--cal-own));
+    color: #fff;
+  }
+  .calendar-day-today{
+    box-shadow: 0 0 0 2px #ffffff inset;
+  }
+
+  .calendar-legend{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .calendar-legend-item{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: #bcbcbc;
+  }
+  .calendar-dot{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .calendar-dot-own{ background-color: hsl(var(--cal-own)); }
+  .calendar-dot-attending{ background-color: hsl(var(--cal-attending)); }
+  .calendar-dot-none{ background-color: hsl(var(--cal-none)); }
+
+  /* ===== МОДАЛЬНЕ ВІКНО КАЛЕНДАРЯ ===== */
+  .calendar-modal-overlay{
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.25rem;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+  }
+  .calendar-modal-overlay.active{
+    opacity: 1;
+    visibility: visible;
+  }
+  body.calendar-modal-open{ overflow: hidden; }
+
+  .calendar-modal{
+    position: relative;
+    width: 100%;
+    max-width: 560px;
+    max-height: 85vh;
+    overflow-y: auto;
+    background-color: #1f1f1f;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    padding: 1.75rem;
+    transform: translateY(20px) scale(0.98);
+    transition: transform 0.25s ease;
+  }
+  .calendar-modal-overlay.active .calendar-modal{
+    transform: translateY(0) scale(1);
+  }
+  .calendar-modal-close{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #3b3a3a;
+    border: none;
+    color: #fff;
+    transition: all 0.2s ease;
+  }
+  .calendar-modal-close:hover{
+    background-color: #6e6e6e;
+  }
+  .calendar-modal-title{
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 1.5rem;
+    padding-right: 2.5rem;
+    text-transform: capitalize;
+  }
+  .calendar-modal-list{
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  .calendar-modal-event{
+    display: flex;
+    flex-direction: column;
+    background-color: #262626;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .calendar-modal-banner{
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    display: block;
+  }
+  .calendar-modal-event-body{
+    padding: 1rem 1.1rem 1.1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    flex-grow: 1;
+    min-width: 0;
+  }
+  .calendar-badge{
+    display: inline-flex;
+    align-self: flex-start;
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  .calendar-badge-own{
+    background-color: hsla(var(--cal-own), 0.2);
+    color: hsl(var(--cal-own));
+  }
+  .calendar-badge-attending{
+    background-color: hsla(var(--cal-attending), 0.18);
+    color: #ff6b6b;
+  }
+  .calendar-modal-event-title{
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.35;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+  .calendar-modal-event-time{
+    font-size: 0.85rem;
+    color: #9c9c9c;
+    font-weight: 600;
+  }
+  .calendar-modal-btn.btn-event{
+    width: auto;
+    align-self: flex-start;
+    padding: 0.55rem 1.1rem;
+    font-size: 0.8rem;
+    margin-top: 0.2rem;
+  }
+
+  /* Адаптивність двоколонкового блоку календаря */
+  @media (max-width: 900px){
+    .calendar-section-layout{
+      justify-content: center;
+      margin-top: 2rem;
+    }
+    .calendar-image-col{
+      display: none;
+    }
+  }
+
+  /* Адаптивність календаря під мобільні */
+  @media (max-width: 640px){
+    .calendar-card{ max-width: 340px; padding: 0.9rem; border-radius: 12px; }
+    .calendar-header{ margin-bottom: 0.75rem; }
+    .calendar-month-label{ font-size: 0.85rem; min-width: 100px; }
+    .calendar-nav-btn{ width: 24px; height: 24px; }
+    .calendar-nav-btn svg{ width: 13px; height: 13px; }
+    .calendar-weekday{ font-size: 0.55rem; padding: 0.15rem 0; }
+    .calendar-grid{ gap: 0.25rem; }
+    .calendar-day{ border-radius: 5px; font-size: 0.6rem; }
+    .calendar-legend{ gap: 0.6rem 0.9rem; margin-top: 0.9rem; padding-top: 0.85rem; }
+    .calendar-legend-item{ font-size: 0.7rem; }
+
+    .calendar-modal-overlay{ padding: 0; align-items: flex-end; }
+    .calendar-modal{
+      max-width: 100%;
+      max-height: 88vh;
+      border-radius: 18px 18px 0 0;
+      padding: 1.25rem;
+      transform: translateY(100%);
+    }
+    .calendar-modal-overlay.active .calendar-modal{
+      transform: translateY(0);
+    }
+    .calendar-modal-banner{ height: 140px; }
+  }
+
   /* ===== SCROLL REVEAL АНІМАЦІЇ ===== */
   .reveal {
     opacity: 0;
@@ -642,6 +989,25 @@
 </div>
 
 <main>
+
+  <!-- ====================== КАЛЕНДАР ПОДІЙ ====================== -->
+  <section class="events-section">
+    <div class="benefits-header reveal">
+      <h2>Календар подій</h2>
+      <p class="benefits-subtitle">Перегляньте всі події по днях — листайте місяці, щоб побачити заплановані заходи</p>
+    </div>
+
+    <div class="calendar-section-layout reveal">
+      <div class="calendar-image-col">
+        <!-- Замініть src на бажане зображення — воно вже плавно розчиняється в фоні по краях -->
+        <img src="images/calendar-image.avif" alt="NeoCrime" class="calendar-decor-image" loading="lazy">
+      </div>
+
+      <div class="calendar-visual-col" id="events-calendar">
+        <p style="color: #9c9c9c;">Завантаження календаря...</p>
+      </div>
+    </div>
+  </section>
 
   <!-- ====================== НАШІ ПОДІЇ ====================== -->
   <section class="events-section">

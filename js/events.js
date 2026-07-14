@@ -1,6 +1,41 @@
 document.addEventListener('DOMContentLoaded', () => {
   const eventsContainer = document.getElementById('events-container');
 
+  const LANG = document.documentElement.lang === 'en' ? 'en' : 'uk';
+
+  // API віддає start_at (час виїзду) в UTC (напр. "2026-07-28 16:00:00").
+  // Для української версії конвертуємо це в київський час
+  // (Europe/Kyiv сама враховує перехід на літній/зимовий час).
+  // Англійська версія лишається як є — без конвертації.
+  function toKyivParts(utcString) {
+    if (!utcString) return null;
+    const iso = utcString.replace(' ', 'T') + 'Z';
+    const d = new Date(iso);
+    if (isNaN(d.getTime())) return null;
+
+    const parts = new Intl.DateTimeFormat('en-CA', {
+      timeZone: 'Europe/Kyiv',
+      year: 'numeric', month: '2-digit', day: '2-digit',
+      hour: '2-digit', minute: '2-digit', hour12: false
+    }).formatToParts(d).reduce((acc, p) => { acc[p.type] = p.value; return acc; }, {});
+
+    return {
+      dateKey: `${parts.year}-${parts.month}-${parts.day}`,
+      time: `${parts.hour}:${parts.minute}`
+    };
+  }
+
+  // Дата+час для відображення в картці: у "uk" — київський час,
+  // в іншому разі — сирий рядок з API як є (без конвертації).
+  function displayDateTime(utcString) {
+    if (!utcString) return null;
+    if (LANG === 'uk') {
+      const kyiv = toKyivParts(utcString);
+      return kyiv ? `${kyiv.dateKey} ${kyiv.time}` : null;
+    }
+    return utcString.substring(0, 16);
+  }
+
   async function loadEvents() {
     try {
       // Запрос к твоему новому эндпоинту
@@ -19,15 +54,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // На всякий случай сортируем события по возрастанию (ближайшие — первые)
-        events.sort((a, b) => new Date(a.meetup_at) - new Date(b.meetup_at));
+        events.sort((a, b) => new Date(a.start_at) - new Date(b.start_at));
 
         // Берем ровно 3 ближайших события для идеального отображения в сетке
         const latestEvents = events.slice(0, 3);
         eventsContainer.innerHTML = '';
         
         latestEvents.forEach(item => {
-          // Обрезаем секунды у даты: "2026-07-28 16:00:00" -> "2026-07-28 16:00"
-          const cleanDate = item.meetup_at ? item.meetup_at.substring(0, 16) : 'Невідомо';
+          // Час виїзду: для "uk" — переведений у київський час; для "en" — як є з API (UTC)
+          const cleanDate = displayDateTime(item.start_at) || 'Невідомо';
           
           // Безопасное извлечение данных (если какое-то поле будет отсутствовать)
           const serverName = item.server && item.server.name ? item.server.name : 'Невідомо';
