@@ -233,6 +233,79 @@
     height: 100%;
     object-fit: cover;
   }
+
+  /* ===== КНОПКА ЗВУКУ НА ВІДЕО ===== */
+  .sound-toggle-btn{
+    position: absolute;
+    bottom: 24px;
+    right: 24px;
+    z-index: 45;
+    width: 44px;
+    height: 44px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(90, 90, 90, 0.4);
+    border: none;
+    outline: none;
+    border-radius: 12px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    cursor: pointer;
+    padding: 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transform-origin: 50% 50%;
+    transform: scale(1);
+    transition: background 0.35s ease, box-shadow 0.35s ease, transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .sound-toggle-btn:focus-visible{
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25), 0 0 0 2px rgba(255, 255, 255, 0.4);
+  }
+  .sound-toggle-btn:hover{
+    background: rgba(110, 110, 110, 0.5);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
+    transform: scale(1.08);
+  }
+  .sound-toggle-btn:active{
+    transform: scale(0.9);
+    transition-duration: 0.12s;
+  }
+  .sound-toggle-btn svg{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 22px;
+    height: 22px;
+    transform-origin: 50% 50%;
+    transition: opacity 0.32s ease, transform 0.32s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.35s ease;
+  }
+  .sound-toggle-btn .icon-on{
+    opacity: 1;
+    color: #ffffff;
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  }
+  .sound-toggle-btn .icon-off{
+    opacity: 0;
+    color: hsl(var(--primary));
+    transform: translate(-50%, -50%) scale(0.5) rotate(-20deg);
+  }
+  .sound-toggle-btn.is-muted .icon-on{
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5) rotate(20deg);
+  }
+  .sound-toggle-btn.is-muted .icon-off{
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  }
+  @media (max-width: 767px){
+    .sound-toggle-btn{
+      bottom: 16px;
+      right: 16px;
+      width: 40px;
+      height: 40px;
+    }
+  }
   
   .hero-content{
     position: absolute;
@@ -1346,8 +1419,21 @@
 
     <div class="hero-video-wrap">
       <video id="hero_video" autoplay loop muted playsinline>
-        <source type="video/mp4" src="https://www.image2url.com/r2/default/videos/1782146035965-51f1927e-6b30-4e42-a7d9-ac636c1b2931.mp4">
+        <source type="video/mp4" src="https://www.image2url.com/r2/default/videos/1784036400452-fc8a1090-ad10-4a59-91f9-62cb2589ad78.mp4">
       </video>
+
+      <button type="button" id="sound_toggle_btn" class="sound-toggle-btn is-muted" aria-pressed="false" aria-label="Toggle video sound">
+        <svg class="icon-on" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 9.5V14.5C4 15.0523 4.44772 15.5 5 15.5H7.85L12.3 19.15C12.63 19.42 13.13 19.19 13.13 18.76V5.24C13.13 4.81 12.63 4.58 12.3 4.85L7.85 8.5H5C4.44772 8.5 4 8.94772 4 9.5Z" fill="currentColor"/>
+          <path d="M16.5 9C17.5 10 18 11 18 12C18 13 17.5 14 16.5 15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M18.7 6.5C20.3 8 21 10 21 12C21 14 20.3 16 18.7 17.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <svg class="icon-off" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 9.5V14.5C4 15.0523 4.44772 15.5 5 15.5H7.85L12.3 19.15C12.63 19.42 13.13 19.19 13.13 18.76V5.24C13.13 4.81 12.63 4.58 12.3 4.85L7.85 8.5H5C4.44772 8.5 4 8.94772 4 9.5Z" fill="currentColor"/>
+          <path d="M16.5 9.5L20.5 13.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M20.5 9.5L16.5 13.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
 
       <div class="hero-content">
         <h1>NeoCrime</h1>
@@ -1682,6 +1768,37 @@
         document.body.classList.remove('nav-open');
       }
     });
+  })();
+</script>
+<script>
+  /* ===== КНОПКА ЗВУКУ НА HERO-ВІДЕО ===== */
+  (function () {
+    const video = document.getElementById('hero_video');
+    const btn = document.getElementById('sound_toggle_btn');
+    if (!video || !btn) return;
+
+    const DEFAULT_VOLUME = 0.5;
+    let userMuted = true; // true = звук вимкнений за замовчуванням
+
+    function syncButton() {
+      btn.classList.toggle('is-muted', userMuted);
+      btn.setAttribute('aria-pressed', String(!userMuted));
+    }
+
+    video.volume = DEFAULT_VOLUME;
+    video.muted = true;
+
+    btn.addEventListener('click', function () {
+      userMuted = !userMuted;
+      video.muted = userMuted;
+      if (!userMuted) {
+        video.volume = DEFAULT_VOLUME;
+        video.play().catch(function () {});
+      }
+      syncButton();
+    });
+
+    syncButton();
   })();
 </script>
 </body>
