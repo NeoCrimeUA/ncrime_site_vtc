@@ -350,6 +350,39 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalTitle = document.getElementById('calendar-modal-title');
     const modalList = document.getElementById('calendar-modal-list');
 
+    // Блокування скролу фону при відкритій модалці — для всіх пристроїв.
+    // Просто overflow:hidden на body на iOS Safari не завжди зупиняє
+    // скрол сторінки під фіксованим оверлеєм, тому додатково "заморожуємо"
+    // body через position:fixed зі збереженням позиції скролу.
+    let savedScrollY = 0;
+    let scrollLocked = false;
+
+    function lockBodyScroll() {
+      savedScrollY = window.scrollY || window.pageYOffset || 0;
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${savedScrollY}px`;
+      document.body.style.left = '0';
+      document.body.style.right = '0';
+      document.body.style.width = '100%';
+      if (scrollbarWidth > 0) {
+        document.body.style.paddingRight = `${scrollbarWidth}px`;
+      }
+      scrollLocked = true;
+    }
+
+    function unlockBodyScroll() {
+      if (!scrollLocked) return;
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.right = '';
+      document.body.style.width = '';
+      document.body.style.paddingRight = '';
+      window.scrollTo(0, savedScrollY);
+      scrollLocked = false;
+    }
+
     function openModal(dateKey) {
       const dayEvents = eventsByDate[dateKey] || [];
       if (!dayEvents.length) return;
@@ -381,12 +414,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
       overlay.classList.add('active');
       document.body.classList.add('calendar-modal-open');
+      lockBodyScroll();
       document.addEventListener('keydown', onModalKeydown);
     }
 
     function closeModal() {
       overlay.classList.remove('active');
       document.body.classList.remove('calendar-modal-open');
+      unlockBodyScroll();
       document.removeEventListener('keydown', onModalKeydown);
     }
 

@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
-  *{ box-sizing: border-box; margin: 0; padding: 0; }
+  *{ box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
   :root{
     --primary: 0 72% 35%;
@@ -182,19 +182,30 @@
   .burger-btn svg{ width: 28px; height: 28px; fill: #fff; }
 
   @media (max-width: 768px){
-    .main-nav{ display: none; }
-    .burger-btn{ display: flex; }
-
-    /* ДОДАНО: бургер-меню */
-    .main-nav.active{
+    .main-nav{
       display: block;
       position: absolute;
       top: 100%;
       left: 0;
       width: 100%;
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      pointer-events: none;
+      transform: translateY(-12px);
       background: rgba(15, 16, 16, 0.97);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
+      transition: max-height 0.35s ease, opacity 0.3s ease, transform 0.3s ease;
+    }
+    .burger-btn{ display: flex; }
+
+    /* ДОДАНО: бургер-меню — плавна анімація випадання зверху вниз */
+    .main-nav.active{
+      max-height: 600px;
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
     }
     .main-nav.active ul{
       flex-direction: column;
