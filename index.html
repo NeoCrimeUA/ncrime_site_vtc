@@ -356,27 +356,34 @@
     color: #ffffff;
     background: rgba(255, 255, 255, 0.06);
     border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 50px;
+    border-radius: 12px;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    transition: background 0.35s cubic-bezier(0.23, 1, 0.32, 1), border-color 0.35s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.35s cubic-bezier(0.23, 1, 0.32, 1);
     text-align: center;
     text-decoration: none;
     letter-spacing: 0.3px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     cursor: pointer;
+    white-space: nowrap;
   }
 
   .btn-hero:hover {
     background: rgba(255, 255, 255, 0.12);
     border-color: rgba(255, 255, 255, 0.4);
-    transform: scale(1.06);
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
     color: #ffffff;
   }
 
   .btn-hero:active {
-    transform: scale(0.97);
+    background: rgba(255, 255, 255, 0.16);
+  }
+
+  @media (max-width: 480px){
+    .btn-hero{
+      padding: 12px 20px;
+      font-size: 14px;
+    }
   }
 
   /* ===== ABOUT US & STATS ===== */
@@ -1445,7 +1452,7 @@
         <h1>NeoCrime</h1>
         <p>Контроль на кожному кілометрі!</p>
         <div class="hero-buttons">
-          <a href="https://hub.neocrime.space/apply" target="_blank" rel="noreferrer" class="btn-hero">Вступити в компанію!</a>
+          <a href="https://hub.neocrime.space/apply" class="btn-hero">Вступити до нас!</a>
           <a href="https://discord.gg/zGzy7Gcdgy" target="_blank" rel="noreferrer" class="btn-hero">Discord</a>
         </div>
       </div>
