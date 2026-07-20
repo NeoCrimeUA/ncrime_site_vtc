@@ -72,6 +72,7 @@
     color: #fff;
   }
   .main-nav ul{
+    align-items: center;
     display: flex;
     gap: 1.5rem;
     list-style: none;
@@ -91,13 +92,14 @@
     transition: width 0.3s ease;
   }
   .nav-link:hover::after{ width: 100%; }
-
-  .lang-switch-bw {
+.lang-switch-bw {
     position: relative;
-    display: flex; align-items: center;
-    border: 1px solid rgba(255,255,255,0.2);
-    padding: 8px 12px;
-    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    height: 40px;
+    padding: 0 10px;
+    border: none;
+    border-radius: 9999px;
     cursor: pointer;
     transition: 0.3s;
     margin-left: 0.5rem;
@@ -127,6 +129,61 @@
   }
   .lang-dropdown-bw a { display: block; transition: 0.3s; }
   .lang-dropdown-bw a:hover { transform: scale(1.15); }
+  .account-switch-bw {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-left: 0.5rem;
+  }
+  .account-switch-bw:hover { background-color: rgba(255, 255, 255, 0.1); }
+  .current-account { display: flex; align-items: center; }
+  .current-account i.fa-circle-user { font-size: 20px; color: #ffffff; }
+  .account-dropdown-bw {
+    position: absolute;
+    top: 140%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: rgba(12, 12, 12, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 8px;
+    min-width: 220px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    z-index: 60;
+  }
+  .account-switch-bw:hover .account-dropdown-bw {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+  .account-dropdown-bw a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #e5e5e5;
+    white-space: nowrap;
+    transition: 0.3s;
+  }
+  .account-dropdown-bw a:hover { background-color: rgba(255, 255, 255, 0.08); color: #fff; }
+  .account-dropdown-bw a i { color: hsl(var(--primary)); font-size: 13px; width: 16px; text-align: center; }
+
 
   .burger-btn{
     display: none;
@@ -169,6 +226,10 @@
     }
     .main-nav.active .lang-switch-bw{
       margin: 1rem 0 0.25rem;
+      justify-content: center;
+    }
+    .main-nav.active .account-switch-bw{
+      margin: 0.25rem 0 1rem;
       justify-content: center;
     }
     body.nav-open{ overflow: hidden; }
@@ -377,6 +438,15 @@
           </div>
           <div class="lang-dropdown-bw">
             <a href="/privacy-eng"><img src="https://flagcdn.com/w40/gb.png" alt="EN"></a>
+          </div>
+        </li>
+        <li class="account-switch-bw">
+          <div class="current-account">
+            <i class="fas fa-circle-user"></i>
+          </div>
+          <div class="account-dropdown-bw">
+            <a href="https://hub.neocrime.space/login"><i class="fas fa-user"></i> Особистий кабінет</a>
+            <a href="https://api.neocrime.space/panel"><i class="fas fa-shield-halved"></i> Адмін панель</a>
           </div>
         </li>
       </ul>
