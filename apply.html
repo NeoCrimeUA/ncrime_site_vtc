@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="images/logo.avif" type="image/avif">
+<link rel="apple-touch-icon" href="images/logo.avif">
+<title>Подати заявку — NeoCrime</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+  *{ box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+  :root{
+    --primary: 0 72% 35%;
+    --primary-foreground: 0 0% 100%;
+    --bg-dark: 0 0% 6%;
+    --discord: 235 86% 65%;
+  }
+
+  html, body{
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  body{
+    background-color: #1a1b1b;
+    color: #fff;
+    font-family: 'Montserrat', ui-sans-serif, system-ui, -apple-system, sans-serif;
+    line-height: 1.5;
+  }
+
+  a{ color: inherit; text-decoration: none; }
+  button{ font: inherit; cursor: pointer; }
+
+  .text-primary{ color: hsl(var(--primary)); }
+
+  /* ===== HEADER ===== */
+  .site-header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 50;
+    width: 100%;
+    padding: 0.75rem 1.25rem;
+    background-color: rgba(15, 16, 16, 0.88);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+  .header-inner{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1552px;
+    margin: 0 auto;
+  }
+  .logo-link{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .logo-link img{
+    width: 40px;
+    height: 40px;
+    border-radius: 9999px;
+    display: block;
+    background-color: rgba(255,255,255,0.08);
+  }
+  .logo-link h1{
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #fff;
+  }
+  .main-nav ul{
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+  }
+  .nav-link{
+    color: #fff;
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 4px;
+  }
+  .nav-link::after{
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: hsl(var(--primary));
+    transition: width 0.3s ease;
+  }
+  .nav-link:hover::after{ width: 100%; }
+  .nav-link.active::after{ width: 100%; }
+  .nav-link.active{ color: hsl(var(--primary)); }
+
+  .lang-switch-bw {
+    position: relative;
+    display: flex;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 8px 12px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-left: 0.5rem;
+  }
+  .lang-switch-bw:hover { background-color: rgba(255, 255, 255, 0.1); }
+  .current-lang { display: flex; align-items: center; gap: 8px; }
+  .current-lang img, .lang-dropdown-bw img {
+    width: 20px; height: auto; border-radius: 3px; display: block;
+  }
+  .current-lang i { font-size: 12px; color: #ffffff; transition: 0.3s; }
+  .lang-switch-bw:hover .current-lang i { transform: rotate(180deg); }
+  .lang-dropdown-bw {
+    position: absolute;
+    top: 140%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: rgba(12, 12, 12, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 10px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+  }
+  .lang-switch-bw:hover .lang-dropdown-bw {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+  .lang-dropdown-bw a { display: block; transition: 0.3s; }
+  .lang-dropdown-bw a:hover { transform: scale(1.15); }
+
+  .burger-btn{
+    display: none;
+    background: transparent;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 9999px;
+    transition: background-color 0.2s ease;
+  }
+  @media (hover: hover) {
+    .burger-btn:hover{ background-color: rgba(255,255,255,0.08); }
+  }
+  .burger-btn svg{ width: 28px; height: 28px; fill: #fff; }
+
+  @media (max-width: 768px){
+    .main-nav{ display: none; }
+    .burger-btn{ display: flex; }
+    .main-nav.active{
+      display: block;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background: rgba(15, 16, 16, 0.97);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+    .main-nav.active ul{
+      flex-direction: column;
+      gap: 0;
+      padding: 0.5rem 1.25rem 1.25rem;
+    }
+    .main-nav.active .nav-link{
+      display: block;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .main-nav.active .lang-switch-bw{
+      margin: 1rem 0 0.25rem;
+      justify-content: center;
+    }
+    body.nav-open{ overflow: hidden; }
+  }
+
+  /* ===== HERO ФОТО ===== */
+  .hero-photo-wrap{
+    position: relative;
+    width: 100%;
+    height: 620px;
+    overflow: hidden;
+    background-color: #1a1b1b;
+  }
+  @media (max-width: 768px){
+    .hero-photo-wrap{ height: 60vh; min-height: 340px; max-height: 460px; }
+  }
+  @media (max-width: 420px){
+    .hero-photo-wrap{ height: 50vh; min-height: 300px; }
+  }
+  .hero-photo-wrap::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(26, 27, 27, 0.1) 0%, rgba(26, 27, 27, 0.4) 60%, rgba(26, 27, 27, 1) 100%);
+    z-index: 20;
+    pointer-events: none;
+  }
+  .hero-photo-wrap img{
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .hero-content{
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 30;
+    text-align: center;
+    padding: 0 1rem;
+  }
+  .hero-content h1{
+    font-size: 2.75rem;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -0.02em;
+  }
+  .hero-content p{
+    margin-top: 0.5rem;
+    font-size: 1.15rem;
+    color: #fff;
+    font-weight: 500;
+    max-width: 640px;
+  }
+  @media (min-width: 768px){
+    .hero-content h1{ font-size: 4rem; }
+    .hero-content p{ font-size: 1.5rem; }
+  }
+  @media (max-width: 480px){
+    .hero-content h1{ font-size: 2.1rem; }
+    .hero-content p{ font-size: 0.98rem; margin-top: 0.4rem; }
+  }
+
+  /* ===== СЕКЦІЯ ЗАЯВКИ ===== */
+  .apply-section {
+    width: 100%;
+    max-width: 1552px;
+    margin: 0 auto;
+    padding: 5rem 1.25rem;
+    text-align: left;
+  }
+  @media (max-width: 640px){
+    .apply-section { padding: 2.75rem 1rem; }
+  }
+  .apply-header-flex h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 0.5rem;
+    letter-spacing: -0.01em;
+    color: #fff;
+  }
+  @media (max-width: 480px){
+    .apply-header-flex h2 { font-size: 1.5rem; }
+  }
+  .apply-header-flex h2::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60%;
+    height: 3px;
+    background: hsl(var(--primary));
+    border-radius: 2px;
+  }
+  .apply-subtitle {
+    margin-top: 1.25rem;
+    color: #e5e5e5;
+    font-size: 1.1rem;
+    max-width: 900px;
+    font-weight: 400;
+  }
+  @media (max-width: 480px){
+    .apply-subtitle { font-size: 0.95rem; margin-top: 0.9rem; }
+  }
+
+  /* ===== ПРОГРЕС / КРОКИ (для наочності) ===== */
+  .steps-hint {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 2rem;
+  }
+  .step-pill {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: #262626;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    font-size: 0.82rem;
+    color: #9c9c9c;
+  }
+  .step-pill i { color: #9c9c9c; font-size: 0.75rem; }
+  @media (max-width: 640px){
+    .steps-hint { margin-top: 1.5rem; gap: 0.5rem; }
+    .step-pill { padding: 0.45rem 0.8rem; font-size: 0.76rem; }
+  }
+
+  /* ===== ФОРМА ===== */
+  .apply-form {
+    margin-top: 2.5rem;
+    background-color: #262626;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    padding: 2.5rem;
+  }
+  @media (max-width: 640px) {
+    .apply-form { padding: 1.5rem; border-radius: 14px; }
+  }
+  @media (max-width: 420px) {
+    .apply-form { padding: 1.15rem 1rem; }
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    align-items: start;
+    margin-bottom: 1.5rem;
+  }
+  .form-row .form-field {
+    margin-bottom: 0;
+  }
+  @media (max-width: 640px) {
+    .form-row { grid-template-columns: 1fr; margin-bottom: 1.15rem; }
+  }
+  .form-row.row-name-age { grid-template-columns: 2fr 1fr; }
+  @media (max-width: 640px) {
+    .form-row.row-name-age { grid-template-columns: 1fr; }
+  }
+
+  .form-field {
+    margin-bottom: 1.5rem;
+  }
+  .form-field:last-child { margin-bottom: 0; }
+  @media (max-width: 640px){
+    .form-field { margin-bottom: 1.15rem; }
+  }
+
+  .form-field label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #bcbcbc;
+    margin-bottom: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .form-field .field-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    background: #3a3a3a;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    margin-right: 0.5rem;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+  .form-field .optional-tag {
+    text-transform: none;
+    font-weight: 400;
+    color: #6e6e6e;
+    letter-spacing: 0;
+  }
+
+  .form-field input[type="text"],
+  .form-field input[type="number"],
+  .form-field select,
+  .form-field textarea {
+    width: 100%;
+    background-color: #1a1b1b;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 10px;
+    padding: 0.85rem 1.1rem;
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: #fff;
+    transition: all 0.25s ease;
+  }
+  @media (max-width: 640px){
+    /* 16px мінімум — інакше Safari на iOS зумить сторінку при фокусі на полі */
+    .form-field input[type="text"],
+    .form-field input[type="number"],
+    .form-field select,
+    .form-field textarea {
+      font-size: 16px;
+      padding: 0.8rem 1rem;
+    }
+  }
+  .form-field select{
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%239c9c9c'%3E%3Cpath d='M4 6l4 4 4-4H4z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+    cursor: pointer;
+  }
+  .form-field select option{
+    background-color: #1a1b1b;
+    color: #fff;
+  }
+  .form-field input::placeholder,
+  .form-field textarea::placeholder {
+    color: #6e6e6e;
+  }
+  .form-field input:hover,
+  .form-field select:hover,
+  .form-field textarea:hover {
+    border-color: rgba(255, 255, 255, 0.25);
+  }
+  .form-field input:focus,
+  .form-field select:focus,
+  .form-field textarea:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.45);
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.08);
+  }
+  .form-field textarea {
+    resize: vertical;
+    min-height: 120px;
+    line-height: 1.6;
+  }
+  .form-field .char-counter {
+    margin-top: 0.4rem;
+    font-size: 0.78rem;
+    color: #6e6e6e;
+    text-align: right;
+    transition: color 0.15s ease;
+  }
+  .form-field .char-counter.char-counter--warn {
+    color: #e0a72a;
+  }
+  .form-field .char-counter.char-counter--max {
+    color: #ff5c5c;
+    font-weight: 600;
+  }
+
+  /* Honeypot */
+  .hp-field {
+    position: absolute;
+    left: -9999px;
+    width: 1px; height: 1px;
+    overflow: hidden;
+  }
+
+  /* ===== КНОПКА ВІДПРАВКИ ===== */
+  .btn-submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    width: 100%;
+    padding: 15px 32px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #ffffff;
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50px;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    text-align: center;
+    letter-spacing: 0.3px;
+    box-shadow: 0 4px 15px rgba(34, 197, 94, 0.35);
+  }
+  .btn-submit:hover:not(:disabled) {
+    background: linear-gradient(135deg, #29d968, #1a9c46);
+    transform: scale(1.02);
+    box-shadow: 0 8px 30px rgba(34, 197, 94, 0.5);
+  }
+  .btn-submit:active:not(:disabled) { transform: scale(0.98); }
+  .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+  .btn-submit .fa-spinner { animation: spin 0.8s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  @media (min-width: 640px) {
+    .btn-submit { width: auto; min-width: 260px; }
+  }
+
+  .form-footer-row {
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem 1.5rem;
+  }
+  .form-note {
+    font-size: 0.82rem;
+    color: #6e6e6e;
+    max-width: 720px;
+    flex: 1 1 320px;
+  }
+
+  .form-status {
+    margin-top: 1.25rem;
+    padding: 0.9rem 1.2rem;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: none;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .form-status.show { display: flex; }
+  .form-status.success {
+    background: rgba(34, 197, 94, 0.1);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    color: #4ade80;
+  }
+  .form-status.error {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: #f87171;
+  }
+
+  /* ===== ЕКРАН УСПІХУ / DISCORD CTA ===== */
+  .success-screen {
+    margin-top: 2.5rem;
+    background-color: #262626;
+    border: 1px solid rgba(88, 101, 242, 0.35);
+    border-radius: 16px;
+    padding: 3rem 2.5rem;
+    text-align: center;
+    display: none;
+  }
+  @media (max-width: 640px){
+    .success-screen { padding: 2rem 1.25rem; border-radius: 14px; margin-top: 2rem; }
+  }
+  .success-screen.show {
+    display: block;
+    animation: fadeInUp 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .success-icon {
+    width: 72px; height: 72px;
+    margin: 0 auto 1.5rem;
+    border-radius: 50%;
+    background: rgba(34, 197, 94, 0.12);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    color: #4ade80;
+  }
+  .success-screen h3 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.75rem;
+  }
+  .success-screen p {
+    font-size: 0.98rem;
+    color: #bcbcbc;
+    max-width: 560px;
+    margin: 0 auto 2rem;
+    line-height: 1.6;
+  }
+  @media (max-width: 480px){
+    .success-screen h3 { font-size: 1.3rem; }
+    .success-screen p { font-size: 0.9rem; margin-bottom: 1.5rem; }
+  }
+  .btn-discord {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.7rem;
+    padding: 16px 36px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #ffffff;
+    background: hsl(var(--discord));
+    border: none;
+    border-radius: 50px;
+    transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow: 0 6px 20px rgba(88, 101, 242, 0.35);
+  }
+  .btn-discord i { font-size: 1.3rem; }
+  @media (max-width: 480px){
+    .btn-discord { width: 100%; padding: 15px 20px; font-size: 15px; }
+  }
+  .btn-discord:hover {
+    background: hsl(235 76% 58%);
+    transform: scale(1.03);
+    box-shadow: 0 10px 30px rgba(88, 101, 242, 0.45);
+  }
+  .btn-discord:active { transform: scale(0.98); }
+
+  .required-step-banner{
+    display: flex;
+    align-items: flex-start;
+    gap: 0.85rem;
+    text-align: left;
+    background: rgba(88, 101, 242, 0.08);
+    border: 1px solid rgba(88, 101, 242, 0.28);
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    margin: 0 auto 1.75rem;
+    max-width: 560px;
+  }
+  .required-step-banner i{
+    color: hsl(var(--discord));
+    font-size: 1.3rem;
+    margin-top: 0.15rem;
+    flex-shrink: 0;
+  }
+  .required-step-banner strong{
+    display: block;
+    color: #fff;
+    font-size: 0.95rem;
+    margin-bottom: 0.25rem;
+  }
+  .required-step-banner span{
+    display: block;
+    color: #b9beea;
+    font-size: 0.85rem;
+    line-height: 1.55;
+  }
+  @media (max-width: 480px){
+    .required-step-banner{ padding: 0.9rem 1rem; margin-bottom: 1.5rem; }
+  }
+
+  /* ===== FOOTER ===== */
+  .site-footer {
+    background-color: #080808;
+    padding: 70px 0 20px;
+    border-top: 2px solid #222;
+    position: relative;
+    z-index: 10;
+  }
+  @media (max-width: 640px){
+    .site-footer { padding: 45px 0 20px; }
+    .footer-container { gap: 28px; padding-bottom: 28px; }
+  }
+  .footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+    border-bottom: 1px solid #1a1a1a;
+    padding-bottom: 40px;
+    max-width: 1552px;
+    margin: 0 auto;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+  .footer-col { flex: 1; min-width: 250px; }
+  .about-col .footer-logo {
+    display: flex;
+    align-items: center;
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    color: #fff;
+  }
+  .about-col .footer-logo span { color: #ff3333; }
+  .about-col p {
+    font-size: 14px;
+    color: #888;
+    line-height: 1.6;
+    margin-bottom: 25px;
+  }
+  .social-img-links { display: flex; gap: 15px; }
+  .social-img-links a {
+    display: block;
+    width: 40px; height: 40px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #333;
+    transition: all 0.3s ease;
+    background-color: #111;
+  }
+  .social-img-links a img {
+    width: 100%; height: 100%;
+    object-fit: contain;
+    padding: 5px;
+    transition: all 0.3s ease;
+  }
+  .social-img-links a:hover {
+    border-color: #ff3333;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(255, 51, 51, 0.3);
+  }
+  .footer-col h4 {
+    font-size: 18px;
+    color: #fff;
+    margin-bottom: 25px;
+    position: relative;
+  }
+  .footer-col h4::after {
+    content: '';
+    display: block;
+    width: 30px; height: 2px;
+    background-color: #ff3333;
+    margin-top: 10px;
+  }
+  .nav-col ul, .contact-col ul { list-style: none; }
+  .nav-col li, .contact-col li { margin-bottom: 15px; }
+  .nav-col a, .contact-col a {
+    color: #888;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .nav-col a::before {
+    content: '\f054';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: #ff3333;
+    font-size: 10px;
+    transition: transform 0.3s ease;
+  }
+  .nav-col a:hover, .contact-col a:hover { color: #ff3333; }
+  .nav-col a:hover::before { transform: translateX(3px); }
+  .contact-col i {
+    color: #ff3333;
+    font-size: 16px;
+    width: 20px;
+    text-align: center;
+  }
+  .footer-bottom {
+    text-align: center;
+    padding-top: 25px;
+    max-width: 1552px;
+    margin: 0 auto;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+  .footer-bottom p { color: #555; font-size: 13px; }
+
+  /* ===== SCROLL REVEAL ===== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.7s cubic-bezier(0.25, 1, 0.5, 1), transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+  .reveal.revealed { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo-link" href="https://neocrime.space/">
+      <img alt="NeoCrime Logo" loading="lazy" width="40" height="40" decoding="async"
+           src="images/logo.avif">
+      <h1>NeoCrime</h1>
+    </a>
+
+    <nav class="main-nav">
+      <ul>
+        <li><a class="nav-link" href="https://neocrime.space/">Головна</a></li>
+        <li><a class="nav-link" href="/events">Події</a></li>
+        <li><a class="nav-link" href="/news">Новини</a></li>
+        <li><a class="nav-link" href="/team">Команда</a></li>
+        <li><a class="nav-link" href="/contact">Контакти</a></li>
+        <li class="lang-switch-bw">
+          <div class="current-lang">
+            <img src="https://flagcdn.com/w40/ua.png" alt="UA">
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="lang-dropdown-bw">
+            <a href="https://hub.neocrime.space/apply-eng"><img src="https://flagcdn.com/w40/gb.png" alt="EN"></a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+
+    <button class="burger-btn" aria-label="Меню">
+      <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"></path>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<!-- ===== HERO ФОТО ===== -->
+<div class="hero-photo-wrap">
+  <img src="images/apply.avif" alt="Вступ до NeoCrime" loading="eager">
+  <div class="hero-content">
+    <h1>Подати заявку</h1>
+    <p>Стань частиною команди NeoCrime — заповни анкету, і ми зв'яжемось з тобою</p>
+  </div>
+</div>
+
+<!-- ===== ОСНОВНИЙ КОНТЕНТ ===== -->
+<main>
+  <section class="apply-section">
+
+    <div class="apply-header-flex reveal">
+      <div>
+        <h2>Анкета вступу до VTC</h2>
+        <p class="apply-subtitle">Дякуємо за інтерес до NeoCrime! Заповніть анкету якомога детальніше — це допоможе нам краще з вами познайомитись. Після відправки анкети ви отримаєте посилання для приєднання до нашого Discord-сервера, де завершиться процес вступу.</p>
+      </div>
+
+      <div class="steps-hint">
+        <span class="step-pill"><i class="fas fa-circle"></i> Крок 1 — заповніть анкету</span>
+        <span class="step-pill"><i class="fas fa-circle"></i> Крок 2 — приєднайтесь до Discord</span>
+        <span class="step-pill"><i class="fas fa-circle"></i> Крок 3 — очікуйте на рішення команди</span>
+      </div>
+    </div>
+
+    <!-- ===== ФОРМА АНКЕТИ ===== -->
+    <form id="apply-form" novalidate>
+      <div class="apply-form reveal">
+
+        <div class="form-row row-name-age">
+          <div class="form-field">
+            <label for="field-name"><span class="field-number">1</span>Ваше ім'я</label>
+            <input type="text" id="field-name" name="name" placeholder="Наприклад, Олександр" maxlength="100" required>
+            <div class="char-counter"><span id="name-count">0</span> / 100</div>
+          </div>
+          <div class="form-field">
+            <label for="field-age">Ваш вік</label>
+            <input type="number" id="field-age" name="age" placeholder="18" min="10" max="99" required>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="field-about"><span class="field-number">2</span>Розкажіть трошки про себе</label>
+          <textarea id="field-about" name="about" placeholder="Чим займаєтесь, ваші інтереси, чому обрали саме NeoCrime тощо..." maxlength="1200" required></textarea>
+          <div class="char-counter"><span id="about-count">0</span> / 1200</div>
+        </div>
+
+        <div class="form-field">
+          <label for="field-source"><span class="field-number">3</span>Звідки ви дізналися про нашу компанію</label>
+          <select id="field-source" name="source" required>
+            <option value="" disabled selected>Оберіть варіант</option>
+            <option value="truckersmp">TruckersMP</option>
+            <option value="youtube">YouTube</option>
+            <option value="tiktok">TikTok</option>
+            <option value="twitch">Twitch</option>
+            <option value="discord">Discord (сервер, реклама)</option>
+            <option value="friends">Від друзів / знайомих</option>
+            <option value="other">Інше</option>
+          </select>
+        </div>
+
+        <div class="form-field">
+          <label for="field-experience"><span class="field-number">4</span>Як довго ви граєте в ETS2 або ATS (розкажіть про ваш досвід)</label>
+          <textarea id="field-experience" name="experience" placeholder="Скільки років/місяців у грі, скільки годин наїздили, який стиль водіння тощо..." maxlength="1000" required></textarea>
+          <div class="char-counter"><span id="experience-count">0</span> / 1000</div>
+        </div>
+
+        <div class="form-field">
+          <label for="field-other-vtc"><span class="field-number">5</span>Чи перебували ви вже в інших VTC</label>
+          <input type="text" id="field-other-vtc" name="other_vtc" placeholder="Якщо так — вкажіть назву(и). Якщо ні — напишіть «не був»" maxlength="300" required>
+          <div class="char-counter"><span id="other-vtc-count">0</span> / 300</div>
+        </div>
+
+        <div class="form-field">
+          <label for="field-activity"><span class="field-number">6</span>Як часто ви граєте в ETS2 / ATS (ваша ігрова активність)</label>
+          <input type="text" id="field-activity" name="activity" placeholder="Наприклад: щодня, кілька разів на тиждень, кілька разів на місяць..." maxlength="200" required>
+          <div class="char-counter"><span id="activity-count">0</span> / 200</div>
+        </div>
+
+        <div class="form-field">
+          <label for="field-truckersmp">Посилання на профіль TruckersMP</label>
+          <input type="text" id="field-truckersmp" name="truckersmp" placeholder="https://truckersmp.com/user/..." maxlength="200" required>
+          <div class="char-counter"><span id="truckersmp-count">0</span> / 200</div>
+          <p class="form-note" style="margin-top: 0.4rem;">Формат: посилання виду <code>truckersmp.com/user/12345</code></p>
+          <p class="form-note" style="margin-top: 0.6rem;">Якщо у вас ще немає профілю — зареєструйте його тут: <a href="https://truckersmp.com/auth/register" target="_blank" rel="noopener noreferrer" class="text-primary">truckersmp.com/auth/register</a></p>
+        </div>
+
+        <!-- Honeypot -->
+        <div class="hp-field" aria-hidden="true">
+          <label for="field-hp">Не заповнюйте це поле</label>
+          <input type="text" id="field-hp" name="website" tabindex="-1" autocomplete="off">
+        </div>
+
+        <div class="form-footer-row">
+          <p class="form-note">Надсилаючи анкету, ви погоджуєтесь з <a href="/privacy" class="text-primary">політикою приватності</a> та <a href="/terms" class="text-primary">умовами вступу</a> NeoCrime.</p>
+          <button type="submit" class="btn-submit" id="submit-btn">
+            <i class="fas fa-paper-plane"></i>
+            <span id="submit-btn-text">Надіслати анкету</span>
+          </button>
+        </div>
+
+        <div class="form-status" id="form-status"></div>
+
+      </div>
+    </form>
+
+    <!-- ===== ЕКРАН УСПІХУ + DISCORD CTA ===== -->
+    <div class="success-screen" id="success-screen">
+      <div class="success-icon"><i class="fas fa-check"></i></div>
+      <h3>Форму заповнено! Залишився ще один крок</h3>
+      <p>Дякуємо за заявку до NeoCrime. Це ще не кінець — заявку буде передано команді лише після того, як ви авторизуєтесь через Discord нижче.</p>
+
+      <div class="required-step-banner">
+        <i class="fas fa-circle-info"></i>
+        <div>
+          <strong>Це офіційна авторизація через Discord</strong>
+          <span>Ми НЕ бачимо ваш пароль і не отримуємо доступ до особистих повідомлень чи інших серверів — Discord лише підтверджує, що це ваш акаунт, і додає вас на наш сервер. Це потрібно, щоб прикріпити анкету до вашого профілю та передати її інструкторам на розгляд.</span>
+        </div>
+      </div>
+
+      <a href="https://discord.com/oauth2/authorize?client_id=1459593337148539066&response_type=code&redirect_uri=https%3A%2F%2Fhub.neocrime.space%2Fapply%2Fcallback&scope=identify+guilds.join" class="btn-discord" id="discord-oauth-btn">
+        <i class="fab fa-discord"></i>
+        Увійти через Discord
+      </a>
+    </div>
+
+  </section>
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div class="footer-container">
+
+    <div class="footer-col about-col">
+      <div class="footer-logo">Neo<span>Crime</span></div>
+      <p>NeoCrime — це амбіційна українська VTC, що впевнено рухається вперед, створюючи власну історію успіху на просторах TruckersMP. Це місце, де стиль, дисципліна та командний дух поєднуються в єдину силу, а кожен учасник стає частиною великого та впевненого руху.</p>
+
+      <div class="social-img-links">
+        <a href="https://discord.gg/zGzy7Gcdgy" target="_blank"><img src="images/social/1.avif" alt="Discord"></a>
+        <a href="https://www.tiktok.com/@neocrime_vtc" target="_blank"><img src="images/social/2.avif" alt="TikTok"></a>
+        <a href="https://truckersmp.com/vtc/85940" target="_blank"><img src="images/social/3.avif" alt="TruckersMP"></a>
+        <a href="https://www.twitch.tv/neocrime_vtc" target="_blank"><img src="images/social/4.avif" alt="TruckersHub"></a>
+      </div>
+    </div>
+
+    <div class="footer-col nav-col">
+      <h4>Навігація</h4>
+      <ul>
+        <li><a href="https://neocrime.space/">Головна</a></li>
+        <li><a href="/news">Новини</a></li>
+        <li><a href="/contact">Контакти</a></li>
+        <li><a href="/privacy">Політика приватності</a></li>
+        <li><a href="/terms">Угода користування</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col contact-col">
+      <h4>Контакти</h4>
+      <ul>
+        <li><i class="fas fa-envelope"></i> <a href="mailto:neocrime10@gmail.com">neocrime10@gmail.com</a></li>
+        <li><i class="fab fa-discord"></i> <a href="https://discord.gg/zGzy7Gcdgy" target="_blank">discord.gg/zGzy7Gcdgy</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2026 NeoCrime. Всі права захищені.</p>
+  </div>
+</footer>
+
+<!-- ===== SCROLL REVEAL ===== -->
+<script>
+  (function () {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          el.classList.add('revealed');
+          el.addEventListener('transitionend', function onEnd(e) {
+            if (e.propertyName === 'transform') {
+              el.style.transform = '';
+              el.style.transition = '';
+              el.removeEventListener('transitionend', onEnd);
+            }
+          });
+          observer.unobserve(el);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  })();
+</script>
+
+<!-- ===== ЛІЧИЛЬНИКИ СИМВОЛІВ (для всіх полів з лімітом) ===== -->
+<script>
+  (function () {
+    const fields = [
+      ['field-name', 'name-count'],
+      ['field-about', 'about-count'],
+      ['field-experience', 'experience-count'],
+      ['field-other-vtc', 'other-vtc-count'],
+      ['field-activity', 'activity-count'],
+      ['field-truckersmp', 'truckersmp-count'],
+    ];
+
+    fields.forEach(([fieldId, counterId]) => {
+      const field = document.getElementById(fieldId);
+      const counter = document.getElementById(counterId);
+      if (!field || !counter) return;
+
+      const max = parseInt(field.getAttribute('maxlength'), 10) || 0;
+
+      function update() {
+        const len = field.value.length;
+        counter.textContent = len;
+        const wrapper = counter.closest('.char-counter');
+        if (max && wrapper) {
+          wrapper.classList.toggle('char-counter--warn', len >= max * 0.9 && len < max);
+          wrapper.classList.toggle('char-counter--max', len >= max);
+        }
+      }
+
+      field.addEventListener('input', update);
+      update();
+    });
+  })();
+</script>
+
+<!-- ===== ВІДПРАВКА АНКЕТИ ===== -->
+<script>
+(function () {
+  const form           = document.getElementById('apply-form');
+  const submitBtn      = document.getElementById('submit-btn');
+  const submitText     = document.getElementById('submit-btn-text');
+  const statusBox      = document.getElementById('form-status');
+  const successScreen  = document.getElementById('success-screen');
+  const discordBtn     = document.getElementById('discord-oauth-btn');
+
+  // TODO: після створення Discord OAuth2-посилання підставити її сюди замість "#"
+  const DISCORD_OAUTH_URL = '#';
+
+  function showStatus(type, message) {
+    statusBox.className = `form-status show ${type}`;
+    statusBox.innerHTML = `<i class="fas ${type === 'success' ? 'fa-circle-check' : 'fa-circle-exclamation'}"></i> ${message}`;
+  }
+
+  function setLoading(isLoading) {
+    submitBtn.disabled = isLoading;
+    submitBtn.querySelector('i').className = isLoading ? 'fas fa-spinner' : 'fas fa-paper-plane';
+    submitText.textContent = isLoading ? 'Надсилання...' : 'Надіслати анкету';
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    statusBox.classList.remove('show');
+
+    const payload = {
+      name:        form.name.value.trim(),
+      age:         form.age.value.trim(),
+      about:       form.about.value.trim(),
+      source:      form.source.value,
+      experience:  form.experience.value.trim(),
+      other_vtc:   form.other_vtc.value.trim(),
+      activity:    form.activity.value,
+      truckersmp:  form.truckersmp.value.trim(),
+      website:     form.website.value, // honeypot
+    };
+
+    if (!payload.name || !payload.age || !payload.about ||
+        !payload.source || !payload.experience || !payload.other_vtc || !payload.activity ||
+        !payload.truckersmp) {
+      showStatus('error', "Будь ласка, заповніть усі обов'язкові поля анкети.");
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const res = await fetch('https://api.neocrime.space/apply', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await res.json().catch(() => ({}));
+
+      if (!res.ok || data.status !== 'success') {
+        throw new Error(data.message || 'Сталася помилка');
+      }
+
+      // Якщо бекенд поверне персональне посилання для приєднання — використовуємо його
+      if (data.discord_url) {
+        discordBtn.href = data.discord_url;
+      } else {
+        discordBtn.href = DISCORD_OAUTH_URL;
+      }
+
+      form.style.display = 'none';
+      successScreen.classList.add('show');
+      successScreen.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      setLoading(false);
+
+    } catch (err) {
+      console.error('[Apply]', err);
+      const msg = (err && err.message) ? err.message : 'Не вдалося надіслати анкету. Спробуйте пізніше або напишіть нам у Discord.';
+      showStatus('error', msg);
+      setLoading(false);
+    }
+  });
+})();
+</script>
+
+<!-- ===== БУРГЕР-МЕНЮ ===== -->
+<script>
+  (function () {
+    const burger = document.querySelector('.burger-btn');
+    const nav = document.querySelector('.main-nav');
+    if (!burger || !nav) return;
+
+    burger.addEventListener('click', function () {
+      nav.classList.toggle('active');
+      document.body.classList.toggle('nav-open');
+    });
+
+    nav.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        nav.classList.remove('active');
+        document.body.classList.remove('nav-open');
+      });
+    });
+
+    document.addEventListener('click', function (e) {
+      if (nav.classList.contains('active') &&
+          !nav.contains(e.target) &&
+          !burger.contains(e.target)) {
+        nav.classList.remove('active');
+        document.body.classList.remove('nav-open');
+      }
+    });
+  })();
+</script>
+</body>
+</html>

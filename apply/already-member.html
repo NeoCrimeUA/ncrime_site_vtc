@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="images/logo.avif" type="image/avif">
+<link rel="apple-touch-icon" href="images/logo.avif">
+<title>Ви вже в команді — NeoCrime</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+  *{ box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+  :root{
+    --primary: 0 72% 35%;
+    --primary-foreground: 0 0% 100%;
+    --bg-dark: 0 0% 6%;
+    --discord: 235 86% 65%;
+  }
+
+  html, body{
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  body{
+    background-color: #1a1b1b;
+    color: #fff;
+    font-family: 'Montserrat', ui-sans-serif, system-ui, -apple-system, sans-serif;
+    line-height: 1.5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  a{ color: inherit; text-decoration: none; }
+  button{ font: inherit; cursor: pointer; }
+
+  .text-primary{ color: hsl(var(--primary)); }
+
+  /* ===== HEADER ===== */
+  .site-header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 50;
+    width: 100%;
+    padding: 0.75rem 1.25rem;
+    background-color: rgba(15, 16, 16, 0.88);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+  .header-inner{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1552px;
+    margin: 0 auto;
+  }
+  .logo-link{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .logo-link img{
+    width: 40px;
+    height: 40px;
+    border-radius: 9999px;
+    display: block;
+    background-color: rgba(255,255,255,0.08);
+  }
+  .logo-link h1{
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #fff;
+  }
+  .main-nav ul{
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+  }
+  .nav-link{
+    color: #fff;
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 4px;
+  }
+  .nav-link::after{
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: hsl(var(--primary));
+    transition: width 0.3s ease;
+  }
+  .nav-link:hover::after{ width: 100%; }
+
+  .lang-switch-bw {
+    position: relative;
+    display: flex;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 8px 12px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-left: 0.5rem;
+  }
+  .lang-switch-bw:hover { background-color: rgba(255, 255, 255, 0.1); }
+  .current-lang { display: flex; align-items: center; gap: 8px; }
+  .current-lang img, .lang-dropdown-bw img {
+    width: 20px; height: auto; border-radius: 3px; display: block;
+  }
+  .current-lang i { font-size: 12px; color: #ffffff; transition: 0.3s; }
+  .lang-switch-bw:hover .current-lang i { transform: rotate(180deg); }
+  .lang-dropdown-bw {
+    position: absolute;
+    top: 140%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: rgba(12, 12, 12, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 10px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+  }
+  .lang-switch-bw:hover .lang-dropdown-bw {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+  .lang-dropdown-bw a { display: block; transition: 0.3s; }
+  .lang-dropdown-bw a:hover { transform: scale(1.15); }
+
+  .burger-btn{
+    display: none;
+    background: transparent;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 9999px;
+    transition: background-color 0.2s ease;
+  }
+  @media (hover: hover) {
+    .burger-btn:hover{ background-color: rgba(255,255,255,0.08); }
+  }
+  .burger-btn svg{ width: 28px; height: 28px; fill: #fff; }
+
+  @media (max-width: 768px){
+    .main-nav{ display: none; }
+    .burger-btn{ display: flex; }
+    .main-nav.active{
+      display: block;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background: rgba(15, 16, 16, 0.97);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+    .main-nav.active ul{
+      flex-direction: column;
+      gap: 0;
+      padding: 0.5rem 1.25rem 1.25rem;
+    }
+    .main-nav.active .nav-link{
+      display: block;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .main-nav.active .lang-switch-bw{
+      margin: 1rem 0 0.25rem;
+      justify-content: center;
+    }
+    body.nav-open{ overflow: hidden; }
+  }
+
+  /* ===== ГОЛОВНИЙ БЛОК ПОВІДОМЛЕННЯ ===== */
+  main{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7.5rem 1.25rem 3rem;
+  }
+  .notice-card{
+    width: 100%;
+    max-width: 620px;
+    background-color: #262626;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    padding: 3rem 2.5rem;
+    text-align: center;
+  }
+  @media (max-width: 480px){
+    .notice-card{ padding: 2rem 1.25rem; border-radius: 14px; }
+  }
+  .notice-icon{
+    width: 72px; height: 72px;
+    margin: 0 auto 1.5rem;
+    border-radius: 50%;
+    background: rgba(224, 167, 42, 0.12);
+    border: 1px solid rgba(224, 167, 42, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    color: #e0a72a;
+  }
+  .notice-card h1{
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.9rem;
+    letter-spacing: -0.01em;
+  }
+  @media (max-width: 480px){
+    .notice-card h1{ font-size: 1.35rem; }
+  }
+  .notice-card p{
+    font-size: 0.98rem;
+    color: #bcbcbc;
+    line-height: 1.65;
+    max-width: 480px;
+    margin: 0 auto 1rem;
+  }
+  .notice-card p:last-of-type{ margin-bottom: 2rem; }
+  @media (max-width: 480px){
+    .notice-card p{ font-size: 0.9rem; }
+  }
+
+  .notice-actions{
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    align-items: center;
+  }
+
+  .btn-discord {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.7rem;
+    width: 100%;
+    max-width: 340px;
+    padding: 16px 32px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #ffffff;
+    background: hsl(var(--discord));
+    border: none;
+    border-radius: 50px;
+    transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow: 0 6px 20px rgba(88, 101, 242, 0.35);
+  }
+  .btn-discord i { font-size: 1.3rem; }
+  .btn-discord:hover {
+    background: hsl(235 76% 58%);
+    transform: scale(1.03);
+    box-shadow: 0 10px 30px rgba(88, 101, 242, 0.45);
+  }
+  .btn-discord:active { transform: scale(0.98); }
+
+  .btn-ghost{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    max-width: 340px;
+    padding: 14px 32px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #e5e5e5;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 50px;
+    transition: all 0.3s ease;
+  }
+  .btn-ghost:hover{
+    border-color: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  /* ===== FOOTER ===== */
+  .site-footer {
+    background-color: #080808;
+    padding: 45px 0 20px;
+    border-top: 2px solid #222;
+    position: relative;
+    z-index: 10;
+  }
+  .footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 28px;
+    border-bottom: 1px solid #1a1a1a;
+    padding-bottom: 28px;
+    max-width: 1552px;
+    margin: 0 auto;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+  .footer-col { flex: 1; min-width: 250px; }
+  .about-col .footer-logo {
+    display: flex;
+    align-items: center;
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    color: #fff;
+  }
+  .about-col .footer-logo span { color: #ff3333; }
+  .about-col p {
+    font-size: 14px;
+    color: #888;
+    line-height: 1.6;
+    margin-bottom: 25px;
+  }
+  .social-img-links { display: flex; gap: 15px; }
+  .social-img-links a {
+    display: block;
+    width: 40px; height: 40px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #333;
+    transition: all 0.3s ease;
+    background-color: #111;
+  }
+  .social-img-links a img {
+    width: 100%; height: 100%;
+    object-fit: contain;
+    padding: 5px;
+    transition: all 0.3s ease;
+  }
+  .social-img-links a:hover {
+    border-color: #ff3333;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(255, 51, 51, 0.3);
+  }
+  .footer-col h4 {
+    font-size: 18px;
+    color: #fff;
+    margin-bottom: 25px;
+    position: relative;
+  }
+  .footer-col h4::after {
+    content: '';
+    display: block;
+    width: 30px; height: 2px;
+    background-color: #ff3333;
+    margin-top: 10px;
+  }
+  .nav-col ul, .contact-col ul { list-style: none; }
+  .nav-col li, .contact-col li { margin-bottom: 15px; }
+  .nav-col a, .contact-col a {
+    color: #888;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .nav-col a::before {
+    content: '\f054';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: #ff3333;
+    font-size: 10px;
+    transition: transform 0.3s ease;
+  }
+  .nav-col a:hover, .contact-col a:hover { color: #ff3333; }
+  .nav-col a:hover::before { transform: translateX(3px); }
+  .contact-col i {
+    color: #ff3333;
+    font-size: 16px;
+    width: 20px;
+    text-align: center;
+  }
+  .footer-bottom {
+    text-align: center;
+    padding-top: 25px;
+    max-width: 1552px;
+    margin: 0 auto;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+  .footer-bottom p { color: #555; font-size: 13px; }
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo-link" href="https://neocrime.space/">
+      <img alt="NeoCrime Logo" loading="lazy" width="40" height="40" decoding="async"
+           src="images/logo.avif">
+      <h1>NeoCrime</h1>
+    </a>
+
+    <nav class="main-nav">
+      <ul>
+        <li><a class="nav-link" href="https://neocrime.space/">Головна</a></li>
+        <li><a class="nav-link" href="/events">Події</a></li>
+        <li><a class="nav-link" href="/news">Новини</a></li>
+        <li><a class="nav-link" href="/team">Команда</a></li>
+        <li><a class="nav-link" href="/contact">Контакти</a></li>
+        <li class="lang-switch-bw">
+          <div class="current-lang">
+            <img src="https://flagcdn.com/w40/ua.png" alt="UA">
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="lang-dropdown-bw">
+            <a href="https://hub.neocrime.space/apply-eng"><img src="https://flagcdn.com/w40/gb.png" alt="EN"></a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+
+    <button class="burger-btn" aria-label="Меню">
+      <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"></path>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<!-- ===== ОСНОВНИЙ КОНТЕНТ ===== -->
+<main>
+  <div class="notice-card">
+    <div class="notice-icon"><i class="fas fa-circle-info"></i></div>
+    <h1>Ви вже у складі NeoCrime</h1>
+    <p>Ваш Discord-акаунт вже прикріплений до нашої VTC — повторно подавати анкету не потрібно.</p>
+    <p>Якщо вважаєте, що це помилка, або хочете уточнити свій статус — зверніться до інструкторів чи адміністрації на нашому Discord-сервері.</p>
+    <div class="notice-actions">
+      <a href="https://discord.gg/zGzy7Gcdgy" class="btn-discord" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-discord"></i>
+        Перейти на Discord сервер
+      </a>
+      <a href="https://neocrime.space/" class="btn-ghost">
+        <i class="fas fa-arrow-left"></i>
+        На головну сторінку
+      </a>
+    </div>
+  </div>
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div class="footer-container">
+
+    <div class="footer-col about-col">
+      <div class="footer-logo">Neo<span>Crime</span></div>
+      <p>NeoCrime — це амбіційна українська VTC, що впевнено рухається вперед, створюючи власну історію успіху на просторах TruckersMP. Це місце, де стиль, дисципліна та командний дух поєднуються в єдину силу, а кожен учасник стає частиною великого та впевненого руху.</p>
+
+      <div class="social-img-links">
+        <a href="https://discord.gg/zGzy7Gcdgy" target="_blank"><img src="images/social/1.avif" alt="Discord"></a>
+        <a href="https://www.tiktok.com/@neocrime_vtc" target="_blank"><img src="images/social/2.avif" alt="TikTok"></a>
+        <a href="https://truckersmp.com/vtc/85940" target="_blank"><img src="images/social/3.avif" alt="TruckersMP"></a>
+        <a href="https://www.twitch.tv/neocrime_vtc" target="_blank"><img src="images/social/4.avif" alt="TruckersHub"></a>
+      </div>
+    </div>
+
+    <div class="footer-col nav-col">
+      <h4>Навігація</h4>
+      <ul>
+        <li><a href="https://neocrime.space/">Головна</a></li>
+        <li><a href="/news">Новини</a></li>
+        <li><a href="/contact">Контакти</a></li>
+        <li><a href="/privacy">Політика приватності</a></li>
+        <li><a href="/terms">Угода користування</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col contact-col">
+      <h4>Контакти</h4>
+      <ul>
+        <li><i class="fas fa-envelope"></i> <a href="mailto:neocrime10@gmail.com">neocrime10@gmail.com</a></li>
+        <li><i class="fab fa-discord"></i> <a href="https://discord.gg/zGzy7Gcdgy" target="_blank">discord.gg/zGzy7Gcdgy</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2026 NeoCrime. Всі права захищені.</p>
+  </div>
+</footer>
+
+<!-- ===== БУРГЕР-МЕНЮ ===== -->
+<script>
+  (function () {
+    const burger = document.querySelector('.burger-btn');
+    const nav = document.querySelector('.main-nav');
+    if (!burger || !nav) return;
+
+    burger.addEventListener('click', function () {
+      nav.classList.toggle('active');
+      document.body.classList.toggle('nav-open');
+    });
+
+    nav.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        nav.classList.remove('active');
+        document.body.classList.remove('nav-open');
+      });
+    });
+
+    document.addEventListener('click', function (e) {
+      if (nav.classList.contains('active') &&
+          !nav.contains(e.target) &&
+          !burger.contains(e.target)) {
+        nav.classList.remove('active');
+        document.body.classList.remove('nav-open');
+      }
+    });
+  })();
+</script>
+</body>
+</html>
