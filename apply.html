@@ -41,16 +41,16 @@
 
   /* ===== HEADER ===== */
   .site-header{
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 50;
-    width: 100%;
-    padding: 0.75rem 1.25rem;
-    background-color: rgba(15, 16, 16, 0.88);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  width: 100%;
+  padding: 0.75rem 1.25rem;
+  background-color: rgba(15, 16, 16, 0.88); /* Цвет #1a1b1b, затемнено и менее прозрачно */
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
   .header-inner{
     display: flex;
     justify-content: space-between;
@@ -82,6 +82,11 @@
     gap: 1.5rem;
     list-style: none;
   }
+  @media (max-width: 768px){
+    .main-nav ul{ align-items: stretch; }
+  }
+
+  /* Оновлені посилання хедера з анімацією підкреслення */
   .nav-link{
     color: #fff;
     font-weight: 500;
@@ -95,12 +100,23 @@
     height: 2px;
     bottom: 0;
     left: 0;
-    background-color: hsl(var(--primary));
+    background-color: hsl(var(--primary)); /* Тёмно-красная полоска */
     transition: width 0.3s ease;
   }
-  .nav-link:hover::after{ width: 100%; }
-  .nav-link.active::after{ width: 100%; }
-  .nav-link.active{ color: hsl(var(--primary)); }
+  .nav-link:hover::after{
+    width: 100%;
+  }
+
+  /* Обгортка для перемикача мови + кнопки акаунту —
+     тримає їх в один горизонтальний ряд і на десктопі, і на мобілці */
+  .header-actions{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: 0.5rem;
+  }
+
+  /* ===== ПЕРЕМИКАЧ МОВИ ===== */
 .lang-switch-bw {
     position: relative;
     display: flex;
@@ -111,15 +127,29 @@
     border-radius: 9999px;
     cursor: pointer;
     transition: 0.3s;
-    margin-left: 0.5rem;
   }
-  .lang-switch-bw:hover { background-color: rgba(255, 255, 255, 0.1); }
-  .current-lang { display: flex; align-items: center; gap: 8px; }
+  .lang-switch-bw:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  .current-lang {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
   .current-lang img, .lang-dropdown-bw img {
-    width: 20px; height: auto; border-radius: 3px; display: block;
+    width: 20px;
+    height: auto;
+    border-radius: 3px;
+    display: block;
   }
-  .current-lang i { font-size: 12px; color: #ffffff; transition: 0.3s; }
-  .lang-switch-bw:hover .current-lang i { transform: rotate(180deg); }
+  .current-lang i {
+    font-size: 12px;
+    color: #ffffff;
+    transition: 0.3s;
+  }
+  .lang-switch-bw:hover .current-lang i {
+    transform: rotate(180deg);
+  }
   .lang-dropdown-bw {
     position: absolute;
     top: 140%;
@@ -143,8 +173,13 @@
     visibility: visible;
     transform: translateX(-50%) translateY(0);
   }
-  .lang-dropdown-bw a { display: block; transition: 0.3s; }
-  .lang-dropdown-bw a:hover { transform: scale(1.15); }
+  .lang-dropdown-bw a {
+    display: block;
+    transition: 0.3s;
+  }
+  .lang-dropdown-bw a:hover {
+    transform: scale(1.15);
+  }
   .account-switch-bw {
     position: relative;
     display: flex;
@@ -156,7 +191,6 @@
     border-radius: 50%;
     cursor: pointer;
     transition: 0.3s;
-    margin-left: 0.5rem;
   }
   .account-switch-bw:hover { background-color: rgba(255, 255, 255, 0.1); }
   .current-account { display: flex; align-items: center; }
@@ -209,6 +243,8 @@
     border-radius: 9999px;
     transition: background-color 0.2s ease;
   }
+  /* hover-стиль лише для пристроїв із реальним курсором (миша) —
+     на дотикових екранах :hover інакше "залипає" після тапу */
   @media (hover: hover) {
     .burger-btn:hover{ background-color: rgba(255,255,255,0.08); }
   }
@@ -217,6 +253,8 @@
   @media (max-width: 768px){
     .main-nav{ display: none; }
     .burger-btn{ display: flex; }
+
+    /* ДОДАНО: бургер-меню */
     .main-nav.active{
       display: block;
       position: absolute;
@@ -237,13 +275,10 @@
       padding: 0.85rem 0;
       border-bottom: 1px solid rgba(255,255,255,0.08);
     }
-    .main-nav.active .lang-switch-bw{
+    .main-nav.active .header-actions{
+      justify-content: center;
+      gap: 1rem;
       margin: 1rem 0 0.25rem;
-      justify-content: center;
-    }
-    .main-nav.active .account-switch-bw{
-      margin: 0.25rem 0 1rem;
-      justify-content: center;
     }
     body.nav-open{ overflow: hidden; }
   }
@@ -850,22 +885,24 @@
         <li><a class="nav-link" href="/news">Новини</a></li>
         <li><a class="nav-link" href="/team">Команда</a></li>
         <li><a class="nav-link" href="/contact">Контакти</a></li>
-        <li class="lang-switch-bw">
-          <div class="current-lang">
-            <img src="https://flagcdn.com/w40/ua.png" alt="UA">
-            <i class="fas fa-chevron-down"></i>
+        <li class="header-actions">
+          <div class="lang-switch-bw">
+            <div class="current-lang">
+              <img src="https://flagcdn.com/w40/ua.png" alt="UA">
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="lang-dropdown-bw">
+              <a href="/apply-eng"><img src="https://flagcdn.com/w40/gb.png" alt="EN"></a>
+            </div>
           </div>
-          <div class="lang-dropdown-bw">
-            <a href="/apply-eng"><img src="https://flagcdn.com/w40/gb.png" alt="EN"></a>
-          </div>
-        </li>
-        <li class="account-switch-bw">
-          <div class="current-account">
-            <i class="fas fa-circle-user"></i>
-          </div>
-          <div class="account-dropdown-bw">
-            <a href="https://hub.neocrime.space/login"><i class="fas fa-user"></i> Особистий кабінет</a>
-            <a href="https://api.neocrime.space/panel"><i class="fas fa-shield-halved"></i> Адмін панель</a>
+          <div class="account-switch-bw">
+            <div class="current-account">
+              <i class="fas fa-circle-user"></i>
+            </div>
+            <div class="account-dropdown-bw">
+              <a href="https://hub.neocrime.space/login"><i class="fas fa-user"></i> Особистий кабінет</a>
+              <a href="https://api.neocrime.space/panel"><i class="fas fa-shield-halved"></i> Адмін панель</a>
+            </div>
           </div>
         </li>
       </ul>

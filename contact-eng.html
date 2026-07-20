@@ -40,16 +40,16 @@
 
   /* ===== HEADER — точна копія з news.html ===== */
   .site-header{
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 50;
-    width: 100%;
-    padding: 0.75rem 1.25rem;
-    background-color: rgba(15, 16, 16, 0.88);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  width: 100%;
+  padding: 0.75rem 1.25rem;
+  background-color: rgba(15, 16, 16, 0.88); /* Цвет #1a1b1b, затемнено и менее прозрачно */
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
   .header-inner{
     display: flex;
     justify-content: space-between;
@@ -81,6 +81,11 @@
     gap: 1.5rem;
     list-style: none;
   }
+  @media (max-width: 768px){
+    .main-nav ul{ align-items: stretch; }
+  }
+
+  /* Оновлені посилання хедера з анімацією підкреслення */
   .nav-link{
     color: #fff;
     font-weight: 500;
@@ -94,17 +99,20 @@
     height: 2px;
     bottom: 0;
     left: 0;
-    background-color: hsl(var(--primary));
+    background-color: hsl(var(--primary)); /* Тёмно-красная полоска */
     transition: width 0.3s ease;
   }
   .nav-link:hover::after{
     width: 100%;
   }
-  .nav-link.active::after{
-    width: 100%;
-  }
-  .nav-link.active{
-    color: hsl(var(--primary));
+
+  /* Обгортка для перемикача мови + кнопки акаунту —
+     тримає їх в один горизонтальний ряд і на десктопі, і на мобілці */
+  .header-actions{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: 0.5rem;
   }
 
   /* ===== ПЕРЕМИКАЧ МОВИ ===== */
@@ -118,7 +126,6 @@
     border-radius: 9999px;
     cursor: pointer;
     transition: 0.3s;
-    margin-left: 0.5rem;
   }
   .lang-switch-bw:hover {
     background-color: rgba(255, 255, 255, 0.1);
@@ -183,7 +190,6 @@
     border-radius: 50%;
     cursor: pointer;
     transition: 0.3s;
-    margin-left: 0.5rem;
   }
   .account-switch-bw:hover { background-color: rgba(255, 255, 255, 0.1); }
   .current-account { display: flex; align-items: center; }
@@ -268,13 +274,10 @@
       padding: 0.85rem 0;
       border-bottom: 1px solid rgba(255,255,255,0.08);
     }
-    .main-nav.active .lang-switch-bw{
+    .main-nav.active .header-actions{
+      justify-content: center;
+      gap: 1rem;
       margin: 1rem 0 0.25rem;
-      justify-content: center;
-    }
-    .main-nav.active .account-switch-bw{
-      margin: 0.25rem 0 1rem;
-      justify-content: center;
     }
     body.nav-open{ overflow: hidden; }
   }
@@ -842,22 +845,24 @@
         <li><a class="nav-link" href="/news-eng">News</a></li>
         <li><a class="nav-link" href="/team-eng">Team</a></li>
         <li><a class="nav-link" href="/contact-eng">Contact</a></li>
-        <li class="lang-switch-bw">
-          <div class="current-lang">
-            <img src="https://flagcdn.com/w40/gb.png" alt="EN">
-            <i class="fas fa-chevron-down"></i>
+        <li class="header-actions">
+          <div class="lang-switch-bw">
+            <div class="current-lang">
+              <img src="https://flagcdn.com/w40/gb.png" alt="EN">
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="lang-dropdown-bw">
+              <a href="/contact"><img src="https://flagcdn.com/w40/ua.png" alt="UA"></a>
+            </div>
           </div>
-          <div class="lang-dropdown-bw">
-            <a href="/contact"><img src="https://flagcdn.com/w40/ua.png" alt="UA"></a>
-          </div>
-        </li>
-        <li class="account-switch-bw">
-          <div class="current-account">
-            <i class="fas fa-circle-user"></i>
-          </div>
-          <div class="account-dropdown-bw">
-            <a href="https://hub.neocrime.space/login"><i class="fas fa-user"></i> Personal Account</a>
-            <a href="https://api.neocrime.space/panel"><i class="fas fa-shield-halved"></i> Admin Panel</a>
+          <div class="account-switch-bw">
+            <div class="current-account">
+              <i class="fas fa-circle-user"></i>
+            </div>
+            <div class="account-dropdown-bw">
+              <a href="https://hub.neocrime.space/login"><i class="fas fa-user"></i> Personal Account</a>
+              <a href="https://api.neocrime.space/panel"><i class="fas fa-shield-halved"></i> Admin Panel</a>
+            </div>
           </div>
         </li>
       </ul>
