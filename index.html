@@ -1140,6 +1140,70 @@
     .partner-card { flex: 0 0 100%; }
   }
 
+  /* ===== JOB-LOGGER (TruckersHub) ===== */
+  .joblogger-section {
+    position: relative;
+    width: 100%;
+    overflow: visible;
+    padding: 5rem 0;
+  }
+  .joblogger-bg {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    width: min(50vw, 820px);
+    aspect-ratio: 1 / 1;
+    z-index: 5;
+    background-image: url('https://i.imgur.com/EyL1FxH.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right center;
+    opacity: 0.5;
+    -webkit-mask-image: linear-gradient(to left, black 45%, transparent 95%);
+    mask-image: linear-gradient(to left, black 45%, transparent 95%);
+    pointer-events: none;
+  }
+  .joblogger-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 1552px;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.75rem;
+  }
+  .joblogger-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -0.01em;
+  }
+  .joblogger-logo {
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+  }
+  .joblogger-text {
+    color: #e5e5e5;
+    font-size: 1.1rem;
+    line-height: 1.75;
+    max-width: 720px;
+  }
+  .joblogger-brand {
+    color: #3a9dfc;
+    font-weight: 700;
+  }
+
+  @media (max-width: 768px) {
+    .joblogger-title { font-size: 1.6rem; }
+    .joblogger-bg { width: 60vw; opacity: 0.25; }
+  }
+
   /* ===== ГАЛЕРЕЯ ===== */
   .gallery-section {
     width: 100%;
@@ -1656,6 +1720,17 @@
         <div class="partners-track" id="partners-track">
           <p style="color: #9c9c9c;">Завантаження партнерів...</p>
         </div>
+      </div>
+    </section>
+
+    <section class="joblogger-section">
+      <div class="joblogger-bg"></div>
+      <div class="joblogger-inner reveal">
+        <h2 class="joblogger-title">Наш партнер з логування рейсів</h2>
+        <a href="https://truckershub.in/" target="_blank" rel="noopener noreferrer">
+          <img class="joblogger-logo" src="https://i.imgur.com/hnB6saA.png" alt="TruckersHub">
+        </a>
+        <p class="joblogger-text"><span class="joblogger-brand">TruckersHub</span> — це офіційна партнерська платформа, яка забезпечує точний, прозорий та автоматизований облік рейсів водіїв у межах NeoCrime.</p>
       </div>
     </section>
 
