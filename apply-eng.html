@@ -712,6 +712,101 @@
   }
   .btn-discord:active { transform: scale(0.98); }
 
+  /* ===== DISCORD AUTH GATE (required BEFORE filling the form) ===== */
+  .auth-gate {
+    margin-top: 2.5rem;
+    background-color: #262626;
+    border: 1px solid rgba(88, 101, 242, 0.35);
+    border-radius: 16px;
+    padding: 3rem 2.5rem;
+    text-align: center;
+  }
+  @media (max-width: 640px){
+    .auth-gate { padding: 2rem 1.25rem; border-radius: 14px; margin-top: 2rem; }
+  }
+  .auth-gate-icon {
+    width: 72px; height: 72px;
+    margin: 0 auto 1.5rem;
+    border-radius: 50%;
+    background: rgba(88, 101, 242, 0.12);
+    border: 1px solid rgba(88, 101, 242, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    color: hsl(var(--discord));
+  }
+  .auth-gate h3 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.75rem;
+  }
+  .auth-gate p {
+    font-size: 0.98rem;
+    color: #bcbcbc;
+    max-width: 560px;
+    margin: 0 auto 2rem;
+    line-height: 1.6;
+  }
+  @media (max-width: 480px){
+    .auth-gate h3 { font-size: 1.3rem; }
+    .auth-gate p { font-size: 0.9rem; margin-bottom: 1.5rem; }
+  }
+  .auth-gate .form-status { max-width: 560px; margin: 0 auto 1.5rem; text-align: left; }
+
+  /* ===== "AUTHORIZED AS" BANNER (shown after OAuth, above the form) ===== */
+  .authorized-banner {
+    margin-top: 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: rgba(88, 101, 242, 0.08);
+    border: 1px solid rgba(88, 101, 242, 0.28);
+    border-radius: 14px;
+    padding: 1rem 1.5rem;
+  }
+  @media (max-width: 640px){
+    .authorized-banner { margin-top: 2rem; padding: 0.9rem 1.1rem; border-radius: 12px; }
+  }
+  .authorized-avatar {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    border: 2px solid hsl(var(--discord));
+    flex-shrink: 0;
+    background-color: #1a1b1b;
+    object-fit: cover;
+  }
+  .authorized-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    min-width: 0;
+  }
+  .authorized-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #4ade80;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .authorized-username {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #fff;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .authorized-id {
+    font-size: 0.8rem;
+    color: #8b8b8b;
+    font-family: ui-monospace, SFMono-Regular, monospace;
+  }
+
   .required-step-banner{
     display: flex;
     align-items: flex-start;
@@ -872,7 +967,7 @@
 <!-- ===== HEADER ===== -->
 <header class="site-header">
   <div class="header-inner">
-    <a class="logo-link" href="https://neocrime.space/">
+    <a class="logo-link" href="https://neocrime.space/eng">
       <img alt="NeoCrime Logo" loading="lazy" width="40" height="40" decoding="async"
            src="images/logo.avif">
       <h1>NeoCrime</h1>
@@ -880,11 +975,11 @@
 
     <nav class="main-nav">
       <ul>
-        <li><a class="nav-link" href="https://neocrime.space/">Home</a></li>
-        <li><a class="nav-link" href="/events">Events</a></li>
-        <li><a class="nav-link" href="/news">News</a></li>
-        <li><a class="nav-link" href="/team">Team</a></li>
-        <li><a class="nav-link" href="/contact">Contact</a></li>
+        <li><a class="nav-link" href="https://neocrime.space/eng">Home</a></li>
+        <li><a class="nav-link" href="/events-eng">Events</a></li>
+        <li><a class="nav-link" href="/news-eng">News</a></li>
+        <li><a class="nav-link" href="/team-eng">Team</a></li>
+        <li><a class="nav-link" href="/contact-eng">Contact</a></li>
         <li class="header-actions">
           <div class="lang-switch-bw">
             <div class="current-lang">
@@ -931,18 +1026,48 @@
     <div class="apply-header-flex reveal">
       <div>
         <h2>VTC Application Form</h2>
-        <p class="apply-subtitle">Thank you for your interest in NeoCrime! Please fill out the form in as much detail as possible — it will help us get to know you better. After submitting the form, you'll receive a link to join our Discord server, where the application process will be completed.</p>
+        <p class="apply-subtitle">Thank you for your interest in NeoCrime! First, sign in with Discord to link your account to your application, then fill out the form in as much detail as possible — it will help us get to know you better. After submitting the form, you'll automatically join our Discord server.</p>
       </div>
 
       <div class="steps-hint">
-        <span class="step-pill"><i class="fas fa-circle"></i> Step 1 — fill out the form</span>
-        <span class="step-pill"><i class="fas fa-circle"></i> Step 2 — join Discord</span>
+        <span class="step-pill"><i class="fas fa-circle"></i> Step 1 — sign in with Discord</span>
+        <span class="step-pill"><i class="fas fa-circle"></i> Step 2 — fill out the form</span>
         <span class="step-pill"><i class="fas fa-circle"></i> Step 3 — wait for the team's decision</span>
       </div>
     </div>
 
-    <!-- ===== ФОРМА АНКЕТИ ===== -->
-    <form id="apply-form" novalidate>
+    <!-- ===== DISCORD AUTH GATE (step 1, required BEFORE the form) ===== -->
+    <div class="auth-gate reveal" id="auth-gate">
+      <div class="auth-gate-icon"><i class="fab fa-discord"></i></div>
+      <h3>First, sign in with Discord</h3>
+      <p>To submit an application, you need to link your Discord account to it — <strong>this is an official authorization</strong>. We CANNOT see your password and get no access to your DMs or other servers — Discord only confirms this is your account. You'll be able to fill out the form right after this step.</p>
+      <div class="form-status show error" id="auth-gate-error" style="display:none;"></div>
+      <a href="https://discord.com/oauth2/authorize?client_id=1459593337148539066&response_type=code&redirect_uri=https%3A%2F%2Fapi.neocrime.space%2Fapply%2Fcallback&scope=identify+guilds.join&state=en_apply" class="btn-discord">
+        <i class="fab fa-discord"></i>
+        Sign in with Discord
+      </a>
+    </div>
+
+    <!-- ===== "AUTHORIZED AS" BANNER (shown above the form after OAuth) ===== -->
+    <div class="authorized-banner reveal" id="authorized-banner" style="display:none;">
+      <img id="auth-avatar" class="authorized-avatar" src="" alt="Your Discord avatar">
+      <div class="authorized-info">
+        <span class="authorized-label"><i class="fas fa-circle-check"></i> Authorized as</span>
+        <span class="authorized-username" id="auth-username">—</span>
+        <span class="authorized-id" id="auth-discord-id">—</span>
+      </div>
+    </div>
+
+    <!-- ===== "ALREADY APPLIED" SCREEN ===== -->
+    <div class="success-screen" id="already-applied-screen">
+      <div class="success-icon"><i class="fas fa-check"></i></div>
+      <h3>You've already applied</h3>
+      <p>We already have your application on file. Please wait for a reply in your private channel on the NeoCrime Discord server.</p>
+      <a href="https://discord.gg/zGzy7Gcdgy" target="_blank" rel="noopener noreferrer" class="btn-discord"><i class="fab fa-discord"></i> Go to the server</a>
+    </div>
+
+    <!-- ===== APPLICATION FORM (step 2, available only after sign-in) ===== -->
+    <form id="apply-form" novalidate style="display:none;">
       <div class="apply-form reveal">
 
         <div class="form-row row-name-age">
@@ -1010,7 +1135,7 @@
         </div>
 
         <div class="form-footer-row">
-          <p class="form-note">By submitting this form, you agree to NeoCrime's <a href="/privacy" class="text-primary">privacy policy</a> and <a href="/terms" class="text-primary">membership terms</a>.</p>
+          <p class="form-note">By submitting this form, you agree to NeoCrime's <a href="/privacy-eng" class="text-primary">privacy policy</a> and <a href="/terms-eng" class="text-primary">membership terms</a>.</p>
           <button type="submit" class="btn-submit" id="submit-btn">
             <i class="fas fa-paper-plane"></i>
             <span id="submit-btn-text">Submit Application</span>
@@ -1022,23 +1147,15 @@
       </div>
     </form>
 
-    <!-- ===== ЕКРАН УСПІХУ + DISCORD CTA ===== -->
+    <!-- ===== SUCCESS SCREEN ===== -->
     <div class="success-screen" id="success-screen">
       <div class="success-icon"><i class="fas fa-check"></i></div>
-      <h3>Form submitted! One step left</h3>
-      <p>Thank you for applying to NeoCrime. This isn't the end yet — your application will only be sent to our team once you authorize with Discord below.</p>
+      <h3>Application received!</h3>
+      <p>Thank you for applying to NeoCrime. You've been automatically added to our Discord server — our instructors can already see your application in your private channel and will get in touch with you soon.</p>
 
-      <div class="required-step-banner">
-        <i class="fas fa-circle-info"></i>
-        <div>
-          <strong>This is official Discord authorization</strong>
-          <span>We never see your password and don't get access to your DMs or other servers — Discord simply confirms it's your account and adds you to ours. This is required to link your application to your profile and send it to our instructors for review.</span>
-        </div>
-      </div>
-
-      <a href="https://discord.com/oauth2/authorize?client_id=1459593337148539066&response_type=code&redirect_uri=https%3A%2F%2Fapi.neocrime.space%2Fapply%2Fcallback&scope=identify+guilds.join" class="btn-discord" id="discord-oauth-btn">
+      <a href="https://discord.gg/zGzy7Gcdgy" target="_blank" rel="noopener noreferrer" class="btn-discord">
         <i class="fab fa-discord"></i>
-        Log in with Discord
+        Go to the server
       </a>
     </div>
 
@@ -1064,11 +1181,11 @@
     <div class="footer-col nav-col">
       <h4>Navigation</h4>
       <ul>
-        <li><a href="https://neocrime.space/">Home</a></li>
-        <li><a href="/news">News</a></li>
-        <li><a href="/contact">Contact</a></li>
-        <li><a href="/privacy">Privacy Policy</a></li>
-        <li><a href="/terms">Terms of Use</a></li>
+        <li><a href="https://neocrime.space/eng">Home</a></li>
+        <li><a href="/news-eng">News</a></li>
+        <li><a href="/contact-eng">Contact</a></li>
+        <li><a href="/privacy-eng">Privacy Policy</a></li>
+        <li><a href="/terms-eng">Terms of Use</a></li>
       </ul>
     </div>
 
@@ -1146,7 +1263,110 @@
   })();
 </script>
 
-<!-- ===== ВІДПРАВКА АНКЕТИ ===== -->
+<!-- ===== DISCORD AUTHORIZATION (step 1, BEFORE the form) ===== -->
+<script>
+(function () {
+  const API_BASE = 'https://api.neocrime.space';
+  const TOKEN_KEY = 'neocrime_apply_token';
+
+  const authGate      = document.getElementById('auth-gate');
+  const authGateError = document.getElementById('auth-gate-error');
+  const authBanner    = document.getElementById('authorized-banner');
+  const authAvatar    = document.getElementById('auth-avatar');
+  const authUsername  = document.getElementById('auth-username');
+  const authDiscordId = document.getElementById('auth-discord-id');
+  const applyForm     = document.getElementById('apply-form');
+  const alreadyScreen = document.getElementById('already-applied-screen');
+
+  function getToken() {
+    try { return localStorage.getItem(TOKEN_KEY); } catch (e) { return null; }
+  }
+  function setToken(t) {
+    try { localStorage.setItem(TOKEN_KEY, t); } catch (e) {}
+  }
+  function clearToken() {
+    try { localStorage.removeItem(TOKEN_KEY); } catch (e) {}
+  }
+
+  function showAuthGate(message) {
+    if (applyForm) applyForm.style.display = 'none';
+    if (authBanner) authBanner.style.display = 'none';
+    if (alreadyScreen) alreadyScreen.classList.remove('show');
+    if (authGate) authGate.style.display = 'block';
+    if (authGateError) {
+      if (message) {
+        authGateError.style.display = 'flex';
+        authGateError.innerHTML = `<i class="fas fa-circle-exclamation"></i> ${message}`;
+      } else {
+        authGateError.style.display = 'none';
+      }
+    }
+  }
+
+  function showAuthorized(session) {
+    if (authGate) authGate.style.display = 'none';
+    if (authBanner) {
+      authBanner.style.display = 'flex';
+      if (authAvatar) authAvatar.src = session.avatar_url || '';
+      if (authUsername) authUsername.textContent = session.username || 'Discord user';
+      if (authDiscordId) authDiscordId.textContent = 'ID: ' + session.discord_id;
+    }
+    if (session.existing_application) {
+      if (applyForm) applyForm.style.display = 'none';
+      if (alreadyScreen) alreadyScreen.classList.add('show');
+    } else {
+      if (applyForm) applyForm.style.display = 'block';
+      if (alreadyScreen) alreadyScreen.classList.remove('show');
+    }
+  }
+
+  async function loadSession(token) {
+    try {
+      const res = await fetch(`${API_BASE}/apply/session?token=${encodeURIComponent(token)}`);
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || data.status !== 'success') {
+        clearToken();
+        showAuthGate();
+        return;
+      }
+      showAuthorized(data);
+    } catch (err) {
+      console.error('[Apply Auth]', err);
+      showAuthGate('Could not verify authorization. Please refresh the page.');
+    }
+  }
+
+  // The token arrives in the query string right after the redirect from /apply/callback
+  const params = new URLSearchParams(window.location.search);
+  const urlToken = params.get('apply_token');
+  const urlError = params.get('apply_error');
+
+  if (urlToken) {
+    setToken(urlToken);
+    params.delete('apply_token');
+    params.delete('apply_error');
+    const query = params.toString();
+    const cleanUrl = window.location.pathname + (query ? '?' + query : '') + window.location.hash;
+    window.history.replaceState({}, document.title, cleanUrl);
+  }
+
+  // Used by the form submission script below
+  window.__neocrimeApplyGetToken = getToken;
+  window.__neocrimeApplyClearToken = clearToken;
+  window.__neocrimeApplyShowAuthGate = showAuthGate;
+
+  const activeToken = getToken();
+  if (activeToken) {
+    loadSession(activeToken);
+  } else if (urlError) {
+    showAuthGate('Failed to sign in with Discord. Please try again.');
+  } else {
+    showAuthGate();
+  }
+})();
+</script>
+
+<!-- ===== FORM SUBMISSION (step 2, available only once authorized) ===== -->
 <script>
 (function () {
   const form           = document.getElementById('apply-form');
@@ -1154,10 +1374,6 @@
   const submitText     = document.getElementById('submit-btn-text');
   const statusBox      = document.getElementById('form-status');
   const successScreen  = document.getElementById('success-screen');
-  const discordBtn     = document.getElementById('discord-oauth-btn');
-
-  // TODO: після створення Discord OAuth2-посилання підставити її сюди замість "#"
-  const DISCORD_OAUTH_URL = '#';
 
   function showStatus(type, message) {
     statusBox.className = `form-status show ${type}`;
@@ -1174,7 +1390,15 @@
     e.preventDefault();
     statusBox.classList.remove('show');
 
+    const token = window.__neocrimeApplyGetToken ? window.__neocrimeApplyGetToken() : null;
+    if (!token) {
+      showStatus('error', 'Please sign in with Discord first.');
+      if (window.__neocrimeApplyShowAuthGate) window.__neocrimeApplyShowAuthGate();
+      return;
+    }
+
     const payload = {
+      token:       token,
       name:        form.name.value.trim(),
       age:         form.age.value.trim(),
       about:       form.about.value.trim(),
@@ -1205,14 +1429,13 @@
       const data = await res.json().catch(() => ({}));
 
       if (!res.ok || data.status !== 'success') {
+        if (data.code === 'auth_required') {
+          if (window.__neocrimeApplyClearToken) window.__neocrimeApplyClearToken();
+          if (window.__neocrimeApplyShowAuthGate) {
+            window.__neocrimeApplyShowAuthGate('Your authorization session is no longer valid. Please sign in with Discord again.');
+          }
+        }
         throw new Error(data.message || 'An error occurred');
-      }
-
-      // Якщо бекенд поверне персональне посилання для приєднання — використовуємо його
-      if (data.discord_url) {
-        discordBtn.href = data.discord_url;
-      } else {
-        discordBtn.href = DISCORD_OAUTH_URL;
       }
 
       form.style.display = 'none';
