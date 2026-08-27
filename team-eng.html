@@ -396,20 +396,27 @@
 
   /* Ряд карток */
   .team-row {
-    display: grid;
+    display: flex;
+    flex-wrap: wrap;
     gap: 1.25rem;
     margin-bottom: 0.5rem;
-  }
-  /* Ряд 1 (CEO, COO, CAO — 3 людини): центруємо */
-  .team-row.row-1 {
-    grid-template-columns: repeat(3, minmax(0, 220px));
     justify-content: center;
+  }
+  /* Ряд 1 (CEO, COO, CAO — 3 людини): центруємо, якщо картка переходить на другий ряд — теж по центру */
+  .team-row.row-1 {
+    justify-content: center;
+  }
+  .team-row.row-1 .team-card {
+    flex: 0 0 220px;
   }
   /* Ряди 2–3: центруємо, картки не розтягуються на всю ширину */
   .team-row.row-2,
   .team-row.row-3 {
-    grid-template-columns: repeat(auto-fit, minmax(0, 160px));
     justify-content: center;
+  }
+  .team-row.row-2 .team-card,
+  .team-row.row-3 .team-card {
+    flex: 0 0 160px;
   }
 
   /* ===== КАРТКА УЧАСНИКА ===== */
@@ -515,10 +522,11 @@
 
   /* Адаптив */
   @media (max-width: 900px) {
-    .team-row.row-1 { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); justify-content: start; }
+    .team-row.row-1 { justify-content: center; }
+    .team-row.row-1 .team-card { flex: 0 0 160px; }
   }
   @media (max-width: 480px) {
-    .team-row { grid-template-columns: repeat(2, 1fr) !important; }
+    .team-row .team-card { flex: 0 0 calc(50% - 0.625rem); }
   }
 
   /* ===== SCROLL REVEAL ===== */
