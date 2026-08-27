@@ -402,12 +402,13 @@
     margin-bottom: 0.5rem;
     justify-content: center;
   }
-  /* Ряд 1 (CEO, COO, CAO — 3 людини): центруємо, якщо картка переходить на другий ряд — теж по центру */
+  /* Ряд 1 (Upper Management): центруємо; авто-адаптивна сітка, щоб картки не "відривались" на окремий рядок поодинці */
   .team-row.row-1 {
     justify-content: center;
   }
   .team-row.row-1 .team-card {
-    flex: 0 0 220px;
+    flex: 0 1 220px;
+    min-width: 170px;
   }
   /* Ряди 2–3: центруємо, картки не розтягуються на всю ширину */
   .team-row.row-2,
