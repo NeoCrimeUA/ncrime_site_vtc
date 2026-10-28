@@ -95,11 +95,22 @@
     if (!lightbox || !lightboxImg || !currentItems[idx]) return;
     currentIdx = idx;
     showItem(idx);
+    if (location.hash !== '#gallery') {
+      history.pushState({ ...history.state, neoGallery: true }, '', '#gallery');
+    }
     lightbox.classList.add("active");
     document.body.style.overflow = "hidden";
   }
 
-  function closeLightbox() {
+  function closeLightbox(fromHistory) {
+    if (fromHistory !== true && location.hash === '#gallery') {
+      if (history.state && history.state.neoGallery) {
+        history.back();
+        return;
+      }
+      history.replaceState(history.state, '', location.pathname + location.search);
+    }
+
     if (!lightbox) return;
     lightbox.classList.remove("active");
     document.body.style.overflow = "";
@@ -107,6 +118,16 @@
       if (!lightbox.classList.contains("active")) lightboxImg.src = "";
     }, 300);
   }
+
+
+  // Back closes the photo; Forward restores the viewer without adding history.
+  window.addEventListener('popstate', function () {
+    if (location.hash === '#gallery') {
+      if (!lightbox.classList.contains('active')) openLightbox(currentIdx);
+    } else if (lightbox.classList.contains('active')) {
+      closeLightbox(true);
+    }
+  });
 
   function navigateLightbox(dir) {
     const n = currentIdx + dir;

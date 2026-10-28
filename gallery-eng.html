@@ -1598,12 +1598,23 @@ function neoEntranceObserver(callback,options){
     const item = allItems[idx];
     lightboxImg.src      = item.photo_url;
     lightboxCaption.textContent = item.title || '';
+    if (location.hash !== '#gallery') {
+      history.pushState({ ...history.state, neoGallery: true }, '', '#gallery');
+    }
     lightbox.classList.add('active');
     document.body.style.overflow = 'hidden';
     updateNavButtons();
   }
 
-  function closeLightbox(){
+  function closeLightbox(fromHistory){
+    if (fromHistory !== true && location.hash === '#gallery') {
+      if (history.state && history.state.neoGallery) {
+        history.back();
+        return;
+      }
+      history.replaceState(history.state, '', location.pathname + location.search);
+    }
+
     if (!lightbox.classList.contains('active')) return;
     lightbox.classList.remove('active');
     document.body.style.position = '';
@@ -1617,6 +1628,16 @@ function neoEntranceObserver(callback,options){
       closeTimer = null;
     }, 380);
   }
+
+
+  // Back closes the photo; Forward restores the viewer without adding history.
+  window.addEventListener('popstate', function () {
+    if (location.hash === '#gallery') {
+      if (!lightbox.classList.contains('active')) openLightbox(currentIdx);
+    } else if (lightbox.classList.contains('active')) {
+      closeLightbox(true);
+    }
+  });
 
   function navigateLightbox(direction){
     const newIdx = currentIdx + direction;
