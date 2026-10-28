@@ -9,7 +9,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Orbitron:wght@600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
@@ -37,7 +37,9 @@
   button{ font: inherit; cursor: pointer; }
 
   /* ===== HEADER ===== */
-  .site-header{
+  
+  /* ===== HEADER (synced with index.html) ===== */
+.site-header{
   position: fixed;
   top: 0;
   left: 0;
@@ -48,7 +50,7 @@
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
 }
-  .header-inner{
+.header-inner{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -56,41 +58,39 @@
     max-width: 1552px;
     margin: 0 auto;
   }
-  .logo-link{
+.logo-link{
     display: flex;
     align-items: center;
     gap: 0.5rem;
   }
-  .logo-link img{
+.logo-link img{
     width: 40px;
     height: 40px;
     border-radius: 9999px;
     display: block;
     background-color: rgba(255,255,255,0.08);
   }
-  .logo-link h1{
+.logo-link h1{
     font-size: 1.4rem;
     font-weight: 700;
     color: #fff;
   }
-  .main-nav ul{
+.main-nav ul{
     align-items: center;
     display: flex;
     gap: 1.5rem;
     list-style: none;
   }
-  @media (max-width: 768px){
-    .main-nav ul{ align-items: stretch; }
-  }
-
-  /* Оновлені посилання хедера з анімацією підкреслення */
-  .nav-link{
+@media (max-width: 768px) {
+  .main-nav ul{ align-items: stretch; }
+}
+.nav-link{
     color: #fff;
     font-weight: 500;
     position: relative;
     padding-bottom: 4px;
   }
-  .nav-link::after{
+.nav-link::after{
     content: '';
     position: absolute;
     width: 0;
@@ -100,20 +100,15 @@
     background-color: hsl(var(--primary)); /* Тёмно-красная полоска */
     transition: width 0.3s ease;
   }
-  .nav-link:hover::after{
+.nav-link:hover::after{
     width: 100%;
   }
-
-  /* Обгортка для перемикача мови + кнопки акаунту —
-     тримає їх в один горизонтальний ряд і на десктопі, і на мобілці */
-  .header-actions{
+.header-actions{
     display: flex;
     align-items: center;
     gap: 0.5rem;
     margin-left: 0.5rem;
   }
-
-  /* ===== ПЕРЕМИКАЧ МОВИ ===== */
 .lang-switch-bw {
     position: relative;
     display: flex;
@@ -125,29 +120,29 @@
     cursor: pointer;
     transition: 0.3s;
   }
-  .lang-switch-bw:hover {
+.lang-switch-bw:hover {
     background-color: rgba(255, 255, 255, 0.1);
   }
-  .current-lang {
+.current-lang {
     display: flex;
     align-items: center;
     gap: 8px;
   }
-  .current-lang img, .lang-dropdown-bw img {
+.current-lang img, .lang-dropdown-bw img {
     width: 20px;
     height: auto;
     border-radius: 3px;
     display: block;
   }
-  .current-lang i {
+.current-lang i {
     font-size: 12px;
     color: #ffffff;
     transition: 0.3s;
   }
-  .lang-switch-bw:hover .current-lang i {
+.lang-switch-bw:hover .current-lang i {
     transform: rotate(180deg);
   }
-  .lang-dropdown-bw {
+.lang-dropdown-bw {
     position: absolute;
     top: 140%;
     left: 50%;
@@ -165,19 +160,19 @@
     transition: all 0.3s ease;
     backdrop-filter: blur(5px);
   }
-  .lang-switch-bw:hover .lang-dropdown-bw {
+.lang-switch-bw:hover .lang-dropdown-bw {
     opacity: 1;
     visibility: visible;
     transform: translateX(-50%) translateY(0);
   }
-  .lang-dropdown-bw a {
+.lang-dropdown-bw a {
     display: block;
     transition: 0.3s;
   }
-  .lang-dropdown-bw a:hover {
+.lang-dropdown-bw a:hover {
     transform: scale(1.15);
   }
-  .account-switch-bw {
+.account-switch-bw {
     position: relative;
     display: flex;
     align-items: center;
@@ -189,10 +184,10 @@
     cursor: pointer;
     transition: 0.3s;
   }
-  .account-switch-bw:hover { background-color: rgba(255, 255, 255, 0.1); }
-  .current-account { display: flex; align-items: center; }
-  .current-account i.fa-circle-user { font-size: 20px; color: #ffffff; }
-  .account-dropdown-bw {
+.account-switch-bw:hover { background-color: rgba(255, 255, 255, 0.1); }
+.current-account { display: flex; align-items: center; }
+.current-account i.fa-circle-user { font-size: 20px; color: #ffffff; }
+.account-dropdown-bw {
     position: absolute;
     top: 140%;
     left: 50%;
@@ -211,12 +206,12 @@
     backdrop-filter: blur(5px);
     z-index: 60;
   }
-  .account-switch-bw:hover .account-dropdown-bw {
+.account-switch-bw:hover .account-dropdown-bw {
     opacity: 1;
     visibility: visible;
     transform: translateX(-50%) translateY(0);
   }
-  .account-dropdown-bw a {
+.account-dropdown-bw a {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -228,11 +223,9 @@
     white-space: nowrap;
     transition: 0.3s;
   }
-  .account-dropdown-bw a:hover { background-color: rgba(255, 255, 255, 0.08); color: #fff; }
-  .account-dropdown-bw a i { color: hsl(var(--primary)); font-size: 13px; width: 16px; text-align: center; }
-
-
-  .burger-btn{
+.account-dropdown-bw a:hover { background-color: rgba(255, 255, 255, 0.08); color: #fff; }
+.account-dropdown-bw a i { color: hsl(var(--primary)); font-size: 13px; width: 16px; text-align: center; }
+.burger-btn{
     display: none;
     background: transparent;
     border: none;
@@ -240,43 +233,54 @@
     border-radius: 9999px;
     transition: background-color 0.2s ease;
   }
+@media (hover: hover) {
+  .burger-btn:hover{ background-color: rgba(255,255,255,0.08); }
+}
+.burger-btn svg{ width: 28px; height: 28px; fill: #fff; }
+@media (max-width: 768px) {
+  .main-nav{ display: none; }
+  .burger-btn{ display: flex; }
+  .main-nav.active{
+        display: block;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(15, 16, 16, 0.97);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+      }
+  .main-nav.active ul{
+        flex-direction: column;
+        gap: 0;
+        padding: 0.5rem 1.25rem 1.25rem;
+      }
+  .main-nav.active .nav-link{
+        display: block;
+        padding: 0.85rem 0;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+      }
+  .main-nav.active .header-actions{
+        justify-content: center;
+        gap: 1rem;
+        margin: 1rem 0 0.25rem;
+      }
+}
+
+  /* Оновлені посилання хедера з анімацією підкреслення */
+
+  /* Обгортка для перемикача мови + кнопки акаунту —
+     тримає їх в один горизонтальний ряд і на десктопі, і на мобілці */
+
+  /* ===== ПЕРЕМИКАЧ МОВИ ===== */
+
   /* hover-стиль лише для пристроїв із реальним курсором (миша) —
      на дотикових екранах :hover інакше "залипає" після тапу */
-  @media (hover: hover) {
-    .burger-btn:hover{ background-color: rgba(255,255,255,0.08); }
-  }
-  .burger-btn svg{ width: 28px; height: 28px; fill: #fff; }
 
   @media (max-width: 768px){
-    .main-nav{ display: none; }
-    .burger-btn{ display: flex; }
 
     /* ДОДАНО: бургер-меню */
-    .main-nav.active{
-      display: block;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      width: 100%;
-      background: rgba(15, 16, 16, 0.97);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-    }
-    .main-nav.active ul{
-      flex-direction: column;
-      gap: 0;
-      padding: 0.5rem 1.25rem 1.25rem;
-    }
-    .main-nav.active .nav-link{
-      display: block;
-      padding: 0.85rem 0;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
-    .main-nav.active .header-actions{
-      justify-content: center;
-      gap: 1rem;
-      margin: 1rem 0 0.25rem;
-    }
+
     body.nav-open{ overflow: hidden; }
   }
 
@@ -416,47 +420,649 @@
   .reveal-delay-3 { transition-delay: 0.24s; }
 
   /* ===== FOOTER ===== */
-  .site-footer {
+  
+  /* ===== FOOTER (synced with index.html) ===== */
+.site-footer {
     background-color: #080808;
     padding: 70px 0 20px;
     border-top: 2px solid #222;
-    position: relative; z-index: 10;
+    position: relative;
+    z-index: 10;
   }
-  .footer-container {
-    display: flex; justify-content: space-between;
-    flex-wrap: wrap; gap: 40px;
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
     border-bottom: 1px solid #1a1a1a;
     padding-bottom: 40px;
-    max-width: 1552px; margin: 0 auto;
-    padding-left: 1.25rem; padding-right: 1.25rem;
+    max-width: 1552px;
+    margin: 0 auto;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
   }
-  .footer-col { flex: 1; min-width: 250px; }
-  .about-col .footer-logo {
-    display: flex; align-items: center;
-    font-size: 22px; font-weight: 900;
-    letter-spacing: 1px; margin-bottom: 15px; color: #fff;
+.footer-col {
+    flex: 1;
+    min-width: 250px;
   }
-  .about-col .footer-logo span { color: #ff3333; }
-  .about-col p { font-size: 14px; color: #888; line-height: 1.6; margin-bottom: 25px; }
-  .social-img-links { display: flex; gap: 15px; }
-  .social-img-links a {
-    display: block; width: 40px; height: 40px;
-    border-radius: 8px; overflow: hidden;
-    border: 1px solid #333; transition: all 0.3s ease; background-color: #111;
+.about-col .footer-logo {
+    display: flex;
+    align-items: center;
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    color: #fff;
   }
-  .social-img-links a img { width: 100%; height: 100%; object-fit: contain; padding: 5px; }
-  .social-img-links a:hover { border-color: #ff3333; transform: translateY(-5px); box-shadow: 0 5px 15px rgba(255,51,51,0.3); }
-  .footer-col h4 { font-size: 18px; color: #fff; margin-bottom: 25px; position: relative; }
-  .footer-col h4::after { content: ''; display: block; width: 30px; height: 2px; background-color: #ff3333; margin-top: 10px; }
-  .nav-col ul, .contact-col ul { list-style: none; }
-  .nav-col li, .contact-col li { margin-bottom: 15px; }
-  .nav-col a, .contact-col a { color: #888; font-size: 14px; transition: all 0.3s ease; display: flex; align-items: center; gap: 12px; }
-  .nav-col a::before { content: '\f054'; font-family: 'Font Awesome 6 Free'; font-weight: 900; color: #ff3333; font-size: 10px; transition: transform 0.3s ease; }
-  .nav-col a:hover, .contact-col a:hover { color: #ff3333; }
-  .nav-col a:hover::before { transform: translateX(3px); }
-  .contact-col i { color: #ff3333; font-size: 16px; width: 20px; text-align: center; }
-  .footer-bottom { text-align: center; padding-top: 25px; max-width: 1552px; margin: 0 auto; padding-left: 1.25rem; padding-right: 1.25rem; }
-  .footer-bottom p { color: #555; font-size: 13px; }
+.about-col .footer-logo span {
+    color: #ff3333;
+  }
+.about-col p {
+    font-size: 14px;
+    color: #888;
+    line-height: 1.6;
+    margin-bottom: 25px;
+  }
+.social-img-links {
+    display: flex;
+    gap: 15px;
+  }
+.social-img-links a {
+    display: block;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #333;
+    transition: all 0.3s ease;
+    background-color: #111;
+  }
+.social-img-links a img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 5px;
+    transition: all 0.3s ease;
+  }
+.social-img-links a:hover {
+    border-color: #ff3333;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(255, 51, 51, 0.3);
+  }
+.footer-col h4 {
+    font-size: 18px;
+    color: #fff;
+    margin-bottom: 25px;
+    position: relative;
+  }
+.footer-col h4::after {
+    content: '';
+    display: block;
+    width: 30px;
+    height: 2px;
+    background-color: #ff3333;
+    margin-top: 10px;
+  }
+.nav-col ul, .contact-col ul {
+    list-style: none;
+  }
+.nav-col li, .contact-col li {
+    margin-bottom: 15px;
+  }
+.nav-col a, .contact-col a {
+    color: #888;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+.nav-col a::before {
+    content: '\f054';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: #ff3333;
+    font-size: 10px;
+    transition: transform 0.3s ease;
+  }
+.nav-col a:hover, .contact-col a:hover {
+    color: #ff3333;
+  }
+.nav-col a:hover::before {
+    transform: translateX(3px);
+  }
+.contact-col i {
+    color: #ff3333;
+    font-size: 16px;
+    width: 20px;
+    text-align: center;
+  }
+.footer-bottom {
+    text-align: center;
+    padding-top: 25px;
+    max-width: 1552px;
+    margin: 0 auto;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+.footer-bottom p {
+    color: #555;
+    font-size: 13px;
+  }
+.site-footer{ background:#070707; border-top:1px solid #262626; position:relative; padding-top:64px; }
+.about-col .footer-logo{
+  font-family:'Orbitron','Montserrat',sans-serif; font-weight:800; font-size:20px;
+  letter-spacing:.14em; text-transform:uppercase; margin-bottom:18px;
+}
+.about-col p{ color:#7d7d7d; font-size:13px; line-height:1.75; }
+.social-img-links{ gap:10px; }
+.social-img-links a{
+  border-radius:0; border:1px solid #2c2c2c; background:#0e0e0e;
+  transition:border-color .25s, background .25s, transform .25s;
+}
+.social-img-links a:hover{
+  border-color:#ff3333; background:#141414; transform:translateY(-3px); box-shadow:none;
+}
+.footer-col h4{
+  font-size:12px; font-weight:700; letter-spacing:.2em; text-transform:uppercase;
+  color:#fff; margin-bottom:24px;
+}
+.footer-col h4::after{ width:36px; height:2px; margin-top:12px; }
+.nav-col a, .contact-col a{ font-size:13px; letter-spacing:.04em; }
+.nav-col li, .contact-col li{ margin-bottom:12px; padding-bottom:12px; border-bottom:1px solid #151515; }
+.nav-col li:last-child, .contact-col li:last-child{ border-bottom:0; padding-bottom:0; }
+.footer-container{ border-bottom:1px solid #1d1d1d; }
+.footer-bottom p{
+  color:#4d4d4d; font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+}
+
+
+/* =====================================================================
+   REDESIGN: стиль як у index.html / contact.html / apply.html
+   ===================================================================== */
+:root{ --ease: cubic-bezier(.22,1,.36,1); }
+
+/* ---- Hero: геймерський шрифт, блиск, поява ---- */
+.hero-content h1{
+  font-family:'Orbitron','Montserrat',sans-serif; font-weight:800; letter-spacing:.01em;
+  font-size:clamp(1.8rem, 8vw, 4rem); line-height:1.1;
+  background:linear-gradient(110deg,#fff 38%,#ffaaaa 50%,#fff 62%);
+  background-size:250% 100%;
+  -webkit-background-clip:text; background-clip:text;
+  -webkit-text-fill-color:transparent; color:transparent;
+  animation:heroUp .9s var(--ease) .15s both, titleShine 18s ease-in-out 1.4s infinite;
+}
+.hero-content p{ animation:heroUp .9s var(--ease) .35s both; }
+.hero-photo-wrap img{ animation:heroZoom 2.4s var(--ease) both; }
+@keyframes heroUp{ from{opacity:0; translate:0 28px;} to{opacity:1; translate:0 0;} }
+@keyframes heroZoom{ from{scale:1.06;} to{scale:1;} }
+@keyframes titleShine{ 0%{background-position:130% 0;} 55%,100%{background-position:-130% 0;} }
+@keyframes cardIn{ from{opacity:0; transform:translateY(46px) scale(.96);} to{opacity:1; transform:none;} }
+@keyframes itemIn{ from{opacity:0; transform:translateX(-18px);} to{opacity:1; transform:none;} }
+
+/* ---- Лого в хедері: клік — скрол нагору (без hover-анімації) ---- */
+.logo-link{ cursor:pointer; }
+
+/* ---- Заголовок секції: лінія виїжджає, дата — «таблетка» ---- */
+.legal-section-header{ display:flex; flex-direction:column; align-items:flex-start; }
+.legal-section-header h2::after{ width:0; transition:width .9s var(--ease) .35s; }
+.legal-section-header.revealed h2::after{ width:60%; }
+.legal-last-updated{
+  display:inline-flex; align-items:center; gap:.5rem; margin:.75rem 0 0;
+  padding:.4rem .9rem; background:#262626;
+  border:1px solid rgba(255,255,255,.1); border-radius:30px;
+  color:#9c9c9c; transition:border-color .35s, color .35s, translate .45s var(--ease);
+}
+.legal-last-updated::before{
+  content:'\f017'; font-family:'Font Awesome 6 Free'; font-weight:900; font-size:.75rem; color:#9c9c9c;
+}
+
+/* ---- Розділи: акцентна лінія виростає, заголовок підсвічується ---- */
+.legal-body h3{
+  position:relative; border-left:0;
+  transition:opacity .7s cubic-bezier(.25,1,.5,1), transform .7s cubic-bezier(.25,1,.5,1), color .3s, padding-left .45s var(--ease);
+}
+.legal-body h3::before{
+  content:""; position:absolute; left:0; top:0; bottom:0; width:3px; border-radius:2px;
+  background:hsl(var(--primary));
+  transform:scaleY(0); transform-origin:top;
+  transition:transform .7s var(--ease) .2s;
+}
+.legal-body h3.revealed::before{ transform:scaleY(1); }
+
+/* ---- Списки: пункти з'являються по черзі ---- */
+.legal-body ul.reveal li{ opacity:0; }
+.legal-body ul.revealed li{ animation:itemIn .7s var(--ease) both; }
+.legal-body ul.revealed li:nth-child(2){ animation-delay:.1s; }
+.legal-body ul.revealed li:nth-child(3){ animation-delay:.2s; }
+.legal-body ul.revealed li:nth-child(4){ animation-delay:.3s; }
+.legal-body ul.revealed li:nth-child(5){ animation-delay:.4s; }
+.legal-body ul.revealed li:nth-child(n+6){ animation-delay:.5s; }
+.legal-body ul li::before{ transition:transform .45s cubic-bezier(.34,1.56,.64,1); }
+.legal-body ul li{ transition:color .3s; }
+.legal-body p, .legal-body strong{ transition:color .3s; }
+
+/* ---- Контакти: картки як alt-contact-card ---- */
+.legal-body ul.contact-list{ margin-top:1rem; }
+.legal-body ul.contact-list li{
+  --mx:50%; --my:50%;
+  position:relative; overflow:hidden; isolation:isolate;
+  padding:1rem 1.25rem; margin-bottom:.75rem;
+  background:#262626; border:1px solid rgba(255,255,255,.12); border-radius:12px;
+  box-shadow:0 20px 50px -26px rgba(0,0,0,.6);
+  transition:translate .5s var(--ease), box-shadow .5s var(--ease), border-color .35s;
+}
+.legal-body ul.contact-list li::before{
+  display:block; content:""; left:0; top:0; width:auto; height:auto; inset:0; z-index:-1;
+  border-radius:0; pointer-events:none; opacity:0;
+  background:radial-gradient(360px circle at var(--mx) var(--my), rgba(255,255,255,.08), transparent 60%);
+  transition:opacity .4s;
+}
+.legal-body ul.contact-list li::after{
+  content:""; position:absolute; left:0; bottom:0; width:0; height:4px;
+  background:hsl(var(--primary)); transition:width .55s var(--ease);
+}
+.legal-body ul.contact-list i{ transition:transform .5s cubic-bezier(.34,1.56,.64,1); }
+.legal-body ul.contact-list a{ text-decoration:underline; text-decoration-color:transparent; text-underline-offset:3px; transition:color .2s, text-decoration-color .3s; }
+.legal-body ul.contact-list a:hover{ text-decoration-color:currentColor; }
+@media (hover:hover){
+  .legal-body ul.contact-list li:hover{ translate:0 -6px; border-color:rgba(255,255,255,.2); box-shadow:0 22px 40px -14px rgba(0,0,0,.7); }
+  .legal-body ul.contact-list li:hover::before{ opacity:1; }
+  .legal-body ul.contact-list li:hover::after{ width:100%; }
+  .legal-body ul.contact-list li:hover i{ transform:scale(1.2) rotate(-8deg); }
+}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{ animation:none !important; transition-duration:.01ms !important; }
+  .legal-body ul.reveal li{ opacity:1 !important; }
+  .legal-body h3::before{ transform:scaleY(1); }
+  .legal-section-header h2::after{ width:60%; }
+  .hero-content h1{ -webkit-text-fill-color:#fff; }
+}
+</style>
+<!-- Header/footer synchronized with index.html -->
+<style>
+.site-header,.site-footer{font-family:Montserrat,ui-sans-serif,system-ui,-apple-system,sans-serif;font-size:16px;line-height:1.5;color:#fff} .site-header *,.site-footer *{box-sizing:border-box} .site-header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  width: 100%;
+  padding: 0.75rem 1.25rem;
+  background-color: rgba(15, 16, 16, 0.88); 
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+.header-inner{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1552px;
+    margin: 0 auto;
+  }
+.logo-link{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+.logo-link img{
+    width: 40px;
+    height: 40px;
+    border-radius: 9999px;
+    display: block;
+    background-color: rgba(255,255,255,0.08);
+  }
+.logo-link h1{
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #fff;
+  }
+.main-nav ul{
+    align-items: center;
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+  }
+@media (max-width: 768px){.main-nav ul{ align-items: stretch; }
+}
+.nav-link{
+    color: #fff;
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 4px;
+  }
+.nav-link::after{
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: hsl(var(--primary)); 
+    transition: width 0.3s ease;
+  }
+.nav-link:hover::after{
+    width: 100%;
+  }
+.header-actions{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: 0.5rem;
+  }
+.lang-switch-bw{
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 40px;
+    padding: 0 10px;
+    border: none;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+.lang-switch-bw:hover{
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+.current-lang{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+.current-lang img,.lang-dropdown-bw img{
+    width: 20px;
+    height: auto;
+    border-radius: 3px;
+    display: block;
+  }
+.current-lang i{
+    font-size: 12px;
+    color: #ffffff;
+    transition: 0.3s;
+  }
+.lang-switch-bw:hover .current-lang i{
+    transform: rotate(180deg);
+  }
+.lang-dropdown-bw{
+    position: absolute;
+    top: 140%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: rgba(12, 12, 12, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 10px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+  }
+.lang-switch-bw:hover .lang-dropdown-bw{
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+.lang-dropdown-bw a{
+    display: block;
+    transition: 0.3s;
+  }
+.lang-dropdown-bw a:hover{
+    transform: scale(1.15);
+  }
+.account-switch-bw{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+.account-switch-bw:hover{ background-color: rgba(255, 255, 255, 0.1); }
+.current-account{ display: flex; align-items: center; }
+.current-account i.fa-circle-user{ font-size: 20px; color: #ffffff; }
+.account-dropdown-bw{
+    position: absolute;
+    top: 140%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: rgba(12, 12, 12, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 8px;
+    min-width: 220px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    z-index: 60;
+  }
+.account-switch-bw:hover .account-dropdown-bw{
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+.account-dropdown-bw a{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #e5e5e5;
+    white-space: nowrap;
+    transition: 0.3s;
+  }
+.account-dropdown-bw a:hover{ background-color: rgba(255, 255, 255, 0.08); color: #fff; }
+.account-dropdown-bw a i{ color: hsl(var(--primary)); font-size: 13px; width: 16px; text-align: center; }
+.burger-btn{
+    display: none;
+    background: transparent;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 9999px;
+    transition: background-color 0.2s ease;
+  }
+@media (hover: hover){.burger-btn:hover{ background-color: rgba(255,255,255,0.08); }
+}
+.burger-btn svg{ width: 28px; height: 28px; fill: #fff; }
+@media (max-width: 768px){.main-nav{ display: none; }
+.burger-btn{ display: flex; }
+.main-nav.active{
+      display: block;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background: rgba(15, 16, 16, 0.97);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+.main-nav.active ul{
+      flex-direction: column;
+      gap: 0;
+      padding: 0.5rem 1.25rem 1.25rem;
+    }
+.main-nav.active .nav-link{
+      display: block;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+.main-nav.active .header-actions{
+      justify-content: center;
+      gap: 1rem;
+      margin: 1rem 0 0.25rem;
+    }
+}
+.site-footer{
+    background-color: #080808;
+    padding: 70px 0 20px;
+    border-top: 2px solid #222;
+    position: relative;
+    z-index: 10;
+  }
+.footer-container{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+    border-bottom: 1px solid #1a1a1a;
+    padding-bottom: 40px;
+    max-width: 1552px;
+    margin: 0 auto;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+.footer-col{
+    flex: 1;
+    min-width: 250px;
+  }
+.about-col .footer-logo{
+    display: flex;
+    align-items: center;
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    color: #fff;
+  }
+.about-col .footer-logo span{
+    color: #ff3333;
+  }
+.about-col p{
+    font-size: 14px;
+    color: #888;
+    line-height: 1.6;
+    margin-bottom: 25px;
+  }
+.social-img-links{
+    display: flex;
+    gap: 15px;
+  }
+.social-img-links a{
+    display: block;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #333;
+    transition: all 0.3s ease;
+    background-color: #111;
+  }
+.social-img-links a img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 5px;
+    transition: all 0.3s ease;
+  }
+.social-img-links a:hover{
+    border-color: #ff3333;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(255, 51, 51, 0.3);
+  }
+.footer-col h4{
+    font-size: 18px;
+    color: #fff;
+    margin-bottom: 25px;
+    position: relative;
+  }
+.footer-col h4::after{
+    content: '';
+    display: block;
+    width: 30px;
+    height: 2px;
+    background-color: #ff3333;
+    margin-top: 10px;
+  }
+.nav-col ul,.contact-col ul{
+    list-style: none;
+  }
+.nav-col li,.contact-col li{
+    margin-bottom: 15px;
+  }
+.nav-col a,.contact-col a{
+    color: #888;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+.nav-col a::before{
+    content: '\f054';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: #ff3333;
+    font-size: 10px;
+    transition: transform 0.3s ease;
+  }
+.nav-col a:hover,.contact-col a:hover{
+    color: #ff3333;
+  }
+.nav-col a:hover::before{
+    transform: translateX(3px);
+  }
+.contact-col i{
+    color: #ff3333;
+    font-size: 16px;
+    width: 20px;
+    text-align: center;
+  }
+.footer-bottom{
+    text-align: center;
+    padding-top: 25px;
+    max-width: 1552px;
+    margin: 0 auto;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+.footer-bottom p{
+    color: #555;
+    font-size: 13px;
+  }
+.site-footer{ background:#070707; border-top:1px solid #262626; position:relative; padding-top:64px; }
+.about-col .footer-logo{
+  font-family:'Orbitron','Montserrat',sans-serif; font-weight:800; font-size:20px;
+  letter-spacing:.14em; text-transform:uppercase; margin-bottom:18px;
+}
+.about-col p{ color:#7d7d7d; font-size:13px; line-height:1.75; }
+.social-img-links{ gap:10px; }
+.social-img-links a{
+  border-radius:0; border:1px solid #2c2c2c; background:#0e0e0e;
+  transition:border-color .25s, background .25s, transform .25s;
+}
+.social-img-links a:hover{
+  border-color:#ff3333; background:#141414; transform:translateY(-3px); box-shadow:none;
+}
+.footer-col h4{
+  font-size:12px; font-weight:700; letter-spacing:.2em; text-transform:uppercase;
+  color:#fff; margin-bottom:24px;
+}
+.footer-col h4::after{ width:36px; height:2px; margin-top:12px; }
+.nav-col a,.contact-col a{ font-size:13px; letter-spacing:.04em; }
+.nav-col li,.contact-col li{ margin-bottom:12px; padding-bottom:12px; border-bottom:1px solid #151515; }
+.nav-col li:last-child,.contact-col li:last-child{ border-bottom:0; padding-bottom:0; }
+.footer-container{ border-bottom:1px solid #1d1d1d; }
+.footer-bottom p{
+  color:#4d4d4d; font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+}
+
+
 </style>
 </head>
 <body>
@@ -464,15 +1070,15 @@
 <!-- ===== HEADER ===== -->
 <header class="site-header">
   <div class="header-inner">
-    <a class="logo-link" href="https://neocrime.space/">
+    <a class="logo-link" href="/index">
       <img alt="NeoCrime Logo" loading="lazy" width="40" height="40" decoding="async"
            src="images/logo.avif">
-      <h1>NeoCrime</h1>
+      <h1>NeoCrime Group</h1>
     </a>
 
     <nav class="main-nav">
       <ul>
-        <li><a class="nav-link" href="https://neocrime.space/">Головна</a></li>
+        <li><a class="nav-link" href="/index">Головна</a></li>
         <li><a class="nav-link" href="/events">Події</a></li>
         <li><a class="nav-link" href="/news">Новини</a></li>
         <li><a class="nav-link" href="/team">Команда</a></li>
@@ -566,9 +1172,11 @@
 <!-- ===== FOOTER ===== -->
 <footer class="site-footer">
   <div class="footer-container">
+
     <div class="footer-col about-col">
-      <div class="footer-logo">Neo<span>Crime</span></div>
+      <div class="footer-logo">Neo<span>Crime</span>&nbsp;Group</div>
       <p>NeoCrime — це амбіційна українська VTC, що впевнено рухається вперед, створюючи власну історію успіху на просторах TruckersMP. Це місце, де стиль, дисципліна та командний дух поєднуються в єдину силу, а кожен учасник стає частиною великого та впевненого руху.</p>
+
       <div class="social-img-links">
         <a href="https://discord.gg/zGzy7Gcdgy" target="_blank"><img src="images/social/1.avif" alt="Discord"></a>
         <a href="https://www.tiktok.com/@neocrime_vtc" target="_blank"><img src="images/social/2.avif" alt="TikTok"></a>
@@ -576,16 +1184,18 @@
         <a href="https://www.twitch.tv/neocrime_vtc" target="_blank"><img src="images/social/4.avif" alt="TruckersHub"></a>
       </div>
     </div>
+
     <div class="footer-col nav-col">
       <h4>Навігація</h4>
       <ul>
-        <li><a href="https://neocrime.space/">Головна</a></li>
+        <li><a href="/index">Головна</a></li>
         <li><a href="/news">Новини</a></li>
         <li><a href="/contact">Контакти</a></li>
         <li><a href="/privacy">Політика приватності</a></li>
         <li><a href="/terms">Угода користування</a></li>
       </ul>
     </div>
+
     <div class="footer-col contact-col">
       <h4>Контакти</h4>
       <ul>
@@ -593,7 +1203,9 @@
         <li><i class="fab fa-discord"></i> <a href="https://discord.gg/zGzy7Gcdgy" target="_blank">discord.gg/zGzy7Gcdgy</a></li>
       </ul>
     </div>
+
   </div>
+
   <div class="footer-bottom">
     <p>&copy; 2026 NeoCrime. Всі права захищені.</p>
   </div>
@@ -663,6 +1275,25 @@
       }
     });
   })();
+</script>
+<script>
+  /* ===== Клік по "NeoCrime Group" у хедері — плавно нагору ===== */
+  document.querySelectorAll('.site-header a.logo-link').forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+</script>
+<script>
+  /* ===== SPOTLIGHT під курсором на контактних картках ===== */
+  document.addEventListener('pointermove', function (e) {
+    var el = e.target.closest && e.target.closest('.contact-list li');
+    if (!el) return;
+    var r = el.getBoundingClientRect();
+    el.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+    el.style.setProperty('--my', (e.clientY - r.top) + 'px');
+  }, { passive: true });
 </script>
 </body>
 </html>

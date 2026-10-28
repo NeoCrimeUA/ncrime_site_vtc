@@ -3,6 +3,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const LANG = document.documentElement.lang === 'en' ? 'en' : 'uk';
 
+  // Тексти інтерфейсу залежно від мови сторінки
+  const T = LANG === 'en'
+    ? { unknown: 'Unknown', none: 'No upcoming events at the moment.', fail: 'Failed to load events.', error: 'An error occurred while loading events.' }
+    : { unknown: 'Невідомо', none: 'Наразі запланованих подій немає.', fail: 'Не вдалося завантажити події.', error: 'Сталася помилка при завантаженні подій.' };
+
   // API віддає start_at (час виїзду) в UTC (напр. "2026-07-28 16:00:00").
   // Для української версії конвертуємо це в київський час
   // (Europe/Kyiv сама враховує перехід на літній/зимовий час).
@@ -49,26 +54,26 @@ document.addEventListener('DOMContentLoaded', () => {
         let events = data.events;
         
         if (events.length === 0) {
-          eventsContainer.innerHTML = '<p style="color: #9c9c9c; grid-column: 1/-1;">Наразі запланованих подій немає.</p>';
+          eventsContainer.innerHTML = `<p style="color: #9c9c9c; grid-column: 1/-1;">${T.none}</p>`;
           return;
         }
 
         // На всякий случай сортируем события по возрастанию (ближайшие — первые)
         events.sort((a, b) => new Date(a.start_at) - new Date(b.start_at));
 
-        // Берем ровно 3 ближайших события для идеального отображения в сетке
-        const latestEvents = events.slice(0, 3);
+        // Берем до 9 ближайших событий — на главной они листаются каруселью
+        const latestEvents = events.slice(0, 9);
         eventsContainer.innerHTML = '';
         
         latestEvents.forEach(item => {
           // Час виїзду: для "uk" — переведений у київський час; для "en" — як є з API (UTC)
-          const cleanDate = displayDateTime(item.start_at) || 'Невідомо';
+          const cleanDate = displayDateTime(item.start_at) || T.unknown;
           
           // Безопасное извлечение данных (если какое-то поле будет отсутствовать)
-          const serverName = item.server && item.server.name ? item.server.name : 'Невідомо';
-          const startCity = item.departure && item.departure.city ? item.departure.city : 'Невідомо';
+          const serverName = item.server && item.server.name ? item.server.name : T.unknown;
+          const startCity = item.departure && item.departure.city ? item.departure.city : T.unknown;
           const startLoc = item.departure && item.departure.location ? item.departure.location : '';
-          const finishCity = item.arrive && item.arrive.city ? item.arrive.city : 'Невідомо';
+          const finishCity = item.arrive && item.arrive.city ? item.arrive.city : T.unknown;
           const finishLoc = item.arrive && item.arrive.location ? item.arrive.location : '';
 
           const card = document.createElement('div');
@@ -103,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
               <a href="https://truckersmp.com/events/${item.id}" target="_blank" class="btn-event">
                 View Event
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+                <span class="btn-ico btn-ico-calendar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v4M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="m9 16 2 2 4-4"/></svg></span>
               </a>
             </div>
           `;
@@ -111,11 +116,11 @@ document.addEventListener('DOMContentLoaded', () => {
           eventsContainer.appendChild(card);
         });
       } else {
-        eventsContainer.innerHTML = '<p style="color: #9c9c9c; grid-column: 1/-1;">Не вдалося завантажити події.</p>';
+        eventsContainer.innerHTML = `<p style="color: #9c9c9c; grid-column: 1/-1;">${T.fail}</p>`;
       }
     } catch (error) {
       console.error(error);
-      eventsContainer.innerHTML = '<p style="color: #9c9c9c; grid-column: 1/-1;">Сталася помилка при завантаженні подій.</p>';
+      eventsContainer.innerHTML = `<p style="color: #9c9c9c; grid-column: 1/-1;">${T.error}</p>`;
     }
   }
 

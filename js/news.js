@@ -8,6 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalTitle = modal.querySelector('.modal-inner-title');
   const modalMeta = modal.querySelector('.modal-inner-meta');
   const modalDesc = modal.querySelector('.modal-inner-desc');
+  const modalSub = modal.querySelector('.modal-inner-subtitle');
+  const modalScroll = modal.querySelector('.modal-scroll');
+
+  const HASH_PREFIX = 'news-';
+  let pushed = false;   // чи ми самі додали запис в історію браузера
 
   // Хранилище для полученных новостей
   let fetchedNews = [];
@@ -36,8 +41,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Сортируем массив по дате (от самых свежих к старым)
         fetchedNews.sort((a, b) => parseDate(b.date) - parseDate(a.date));
         
-        // Берем только топ-3 последние новости
-        const latestNews = fetchedNews.slice(0, 3);
+        // Берем до 9 последних новостей — на главной они листаются каруселью
+        const latestNews = fetchedNews.slice(0, 9);
         
         // Очищаем контейнер от текста загрузки
         newsContainer.innerHTML = '';
@@ -55,15 +60,16 @@ document.addEventListener('DOMContentLoaded', () => {
               <p class="news-summary">${item.summary}</p>
               <hr class="news-divider">
               <div class="news-meta">${item.author} — ${item.date}</div>
-              <div class="news-more">Детальніше</div>
+              <div class="news-more">Детальніше <span class="btn-ico btn-ico-news"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg></span></div>
             </div>
           `;
           
-          // Событие клика на карточку для открытия модалки
-          card.addEventListener('click', () => openModal(item.id));
-          
           newsContainer.appendChild(card);
         });
+
+        // Сайт відкрито за посиланням #news-ID — одразу показуємо новину
+        const hid = hashId();
+        if (hid !== null) openModal(hid);
       } else {
         newsContainer.innerHTML = '<p style="color: #9c9c9c; grid-column: 1/-1;">Не вдалося завантажити новини.</p>';
       }
@@ -73,40 +79,96 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Открытие модального окна с полной новостью
-  function openModal(id) {
-    const item = fetchedNews.find(n => n.id === id);
-    if (!item) return;
+  // ---------- хеш в адресі: #news-ID ----------
+  function hashId() {
+    const h = decodeURIComponent(location.hash.replace(/^#/, ''));
+    return h.indexOf(HASH_PREFIX) === 0 ? h.slice(HASH_PREFIX.length) : null;
+  }
+  function isOpen() { return modal.classList.contains('active'); }
 
-    // Подставляем данные в модалку
+  // ---------- блокування прокрутки сторінки ----------
+  function lockScroll() {
+    const sw = window.innerWidth - document.documentElement.clientWidth;
+    document.documentElement.classList.add('modal-open');
+    if (sw > 0) document.body.style.paddingRight = sw + 'px';
+  }
+  function unlockScroll() {
+    document.documentElement.classList.remove('modal-open');
+    document.body.style.paddingRight = '';
+  }
+  // колесо / тач поза вікном новини не повинні крутити сторінку
+  modal.addEventListener('wheel', (e) => {
+    if (!modalScroll.contains(e.target)) e.preventDefault();
+  }, { passive: false });
+  modal.addEventListener('touchmove', (e) => {
+    if (!modalScroll.contains(e.target)) e.preventDefault();
+  }, { passive: false });
+
+  // ---------- відкриття / закриття ----------
+  function openModal(id) {
+    const item = fetchedNews.find(n => String(n.id) === String(id));
+    if (!item) return false;
+
     modalImg.src = item.photo_link;
     modalImg.alt = item.title;
     modalTitle.textContent = item.title;
-    
-    // Форматируем мета-данные как на скриншоте (Дата | Автор)
+    modalSub.textContent = item.summary || '';
     modalMeta.innerHTML = `${item.date} | <span>Автор: ${item.author}</span>`;
-    
-    // Преобразуем \n из JSON в HTML-переносы строк <br> для сохранения структуры абзацев
-    const formattedDescription = item.description.replace(/\n/g, '<br>');
-    modalDesc.innerHTML = `<p>${formattedDescription}</p>`;
 
-    // Показываем модалку
+    // кожен рядок з JSON (\n) стає окремим абзацом
+    modalDesc.innerHTML = String(item.description || '')
+      .split('\n')
+      .map(line => line.trim())
+      .filter(Boolean)
+      .map(line => `<p>${line}</p>`)
+      .join('');
+
+    modalScroll.scrollTop = 0;
     modal.classList.add('active');
-    document.body.style.overflow = 'hidden'; // Блокируем скролл страницы под модалкой
+    lockScroll();
+    return true;
   }
 
-  // Закрытие модального окна
-  function closeModal() {
+  function hideModal() {
     modal.classList.remove('active');
-    document.body.style.overflow = ''; // Возвращаем скролл страницы
+    unlockScroll();
   }
 
-  modalClose.addEventListener('click', closeModal);
+  // закриття користувачем: якщо ми додавали запис в історію — просто йдемо "назад"
+  function requestClose() {
+    if (pushed) {
+      history.back();            // popstate закриє вікно
+    } else {
+      hideModal();
+      if (hashId() !== null) history.replaceState(null, '', location.pathname + location.search);
+    }
+  }
 
-  // Закрытие при клике на темную область вокруг модалки
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) {
-      closeModal();
+  modalClose.addEventListener('click', requestClose);
+  modal.addEventListener('click', (e) => { if (e.target === modal) requestClose(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && isOpen()) requestClose(); });
+
+  // Кнопки браузера Назад / Вперед
+  function syncWithHash() {
+    const id = hashId();
+    if (id === null) {
+      pushed = false;
+      if (isOpen()) hideModal();
+    } else if (openModal(id)) {
+      pushed = true;
+    }
+  }
+  window.addEventListener('popstate', syncWithHash);
+
+  // Клік по картці (делегування — працює і для клонів каруселі)
+  newsContainer.addEventListener('click', (e) => {
+    const card = e.target.closest('.news-card');
+    if (!card) return;
+    const id = card.getAttribute('data-id');
+    if (!openModal(id)) return;
+    if (hashId() !== String(id)) {
+      history.pushState({ news: id }, '', '#' + HASH_PREFIX + encodeURIComponent(id));
+      pushed = true;
     }
   });
 

@@ -9,7 +9,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Orbitron:wght@600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
@@ -39,7 +39,9 @@
   .text-primary{ color: hsl(var(--primary)); }
 
   /* ===== HEADER — точна копія з index.html ===== */
-  .site-header{
+  
+  /* ===== HEADER (synced with index.html) ===== */
+.site-header{
   position: fixed;
   top: 0;
   left: 0;
@@ -50,7 +52,7 @@
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
 }
-  .header-inner{
+.header-inner{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -58,41 +60,39 @@
     max-width: 1552px;
     margin: 0 auto;
   }
-  .logo-link{
+.logo-link{
     display: flex;
     align-items: center;
     gap: 0.5rem;
   }
-  .logo-link img{
+.logo-link img{
     width: 40px;
     height: 40px;
     border-radius: 9999px;
     display: block;
     background-color: rgba(255,255,255,0.08);
   }
-  .logo-link h1{
+.logo-link h1{
     font-size: 1.4rem;
     font-weight: 700;
     color: #fff;
   }
-  .main-nav ul{
+.main-nav ul{
     align-items: center;
     display: flex;
     gap: 1.5rem;
     list-style: none;
   }
-  @media (max-width: 768px){
-    .main-nav ul{ align-items: stretch; }
-  }
-
-  /* Оновлені посилання хедера з анімацією підкреслення */
-  .nav-link{
+@media (max-width: 768px) {
+  .main-nav ul{ align-items: stretch; }
+}
+.nav-link{
     color: #fff;
     font-weight: 500;
     position: relative;
     padding-bottom: 4px;
   }
-  .nav-link::after{
+.nav-link::after{
     content: '';
     position: absolute;
     width: 0;
@@ -102,20 +102,15 @@
     background-color: hsl(var(--primary)); /* Тёмно-красная полоска */
     transition: width 0.3s ease;
   }
-  .nav-link:hover::after{
+.nav-link:hover::after{
     width: 100%;
   }
-
-  /* Обгортка для перемикача мови + кнопки акаунту —
-     тримає їх в один горизонтальний ряд і на десктопі, і на мобілці */
-  .header-actions{
+.header-actions{
     display: flex;
     align-items: center;
     gap: 0.5rem;
     margin-left: 0.5rem;
   }
-
-  /* ===== ПЕРЕМИКАЧ МОВИ ===== */
 .lang-switch-bw {
     position: relative;
     display: flex;
@@ -127,29 +122,29 @@
     cursor: pointer;
     transition: 0.3s;
   }
-  .lang-switch-bw:hover {
+.lang-switch-bw:hover {
     background-color: rgba(255, 255, 255, 0.1);
   }
-  .current-lang {
+.current-lang {
     display: flex;
     align-items: center;
     gap: 8px;
   }
-  .current-lang img, .lang-dropdown-bw img {
+.current-lang img, .lang-dropdown-bw img {
     width: 20px;
     height: auto;
     border-radius: 3px;
     display: block;
   }
-  .current-lang i {
+.current-lang i {
     font-size: 12px;
     color: #ffffff;
     transition: 0.3s;
   }
-  .lang-switch-bw:hover .current-lang i {
+.lang-switch-bw:hover .current-lang i {
     transform: rotate(180deg);
   }
-  .lang-dropdown-bw {
+.lang-dropdown-bw {
     position: absolute;
     top: 140%;
     left: 50%;
@@ -167,19 +162,19 @@
     transition: all 0.3s ease;
     backdrop-filter: blur(5px);
   }
-  .lang-switch-bw:hover .lang-dropdown-bw {
+.lang-switch-bw:hover .lang-dropdown-bw {
     opacity: 1;
     visibility: visible;
     transform: translateX(-50%) translateY(0);
   }
-  .lang-dropdown-bw a {
+.lang-dropdown-bw a {
     display: block;
     transition: 0.3s;
   }
-  .lang-dropdown-bw a:hover {
+.lang-dropdown-bw a:hover {
     transform: scale(1.15);
   }
-  .account-switch-bw {
+.account-switch-bw {
     position: relative;
     display: flex;
     align-items: center;
@@ -191,10 +186,10 @@
     cursor: pointer;
     transition: 0.3s;
   }
-  .account-switch-bw:hover { background-color: rgba(255, 255, 255, 0.1); }
-  .current-account { display: flex; align-items: center; }
-  .current-account i.fa-circle-user { font-size: 20px; color: #ffffff; }
-  .account-dropdown-bw {
+.account-switch-bw:hover { background-color: rgba(255, 255, 255, 0.1); }
+.current-account { display: flex; align-items: center; }
+.current-account i.fa-circle-user { font-size: 20px; color: #ffffff; }
+.account-dropdown-bw {
     position: absolute;
     top: 140%;
     left: 50%;
@@ -213,12 +208,12 @@
     backdrop-filter: blur(5px);
     z-index: 60;
   }
-  .account-switch-bw:hover .account-dropdown-bw {
+.account-switch-bw:hover .account-dropdown-bw {
     opacity: 1;
     visibility: visible;
     transform: translateX(-50%) translateY(0);
   }
-  .account-dropdown-bw a {
+.account-dropdown-bw a {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -230,11 +225,9 @@
     white-space: nowrap;
     transition: 0.3s;
   }
-  .account-dropdown-bw a:hover { background-color: rgba(255, 255, 255, 0.08); color: #fff; }
-  .account-dropdown-bw a i { color: hsl(var(--primary)); font-size: 13px; width: 16px; text-align: center; }
-
-
-  .burger-btn{
+.account-dropdown-bw a:hover { background-color: rgba(255, 255, 255, 0.08); color: #fff; }
+.account-dropdown-bw a i { color: hsl(var(--primary)); font-size: 13px; width: 16px; text-align: center; }
+.burger-btn{
     display: none;
     background: transparent;
     border: none;
@@ -242,43 +235,54 @@
     border-radius: 9999px;
     transition: background-color 0.2s ease;
   }
+@media (hover: hover) {
+  .burger-btn:hover{ background-color: rgba(255,255,255,0.08); }
+}
+.burger-btn svg{ width: 28px; height: 28px; fill: #fff; }
+@media (max-width: 768px) {
+  .main-nav{ display: none; }
+  .burger-btn{ display: flex; }
+  .main-nav.active{
+        display: block;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(15, 16, 16, 0.97);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+      }
+  .main-nav.active ul{
+        flex-direction: column;
+        gap: 0;
+        padding: 0.5rem 1.25rem 1.25rem;
+      }
+  .main-nav.active .nav-link{
+        display: block;
+        padding: 0.85rem 0;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+      }
+  .main-nav.active .header-actions{
+        justify-content: center;
+        gap: 1rem;
+        margin: 1rem 0 0.25rem;
+      }
+}
+
+  /* Оновлені посилання хедера з анімацією підкреслення */
+
+  /* Обгортка для перемикача мови + кнопки акаунту —
+     тримає їх в один горизонтальний ряд і на десктопі, і на мобілці */
+
+  /* ===== ПЕРЕМИКАЧ МОВИ ===== */
+
   /* hover-стиль лише для пристроїв із реальним курсором (миша) —
      на дотикових екранах :hover інакше "залипає" після тапу */
-  @media (hover: hover) {
-    .burger-btn:hover{ background-color: rgba(255,255,255,0.08); }
-  }
-  .burger-btn svg{ width: 28px; height: 28px; fill: #fff; }
 
   @media (max-width: 768px){
-    .main-nav{ display: none; }
-    .burger-btn{ display: flex; }
 
     /* ДОДАНО: бургер-меню */
-    .main-nav.active{
-      display: block;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      width: 100%;
-      background: rgba(15, 16, 16, 0.97);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-    }
-    .main-nav.active ul{
-      flex-direction: column;
-      gap: 0;
-      padding: 0.5rem 1.25rem 1.25rem;
-    }
-    .main-nav.active .nav-link{
-      display: block;
-      padding: 0.85rem 0;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
-    .main-nav.active .header-actions{
-      justify-content: center;
-      gap: 1rem;
-      margin: 1rem 0 0.25rem;
-    }
+
     body.nav-open{ overflow: hidden; }
   }
 
@@ -403,9 +407,6 @@
     cursor: pointer;
     transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
   }
-  .news-card:hover {
-    transform: scale(1.03);
-  }
   .news-card::after {
     content: "";
     position: absolute;
@@ -472,106 +473,157 @@
     .news-grid { grid-template-columns: 1fr; }
   }
 
-  /* ===== МОДАЛЬНЕ ВІКНО — точна копія з index.html ===== */
+  /* ===== МОДАЛЬНЕ ВІКНО НОВИНИ ===== */
+  html.modal-open, html.modal-open body { overflow: hidden; }
   .modal-overlay {
     position: fixed;
     inset: 0;
-    z-index: 100;
-    background-color: rgba(0, 0, 0, 0.75);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
+    z-index: 1000;
+    background-color: rgba(8, 8, 10, 0.82);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1.5rem;
+    padding: 2rem;
     opacity: 0;
     pointer-events: none;
+    overscroll-behavior: contain;
     transition: opacity 0.3s ease;
   }
-  .modal-overlay.active {
-    opacity: 1;
-    pointer-events: all;
-  }
+  .modal-overlay.active { opacity: 1; pointer-events: all; }
   .modal-content {
-    background-color: #1a1b1b;
+    background: linear-gradient(180deg, #1f2021 0%, #161717 100%);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 12px;
-    max-width: 800px;
+    border-radius: 20px;
+    max-width: 980px;
     width: 100%;
-    max-height: 85vh;
-    overflow-y: auto;
+    max-height: 90vh;
     position: relative;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    overflow: hidden;
+    display: flex;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.03);
+    transform: translateY(24px) scale(0.97);
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   }
+  .modal-overlay.active .modal-content { transform: none; }
+  .modal-scroll {
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+  }
+  .modal-scroll::-webkit-scrollbar { width: 8px; }
+  .modal-scroll::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.18); border-radius: 8px; }
   .modal-close {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: rgba(0, 0, 0, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: #fff;
-    font-size: 1.5rem;
-    width: 36px;
-    height: 36px;
+    top: 1.1rem;
+    right: 1.1rem;
+    z-index: 10;
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 10;
-    transition: background 0.2s;
+    font-size: 1.6rem;
+    line-height: 1;
+    color: #fff;
+    cursor: pointer;
+    background: rgba(15, 15, 17, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    transition: background 0.2s, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
-  .modal-close:hover {
-    background: hsl(var(--primary));
-  }
+  .modal-close:hover { background: hsl(var(--primary)); transform: rotate(90deg); }
+  .modal-hero { position: relative; }
   .modal-hero-img {
     width: 100%;
-    max-height: 400px;
+    height: clamp(220px, 42vh, 440px);
     object-fit: cover;
     display: block;
-    border-bottom: 4px solid hsl(var(--primary));
+  }
+  .modal-hero::after {                       /* м'яке розчинення фото в тло, без смужки */
+    content: "";
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 55%;
+    background: linear-gradient(180deg, transparent 0%, #1f2021 100%);
+    pointer-events: none;
   }
   .modal-inner-body {
-    padding: 2.5rem;
-  }
-  .modal-inner-title {
-    font-size: 2rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: -0.01em;
-    color: #fff;
-    margin-bottom: 0.75rem;
+    position: relative;
+    z-index: 1;
+    padding: 0 3rem 3rem;
+    margin-top: -2.5rem;
   }
   .modal-inner-meta {
-    font-size: 0.9rem;
-    color: hsl(var(--primary));
-    font-weight: 700;
-    margin-bottom: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #cfcfcf;
+    margin-bottom: 1rem;
   }
-  .modal-inner-meta span {
-    color: #9c9c9c;
+  .modal-inner-meta span { color: #9c9c9c; }
+  .modal-inner-title {
+    font-size: clamp(1.7rem, 3.6vw, 2.5rem);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    color: #fff;
+    margin: 0 0 0.9rem;
+  }
+  .modal-inner-subtitle {
+    font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+    font-weight: 500;
+    line-height: 1.5;
+    color: #b9b9bd;
+    margin: 0 0 1.75rem;
+    padding-left: 1rem;
+    border-left: 2px solid hsl(var(--primary) / 0.7);
+  }
+  .modal-inner-subtitle:empty { display: none; }
+  .modal-divider {
+    height: 1px;
+    border: 0;
+    margin: 0 0 1.75rem;
+    background: linear-gradient(90deg, rgba(255,255,255,0.18), rgba(255,255,255,0));
   }
   .modal-inner-desc {
-    font-size: 1.05rem;
-    color: #e5e5e5;
-    line-height: 1.7;
+    font-size: 1.08rem;
+    color: #e4e4e6;
+    line-height: 1.8;
+    overflow-wrap: anywhere;
   }
-  .modal-inner-desc p {
-    margin-bottom: 1.25rem;
-  }
+  .modal-inner-desc p { margin-bottom: 1.25rem; }
+  .modal-inner-desc p:last-child { margin-bottom: 0; }
+  .modal-inner-desc img { max-width: 100%; height: auto; border-radius: 12px; margin: 1rem 0; }
+  .modal-inner-desc a { color: hsl(var(--primary)); text-decoration: underline; text-underline-offset: 3px; }
+
   @media (max-width: 640px) {
-    .modal-inner-body { padding: 1.5rem; }
-    .modal-inner-title { font-size: 1.5rem; }
+    .modal-overlay { padding: 0.75rem; }
+    .modal-content { border-radius: 16px; max-height: 94vh; }
+    .modal-scroll { max-height: 94vh; }
+    .modal-inner-body { padding: 0 1.25rem 1.75rem; }
+    .modal-close { top: 0.7rem; right: 0.7rem; width: 38px; height: 38px; }
   }
 
   /* ===== FOOTER — точна копія з index.html ===== */
-  .site-footer {
+  
+  /* ===== FOOTER (synced with index.html) ===== */
+.site-footer {
     background-color: #080808;
     padding: 70px 0 20px;
     border-top: 2px solid #222;
     position: relative;
     z-index: 10;
   }
-  .footer-container {
+.footer-container {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -583,11 +635,11 @@
     padding-left: 1.25rem;
     padding-right: 1.25rem;
   }
-  .footer-col {
+.footer-col {
     flex: 1;
     min-width: 250px;
   }
-  .about-col .footer-logo {
+.about-col .footer-logo {
     display: flex;
     align-items: center;
     font-size: 22px;
@@ -596,20 +648,20 @@
     margin-bottom: 15px;
     color: #fff;
   }
-  .about-col .footer-logo span {
+.about-col .footer-logo span {
     color: #ff3333;
   }
-  .about-col p {
+.about-col p {
     font-size: 14px;
     color: #888;
     line-height: 1.6;
     margin-bottom: 25px;
   }
-  .social-img-links {
+.social-img-links {
     display: flex;
     gap: 15px;
   }
-  .social-img-links a {
+.social-img-links a {
     display: block;
     width: 40px;
     height: 40px;
@@ -619,25 +671,25 @@
     transition: all 0.3s ease;
     background-color: #111;
   }
-  .social-img-links a img {
+.social-img-links a img {
     width: 100%;
     height: 100%;
     object-fit: contain;
     padding: 5px;
     transition: all 0.3s ease;
   }
-  .social-img-links a:hover {
+.social-img-links a:hover {
     border-color: #ff3333;
     transform: translateY(-5px);
     box-shadow: 0 5px 15px rgba(255, 51, 51, 0.3);
   }
-  .footer-col h4 {
+.footer-col h4 {
     font-size: 18px;
     color: #fff;
     margin-bottom: 25px;
     position: relative;
   }
-  .footer-col h4::after {
+.footer-col h4::after {
     content: '';
     display: block;
     width: 30px;
@@ -645,13 +697,13 @@
     background-color: #ff3333;
     margin-top: 10px;
   }
-  .nav-col ul, .contact-col ul {
+.nav-col ul, .contact-col ul {
     list-style: none;
   }
-  .nav-col li, .contact-col li {
+.nav-col li, .contact-col li {
     margin-bottom: 15px;
   }
-  .nav-col a, .contact-col a {
+.nav-col a, .contact-col a {
     color: #888;
     text-decoration: none;
     font-size: 14px;
@@ -660,7 +712,7 @@
     align-items: center;
     gap: 12px;
   }
-  .nav-col a::before {
+.nav-col a::before {
     content: '\f054';
     font-family: 'Font Awesome 6 Free';
     font-weight: 900;
@@ -668,19 +720,19 @@
     font-size: 10px;
     transition: transform 0.3s ease;
   }
-  .nav-col a:hover, .contact-col a:hover {
+.nav-col a:hover, .contact-col a:hover {
     color: #ff3333;
   }
-  .nav-col a:hover::before {
+.nav-col a:hover::before {
     transform: translateX(3px);
   }
-  .contact-col i {
+.contact-col i {
     color: #ff3333;
     font-size: 16px;
     width: 20px;
     text-align: center;
   }
-  .footer-bottom {
+.footer-bottom {
     text-align: center;
     padding-top: 25px;
     max-width: 1552px;
@@ -688,10 +740,36 @@
     padding-left: 1.25rem;
     padding-right: 1.25rem;
   }
-  .footer-bottom p {
+.footer-bottom p {
     color: #555;
     font-size: 13px;
   }
+.site-footer{ background:#070707; border-top:1px solid #262626; position:relative; padding-top:64px; }
+.about-col .footer-logo{
+  font-family:'Orbitron','Montserrat',sans-serif; font-weight:800; font-size:20px;
+  letter-spacing:.14em; text-transform:uppercase; margin-bottom:18px;
+}
+.about-col p{ color:#7d7d7d; font-size:13px; line-height:1.75; }
+.social-img-links{ gap:10px; }
+.social-img-links a{
+  border-radius:0; border:1px solid #2c2c2c; background:#0e0e0e;
+  transition:border-color .25s, background .25s, transform .25s;
+}
+.social-img-links a:hover{
+  border-color:#ff3333; background:#141414; transform:translateY(-3px); box-shadow:none;
+}
+.footer-col h4{
+  font-size:12px; font-weight:700; letter-spacing:.2em; text-transform:uppercase;
+  color:#fff; margin-bottom:24px;
+}
+.footer-col h4::after{ width:36px; height:2px; margin-top:12px; }
+.nav-col a, .contact-col a{ font-size:13px; letter-spacing:.04em; }
+.nav-col li, .contact-col li{ margin-bottom:12px; padding-bottom:12px; border-bottom:1px solid #151515; }
+.nav-col li:last-child, .contact-col li:last-child{ border-bottom:0; padding-bottom:0; }
+.footer-container{ border-bottom:1px solid #1d1d1d; }
+.footer-bottom p{
+  color:#4d4d4d; font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+}
 
   /* ===== SCROLL REVEAL — точна копія з index.html ===== */
   .reveal {
@@ -703,17 +781,463 @@
     opacity: 1;
     transform: translateY(0);
   }
-  .news-card.revealed {
-    transform: none;
-    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-  }
-  .news-card.revealed:hover {
-    transform: scale(1.03) !important;
-  }
   .reveal-delay-1 { transition-delay: 0.05s; }
   .reveal-delay-2 { transition-delay: 0.15s; }
   .reveal-delay-3 { transition-delay: 0.25s; }
   .reveal-delay-4 { transition-delay: 0.35s; }
+
+/* ===== NeoCrime: новини — 1 в 1 зі стилем index.html ===== */
+:root{ --ease: cubic-bezier(.22,1,.36,1); }
+
+/* картка: lift + spotlight під курсором + zoom фото */
+.news-card{
+  --mx:50%; --my:50%;
+  transition:translate .5s var(--ease), scale .5s var(--ease), box-shadow .5s var(--ease), border-color .4s;
+}
+.news-card::before{
+  content:""; position:absolute; inset:0; z-index:2; pointer-events:none; opacity:0;
+  background:radial-gradient(420px circle at var(--mx) var(--my), rgba(255,255,255,.07), transparent 60%);
+  transition:opacity .4s;
+}
+.news-card:hover::before{ opacity:1; }
+.news-card::after{ z-index:3; height:4px; background:hsl(var(--primary)); transition:width .55s var(--ease); }
+.news-content{ position:relative; z-index:1; background-color:#262626; }
+.news-img{ transition:scale .8s var(--ease), filter .5s; }
+.news-title{ transition:color .3s, translate .5s var(--ease); }
+@media (hover:hover){
+  .news-card:hover{
+    translate:0 -8px; scale:1.02;
+    border-color:rgba(255,255,255,.12);
+    box-shadow:0 24px 44px -14px rgba(0,0,0,.7);
+  }
+  .news-card:hover .news-img{ scale:1.09; filter:saturate(1.15) brightness(1.05); }
+}
+.news-card:hover .news-title{ translate:4px 0; }
+
+/* «Детальніше» з іконкою, що підстрибує */
+.news-more::after{ content:none !important; }
+.news-more{ display:flex; align-items:center; gap:.6rem; }
+.btn-ico{ display:inline-flex; flex:none; width:1.25em; height:1.25em; }
+.btn-ico svg{ width:100%; height:100%; display:block; }
+.btn-ico-news{ transition:transform .55s cubic-bezier(.34,1.56,.64,1); transform-origin:50% 60%; }
+.news-card:hover .btn-ico-news{ transform:translateY(-2px) rotate(-8deg) scale(1.22); }
+
+/* поява карток */
+.news-card.reveal{ opacity:0; transform:none; }
+.news-card.reveal.revealed{ animation:cardIn .85s var(--ease) both; animation-delay:calc(var(--i, 0) * .1s); }
+@keyframes cardIn{ from{opacity:0; transform:translateY(46px) scale(.96);} to{opacity:1; transform:none;} }
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{ animation:none !important; transition-duration:.01ms !important; }
+  .news-card.reveal{ opacity:1; }
+}
+
+/* ===== Hero-заголовок — як в галереї: Orbitron + переливання ===== */
+.hero-content h1 { font-family: 'Orbitron', sans-serif; font-weight: 800; letter-spacing: -.035em; line-height: 1.16; animation:heroUp .9s cubic-bezier(.2,.8,.2,1) .1s both; }
+.hero-title-text { display:inline-block; background:linear-gradient(110deg,#fff 38%,#ffc9c9 50%,#fff 62%); background-size:250% 100%; -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:transparent; animation:titleShine 6s ease-in-out 1.4s infinite; padding-bottom:.06em; }
+.hero-content p { animation:heroUp .9s cubic-bezier(.2,.8,.2,1) .35s both; max-width:760px; line-height:1.65; }
+@keyframes heroUp { from { opacity:0; transform:translateY(28px); } to { opacity:1; transform:translateY(0); } }
+@keyframes titleShine { 0% { background-position:130% 0; } 55%,100% { background-position:-130% 0; } }
+@media(max-width:640px){ .hero-content h1{font-size:clamp(2rem,9vw,3rem)} .hero-content p{font-size:1rem} }
+</style>
+<!-- Entrance motion: apply.html timing; existing interaction styles preserved. -->
+<style>
+@keyframes neoHeroZoom{from{scale:1.06}to{scale:1}}
+.hero-photo-wrap > img{animation:neoHeroZoom 2.4s cubic-bezier(.22,1,.36,1) both}
+@media(prefers-reduced-motion:reduce){
+.hero-photo-wrap > img{animation:none!important}
+.reveal,.reveal > *{opacity:1!important}
+.reveal{transform:none!important}
+}
+</style>
+<script>
+function neoEntranceObserver(callback,options){
+ if('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) return new window.IntersectionObserver(callback,options);
+ return {observe:function(el){queueMicrotask(function(){callback([{target:el,isIntersecting:true,intersectionRatio:1}])})},unobserve:function(){},disconnect:function(){}};
+}
+</script>
+<!-- Header/footer synchronized with index.html -->
+<style>
+.site-header,.site-footer{font-family:Montserrat,ui-sans-serif,system-ui,-apple-system,sans-serif;font-size:16px;line-height:1.5;color:#fff} .site-header *,.site-footer *{box-sizing:border-box} .site-header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  width: 100%;
+  padding: 0.75rem 1.25rem;
+  background-color: rgba(15, 16, 16, 0.88); 
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+.header-inner{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1552px;
+    margin: 0 auto;
+  }
+.logo-link{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+.logo-link img{
+    width: 40px;
+    height: 40px;
+    border-radius: 9999px;
+    display: block;
+    background-color: rgba(255,255,255,0.08);
+  }
+.logo-link h1{
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #fff;
+  }
+.main-nav ul{
+    align-items: center;
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+  }
+@media (max-width: 768px){.main-nav ul{ align-items: stretch; }
+}
+.nav-link{
+    color: #fff;
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 4px;
+  }
+.nav-link::after{
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: hsl(var(--primary)); 
+    transition: width 0.3s ease;
+  }
+.nav-link:hover::after{
+    width: 100%;
+  }
+.header-actions{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: 0.5rem;
+  }
+.lang-switch-bw{
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 40px;
+    padding: 0 10px;
+    border: none;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+.lang-switch-bw:hover{
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+.current-lang{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+.current-lang img,.lang-dropdown-bw img{
+    width: 20px;
+    height: auto;
+    border-radius: 3px;
+    display: block;
+  }
+.current-lang i{
+    font-size: 12px;
+    color: #ffffff;
+    transition: 0.3s;
+  }
+.lang-switch-bw:hover .current-lang i{
+    transform: rotate(180deg);
+  }
+.lang-dropdown-bw{
+    position: absolute;
+    top: 140%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: rgba(12, 12, 12, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 10px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+  }
+.lang-switch-bw:hover .lang-dropdown-bw{
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+.lang-dropdown-bw a{
+    display: block;
+    transition: 0.3s;
+  }
+.lang-dropdown-bw a:hover{
+    transform: scale(1.15);
+  }
+.account-switch-bw{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+.account-switch-bw:hover{ background-color: rgba(255, 255, 255, 0.1); }
+.current-account{ display: flex; align-items: center; }
+.current-account i.fa-circle-user{ font-size: 20px; color: #ffffff; }
+.account-dropdown-bw{
+    position: absolute;
+    top: 140%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: rgba(12, 12, 12, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 8px;
+    min-width: 220px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    z-index: 60;
+  }
+.account-switch-bw:hover .account-dropdown-bw{
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+.account-dropdown-bw a{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #e5e5e5;
+    white-space: nowrap;
+    transition: 0.3s;
+  }
+.account-dropdown-bw a:hover{ background-color: rgba(255, 255, 255, 0.08); color: #fff; }
+.account-dropdown-bw a i{ color: hsl(var(--primary)); font-size: 13px; width: 16px; text-align: center; }
+.burger-btn{
+    display: none;
+    background: transparent;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 9999px;
+    transition: background-color 0.2s ease;
+  }
+@media (hover: hover){.burger-btn:hover{ background-color: rgba(255,255,255,0.08); }
+}
+.burger-btn svg{ width: 28px; height: 28px; fill: #fff; }
+@media (max-width: 768px){.main-nav{ display: none; }
+.burger-btn{ display: flex; }
+.main-nav.active{
+      display: block;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background: rgba(15, 16, 16, 0.97);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+.main-nav.active ul{
+      flex-direction: column;
+      gap: 0;
+      padding: 0.5rem 1.25rem 1.25rem;
+    }
+.main-nav.active .nav-link{
+      display: block;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+.main-nav.active .header-actions{
+      justify-content: center;
+      gap: 1rem;
+      margin: 1rem 0 0.25rem;
+    }
+}
+.site-footer{
+    background-color: #080808;
+    padding: 70px 0 20px;
+    border-top: 2px solid #222;
+    position: relative;
+    z-index: 10;
+  }
+.footer-container{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+    border-bottom: 1px solid #1a1a1a;
+    padding-bottom: 40px;
+    max-width: 1552px;
+    margin: 0 auto;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+.footer-col{
+    flex: 1;
+    min-width: 250px;
+  }
+.about-col .footer-logo{
+    display: flex;
+    align-items: center;
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    color: #fff;
+  }
+.about-col .footer-logo span{
+    color: #ff3333;
+  }
+.about-col p{
+    font-size: 14px;
+    color: #888;
+    line-height: 1.6;
+    margin-bottom: 25px;
+  }
+.social-img-links{
+    display: flex;
+    gap: 15px;
+  }
+.social-img-links a{
+    display: block;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #333;
+    transition: all 0.3s ease;
+    background-color: #111;
+  }
+.social-img-links a img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 5px;
+    transition: all 0.3s ease;
+  }
+.social-img-links a:hover{
+    border-color: #ff3333;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(255, 51, 51, 0.3);
+  }
+.footer-col h4{
+    font-size: 18px;
+    color: #fff;
+    margin-bottom: 25px;
+    position: relative;
+  }
+.footer-col h4::after{
+    content: '';
+    display: block;
+    width: 30px;
+    height: 2px;
+    background-color: #ff3333;
+    margin-top: 10px;
+  }
+.nav-col ul,.contact-col ul{
+    list-style: none;
+  }
+.nav-col li,.contact-col li{
+    margin-bottom: 15px;
+  }
+.nav-col a,.contact-col a{
+    color: #888;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+.nav-col a::before{
+    content: '\f054';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: #ff3333;
+    font-size: 10px;
+    transition: transform 0.3s ease;
+  }
+.nav-col a:hover,.contact-col a:hover{
+    color: #ff3333;
+  }
+.nav-col a:hover::before{
+    transform: translateX(3px);
+  }
+.contact-col i{
+    color: #ff3333;
+    font-size: 16px;
+    width: 20px;
+    text-align: center;
+  }
+.footer-bottom{
+    text-align: center;
+    padding-top: 25px;
+    max-width: 1552px;
+    margin: 0 auto;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+.footer-bottom p{
+    color: #555;
+    font-size: 13px;
+  }
+.site-footer{ background:#070707; border-top:1px solid #262626; position:relative; padding-top:64px; }
+.about-col .footer-logo{
+  font-family:'Orbitron','Montserrat',sans-serif; font-weight:800; font-size:20px;
+  letter-spacing:.14em; text-transform:uppercase; margin-bottom:18px;
+}
+.about-col p{ color:#7d7d7d; font-size:13px; line-height:1.75; }
+.social-img-links{ gap:10px; }
+.social-img-links a{
+  border-radius:0; border:1px solid #2c2c2c; background:#0e0e0e;
+  transition:border-color .25s, background .25s, transform .25s;
+}
+.social-img-links a:hover{
+  border-color:#ff3333; background:#141414; transform:translateY(-3px); box-shadow:none;
+}
+.footer-col h4{
+  font-size:12px; font-weight:700; letter-spacing:.2em; text-transform:uppercase;
+  color:#fff; margin-bottom:24px;
+}
+.footer-col h4::after{ width:36px; height:2px; margin-top:12px; }
+.nav-col a,.contact-col a{ font-size:13px; letter-spacing:.04em; }
+.nav-col li,.contact-col li{ margin-bottom:12px; padding-bottom:12px; border-bottom:1px solid #151515; }
+.nav-col li:last-child,.contact-col li:last-child{ border-bottom:0; padding-bottom:0; }
+.footer-container{ border-bottom:1px solid #1d1d1d; }
+.footer-bottom p{
+  color:#4d4d4d; font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+}
+
+
 </style>
 </head>
 <body>
@@ -721,15 +1245,15 @@
 <!-- ===== HEADER ===== -->
 <header class="site-header">
   <div class="header-inner">
-    <a class="logo-link" href="https://neocrime.space/">
+    <a class="logo-link" href="/index">
       <img alt="NeoCrime Logo" loading="lazy" width="40" height="40" decoding="async"
            src="images/logo.avif">
-      <h1>NeoCrime</h1>
+      <h1>NeoCrime Group</h1>
     </a>
 
     <nav class="main-nav">
       <ul>
-        <li><a class="nav-link" href="https://neocrime.space/">Головна</a></li>
+        <li><a class="nav-link" href="/index">Головна</a></li>
         <li><a class="nav-link" href="/events">Події</a></li>
         <li><a class="nav-link" href="/news">Новини</a></li>
         <li><a class="nav-link" href="/team">Команда</a></li>
@@ -768,7 +1292,7 @@
 <div class="hero-photo-wrap">
   <img src="images/news.avif" alt="Новини NeoCrime" loading="eager">
   <div class="hero-content">
-    <h1>Новини</h1>
+    <h1><span class="hero-title-text">Новини</span></h1>
     <p>Всі події та оновлення спільноти NeoCrime</p>
   </div>
 </div>
@@ -790,14 +1314,20 @@
 </main>
 
 <!-- ===== МОДАЛЬНЕ ВІКНО — точна копія структури з index.html ===== -->
-<div id="news-modal" class="modal-overlay">
+<div id="news-modal" class="modal-overlay" role="dialog" aria-modal="true">
   <div class="modal-content">
     <button class="modal-close" aria-label="Закрити">&times;</button>
-    <img class="modal-hero-img" src="" alt="News Image">
-    <div class="modal-inner-body">
-      <h3 class="modal-inner-title"></h3>
-      <div class="modal-inner-meta"></div>
-      <div class="modal-inner-desc"></div>
+    <div class="modal-scroll">
+      <div class="modal-hero">
+        <img class="modal-hero-img" src="" alt="News Image">
+      </div>
+      <div class="modal-inner-body">
+        <div class="modal-inner-meta"></div>
+        <h3 class="modal-inner-title"></h3>
+        <p class="modal-inner-subtitle"></p>
+        <hr class="modal-divider">
+        <div class="modal-inner-desc"></div>
+      </div>
     </div>
   </div>
 </div>
@@ -807,7 +1337,7 @@
   <div class="footer-container">
 
     <div class="footer-col about-col">
-      <div class="footer-logo">Neo<span>Crime</span></div>
+      <div class="footer-logo">Neo<span>Crime</span>&nbsp;Group</div>
       <p>NeoCrime — це амбіційна українська VTC, що впевнено рухається вперед, створюючи власну історію успіху на просторах TruckersMP. Це місце, де стиль, дисципліна та командний дух поєднуються в єдину силу, а кожен учасник стає частиною великого та впевненого руху.</p>
 
       <div class="social-img-links">
@@ -821,7 +1351,7 @@
     <div class="footer-col nav-col">
       <h4>Навігація</h4>
       <ul>
-        <li><a href="https://neocrime.space/">Головна</a></li>
+        <li><a href="/index">Головна</a></li>
         <li><a href="/news">Новини</a></li>
         <li><a href="/contact">Контакти</a></li>
         <li><a href="/privacy">Політика приватності</a></li>
@@ -847,7 +1377,7 @@
 <!-- ===== SCROLL REVEAL — точна копія з index.html ===== -->
 <script>
   (function () {
-    const observer = new IntersectionObserver((entries) => {
+    const observer = neoEntranceObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           const el = entry.target;
@@ -878,6 +1408,8 @@
   const modalTitle   = modal.querySelector('.modal-inner-title');
   const modalMeta    = modal.querySelector('.modal-inner-meta');
   const modalDesc    = modal.querySelector('.modal-inner-desc');
+  const modalSub     = modal.querySelector('.modal-inner-subtitle');
+  const modalScroll  = modal.querySelector('.modal-scroll');
 
   /* Хранилище для полученных новостей */
   let fetchedNews = [];
@@ -892,7 +1424,7 @@
   }
 
   /* IntersectionObserver для reveal карток — точна копія з index.html */
-  const revealObserver = new IntersectionObserver((entries) => {
+  const revealObserver = neoEntranceObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         const el = entry.target;
@@ -932,10 +1464,11 @@
         }
 
         /* Рендеримо ВСІ картки (на відміну від index.html, де лише топ-3) */
-        fetchedNews.forEach(item => {
+        fetchedNews.forEach((item, i) => {
           const card = document.createElement('div');
           card.className = 'news-card reveal';
           card.setAttribute('data-id', item.id);
+          card.style.setProperty('--i', i % 3);
 
           card.innerHTML = `
             <img src="${item.photo_link}" alt="${item.title}" class="news-img" loading="lazy">
@@ -944,7 +1477,7 @@
               <p class="news-summary">${item.summary}</p>
               <hr class="news-divider">
               <div class="news-meta">${item.author} — ${item.date}</div>
-              <div class="news-more">Детальніше</div>
+              <div class="news-more">Детальніше <span class="btn-ico btn-ico-news"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg></span></div>
             </div>
           `;
 
@@ -963,34 +1496,71 @@
   }
 
   /* Відкриття модального вікна з повною новиною */
-  function openModal(id) {
-    const item = fetchedNews.find(n => n.id === id);
-    if (!item) return;
+  /* ===== Модалка з прив'язкою до URL: #news-<id> + кнопка "Назад" ===== */
+  const HASH_RE = /^#news-(.+)$/;
 
+  function findById(id) {
+    return fetchedNews.find(n => String(n.id) === String(id));
+  }
+
+  /* Лише показати/сховати модалку (історію не чіпає) */
+  function showModal(item) {
     modalImg.src = item.photo_link;
     modalImg.alt = item.title;
     modalTitle.textContent = item.title;
+    modalSub.textContent = item.summary || '';
 
     modalMeta.innerHTML = `${item.date} | <span>Автор: ${item.author}</span>`;
 
     const formattedDescription = item.description.replace(/\n/g, '<br>');
     modalDesc.innerHTML = `<p>${formattedDescription}</p>`;
 
+    modalScroll.scrollTop = 0;
     modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
+    document.documentElement.classList.add('modal-open');
   }
 
-  /* Закриття модального вікна */
-  function closeModal() {
+  function hideModal() {
     modal.classList.remove('active');
-    document.body.style.overflow = '';
+    document.documentElement.classList.remove('modal-open');
   }
+
+  /* Відкриття по кліку: додаємо запис в історію з #news-<id> */
+  function openModal(id) {
+    const item = findById(id);
+    if (!item) return;
+    showModal(item);
+    if (location.hash !== '#news-' + id) {
+      history.pushState({ newsModal: true }, '', '#news-' + id);
+    }
+  }
+
+  /* Закриття (хрестик / фон / Esc): якщо ми самі додали запис — просто йдемо назад,
+     інакше (відкрито прямим посиланням) — прибираємо хеш без виходу зі сторінки */
+  function closeModal() {
+    if (!modal.classList.contains('active')) return;
+    if (history.state && history.state.newsModal) {
+      history.back();
+    } else {
+      hideModal();
+      history.replaceState(null, '', location.pathname + location.search);
+    }
+  }
+
+  /* Синхронізація модалки з URL (кнопка Назад/Вперед, пряме посилання) */
+  function syncFromHash() {
+    const m = location.hash.match(HASH_RE);
+    const item = m ? findById(decodeURIComponent(m[1])) : null;
+    if (item) showModal(item); else hideModal();
+  }
+  window.addEventListener('popstate', syncFromHash);
 
   modalClose.addEventListener('click', closeModal);
   modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 
-  loadNews();
+  /* після завантаження новин відкриваємо модалку, якщо в URL є #news-<id> */
+  loadNews().then(syncFromHash);
 })();
 </script>
 
@@ -1034,6 +1604,25 @@
       }
     });
   })();
+</script>
+<script>
+  /* ===== ПЛАВНИЙ СКРОЛ ВГОРУ по кліку на лого в хедері (як в index) ===== */
+  document.querySelectorAll('a.logo-link').forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+</script>
+<script>
+  /* ===== SPOTLIGHT під курсором на картках новин (як в index) ===== */
+  document.addEventListener('pointermove', function (e) {
+    var el = e.target.closest && e.target.closest('.news-card');
+    if (!el) return;
+    var r = el.getBoundingClientRect();
+    el.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+    el.style.setProperty('--my', (e.clientY - r.top) + 'px');
+  }, { passive: true });
 </script>
 </body>
 </html>

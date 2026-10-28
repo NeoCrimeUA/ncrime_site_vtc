@@ -9,7 +9,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Orbitron:wght@600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
@@ -19,6 +19,7 @@
     --primary: 0 72% 35%;
     --primary-foreground: 0 0% 100%;
     --bg-dark: 0 0% 6%;
+    --ease: cubic-bezier(.22,1,.36,1);
   }
 
   html, body{
@@ -39,7 +40,9 @@
   .text-primary{ color: hsl(var(--primary)); }
 
   /* ===== HEADER ===== */
-  .site-header{
+  
+  /* ===== HEADER (synced with index.html) ===== */
+.site-header{
   position: fixed;
   top: 0;
   left: 0;
@@ -50,7 +53,7 @@
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
 }
-  .header-inner{
+.header-inner{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -58,41 +61,39 @@
     max-width: 1552px;
     margin: 0 auto;
   }
-  .logo-link{
+.logo-link{
     display: flex;
     align-items: center;
     gap: 0.5rem;
   }
-  .logo-link img{
+.logo-link img{
     width: 40px;
     height: 40px;
     border-radius: 9999px;
     display: block;
     background-color: rgba(255,255,255,0.08);
   }
-  .logo-link h1{
+.logo-link h1{
     font-size: 1.4rem;
     font-weight: 700;
     color: #fff;
   }
-  .main-nav ul{
+.main-nav ul{
     align-items: center;
     display: flex;
     gap: 1.5rem;
     list-style: none;
   }
-  @media (max-width: 768px){
-    .main-nav ul{ align-items: stretch; }
-  }
-
-  /* Оновлені посилання хедера з анімацією підкреслення */
-  .nav-link{
+@media (max-width: 768px) {
+  .main-nav ul{ align-items: stretch; }
+}
+.nav-link{
     color: #fff;
     font-weight: 500;
     position: relative;
     padding-bottom: 4px;
   }
-  .nav-link::after{
+.nav-link::after{
     content: '';
     position: absolute;
     width: 0;
@@ -102,20 +103,15 @@
     background-color: hsl(var(--primary)); /* Тёмно-красная полоска */
     transition: width 0.3s ease;
   }
-  .nav-link:hover::after{
+.nav-link:hover::after{
     width: 100%;
   }
-
-  /* Обгортка для перемикача мови + кнопки акаунту —
-     тримає їх в один горизонтальний ряд і на десктопі, і на мобілці */
-  .header-actions{
+.header-actions{
     display: flex;
     align-items: center;
     gap: 0.5rem;
     margin-left: 0.5rem;
   }
-
-  /* ===== ПЕРЕМИКАЧ МОВИ ===== */
 .lang-switch-bw {
     position: relative;
     display: flex;
@@ -127,29 +123,29 @@
     cursor: pointer;
     transition: 0.3s;
   }
-  .lang-switch-bw:hover {
+.lang-switch-bw:hover {
     background-color: rgba(255, 255, 255, 0.1);
   }
-  .current-lang {
+.current-lang {
     display: flex;
     align-items: center;
     gap: 8px;
   }
-  .current-lang img, .lang-dropdown-bw img {
+.current-lang img, .lang-dropdown-bw img {
     width: 20px;
     height: auto;
     border-radius: 3px;
     display: block;
   }
-  .current-lang i {
+.current-lang i {
     font-size: 12px;
     color: #ffffff;
     transition: 0.3s;
   }
-  .lang-switch-bw:hover .current-lang i {
+.lang-switch-bw:hover .current-lang i {
     transform: rotate(180deg);
   }
-  .lang-dropdown-bw {
+.lang-dropdown-bw {
     position: absolute;
     top: 140%;
     left: 50%;
@@ -167,19 +163,19 @@
     transition: all 0.3s ease;
     backdrop-filter: blur(5px);
   }
-  .lang-switch-bw:hover .lang-dropdown-bw {
+.lang-switch-bw:hover .lang-dropdown-bw {
     opacity: 1;
     visibility: visible;
     transform: translateX(-50%) translateY(0);
   }
-  .lang-dropdown-bw a {
+.lang-dropdown-bw a {
     display: block;
     transition: 0.3s;
   }
-  .lang-dropdown-bw a:hover {
+.lang-dropdown-bw a:hover {
     transform: scale(1.15);
   }
-  .account-switch-bw {
+.account-switch-bw {
     position: relative;
     display: flex;
     align-items: center;
@@ -191,10 +187,10 @@
     cursor: pointer;
     transition: 0.3s;
   }
-  .account-switch-bw:hover { background-color: rgba(255, 255, 255, 0.1); }
-  .current-account { display: flex; align-items: center; }
-  .current-account i.fa-circle-user { font-size: 20px; color: #ffffff; }
-  .account-dropdown-bw {
+.account-switch-bw:hover { background-color: rgba(255, 255, 255, 0.1); }
+.current-account { display: flex; align-items: center; }
+.current-account i.fa-circle-user { font-size: 20px; color: #ffffff; }
+.account-dropdown-bw {
     position: absolute;
     top: 140%;
     left: 50%;
@@ -213,12 +209,12 @@
     backdrop-filter: blur(5px);
     z-index: 60;
   }
-  .account-switch-bw:hover .account-dropdown-bw {
+.account-switch-bw:hover .account-dropdown-bw {
     opacity: 1;
     visibility: visible;
     transform: translateX(-50%) translateY(0);
   }
-  .account-dropdown-bw a {
+.account-dropdown-bw a {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -230,11 +226,9 @@
     white-space: nowrap;
     transition: 0.3s;
   }
-  .account-dropdown-bw a:hover { background-color: rgba(255, 255, 255, 0.08); color: #fff; }
-  .account-dropdown-bw a i { color: hsl(var(--primary)); font-size: 13px; width: 16px; text-align: center; }
-
-
-  .burger-btn{
+.account-dropdown-bw a:hover { background-color: rgba(255, 255, 255, 0.08); color: #fff; }
+.account-dropdown-bw a i { color: hsl(var(--primary)); font-size: 13px; width: 16px; text-align: center; }
+.burger-btn{
     display: none;
     background: transparent;
     border: none;
@@ -242,45 +236,57 @@
     border-radius: 9999px;
     transition: background-color 0.2s ease;
   }
+@media (hover: hover) {
+  .burger-btn:hover{ background-color: rgba(255,255,255,0.08); }
+}
+.burger-btn svg{ width: 28px; height: 28px; fill: #fff; }
+@media (max-width: 768px) {
+  .main-nav{ display: none; }
+  .burger-btn{ display: flex; }
+  .main-nav.active{
+        display: block;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(15, 16, 16, 0.97);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+      }
+  .main-nav.active ul{
+        flex-direction: column;
+        gap: 0;
+        padding: 0.5rem 1.25rem 1.25rem;
+      }
+  .main-nav.active .nav-link{
+        display: block;
+        padding: 0.85rem 0;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+      }
+  .main-nav.active .header-actions{
+        justify-content: center;
+        gap: 1rem;
+        margin: 1rem 0 0.25rem;
+      }
+}
+
+  /* Оновлені посилання хедера з анімацією підкреслення */
+
+  /* Обгортка для перемикача мови + кнопки акаунту —
+     тримає їх в один горизонтальний ряд і на десктопі, і на мобілці */
+
+  /* ===== ПЕРЕМИКАЧ МОВИ ===== */
+
   /* hover-стиль лише для пристроїв із реальним курсором (миша) —
      на дотикових екранах :hover інакше "залипає" після тапу */
-  @media (hover: hover) {
-    .burger-btn:hover{ background-color: rgba(255,255,255,0.08); }
-  }
-  .burger-btn svg{ width: 28px; height: 28px; fill: #fff; }
 
   @media (max-width: 768px){
-    .main-nav{ display: none; }
-    .burger-btn{ display: flex; }
 
     /* ДОДАНО: бургер-меню */
-    .main-nav.active{
-      display: block;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      width: 100%;
-      background: rgba(15, 16, 16, 0.97);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-    }
-    .main-nav.active ul{
-      flex-direction: column;
-      gap: 0;
-      padding: 0.5rem 1.25rem 1.25rem;
-    }
-    .main-nav.active .nav-link{
-      display: block;
-      padding: 0.85rem 0;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
-    .main-nav.active .header-actions{
-      justify-content: center;
-      gap: 1rem;
-      margin: 1rem 0 0.25rem;
-    }
+
     body.nav-open{ overflow: hidden; }
   }
+
 
   /* ===== HERO ФОТО ===== */
   .hero-photo-wrap{
@@ -307,300 +313,816 @@
     z-index: 30; text-align: center; padding: 0 1rem;
   }
   .hero-content h1{
-    font-size: 2.75rem; font-weight: 800;
-    color: #fff; letter-spacing: -0.02em;
+    font-family: 'Orbitron','Montserrat',sans-serif;
+    font-weight: 800; letter-spacing: .01em; line-height: 1;
+    font-size: clamp(1.8rem, 7vw, 4rem);
+    color: #fff;
+    animation: heroUp .9s var(--ease) .15s both;
+  }
+  .hero-title-text{
+    background: linear-gradient(110deg,#fff 38%,#ffaaaa 50%,#fff 62%);
+    background-size: 250% 100%;
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+    animation: titleShine 18s ease-in-out 1.4s infinite;
   }
   .hero-content p{
-    margin-top: 0.5rem; font-size: 1.15rem;
+    margin-top: 0.75rem; font-size: 1.15rem;
     color: #fff; font-weight: 500;
+    animation: heroUp .9s var(--ease) .35s both;
   }
-  @media (min-width: 768px){
-    .hero-content h1{ font-size: 4rem; }
-    .hero-content p{ font-size: 1.5rem; }
-  }
+  @media (min-width: 768px){ .hero-content p{ font-size: 1.5rem; } }
+  @keyframes heroUp{ from{ opacity:0; translate:0 28px; } to{ opacity:1; translate:0 0; } }
+  @keyframes titleShine{ 0%{ background-position:130% 0; } 55%,100%{ background-position:-130% 0; } }
 
   /* ===== СЕКЦІЯ КОМАНДИ ===== */
-  .team-section {
-    width: 100%;
-    max-width: 1552px;
-    margin: 0 auto;
-    padding: 5rem 1.25rem;
+  .team-section{
+    width: 100%; max-width: 1552px;
+    margin: 0 auto; padding: 5rem 1.25rem;
   }
-
-  /* Заголовок секції */
-  .section-header {
-    margin-bottom: 3.5rem;
-  }
-  .section-header h2 {
-    font-size: 2rem; font-weight: 700;
+  .section-header{ margin-bottom: 3.5rem; text-align: left; }
+  .section-header h2{
+    font-size: 2rem; font-weight: 700; color: #fff;
     position: relative; display: inline-block;
-    padding-bottom: 0.5rem; letter-spacing: -0.01em;
-    color: #fff;
+    padding-bottom: .5rem; letter-spacing: -0.01em;
   }
-  .section-header h2::after {
-    content: "";
-    position: absolute; bottom: 0; left: 0;
-    width: 60%; height: 3px;
-    background: hsl(var(--primary));
-    border-radius: 2px;
-  }
-  .section-header p {
-    margin-top: 1.25rem; color: #e5e5e5;
-    font-size: 1.1rem; max-width: 900px; font-weight: 400;
+  .section-header p{
+    margin: 1.25rem auto 0; max-width: 900px;
+    color: #e5e5e5; font-size: 1.1rem; font-weight: 400;
   }
 
-  /* Мітка ступеня */
-  .degree-label {
-    display: flex; align-items: center; gap: 0.75rem;
-    margin-bottom: 1.75rem; margin-top: 0;
-  }
-  #team-container > div:not(:first-child) .degree-label {
-    margin-top: 4rem;
-  }
-  .degree-label-line {
-    flex: 1; height: 1px;
-    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.14) 50%, rgba(255,255,255,0.14) 100%);
-  }
-  .degree-label-line.line-left {
-    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.14) 100%);
-  }
-  .degree-label-line.line-right {
-    background: linear-gradient(90deg, rgba(255,255,255,0.14) 0%, transparent 100%);
-  }
-  .degree-label-text {
-    font-size: 0.75rem; font-weight: 700;
-    letter-spacing: 0.12em; text-transform: uppercase;
-    white-space: nowrap;
-    padding: 4px 14px;
-    border-radius: 20px;
-  }
-  .degree-1 .degree-label-text {
-    color: #FFD700;
-    border: 1px solid rgba(255, 215, 0, 0.3);
-    background: rgba(255, 215, 0, 0.08);
-  }
-  .degree-2 .degree-label-text {
-    color: #9ca3f0;
-    border: 1px solid rgba(88, 101, 242, 0.3);
-    background: rgba(88, 101, 242, 0.08);
-  }
-  .degree-3 .degree-label-text {
-    color: #9c9c9c;
-    border: 1px solid rgba(255,255,255,0.12);
-    background: rgba(255,255,255,0.04);
-  }
+  /* ---- Ступені: колір кодує ранг ---- */
+  .tier-1{ --tier:#e6c35c; --av:116px; --cover-h:96px; --min:240px;
+           --ring:conic-gradient(#fff2b0,#c9a227,#fff2b0,#8a6d12,#fff2b0); }
+  .tier-2{ --tier:#9ca3f0; --av:96px;  --cover-h:80px; --min:200px;
+           --ring:conic-gradient(#c7cbff,#5865f2,#c7cbff,#3b45b8,#c7cbff); }
+  .tier-3{ --tier:#9c9c9c; --av:84px;  --cover-h:72px; --min:176px;
+           --ring:conic-gradient(rgba(255,255,255,.6),rgba(255,255,255,.08),rgba(255,255,255,.6),rgba(255,255,255,.08),rgba(255,255,255,.6)); }
 
-  .degree-1, .degree-2, .degree-3 {
-    margin-bottom: 0.5rem;
+  .team-tier + .team-tier{ margin-top: 4.5rem; }
+  .tier-head{ display: flex; align-items: center; justify-content: center; gap: .9rem; margin-bottom: 2rem; }
+  .tier-head::before{ content: ""; flex: 1; height: 1px; background: linear-gradient(270deg, rgba(255,255,255,.14), transparent); }
+  .tier-dot{
+    width: 10px; height: 10px; flex: none; border-radius: 50%;
+    background: var(--tier);
   }
+  .tier-title{ font-size: 1.35rem; font-weight: 700; letter-spacing: -0.01em; color: #fff; }
+  .tier-line{ flex: 1; height: 1px; background: linear-gradient(90deg, rgba(255,255,255,.14), transparent); }
 
-  /* Ряд карток */
-  .team-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.25rem;
-    margin-bottom: 0.5rem;
-    justify-content: center;
+  .team-grid{
+    display: flex; flex-wrap: wrap; justify-content: center;
+    gap: 1.5rem;
   }
-  /* Ряд 1 (Upper Management): центруємо; авто-адаптивна сітка, щоб картки не "відривались" на окремий рядок поодинці */
-  .team-row.row-1 {
-    justify-content: center;
-  }
-  .team-row.row-1 .team-card {
-    flex: 0 1 220px;
-    min-width: 170px;
-  }
-  /* Ряди 2–3: центруємо, картки не розтягуються на всю ширину */
-  .team-row.row-2,
-  .team-row.row-3 {
-    justify-content: center;
-  }
-  .team-row.row-2 .team-card,
-  .team-row.row-3 .team-card {
-    flex: 0 0 160px;
-  }
+  .team-grid > .team-card{ flex: 0 0 var(--min); max-width: 100%; }
 
   /* ===== КАРТКА УЧАСНИКА ===== */
-  .team-card {
-    display: flex; flex-direction: column;
-    align-items: center; text-align: center;
-    padding: 1.75rem 1rem 1.5rem;
-    border-radius: 14px;
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.08);
-    cursor: pointer;
-    text-decoration: none; color: inherit;
-    transition:
-      transform 0.3s cubic-bezier(0.25, 1, 0.5, 1),
-      border-color 0.3s ease,
-      background 0.3s ease,
-      box-shadow 0.3s ease;
-    position: relative;
-    overflow: hidden;
-  }
-  /* Нижня лінія-акцент при ховері */
-  .team-card::after {
-    content: "";
-    position: absolute; bottom: 0; left: 0;
-    width: 0; height: 3px;
-    border-radius: 0 0 14px 14px;
-    transition: width 0.35s ease;
-  }
-  .degree-1 .team-card::after { background: #FFD700; }
-  .degree-2 .team-card::after { background: #9ca3f0; }
-  .degree-3 .team-card::after { background: hsl(var(--primary)); }
-
-  .team-card:hover {
-    transform: translateY(-6px);
-    background: rgba(255,255,255,0.07);
-    box-shadow: 0 16px 40px rgba(0,0,0,0.4);
-  }
-  .degree-1 .team-card:hover { border-color: rgba(255,215,0,0.35); }
-  .degree-2 .team-card:hover { border-color: rgba(88,101,242,0.35); }
-  .degree-3 .team-card:hover { border-color: rgba(255,255,255,0.2); }
-  .team-card:hover::after { width: 100%; }
-
-  /* Аватар */
-  .team-avatar-wrap {
-    position: relative;
-    width: 90px; height: 90px;
-    margin-bottom: 1rem;
-    flex-shrink: 0;
-  }
-  .team-row.row-1 .team-avatar-wrap {
-    width: 108px; height: 108px;
-  }
-  .team-avatar {
-    width: 100%; height: 100%;
-    border-radius: 50%;
-    object-fit: cover;
-    display: block;
+  .team-card{
+    --mx: 50%; --my: 50%;
+    position: relative; isolation: isolate; overflow: hidden;
+    display: flex; flex-direction: column; align-items: center; text-align: center;
+    padding: calc(var(--cover-h) - var(--av) / 2) 1rem 1.35rem;
     background-color: #262626;
-    transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
-  }
-  .team-card:hover .team-avatar { transform: scale(1.07); }
-
-  /* Кільце навколо аватара */
-  .team-avatar-ring {
-    position: absolute; inset: -4px;
-    border-radius: 50%;
-    border: 2px solid transparent;
-    transition: border-color 0.3s ease;
-  }
-  .degree-1 .team-avatar-ring { border-color: rgba(255,215,0,0.5); }
-  .degree-2 .team-avatar-ring { border-color: rgba(88,101,242,0.5); }
-  .degree-3 .team-avatar-ring { border-color: rgba(255,255,255,0.15); }
-  .team-card:hover .team-avatar-ring { opacity: 1; }
-  .degree-1 .team-card:hover .team-avatar-ring { border-color: #FFD700; }
-  .degree-2 .team-card:hover .team-avatar-ring { border-color: #9ca3f0; }
-  .degree-3 .team-card:hover .team-avatar-ring { border-color: rgba(255,255,255,0.4); }
-
-  /* Ім'я */
-  .team-name {
-    font-size: 0.95rem; font-weight: 700;
-    color: #fff; line-height: 1.3;
-    margin-bottom: 0.35rem;
-  }
-  .team-row.row-1 .team-name { font-size: 1.05rem; }
-
-  /* Посада */
-  .team-position {
-    font-size: 0.78rem; font-weight: 500;
-    color: #9c9c9c; line-height: 1.4;
-  }
-  .degree-1 .team-position { color: rgba(255,215,0,0.75); }
-  .degree-2 .team-position { color: rgba(156,163,240,0.85); }
-
-  /* Іконка посилання */
-  .team-link-icon {
-    margin-top: 0.75rem;
-    font-size: 0.75rem; color: #666;
-    transition: color 0.3s ease;
-  }
-  .degree-1 .team-card:hover .team-link-icon { color: #FFD700; }
-  .degree-2 .team-card:hover .team-link-icon { color: #9ca3f0; }
-  .degree-3 .team-card:hover .team-link-icon { color: hsl(var(--primary)); }
-
-  /* Адаптив */
-  @media (max-width: 900px) {
-    .team-row.row-1 { justify-content: center; }
-    .team-row.row-1 .team-card { flex: 0 0 160px; }
-  }
-  @media (max-width: 480px) {
-    .team-row .team-card { flex: 0 0 calc(50% - 0.625rem); }
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 12px;
+    color: inherit; cursor: default;
+    transition: translate .5s var(--ease), scale .5s var(--ease), box-shadow .5s var(--ease), border-color .4s;
   }
 
-  /* ===== SCROLL REVEAL ===== */
-  .reveal {
+  /* розмитий банер з аватара (як у партнерів) */
+  .team-cover{
+    position: absolute; top: 0; left: 0; right: 0; z-index: -1;
+    height: calc(var(--cover-h) + 28px); overflow: hidden;
+    -webkit-mask-image: linear-gradient(180deg, #000 50%, transparent);
+            mask-image: linear-gradient(180deg, #000 50%, transparent);
+  }
+  .team-cover img{
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    filter: blur(16px) brightness(.55) saturate(1.3);
+    scale: 1.3;
+    transition: filter .6s var(--ease), scale .8s var(--ease);
+  }
+
+  /* підсвітка під курсором + червона смужка знизу */
+  .team-card::before{
+    content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none; opacity: 0;
+    background: radial-gradient(420px circle at var(--mx) var(--my), rgba(255,255,255,.07), transparent 60%);
+    transition: opacity .4s;
+  }
+  .team-card::after{
+    content: ""; position: absolute; bottom: 0; left: 0; z-index: 3;
+    width: 0; height: 4px; background: hsl(var(--primary));
+    transition: width .55s var(--ease);
+  }
+
+  @media (hover: hover){
+    .team-card:hover{
+      translate: 0 -8px; scale: 1.02;
+      box-shadow: 0 24px 44px -14px rgba(0,0,0,.7);
+    }
+    .team-card:hover::before{ opacity: 1; }
+    .team-card:hover::after{ width: 100%; }
+    .team-card:hover .team-cover img{ filter: blur(7px) brightness(.8) saturate(1.45); scale: 1.4; }
+    .team-card:hover .team-avatar{ scale: 1.06; }
+    .team-card:hover .team-avatar-ring{ animation: ringSpin 5s linear infinite; }
+  }
+
+  /* аватар з кільцем рангу */
+  .team-avatar-wrap{ position: relative; width: var(--av); height: var(--av); flex: none; }
+  .team-avatar{
+    width: 100%; height: 100%; display: block; object-fit: cover;
+    border-radius: 50%; border: 4px solid #262626; background-color: #1a1b1b;
+    transition: scale .5s var(--ease);
+  }
+  .team-avatar-ring{
+    position: absolute; inset: -3px; border-radius: 50%; padding: 2px;
+    background: var(--ring);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+    pointer-events: none;
+  }
+  @keyframes ringSpin{ to{ transform: rotate(360deg); } }
+  .team-rank{
+    position: absolute; right: -2px; bottom: 0;
+    width: 28px; height: 28px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: #1a1b1b; color: var(--tier);
+    border: 2px solid var(--tier); font-size: .72rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,.45);
+  }
+
+  .team-name{
+    margin-top: 1rem; font-size: 1rem; font-weight: 700;
+    color: #fff; line-height: 1.3; overflow-wrap: anywhere;
+  }
+  .tier-1 .team-name{ font-size: 1.15rem; }
+  .team-position{
+    margin: .3rem 0 1.1rem; font-size: .82rem; font-weight: 500;
+    line-height: 1.45; color: var(--tier);
+  }
+  /* ---- Кнопка «Профіль» (стиль кнопок з index.html) ---- */
+  :root{
+    --i-discord: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 127.14 96.36'%3E%3Cpath fill='black' d='M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z'/%3E%3C/svg%3E");
+  }
+  .team-chip{
+    --mx: 50%; --my: 50%;
+    position: relative; overflow: hidden; isolation: isolate;
+    margin-top: auto; display: inline-flex; align-items: center; justify-content: center; gap: 0;
+    padding: 10px 24px; border-radius: 12px; white-space: nowrap;
+    font-size: .85rem; font-weight: 600; letter-spacing: .3px; color: #fff; cursor: pointer;
+    background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.15);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 4px 15px rgba(0,0,0,.2);
+    transition: transform .45s var(--ease), background .35s, border-color .35s, box-shadow .45s var(--ease), gap .45s var(--ease);
+  }
+  .team-chip::before{
+    content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: 0;
+    background:
+      linear-gradient(110deg, transparent 30%, rgba(255,255,255,.28) 50%, transparent 70%) -130% 0 / 60% 100% no-repeat,
+      radial-gradient(110px circle at var(--mx) var(--my), rgba(255,255,255,.16), transparent 70%) 0 0 / 100% 100% no-repeat;
+    transition: opacity .35s, background-position .8s var(--ease);
+  }
+  .team-chip::after{
+    content: ""; display: block; flex: none; width: 0; height: 1.25em; opacity: 0;
+    background: currentColor;
+    -webkit-mask: var(--i-discord) center / contain no-repeat; mask: var(--i-discord) center / contain no-repeat;
+    transform: translateX(-12px) scale(.4) rotate(-25deg);
+    transition: width .5s var(--ease), opacity .3s, transform .65s cubic-bezier(.34,1.56,.64,1);
+  }
+  .team-chip:hover{
+    transform: translateY(-4px); gap: .65rem;
+    background: rgba(88,101,242,.22); border-color: rgba(255,255,255,.4); color: #fff;
+    box-shadow: 0 14px 34px rgba(0,0,0,.4), 0 0 26px -4px rgba(88,101,242,.7);
+  }
+  .team-chip:hover::before{ opacity: 1; background-position: 230% 0, 0 0; }
+  .team-chip:hover::after{ width: 1.25em; opacity: 1; transform: none; animation: icWiggle .8s ease-in-out .3s; }
+  .team-chip:active{ transform: translateY(-1px) scale(.96); transition-duration: .12s; }
+  .team-chip:focus-visible{ outline: 2px solid #fff; outline-offset: 3px; }
+  .btn-ripple{
+    position: absolute; z-index: -1; border-radius: 50%; pointer-events: none;
+    background: rgba(255,255,255,.4); transform: scale(0);
+    animation: ripple .65s ease-out forwards;
+  }
+  @keyframes ripple{ to{ transform: scale(1); opacity: 0; } }
+  @keyframes icWiggle{
+    0%,100%{ rotate: 0deg; } 20%{ rotate: -14deg; } 40%{ rotate: 12deg; } 60%{ rotate: -8deg; } 80%{ rotate: 5deg; }
+  }
+
+  /* ---- Завантаження / помилки ---- */
+  .team-state{ color: #9c9c9c; font-size: 1rem; }
+  .team-skeleton{
+    visibility: hidden; /* Reserve loading space without flashing collapsed placeholders. */
+    min-height: 220px; border-radius: 12px; pointer-events: none;
+    border: 1px solid rgba(255,255,255,.08);
+    background: linear-gradient(100deg, #262626 30%, #303131 50%, #262626 70%) 0 0 / 250% 100%;
+    animation: shimmer 1.6s linear infinite;
+  }
+  @keyframes shimmer{ from{ background-position: 130% 0; } to{ background-position: -130% 0; } }
+
+  /* ---- Поява: заголовки + каскад карток ---- */
+  .reveal{
     opacity: 0; transform: translateY(40px);
-    transition: opacity 0.7s cubic-bezier(0.25,1,0.5,1), transform 0.7s cubic-bezier(0.25,1,0.5,1);
+    transition: opacity .7s var(--ease), transform .7s var(--ease);
   }
-  .reveal.revealed { opacity: 1; transform: translateY(0); }
-  .reveal-delay-1 { transition-delay: 0.05s; }
-  .reveal-delay-2 { transition-delay: 0.10s; }
-  .reveal-delay-3 { transition-delay: 0.15s; }
-  .reveal-delay-4 { transition-delay: 0.20s; }
-  .reveal-delay-5 { transition-delay: 0.25s; }
-  .reveal-delay-6 { transition-delay: 0.30s; }
+  .reveal.revealed{ opacity: 1; transform: none; }
+  .team-grid.reveal{ opacity: 1; transform: none; transition: none; }
+  .team-grid.reveal > .team-card{ opacity: 0; }
+  .team-grid.revealed > .team-card{
+    animation: cardIn .85s var(--ease) both;
+    animation-delay: calc(min(var(--i, 0), 11) * 70ms);
+  }
+  @keyframes cardIn{ from{ opacity: 0; transform: translateY(46px) scale(.96); } to{ opacity: 1; transform: none; } }
+
+  @media (max-width: 640px){
+    .section-header h2{ font-size: 1.75rem; }
+    .tier-title{ font-size: 1.2rem; }
+    .tier-1, .tier-2, .tier-3{ --min: 150px; }
+    .tier-1{ --av: 100px; --cover-h: 84px; }
+    .tier-2{ --av: 88px;  --cover-h: 74px; }
+    .tier-3{ --av: 80px;  --cover-h: 68px; }
+    .team-grid{ gap: 1rem; }
+    .team-grid > .team-card{ flex: 0 0 calc((100% - 1rem) / 2); }
+    .team-card{ padding-left: .75rem; padding-right: .75rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *, *::before, *::after{ animation: none !important; transition-duration: .01ms !important; }
+    .reveal, .team-grid.reveal > .team-card{ opacity: 1 !important; transform: none !important; }
+  }
 
   /* ===== FOOTER ===== */
-  .site-footer {
+  
+  /* ===== FOOTER (synced with index.html) ===== */
+.site-footer {
     background-color: #080808;
     padding: 70px 0 20px;
     border-top: 2px solid #222;
-    position: relative; z-index: 10;
+    position: relative;
+    z-index: 10;
   }
-  .footer-container {
-    display: flex; justify-content: space-between;
-    flex-wrap: wrap; gap: 40px;
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
     border-bottom: 1px solid #1a1a1a;
     padding-bottom: 40px;
-    max-width: 1552px; margin: 0 auto;
-    padding-left: 1.25rem; padding-right: 1.25rem;
+    max-width: 1552px;
+    margin: 0 auto;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
   }
-  .footer-col { flex: 1; min-width: 250px; }
-  .about-col .footer-logo {
-    display: flex; align-items: center;
-    font-size: 22px; font-weight: 900;
-    letter-spacing: 1px; margin-bottom: 15px; color: #fff;
+.footer-col {
+    flex: 1;
+    min-width: 250px;
   }
-  .about-col .footer-logo span { color: #ff3333; }
-  .about-col p { font-size: 14px; color: #888; line-height: 1.6; margin-bottom: 25px; }
-  .social-img-links { display: flex; gap: 15px; }
-  .social-img-links a {
-    display: block; width: 40px; height: 40px;
-    border-radius: 8px; overflow: hidden;
-    border: 1px solid #333; transition: all 0.3s ease; background-color: #111;
+.about-col .footer-logo {
+    display: flex;
+    align-items: center;
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    color: #fff;
   }
-  .social-img-links a img { width: 100%; height: 100%; object-fit: contain; padding: 5px; transition: all 0.3s ease; }
-  .social-img-links a:hover { border-color: #ff3333; transform: translateY(-5px); box-shadow: 0 5px 15px rgba(255,51,51,0.3); }
-  .footer-col h4 { font-size: 18px; color: #fff; margin-bottom: 25px; position: relative; }
-  .footer-col h4::after { content: ''; display: block; width: 30px; height: 2px; background-color: #ff3333; margin-top: 10px; }
-  .nav-col ul, .contact-col ul { list-style: none; }
-  .nav-col li, .contact-col li { margin-bottom: 15px; }
-  .nav-col a, .contact-col a { color: #888; font-size: 14px; transition: all 0.3s ease; display: flex; align-items: center; gap: 12px; }
-  .nav-col a::before { content: '\f054'; font-family: 'Font Awesome 6 Free'; font-weight: 900; color: #ff3333; font-size: 10px; transition: transform 0.3s ease; }
-  .nav-col a:hover, .contact-col a:hover { color: #ff3333; }
-  .nav-col a:hover::before { transform: translateX(3px); }
-  .contact-col i { color: #ff3333; font-size: 16px; width: 20px; text-align: center; }
-  .footer-bottom { text-align: center; padding-top: 25px; max-width: 1552px; margin: 0 auto; padding-left: 1.25rem; padding-right: 1.25rem; }
-  .footer-bottom p { color: #555; font-size: 13px; }
+.about-col .footer-logo span {
+    color: #ff3333;
+  }
+.about-col p {
+    font-size: 14px;
+    color: #888;
+    line-height: 1.6;
+    margin-bottom: 25px;
+  }
+.social-img-links {
+    display: flex;
+    gap: 15px;
+  }
+.social-img-links a {
+    display: block;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #333;
+    transition: all 0.3s ease;
+    background-color: #111;
+  }
+.social-img-links a img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 5px;
+    transition: all 0.3s ease;
+  }
+.social-img-links a:hover {
+    border-color: #ff3333;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(255, 51, 51, 0.3);
+  }
+.footer-col h4 {
+    font-size: 18px;
+    color: #fff;
+    margin-bottom: 25px;
+    position: relative;
+  }
+.footer-col h4::after {
+    content: '';
+    display: block;
+    width: 30px;
+    height: 2px;
+    background-color: #ff3333;
+    margin-top: 10px;
+  }
+.nav-col ul, .contact-col ul {
+    list-style: none;
+  }
+.nav-col li, .contact-col li {
+    margin-bottom: 15px;
+  }
+.nav-col a, .contact-col a {
+    color: #888;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+.nav-col a::before {
+    content: '\f054';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: #ff3333;
+    font-size: 10px;
+    transition: transform 0.3s ease;
+  }
+.nav-col a:hover, .contact-col a:hover {
+    color: #ff3333;
+  }
+.nav-col a:hover::before {
+    transform: translateX(3px);
+  }
+.contact-col i {
+    color: #ff3333;
+    font-size: 16px;
+    width: 20px;
+    text-align: center;
+  }
+.footer-bottom {
+    text-align: center;
+    padding-top: 25px;
+    max-width: 1552px;
+    margin: 0 auto;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+.footer-bottom p {
+    color: #555;
+    font-size: 13px;
+  }
+.site-footer{ background:#070707; border-top:1px solid #262626; position:relative; padding-top:64px; }
+.about-col .footer-logo{
+  font-family:'Orbitron','Montserrat',sans-serif; font-weight:800; font-size:20px;
+  letter-spacing:.14em; text-transform:uppercase; margin-bottom:18px;
+}
+.about-col p{ color:#7d7d7d; font-size:13px; line-height:1.75; }
+.social-img-links{ gap:10px; }
+.social-img-links a{
+  border-radius:0; border:1px solid #2c2c2c; background:#0e0e0e;
+  transition:border-color .25s, background .25s, transform .25s;
+}
+.social-img-links a:hover{
+  border-color:#ff3333; background:#141414; transform:translateY(-3px); box-shadow:none;
+}
+.footer-col h4{
+  font-size:12px; font-weight:700; letter-spacing:.2em; text-transform:uppercase;
+  color:#fff; margin-bottom:24px;
+}
+.footer-col h4::after{ width:36px; height:2px; margin-top:12px; }
+.nav-col a, .contact-col a{ font-size:13px; letter-spacing:.04em; }
+.nav-col li, .contact-col li{ margin-bottom:12px; padding-bottom:12px; border-bottom:1px solid #151515; }
+.nav-col li:last-child, .contact-col li:last-child{ border-bottom:0; padding-bottom:0; }
+.footer-container{ border-bottom:1px solid #1d1d1d; }
+.footer-bottom p{
+  color:#4d4d4d; font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+}
+
+</style>
+<!-- Entrance motion: apply.html timing; existing interaction styles preserved. -->
+<style>
+@keyframes neoHeroZoom{from{scale:1.06}to{scale:1}}
+.hero-photo-wrap > img{animation:neoHeroZoom 2.4s cubic-bezier(.22,1,.36,1) both}
+@media(prefers-reduced-motion:reduce){
+.hero-photo-wrap > img{animation:none!important}
+.reveal,.reveal > *{opacity:1!important}
+.reveal{transform:none!important}
+}
+</style>
+<script>
+function neoEntranceObserver(callback,options){
+ if('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) return new window.IntersectionObserver(callback,options);
+ return {observe:function(el){queueMicrotask(function(){callback([{target:el,isIntersecting:true,intersectionRatio:1}])})},unobserve:function(){},disconnect:function(){}};
+}
+</script>
+<!-- Header/footer synchronized with index.html -->
+<style>
+.site-header,.site-footer{font-family:Montserrat,ui-sans-serif,system-ui,-apple-system,sans-serif;font-size:16px;line-height:1.5;color:#fff} .site-header *,.site-footer *{box-sizing:border-box} .site-header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  width: 100%;
+  padding: 0.75rem 1.25rem;
+  background-color: rgba(15, 16, 16, 0.88); 
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+.header-inner{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1552px;
+    margin: 0 auto;
+  }
+.logo-link{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+.logo-link img{
+    width: 40px;
+    height: 40px;
+    border-radius: 9999px;
+    display: block;
+    background-color: rgba(255,255,255,0.08);
+  }
+.logo-link h1{
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #fff;
+  }
+.main-nav ul{
+    align-items: center;
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+  }
+@media (max-width: 768px){.main-nav ul{ align-items: stretch; }
+}
+.nav-link{
+    color: #fff;
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 4px;
+  }
+.nav-link::after{
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: hsl(var(--primary)); 
+    transition: width 0.3s ease;
+  }
+.nav-link:hover::after{
+    width: 100%;
+  }
+.header-actions{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: 0.5rem;
+  }
+.lang-switch-bw{
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 40px;
+    padding: 0 10px;
+    border: none;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+.lang-switch-bw:hover{
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+.current-lang{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+.current-lang img,.lang-dropdown-bw img{
+    width: 20px;
+    height: auto;
+    border-radius: 3px;
+    display: block;
+  }
+.current-lang i{
+    font-size: 12px;
+    color: #ffffff;
+    transition: 0.3s;
+  }
+.lang-switch-bw:hover .current-lang i{
+    transform: rotate(180deg);
+  }
+.lang-dropdown-bw{
+    position: absolute;
+    top: 140%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: rgba(12, 12, 12, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 10px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+  }
+.lang-switch-bw:hover .lang-dropdown-bw{
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+.lang-dropdown-bw a{
+    display: block;
+    transition: 0.3s;
+  }
+.lang-dropdown-bw a:hover{
+    transform: scale(1.15);
+  }
+.account-switch-bw{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+.account-switch-bw:hover{ background-color: rgba(255, 255, 255, 0.1); }
+.current-account{ display: flex; align-items: center; }
+.current-account i.fa-circle-user{ font-size: 20px; color: #ffffff; }
+.account-dropdown-bw{
+    position: absolute;
+    top: 140%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: rgba(12, 12, 12, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 8px;
+    min-width: 220px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    z-index: 60;
+  }
+.account-switch-bw:hover .account-dropdown-bw{
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+.account-dropdown-bw a{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #e5e5e5;
+    white-space: nowrap;
+    transition: 0.3s;
+  }
+.account-dropdown-bw a:hover{ background-color: rgba(255, 255, 255, 0.08); color: #fff; }
+.account-dropdown-bw a i{ color: hsl(var(--primary)); font-size: 13px; width: 16px; text-align: center; }
+.burger-btn{
+    display: none;
+    background: transparent;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 9999px;
+    transition: background-color 0.2s ease;
+  }
+@media (hover: hover){.burger-btn:hover{ background-color: rgba(255,255,255,0.08); }
+}
+.burger-btn svg{ width: 28px; height: 28px; fill: #fff; }
+@media (max-width: 768px){.main-nav{ display: none; }
+.burger-btn{ display: flex; }
+.main-nav.active{
+      display: block;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background: rgba(15, 16, 16, 0.97);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+.main-nav.active ul{
+      flex-direction: column;
+      gap: 0;
+      padding: 0.5rem 1.25rem 1.25rem;
+    }
+.main-nav.active .nav-link{
+      display: block;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+.main-nav.active .header-actions{
+      justify-content: center;
+      gap: 1rem;
+      margin: 1rem 0 0.25rem;
+    }
+}
+.site-footer{
+    background-color: #080808;
+    padding: 70px 0 20px;
+    border-top: 2px solid #222;
+    position: relative;
+    z-index: 10;
+  }
+.footer-container{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+    border-bottom: 1px solid #1a1a1a;
+    padding-bottom: 40px;
+    max-width: 1552px;
+    margin: 0 auto;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+.footer-col{
+    flex: 1;
+    min-width: 250px;
+  }
+.about-col .footer-logo{
+    display: flex;
+    align-items: center;
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    color: #fff;
+  }
+.about-col .footer-logo span{
+    color: #ff3333;
+  }
+.about-col p{
+    font-size: 14px;
+    color: #888;
+    line-height: 1.6;
+    margin-bottom: 25px;
+  }
+.social-img-links{
+    display: flex;
+    gap: 15px;
+  }
+.social-img-links a{
+    display: block;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #333;
+    transition: all 0.3s ease;
+    background-color: #111;
+  }
+.social-img-links a img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 5px;
+    transition: all 0.3s ease;
+  }
+.social-img-links a:hover{
+    border-color: #ff3333;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(255, 51, 51, 0.3);
+  }
+.footer-col h4{
+    font-size: 18px;
+    color: #fff;
+    margin-bottom: 25px;
+    position: relative;
+  }
+.footer-col h4::after{
+    content: '';
+    display: block;
+    width: 30px;
+    height: 2px;
+    background-color: #ff3333;
+    margin-top: 10px;
+  }
+.nav-col ul,.contact-col ul{
+    list-style: none;
+  }
+.nav-col li,.contact-col li{
+    margin-bottom: 15px;
+  }
+.nav-col a,.contact-col a{
+    color: #888;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+.nav-col a::before{
+    content: '\f054';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: #ff3333;
+    font-size: 10px;
+    transition: transform 0.3s ease;
+  }
+.nav-col a:hover,.contact-col a:hover{
+    color: #ff3333;
+  }
+.nav-col a:hover::before{
+    transform: translateX(3px);
+  }
+.contact-col i{
+    color: #ff3333;
+    font-size: 16px;
+    width: 20px;
+    text-align: center;
+  }
+.footer-bottom{
+    text-align: center;
+    padding-top: 25px;
+    max-width: 1552px;
+    margin: 0 auto;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+.footer-bottom p{
+    color: #555;
+    font-size: 13px;
+  }
+.site-footer{ background:#070707; border-top:1px solid #262626; position:relative; padding-top:64px; }
+.about-col .footer-logo{
+  font-family:'Orbitron','Montserrat',sans-serif; font-weight:800; font-size:20px;
+  letter-spacing:.14em; text-transform:uppercase; margin-bottom:18px;
+}
+.about-col p{ color:#7d7d7d; font-size:13px; line-height:1.75; }
+.social-img-links{ gap:10px; }
+.social-img-links a{
+  border-radius:0; border:1px solid #2c2c2c; background:#0e0e0e;
+  transition:border-color .25s, background .25s, transform .25s;
+}
+.social-img-links a:hover{
+  border-color:#ff3333; background:#141414; transform:translateY(-3px); box-shadow:none;
+}
+.footer-col h4{
+  font-size:12px; font-weight:700; letter-spacing:.2em; text-transform:uppercase;
+  color:#fff; margin-bottom:24px;
+}
+.footer-col h4::after{ width:36px; height:2px; margin-top:12px; }
+.nav-col a,.contact-col a{ font-size:13px; letter-spacing:.04em; }
+.nav-col li,.contact-col li{ margin-bottom:12px; padding-bottom:12px; border-bottom:1px solid #151515; }
+.nav-col li:last-child,.contact-col li:last-child{ border-bottom:0; padding-bottom:0; }
+.footer-container{ border-bottom:1px solid #1d1d1d; }
+.footer-bottom p{
+  color:#4d4d4d; font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+}
+
+
 </style>
 </head>
-<body>
+<body id="top">
 
 <!-- ===== HEADER ===== -->
 <header class="site-header">
   <div class="header-inner">
-    <a class="logo-link" href="https://neocrime.space/">
+    <a class="logo-link" href="/index">
       <img alt="NeoCrime Logo" loading="lazy" width="40" height="40" decoding="async"
            src="images/logo.avif">
-      <h1>NeoCrime</h1>
+      <h1>NeoCrime Group</h1>
     </a>
 
     <nav class="main-nav">
       <ul>
-        <li><a class="nav-link" href="https://neocrime.space/">Головна</a></li>
+        <li><a class="nav-link" href="/index">Головна</a></li>
         <li><a class="nav-link" href="/events">Події</a></li>
         <li><a class="nav-link" href="/news">Новини</a></li>
         <li><a class="nav-link" href="/team">Команда</a></li>
@@ -639,7 +1161,7 @@
 <div class="hero-photo-wrap">
   <img src="images/team.avif" alt="Команда NeoCrime" loading="eager">
   <div class="hero-content">
-    <h1>Команда</h1>
+    <h1><span class="hero-title-text">Команда</span></h1>
     <p>Люди, які рухають NeoCrime вперед</p>
   </div>
 </div>
@@ -648,8 +1170,13 @@
 <main>
   <section class="team-section">
 
-    <div id="team-container">
-      <p style="color:#9c9c9c;">Завантаження команди...</p>
+    <div id="team-container" aria-live="polite" aria-busy="true">
+      <div class="team-tier tier-3" aria-label="Завантаження команди...">
+        <div class="team-grid">
+          <div class="team-skeleton"></div><div class="team-skeleton"></div><div class="team-skeleton"></div>
+          <div class="team-skeleton"></div><div class="team-skeleton"></div><div class="team-skeleton"></div>
+        </div>
+      </div>
     </div>
 
   </section>
@@ -658,9 +1185,11 @@
 <!-- ===== FOOTER ===== -->
 <footer class="site-footer">
   <div class="footer-container">
+
     <div class="footer-col about-col">
-      <div class="footer-logo">Neo<span>Crime</span></div>
+      <div class="footer-logo">Neo<span>Crime</span>&nbsp;Group</div>
       <p>NeoCrime — це амбіційна українська VTC, що впевнено рухається вперед, створюючи власну історію успіху на просторах TruckersMP. Це місце, де стиль, дисципліна та командний дух поєднуються в єдину силу, а кожен учасник стає частиною великого та впевненого руху.</p>
+
       <div class="social-img-links">
         <a href="https://discord.gg/zGzy7Gcdgy" target="_blank"><img src="images/social/1.avif" alt="Discord"></a>
         <a href="https://www.tiktok.com/@neocrime_vtc" target="_blank"><img src="images/social/2.avif" alt="TikTok"></a>
@@ -668,16 +1197,18 @@
         <a href="https://www.twitch.tv/neocrime_vtc" target="_blank"><img src="images/social/4.avif" alt="TruckersHub"></a>
       </div>
     </div>
+
     <div class="footer-col nav-col">
       <h4>Навігація</h4>
       <ul>
-        <li><a href="https://neocrime.space/">Головна</a></li>
+        <li><a href="/index">Головна</a></li>
         <li><a href="/news">Новини</a></li>
         <li><a href="/contact">Контакти</a></li>
         <li><a href="/privacy">Політика приватності</a></li>
         <li><a href="/terms">Угода користування</a></li>
       </ul>
     </div>
+
     <div class="footer-col contact-col">
       <h4>Контакти</h4>
       <ul>
@@ -685,86 +1216,120 @@
         <li><i class="fab fa-discord"></i> <a href="https://discord.gg/zGzy7Gcdgy" target="_blank">discord.gg/zGzy7Gcdgy</a></li>
       </ul>
     </div>
+
   </div>
+
   <div class="footer-bottom">
     <p>&copy; 2026 NeoCrime. Всі права захищені.</p>
   </div>
 </footer>
 
-<!-- ===== SCROLL REVEAL ===== -->
-<script>
-  (function () {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const el = entry.target;
-          el.classList.add('revealed');
-          el.addEventListener('transitionend', function onEnd(e) {
-            if (e.propertyName === 'transform') {
-              el.style.transform = '';
-              el.style.transition = '';
-              el.removeEventListener('transitionend', onEnd);
-            }
-          });
-          observer.unobserve(el);
-        }
-      });
-    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
-
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-  })();
-</script>
-
-<!-- ===== КОМАНДА З АПІ ===== -->
+<!-- ===== КОМАНДА З АПІ + ПОЯВА + ПІДСВІТКА ===== -->
 <script>
 (function () {
+  const STR = {
+    tiers: { 1: 'Вище керівництво', 2: 'Старший склад', 3: 'Команда' },
+    other: 'Інші',
+    profile: 'Профіль',
+    unavailable: 'Команда тимчасово недоступна.',
+    failed: 'Не вдалося завантажити команду. Спробуйте пізніше.'
+  };
+  const RANK_ICON = { 1: 'fa-crown', 2: 'fa-shield-halved' };
+  const FALLBACK = 'https://cdn.discordapp.com/embed/avatars/0.png';
   const container = document.getElementById('team-container');
 
-  // Назви ступенів
-  const DEGREE_NAMES = {
-    1: '⭐ Вище керівництво',
-    2: '🔹 Старший склад',
-    3: '🔸 Команда'
-  };
-  const DEGREE_ROW_CLASS = { 1: 'row-1', 2: 'row-2', 3: 'row-3' };
-  const DEGREE_DELAYS = ['reveal-delay-1','reveal-delay-2','reveal-delay-3','reveal-delay-4','reveal-delay-5','reveal-delay-6'];
-
-  // Scroll-reveal observer для карток (ті самі налаштування, що і для .reveal)
-  const cardObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('revealed');
-        cardObserver.unobserve(entry.target);
-      }
+  /* --- scroll reveal (заголовки, ряди) --- */
+  const io = neoEntranceObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      e.target.classList.add('revealed');
+      io.unobserve(e.target);
     });
   }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-  function buildCard(item) {
-    const card = document.createElement('a');
-    card.className = 'team-card reveal';
-    card.href = item.profile_url || '#';
-    card.target = item.profile_url ? '_blank' : '_self';
-    card.rel = 'noopener noreferrer';
+  /* --- підсвітка під курсором --- */
+  document.addEventListener('pointermove', (e) => {
+    const c = e.target.closest && e.target.closest('.team-card');
+    if (!c) return;
+    const r = c.getBoundingClientRect();
+    c.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+    c.style.setProperty('--my', (e.clientY - r.top) + 'px');
+  }, { passive: true });
 
-    const avatarFallback = 'https://cdn.discordapp.com/embed/avatars/0.png';
+  /* --- підсвітка + ripple на кнопці --- */
+  document.addEventListener('pointermove', (e) => {
+    const b = e.target.closest && e.target.closest('.team-chip');
+    if (!b) return;
+    const r = b.getBoundingClientRect();
+    b.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+    b.style.setProperty('--my', (e.clientY - r.top) + 'px');
+  }, { passive: true });
+  document.addEventListener('pointerdown', (e) => {
+    const b = e.target.closest && e.target.closest('.team-chip');
+    if (!b) return;
+    const r = b.getBoundingClientRect(), d = Math.max(r.width, r.height) * 2.2;
+    const s = document.createElement('span');
+    s.className = 'btn-ripple';
+    s.style.cssText = 'width:' + d + 'px;height:' + d + 'px;left:' + (e.clientX - r.left - d / 2) + 'px;top:' + (e.clientY - r.top - d / 2) + 'px';
+    b.appendChild(s);
+    setTimeout(() => s.remove(), 700);
+  });
 
-    card.innerHTML = `
-      <div class="team-avatar-wrap">
-        <img
-          class="team-avatar"
-          src="${item.avatar_url || avatarFallback}"
-          alt="${item.name}"
-          loading="lazy"
-          onerror="this.src='${avatarFallback}'"
-        >
-        <div class="team-avatar-ring"></div>
-      </div>
-      <div class="team-name">${item.name}</div>
-      <div class="team-position">${item.position}</div>
-      ${item.profile_url ? '<div class="team-link-icon"><i class="fab fa-discord"></i></div>' : ''}
-    `;
+  function mk(tag, cls, text) {
+    const n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text != null) n.textContent = text;
+    return n;
+  }
+  function avatar(src, cls) {
+    const img = mk('img', cls);
+    img.alt = '';
+    img.loading = 'lazy';
+    img.onerror = () => { img.onerror = null; img.src = FALLBACK; };
+    img.src = src || FALLBACK;
+    return img;
+  }
 
+  function buildCard(item, i, tier) {
+    const link = typeof item.profile_url === 'string' && /^https?:\/\//i.test(item.profile_url);
+    const card = mk('div', 'team-card');
+    card.style.setProperty('--i', i);
+
+    const cover = mk('div', 'team-cover');
+    cover.setAttribute('aria-hidden', 'true');
+    cover.appendChild(avatar(item.avatar_url, ''));
+    card.appendChild(cover);
+
+    const wrap = mk('div', 'team-avatar-wrap');
+    const img = avatar(item.avatar_url, 'team-avatar');
+    img.alt = item.name || '';
+    wrap.appendChild(img);
+    wrap.appendChild(mk('div', 'team-avatar-ring'));
+    if (RANK_ICON[tier]) {
+      const badge = mk('span', 'team-rank');
+      badge.innerHTML = '<i class="fas ' + RANK_ICON[tier] + '"></i>';
+      wrap.appendChild(badge);
+    }
+    card.appendChild(wrap);
+
+    card.appendChild(mk('div', 'team-name', item.name));
+    card.appendChild(mk('div', 'team-position', item.position));
+
+    if (link) {
+      const chip = mk('a', 'team-chip', STR.profile);
+      chip.href = item.profile_url;
+      chip.target = '_blank';
+      chip.rel = 'noopener noreferrer';
+      card.appendChild(chip);
+    }
     return card;
+  }
+
+  function showState(text) {
+    container.innerHTML = '';
+    container.appendChild(mk('p', 'team-state', text));
+    container.setAttribute('aria-busy', 'false');
   }
 
   async function loadTeam() {
@@ -772,62 +1337,39 @@
       const res = await fetch('https://api.neocrime.space/team');
       if (!res.ok) throw new Error('HTTP ' + res.status);
       const data = await res.json();
-
       if (data.status !== 'success' || !Array.isArray(data.items) || !data.items.length) {
-        container.innerHTML = '<p style="color:#9c9c9c;">Команда тимчасово недоступна.</p>';
+        showState(STR.unavailable);
         return;
       }
 
-      // Групуємо по ступеню (API вже сортує: degree ASC)
       const groups = {};
-      data.items.forEach(item => {
-        const d = item.degree;
-        if (!groups[d]) groups[d] = [];
-        groups[d].push(item);
-      });
+      data.items.forEach(it => { (groups[it.degree] = groups[it.degree] || []).push(it); });
 
       container.innerHTML = '';
-
-      // Рендеримо ступені у порядку 1 → 2 → 3
-      [1, 2, 3].forEach(degree => {
+      Object.keys(groups).map(Number).sort((a, b) => a - b).forEach(degree => {
         const members = groups[degree];
-        if (!members || !members.length) return;
+        const tier = degree >= 1 && degree <= 3 ? degree : 3;
 
-        // Блок ступеня
-        const degreeBlock = document.createElement('div');
-        degreeBlock.className = `degree-${degree}`;
+        const block = mk('div', 'team-tier tier-' + tier);
 
-        // Мітка
-        const labelRow = document.createElement('div');
-        labelRow.className = 'degree-label reveal';
-        labelRow.innerHTML = `
-          <div class="degree-label-line line-left"></div>
-          <span class="degree-label-text">${DEGREE_NAMES[degree] || 'Інші'}</span>
-          <div class="degree-label-line line-right"></div>
-        `;
-        degreeBlock.appendChild(labelRow);
+        const head = mk('div', 'tier-head reveal');
+        head.appendChild(mk('span', 'tier-dot'));
+        head.appendChild(mk('h3', 'tier-title', STR.tiers[degree] || STR.other));
+        head.appendChild(mk('span', 'tier-line'));
+        block.appendChild(head);
 
-        // Ряд карток
-        const row = document.createElement('div');
-        row.className = `team-row ${DEGREE_ROW_CLASS[degree] || ''} reveal`;
-        members.forEach((item, idx) => {
-          const card = buildCard(item);
-          // Додаємо delay-клас (циклічно, щоб не виходити за межі масиву)
-          const delayClass = DEGREE_DELAYS[idx % DEGREE_DELAYS.length];
-          card.classList.add(delayClass);
-          row.appendChild(card);
-        });
-        degreeBlock.appendChild(row);
+        const grid = mk('div', 'team-grid reveal');
+        members.forEach((m, i) => grid.appendChild(buildCard(m, i, tier)));
+        block.appendChild(grid);
 
-        container.appendChild(degreeBlock);
+        container.appendChild(block);
       });
 
-      // Підключаємо reveal observer до всіх нових елементів
-      container.querySelectorAll('.reveal').forEach(el => cardObserver.observe(el));
-
+      container.setAttribute('aria-busy', 'false');
+      container.querySelectorAll('.reveal').forEach(el => io.observe(el));
     } catch (err) {
       console.error('[Team]', err);
-      container.innerHTML = '<p style="color:#9c9c9c;">Не вдалося завантажити команду. Спробуйте пізніше.</p>';
+      showState(STR.failed);
     }
   }
 
@@ -835,16 +1377,19 @@
 })();
 </script>
 
-<!-- ===== ПЛАВНИЙ СКРОЛ ВГОРУ (Команда в хедері та футері) ===== -->
+<!-- ===== ЛОГО «NeoCrime Group» і «Команда» — ПЛАВНИЙ СКРОЛ НАГОРУ ===== -->
 <script>
-  document.querySelectorAll('a[href="/team"]').forEach(link => {
-    link.addEventListener('click', function (e) {
-      if (window.location.pathname === '/team') {
-        e.preventDefault();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-    });
-  });
+  (function () {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function toTop(e) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+    }
+    // лого в хедері: лишаємось на сторінці, не переходимо на головну
+    document.querySelectorAll('a.logo-link').forEach(a => a.addEventListener('click', toTop));
+    // «Команда» в хедері: ми вже тут
+    document.querySelectorAll('a.nav-link[href="/team"]').forEach(a => a.addEventListener('click', toTop));
+  })();
 </script>
 
 <script>
