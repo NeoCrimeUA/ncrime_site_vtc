@@ -1574,6 +1574,17 @@
 
 
 </style>
+<style>
+.authorized-info{min-width:0}
+.auth-logout{margin-left:auto;flex-shrink:0;display:inline-flex;align-items:center;gap:.5rem;padding:10px 14px;border:1px solid #ffffff30;border-radius:10px;background:#ffffff0d;color:#fff;transition:background .2s,translate .2s}
+.auth-logout:hover{background:#ffffff1f;translate:0 -2px}
+.auth-logout:disabled{opacity:.6;cursor:wait}
+.auth-logout:focus-visible{outline:2px solid #fff;outline-offset:3px}
+#submit-btn{background:#238442;border-color:#3ba55d}
+#submit-btn:hover:not(:disabled){background:#1d7138;border-color:#54c276}
+@media(max-width:480px){.authorized-banner{flex-wrap:wrap}.auth-logout{padding:8px 10px}}
+@media(prefers-reduced-motion:reduce){.auth-logout{transition:none;translate:none}}
+</style>
 </head>
 <body>
 
@@ -1669,6 +1680,7 @@
         <span class="authorized-username" id="auth-username">—</span>
         <span class="authorized-id" id="auth-discord-id">—</span>
       </div>
+      <button type="button" class="auth-logout" id="auth-logout"><i class="fas fa-right-from-bracket" aria-hidden="true"></i> Вийти</button>
     </div>
 
     <!-- ===== ЕКРАН "ВИ ВЖЕ ПОДАВАЛИ ЗАЯВКУ" ===== -->
@@ -1967,6 +1979,34 @@
   window.__neocrimeApplyGetToken = getToken;
   window.__neocrimeApplyClearToken = clearToken;
   window.__neocrimeApplyShowAuthGate = showAuthGate;
+
+
+  const logoutButton = document.getElementById('auth-logout');
+  logoutButton.addEventListener('click', async function () {
+    const token = getToken();
+    logoutButton.disabled = true;
+    try {
+      if (token) {
+        const response = await fetch(API_BASE + '/apply/logout', {
+          method: 'POST', headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({token})
+        });
+        if (!response.ok) throw new Error('Logout failed');
+      }
+      clearToken();
+      if (applyForm) applyForm.reset();
+      authAvatar.removeAttribute('src');
+      authUsername.textContent = '—';
+      authDiscordId.textContent = '—';
+      document.getElementById('success-screen').classList.remove('show');
+      showAuthGate();
+    } catch (error) {
+      logoutButton.title = 'Не вдалося вийти. Спробуйте ще раз.';
+      logoutButton.textContent = 'Не вдалося вийти. Спробуйте ще раз.';
+    } finally {
+      logoutButton.disabled = false;
+    }
+  });
 
   const activeToken = getToken();
   if (activeToken) {
