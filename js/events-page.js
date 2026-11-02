@@ -195,7 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!container) return;
 
     if (events.length === 0) {
-      container.innerHTML = `<p style="color: #9c9c9c; grid-column: 1/-1;">${emptyText}</p>`;
+      container.innerHTML = `<p data-inline-style="inline-6">${emptyText}</p>`;
       forceReveal(container);
       return;
     }
@@ -217,7 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     if (!container.children.length) {
-      container.innerHTML = `<p style="color: #9c9c9c; grid-column: 1/-1;">${errorText}</p>`;
+      container.innerHTML = `<p data-inline-style="inline-6">${errorText}</p>`;
     }
 
     // Контейнер щойно заповнився картками.
@@ -515,7 +515,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function showCalendarError() {
     const calendarRoot = document.getElementById('events-calendar');
     if (!calendarRoot) return;
-    calendarRoot.innerHTML = `<p style="color: #9c9c9c;">${T.calendarError}</p>`;
+    calendarRoot.innerHTML = `<p data-inline-style="inline-7">${T.calendarError}</p>`;
     forceReveal(calendarRoot);
   }
 
@@ -541,7 +541,7 @@ document.addEventListener('DOMContentLoaded', () => {
     .catch(err => {
       console.error('[Events] Остаточна помилка (events-container):', err);
       if (ownContainer) {
-        ownContainer.innerHTML = `<p style="color: #9c9c9c; grid-column: 1/-1;">${LANG === 'en' ? 'Failed to load events.' : 'Не вдалося завантажити події.'}</p>`;
+        ownContainer.innerHTML = `<p data-inline-style="inline-6">${LANG === 'en' ? 'Failed to load events.' : 'Не вдалося завантажити події.'}</p>`;
         forceReveal(ownContainer);
       }
     });
@@ -558,7 +558,7 @@ document.addEventListener('DOMContentLoaded', () => {
     .catch(err => {
       console.error('[Events] Остаточна помилка (attending-container):', err);
       if (attendingContainer) {
-        attendingContainer.innerHTML = `<p style="color: #9c9c9c; grid-column: 1/-1;">${LANG === 'en' ? 'Failed to load events.' : 'Не вдалося завантажити події.'}</p>`;
+        attendingContainer.innerHTML = `<p data-inline-style="inline-6">${LANG === 'en' ? 'Failed to load events.' : 'Не вдалося завантажити події.'}</p>`;
         forceReveal(attendingContainer);
       }
     });

@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let events = data.events;
         
         if (events.length === 0) {
-          eventsContainer.innerHTML = `<p style="color: #9c9c9c; grid-column: 1/-1;">${T.none}</p>`;
+          eventsContainer.innerHTML = `<p data-inline-style="inline-6">${T.none}</p>`;
           return;
         }
 
@@ -116,11 +116,11 @@ document.addEventListener('DOMContentLoaded', () => {
           eventsContainer.appendChild(card);
         });
       } else {
-        eventsContainer.innerHTML = `<p style="color: #9c9c9c; grid-column: 1/-1;">${T.fail}</p>`;
+        eventsContainer.innerHTML = `<p data-inline-style="inline-6">${T.fail}</p>`;
       }
     } catch (error) {
       console.error(error);
-      eventsContainer.innerHTML = `<p style="color: #9c9c9c; grid-column: 1/-1;">${T.error}</p>`;
+      eventsContainer.innerHTML = `<p data-inline-style="inline-6">${T.error}</p>`;
     }
   }
 
