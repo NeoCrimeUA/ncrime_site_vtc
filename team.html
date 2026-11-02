@@ -1385,8 +1385,6 @@ function neoEntranceObserver(callback,options){
       e.preventDefault();
       window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
     }
-    // лого в хедері: лишаємось на сторінці, не переходимо на головну
-    document.querySelectorAll('a.logo-link').forEach(a => a.addEventListener('click', toTop));
     // «Команда» в хедері: ми вже тут
     document.querySelectorAll('a.nav-link[href="/team"]').forEach(a => a.addEventListener('click', toTop));
   })();

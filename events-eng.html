@@ -1756,15 +1756,6 @@ function neoEntranceObserver(callback,options){
 </footer>
 
 <script>
-  /* ===== ЛОГО NeoCrime Group — ЗАВЖДИ ПЛАВНО СКРОЛИТЬ ВГОРУ =====
-     ПРАВИЛО: на сторінках Events лого в хедері НЕ веде на головну,
-     а лише скролить сторінку нагору. Не змінювати і не видаляти. */
-  document.querySelectorAll('a.logo-link').forEach(link => {
-    link.addEventListener('click', function (e) {
-      e.preventDefault();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  });
 
   /* ===== ПЛАВНИЙ СКРОЛ ВГОРУ (Події в хедері та футері) ===== */
   document.querySelectorAll('a[href="/events-eng"]').forEach(link => {
