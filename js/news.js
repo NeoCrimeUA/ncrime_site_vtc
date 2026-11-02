@@ -71,11 +71,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const hid = hashId();
         if (hid !== null) openModal(hid);
       } else {
-        newsContainer.innerHTML = '<p data-inline-style="inline-6">Не вдалося завантажити новини.</p>';
+        newsContainer.innerHTML = '<p style="color: #9c9c9c; grid-column: 1/-1;">Не вдалося завантажити новини.</p>';
       }
     } catch (error) {
       console.error(error);
-      newsContainer.innerHTML = '<p data-inline-style="inline-6">Сталася помилка при з’єднанні з сервером.</p>';
+      newsContainer.innerHTML = '<p style="color: #9c9c9c; grid-column: 1/-1;">Сталася помилка при з’єднанні з сервером.</p>';
     }
   }
 

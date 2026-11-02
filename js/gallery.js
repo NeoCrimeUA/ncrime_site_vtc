@@ -46,11 +46,11 @@
         });
         renderGallery(sorted.slice(0, MAX_ITEMS));
       } else {
-        container.innerHTML = '<p data-inline-style="inline-8">Фотографій немає.</p>';
+        container.innerHTML = '<p style="color:#9c9c9c; grid-column:1/-1;">Фотографій немає.</p>';
       }
     } catch (e) {
       console.error("[Gallery] Помилка завантаження:", e);
-      container.innerHTML = '<p data-inline-style="inline-8">Помилка завантаження галереї.</p>';
+      container.innerHTML = '<p style="color:#9c9c9c; grid-column:1/-1;">Помилка завантаження галереї.</p>';
     }
   }
 

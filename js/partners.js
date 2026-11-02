@@ -26,11 +26,11 @@
         while (list.length < 3) list = list.concat(data.items.slice().reverse());
         track.innerHTML = list.map(cardHTML).join("");
       } else {
-        track.innerHTML = '<p data-inline-style="inline-9">Партнерів не знайдено.</p>';
+        track.innerHTML = '<p style="color:#9c9c9c;">Партнерів не знайдено.</p>';
       }
     } catch (e) {
       console.error("[Partners] Помилка завантаження:", e);
-      track.innerHTML = '<p data-inline-style="inline-9">Помилка завантаження партнерів.</p>';
+      track.innerHTML = '<p style="color:#9c9c9c;">Помилка завантаження партнерів.</p>';
     }
   }
 
@@ -41,7 +41,7 @@
     const name = item.vtc_name || "Невідомо";
     return `
       <div class="partner-card">
-        <div class="partner-card-banner" data-inline-style="inline-10"%27")}')"></div>
+        <div class="partner-card-banner" style="background-image:url('${banner.replace(/'/g, "%27")}')"></div>
         <div class="partner-card-overlay"></div>
         <div class="partner-card-content">
           <img class="partner-card-logo" src="${logo.replace(/"/g, "&quot;")}" alt="${escHtml(name)}" loading="lazy" draggable="false">
