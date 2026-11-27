@@ -9,8 +9,10 @@ document.addEventListener('DOMContentLoaded', () => {
       legendOwn: 'Наша подія',
       legendAttending: 'Ми відвідуємо',
       legendNone: 'Подій немає',
+      viewEvent: 'Переглянути подію',
       close: 'Закрити',
       eventsOn: 'Події',
+      noDate: 'Невідомо',
       calendarError: 'Не вдалося завантажити календар подій.'
     },
     en: {
@@ -19,8 +21,10 @@ document.addEventListener('DOMContentLoaded', () => {
       legendOwn: 'Our event',
       legendAttending: "We're attending",
       legendNone: 'No events',
+      viewEvent: 'View Event',
       close: 'Close',
       eventsOn: 'Events on',
+      noDate: 'Unknown',
       calendarError: 'Failed to load the events calendar.'
     }
   };
@@ -48,6 +52,17 @@ document.addEventListener('DOMContentLoaded', () => {
       dateKey: `${parts.year}-${parts.month}-${parts.day}`,
       time: `${parts.hour}:${parts.minute}`
     };
+  }
+
+  // Дата+час для відображення в картках/модалці: у "uk" — київський час,
+  // в іншому разі — сирий рядок з API як є (без конвертації).
+  function displayDateTime(meetupAtUtc) {
+    if (!meetupAtUtc) return null;
+    if (LANG === 'uk') {
+      const kyiv = toKyivParts(meetupAtUtc);
+      return kyiv ? `${kyiv.dateKey} ${kyiv.time}` : null;
+    }
+    return meetupAtUtc.substring(0, 16);
   }
 
   // Тільки час (HH:MM) для відображення в модалці календаря.
@@ -89,6 +104,58 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // Будуємо одну картку події (однаковий вигляд для обох блоків)
+  function renderEventCard(item) {
+    // Для "uk" — переводимо в київський час; для інших мов — як є з API (UTC)
+    const cleanDate = displayDateTime(item.start_at) || T.noDate;
+
+    // Безопасное извлечение данных (если какое-то поле будет отсутствовать)
+    const serverName = item.server && item.server.name ? item.server.name : T.noDate;
+    const startCity = item.departure && item.departure.city ? item.departure.city : T.noDate;
+    const startLoc = item.departure && item.departure.location ? item.departure.location : '';
+    const finishCity = item.arrive && item.arrive.city ? item.arrive.city : T.noDate;
+    const finishLoc = item.arrive && item.arrive.location ? item.arrive.location : '';
+
+    const card = document.createElement('div');
+    card.className = 'event-card';
+
+    card.innerHTML = `
+      <img src="${item.banner}" alt="${item.name}" class="event-img" loading="lazy">
+      <div class="event-content">
+        <h3 class="event-title" title="${item.name}">${item.name}</h3>
+
+        <div class="event-details">
+          <div class="event-detail-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/></svg>
+            <span><strong>Date:</strong> ${cleanDate}</span>
+          </div>
+
+          <div class="event-detail-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span><strong>Start:</strong> ${startCity} ${startLoc ? '— ' + startLoc : ''}</span>
+          </div>
+
+          <div class="event-detail-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" x2="4" y1="22" y2="15"/></svg>
+            <span><strong>Finish:</strong> ${finishCity} ${finishLoc ? '— ' + finishLoc : ''}</span>
+          </div>
+
+          <div class="event-detail-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="8" x="2" y="2" rx="2" ry="2"/><rect width="20" height="8" x="2" y="14" rx="2" ry="2"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></svg>
+            <span><strong>Server:</strong> ${serverName}</span>
+          </div>
+        </div>
+
+        <a href="https://truckersmp.com/events/${item.id}" target="_blank" class="btn-event">
+          ${T.viewEvent}
+          <span class="btn-ico btn-ico-calendar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v4M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="m9 16 2 2 4-4"/></svg></span>
+        </a>
+      </div>
+    `;
+
+    return card;
+  }
+
   // Універсальний fetch з ретраями та експоненційною паузою.
   // Повертає масив events (data.events) або кидає помилку після вичерпання спроб.
   async function fetchEventsWithRetry(apiUrl, retries = 4) {
@@ -123,32 +190,43 @@ document.addEventListener('DOMContentLoaded', () => {
     throw lastError || new Error('Unknown fetch error');
   }
 
-  function renderEventsGrid(container, events, emptyText) {
-    eventCatalog.render(container, events, emptyText);
-    forceReveal(container);
-  }
+  // Рендер списку подій (масив events) у вказаний контейнер, з опційним сортуванням.
+  function renderEventsGrid(container, events, { sortEvents = false, emptyText, errorText } = {}) {
+    if (!container) return;
 
-  function mountArchive(container, archived) {
-    const show = LANG === 'en' ? 'Show past events' : 'Показати минулі події';
-    const hide = LANG === 'en' ? 'Hide past events' : 'Приховати минулі події';
-    const button = eventCatalog.element('button', 'btn-event event-archive-toggle', show);
-    button.type = 'button';
-    button.setAttribute('aria-controls', 'past-events');
-    button.setAttribute('aria-expanded', 'false');
-    const section = eventCatalog.element('section', 'event-archive');
-    section.id = 'past-events';
-    section.hidden = true;
-    const title = eventCatalog.element('h3', 'event-archive-title', LANG === 'en' ? 'Past events' : 'Минулі події');
-    const grid = eventCatalog.element('div', 'events-grid');
-    section.append(title, grid);
-    container.after(button, section);
-    button.addEventListener('click', () => {
-      const expand = section.hidden;
-      if (expand && !grid.hasChildNodes()) eventCatalog.render(grid, archived, eventCatalog.labels.past);
-      section.hidden = !expand;
-      button.setAttribute('aria-expanded', String(expand));
-      button.textContent = expand ? hide : show;
+    if (events.length === 0) {
+      container.innerHTML = `<p style="color: #9c9c9c; grid-column: 1/-1;">${emptyText}</p>`;
+      forceReveal(container);
+      return;
+    }
+
+    if (sortEvents) {
+      events = events.slice().sort((a, b) => new Date(a.start_at) - new Date(b.start_at));
+    }
+
+    container.innerHTML = '';
+
+    events.forEach(item => {
+      try {
+        container.appendChild(renderEventCard(item));
+      } catch (cardError) {
+        // Одна "погана" подія (наприклад, відсутнє поле) не повинна
+        // валити рендер усіх інших карток — просто пропускаємо її.
+        console.error('[Events] Не вдалося відрендерити картку:', item, cardError);
+      }
     });
+
+    if (!container.children.length) {
+      container.innerHTML = `<p style="color: #9c9c9c; grid-column: 1/-1;">${errorText}</p>`;
+    }
+
+    // Контейнер щойно заповнився картками.
+    // Примусово розкриваємо сам контейнер та всіх його .reveal-предків —
+    // незалежно від того, чи observer вже відпрацював чи ні.
+    // Це виправляє race condition: observer міг спостерігати елемент
+    // поки всередині був лише плейсхолдер, додати .revealed і зняти
+    // спостереження — після чого нові картки лишалися з opacity:0 назавжди.
+    forceReveal(container);
   }
 
   // ==========================================================================
@@ -198,7 +276,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function indexEvents(list, type) {
       list.forEach(item => {
-        const key = dateKeyFromMeetup(item.start_at) || item.event_date;
+        const key = dateKeyFromMeetup(item.start_at);
         if (!key) return;
         const dedupeKey = `${type}-${item.id}-${key}`;
         if (seenKeys.has(dedupeKey)) return;
@@ -319,14 +397,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const row = document.createElement('div');
         row.className = 'calendar-modal-event';
-        const body = eventCatalog.element('div', 'calendar-modal-event-body');
-        body.append(
-          eventCatalog.element('span', 'calendar-badge ' + badgeClass, badgeText),
-          eventCatalog.element('h4', 'calendar-modal-event-title', item.name)
-        );
-        if (time) body.append(eventCatalog.element('div', 'calendar-modal-event-time', time));
-        body.append(eventCatalog.actions(item));
-        row.append(eventCatalog.banner(item, 'calendar-modal-banner'), body);
+        row.innerHTML = `
+          <img src="${item.banner}" alt="${item.name}" class="calendar-modal-banner" loading="lazy">
+          <div class="calendar-modal-event-body">
+            <span class="calendar-badge ${badgeClass}">${badgeText}</span>
+            <h4 class="calendar-modal-event-title" title="${item.name}">${item.name}</h4>
+            ${time ? `<div class="calendar-modal-event-time">${time}</div>` : ''}
+            <a href="https://truckersmp.com/events/${item.id}" target="_blank" class="btn-event calendar-modal-btn">
+              ${T.viewEvent}
+              <span class="btn-ico btn-ico-calendar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v4M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="m9 16 2 2 4-4"/></svg></span>
+            </a>
+          </div>
+        `;
         modalList.appendChild(row);
       });
 
@@ -444,29 +526,46 @@ document.addEventListener('DOMContentLoaded', () => {
   const ownContainer = document.getElementById('events-container');
   const attendingContainer = document.getElementById('attending-container');
 
-  const ownPromise = eventCatalog.load(true);
-  const attendingPromise = fetchEventsWithRetry(eventCatalog.api + '/attending');
+  const ownPromise = fetchEventsWithRetry('https://api.neocrime.space/events');
+  const attendingPromise = fetchEventsWithRetry('https://api.neocrime.space/attending');
 
-  ownPromise.then(events => {
-    renderEventsGrid(ownContainer, events.filter(item => !item.archived));
-    mountArchive(ownContainer, events.filter(item => item.archived).reverse());
-  }).catch(error => {
-    console.error('[Events]', error);
-    renderEventsGrid(ownContainer, [], eventCatalog.labels.error);
-  });
+  // Блок 1: Наші події
+  ownPromise
+    .then(events => {
+      renderEventsGrid(ownContainer, events, {
+        sortEvents: true,
+        emptyText: LANG === 'en' ? 'No events planned at the moment.' : 'Наразі запланованих подій немає.',
+        errorText: LANG === 'en' ? 'Failed to load events.' : 'Не вдалося завантажити події.'
+      });
+    })
+    .catch(err => {
+      console.error('[Events] Остаточна помилка (events-container):', err);
+      if (ownContainer) {
+        ownContainer.innerHTML = `<p style="color: #9c9c9c; grid-column: 1/-1;">${LANG === 'en' ? 'Failed to load events.' : 'Не вдалося завантажити події.'}</p>`;
+        forceReveal(ownContainer);
+      }
+    });
 
-  attendingPromise.then(events => {
-    const sorted = events.slice().sort((a, b) => String(a.start_at).localeCompare(String(b.start_at)));
-    renderEventsGrid(attendingContainer, sorted, LANG === 'en'
-      ? 'No attendances planned at the moment.' : 'Наразі немає запланованих відвідувань.');
-  }).catch(error => {
-    console.error('[Events Attending]', error);
-    renderEventsGrid(attendingContainer, [], eventCatalog.labels.error);
-  });
+  // Блок 2: Події, на які ми йдемо (attending) — апі віддає дані в розкид, тож сортуємо
+  attendingPromise
+    .then(events => {
+      renderEventsGrid(attendingContainer, events, {
+        sortEvents: true,
+        emptyText: LANG === 'en' ? 'No attendances planned at the moment.' : 'Наразі немає запланованих відвідувань.',
+        errorText: LANG === 'en' ? 'Failed to load events.' : 'Не вдалося завантажити події.'
+      });
+    })
+    .catch(err => {
+      console.error('[Events] Остаточна помилка (attending-container):', err);
+      if (attendingContainer) {
+        attendingContainer.innerHTML = `<p style="color: #9c9c9c; grid-column: 1/-1;">${LANG === 'en' ? 'Failed to load events.' : 'Не вдалося завантажити події.'}</p>`;
+        forceReveal(attendingContainer);
+      }
+    });
 
   // Календар: чекаємо обидва запити (навіть якщо один з них впав — будуємо з тим, що є)
   Promise.allSettled([ownPromise, attendingPromise]).then(([ownRes, attendingRes]) => {
-    const ownEvents = ownRes.status === 'fulfilled' ? ownRes.value.filter(item => !item.archived) : [];
+    const ownEvents = ownRes.status === 'fulfilled' ? ownRes.value : [];
     const attendingEvents = attendingRes.status === 'fulfilled' ? attendingRes.value : [];
 
     if (ownRes.status === 'rejected' && attendingRes.status === 'rejected') {
