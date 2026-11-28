@@ -1894,8 +1894,8 @@
 
 <!-- ===== АВТОРИЗАЦІЯ DISCORD (крок 1, ДО заповнення анкети) ===== -->
 <script>
+const APPLY_API_BASE = 'https://api.neocrime-group.com';
 (function () {
-  const API_BASE = 'https://api.neocrime-group.com';
   const TOKEN_KEY = 'neocrime_apply_token';
 
   const authGate      = document.getElementById('auth-gate');
@@ -1951,7 +1951,7 @@
 
   async function loadSession(token) {
     try {
-      const res = await fetch(`${API_BASE}/apply/session?token=${encodeURIComponent(token)}`);
+      const res = await fetch(`${APPLY_API_BASE}/apply/session?token=${encodeURIComponent(token)}`);
       const data = await res.json().catch(() => ({}));
       if (!res.ok || data.status !== 'success') {
         clearToken();
@@ -1991,7 +1991,7 @@
     logoutButton.disabled = true;
     try {
       if (token) {
-        const response = await fetch(API_BASE + '/apply/logout', {
+        const response = await fetch(APPLY_API_BASE + '/apply/logout', {
           method: 'POST', headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({token})
         });
@@ -2077,7 +2077,7 @@
     setLoading(true);
 
     try {
-      const res = await fetch(API_BASE + '/apply', {
+      const res = await fetch(APPLY_API_BASE + '/apply', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
