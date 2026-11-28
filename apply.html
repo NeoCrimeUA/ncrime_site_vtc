@@ -1670,7 +1670,7 @@
       <h3>Спершу авторизуйтесь через Discord</h3>
       <p>Щоб подати заявку, потрібно прив'язати ваш Discord-акаунт до анкети — <strong>це офіційна авторизація</strong>. Ми НЕ бачимо ваш пароль і не отримуємо доступ до особистих повідомлень чи інших серверів — Discord лише підтверджує, що це ваш акаунт. Анкету можна буде заповнити одразу після цього кроку.</p>
       <div class="form-status show error" id="auth-gate-error" style="display:none;"></div>
-      <a href="https://discord.com/oauth2/authorize?client_id=1459593337148539066&response_type=code&redirect_uri=https%3A%2F%2Fapi.neocrime.space%2Fapply%2Fcallback&scope=identify+guilds.join&state=uk_apply" class="btn-discord">
+      <a href="https://discord.com/oauth2/authorize?client_id=1459593337148539066&response_type=code&redirect_uri=https%3A%2F%2Fapi.neocrime-group.com%2Fapply%2Fcallback&scope=identify+guilds.join&state=uk_apply" class="btn-discord">
         <i class="fab fa-discord"></i>
         Увійти через Discord
       </a>
@@ -1895,7 +1895,7 @@
 <!-- ===== АВТОРИЗАЦІЯ DISCORD (крок 1, ДО заповнення анкети) ===== -->
 <script>
 (function () {
-  const API_BASE = 'https://api.neocrime.space';
+  const API_BASE = 'https://api.neocrime-group.com';
   const TOKEN_KEY = 'neocrime_apply_token';
 
   const authGate      = document.getElementById('auth-gate');
@@ -2077,7 +2077,7 @@
     setLoading(true);
 
     try {
-      const res = await fetch('https://api.neocrime.space/apply', {
+      const res = await fetch(API_BASE + '/apply', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),

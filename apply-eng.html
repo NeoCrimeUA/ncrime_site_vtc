@@ -1670,7 +1670,7 @@
       <h3>First, sign in with Discord</h3>
       <p>To submit an application, you need to link your Discord account to it — <strong>this is an official authorization</strong>. We CANNOT see your password and get no access to your DMs or other servers — Discord only confirms this is your account. You'll be able to fill out the form right after this step.</p>
       <div class="form-status show error" id="auth-gate-error" style="display:none;"></div>
-      <a href="https://discord.com/oauth2/authorize?client_id=1459593337148539066&response_type=code&redirect_uri=https%3A%2F%2Fapi.neocrime.space%2Fapply%2Fcallback&scope=identify+guilds.join&state=en_apply" class="btn-discord">
+      <a href="https://discord.com/oauth2/authorize?client_id=1459593337148539066&response_type=code&redirect_uri=https%3A%2F%2Fapi.neocrime-group.com%2Fapply%2Fcallback&scope=identify+guilds.join&state=en_apply" class="btn-discord">
         <i class="fab fa-discord"></i>
         Sign in with Discord
       </a>
@@ -1895,7 +1895,7 @@
 <!-- ===== DISCORD AUTHORIZATION (step 1, BEFORE the form) ===== -->
 <script>
 (function () {
-  const API_BASE = 'https://api.neocrime.space';
+  const API_BASE = 'https://api.neocrime-group.com';
   const TOKEN_KEY = 'neocrime_apply_token';
 
   const authGate      = document.getElementById('auth-gate');
@@ -2077,7 +2077,7 @@
     setLoading(true);
 
     try {
-      const res = await fetch('https://api.neocrime.space/apply_en', {
+      const res = await fetch(API_BASE + '/apply_en', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
